@@ -39,6 +39,12 @@ importers:
         specifier: ^1.13.11
         version: 1.13.11
 
+  packages/pipeline:
+    dependencies:
+      '@directory/core':
+        specifier: workspace:*
+        version: link:../core
+
 packages:
 
   '@aws-sdk/client-lambda@3.1114.0':

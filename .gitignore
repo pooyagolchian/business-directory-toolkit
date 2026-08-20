@@ -44,3 +44,6 @@ Thumbs.db
 # The SearchApi proposal contains commercial terms and contact details.
 # Un-ignore deliberately if you decide to publish it.
 searchapi-ambassador-proposal.pdf
+
+# --- local agent session state ---
+.claude/*.local.md

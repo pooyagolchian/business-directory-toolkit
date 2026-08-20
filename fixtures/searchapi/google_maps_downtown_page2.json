@@ -1,0 +1,444 @@
+{
+  "search_metadata": {
+    "id": "search_m3WR9zk90VHV9aOQPvyn8YoV",
+    "status": "Success",
+    "created_at": "2026-08-20T16:54:13Z",
+    "request_time_taken": 2.45,
+    "parsing_time_taken": 0.01,
+    "total_time_taken": 2.46,
+    "request_url": "https://www.google.com/maps/search/restaurants/@25.2048,55.2708,14z?hl=en"
+  },
+  "search_parameters": {
+    "engine": "google_maps",
+    "q": "restaurants",
+    "ll": "@25.2048,55.2708,14z",
+    "hl": "en",
+    "gl": "ae",
+    "page": "2"
+  },
+  "search_information": {
+    "query_displayed": "restaurants",
+    "state": "Showing results for exact spelling."
+  },
+  "local_results": [
+    {
+      "position": 1,
+      "ludocid": "3671747403878777620",
+      "place_id": "ChIJoXWjf8RpXz4RFEMoYc-q9DI",
+      "kgmid": "/g/11v0y_kpg6",
+      "data_id": "0x3e5f69c47fa375a1:0x32f4aacf61284314",
+      "title": "Icarus Restaurant Dubai",
+      "address": "Souk Al Bahar, Level 2 - Dubai Mall - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "058 280 7801",
+      "rating": 4.9,
+      "reviews": 656,
+      "review_text": "\"The food was outstanding – fresh, full of flavor, and beautifully presented.\"",
+      "website": "https://www.sevenrooms.com/explore/icarus/reservations/create/search",
+      "domain": "sevenrooms.com",
+      "gps_coordinates": {
+        "latitude": 25.1946394,
+        "longitude": 55.2765141
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Asian restaurant",
+        "Mediterranean restaurant",
+        "Russian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmplp7aljwzZ8S15XpIaAVBotKseF2KChKltwfWo359DTSU8n1A1u05_fMVDEZCGN_mTxR2zhDkD2ca5Uu5WMqE_yivpnQEP5k9p3O-TtG59lO24x8RSoNY1bldZbmE8SneXRpWLDgwJA2D=w122-h92-k-no"
+    },
+    {
+      "position": 3,
+      "ludocid": "2128360283303990232",
+      "place_id": "ChIJa16CPHdDXz4R2FNisGZ0iR0",
+      "kgmid": "/g/11t2z1fnpb",
+      "data_id": "0x3e5f43773c825e6b:0x1d897466b06253d8",
+      "title": "Shandiz Palace Restaurant Est",
+      "address": "Jumeira St - opposite Mercato Shopping Mall - Jumeirah - Jumeirah 1 - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 404 0533",
+      "rating": 4.6,
+      "reviews": 634,
+      "review_text": "\"Food tastes great, service is top notch and live music is fantastic.\"",
+      "website": "http://shandizpalace.ae/",
+      "domain": "shandizpalace.ae",
+      "gps_coordinates": {
+        "latitude": 25.2151791,
+        "longitude": 55.2502194
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "11:30 AM–12 AM",
+        "friday": "11:30 AM–12 AM",
+        "saturday": "11:30 AM–12 AM",
+        "sunday": "11:30 AM–12 AM",
+        "monday": "11:30 AM–12 AM",
+        "tuesday": "11:30 AM–12 AM",
+        "wednesday": "11:30 AM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlT0IRRZspN6celsNEHz2sAVykG0m-KGIGkpHj7oi2eWp4FBDRxzaQmVARChZQgn2cn4DEEBRhVK_j12lJucZ6fXRzQACSkyZeUPTFaUlTDwpwu2e4qpr9z1ghMq9UUnsqGK6ST6w=w122-h92-k-no"
+    },
+    {
+      "position": 4,
+      "ludocid": "2501942567020008910",
+      "place_id": "ChIJ_TSIXLNcXz4RzhWoQ4KvuCI",
+      "kgmid": "/g/11ggbd1bg2",
+      "data_id": "0x3e5f5cb35c8834fd:0x22b8af8243a815ce",
+      "title": "Shamiat Restaurant مطعم شاميات - Dubai",
+      "address": "Duja Tower - Sheikh Zayed Rd - Trade Center First - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "054 781 6266",
+      "rating": 4.6,
+      "reviews": 912,
+      "review_text": "\"Delicious, beautiful, excellent service!\"",
+      "website": "https://www.facebook.com/Shamiat.Restaurant.ae?mibextid=LQQJ4d",
+      "domain": "facebook.com",
+      "gps_coordinates": {
+        "latitude": 25.2288653,
+        "longitude": 55.2862823
+      },
+      "type": "Syrian restaurant",
+      "types": [
+        "Syrian restaurant",
+        "Grill",
+        "Breakfast restaurant",
+        "Lebanese restaurant",
+        "Lunch restaurant",
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "9 AM–11:30 PM",
+        "friday": "9 AM–11:30 PM",
+        "saturday": "9 AM–11:30 PM",
+        "sunday": "9 AM–11:30 PM",
+        "monday": "9 AM–11:30 PM",
+        "tuesday": "9 AM–11:30 PM",
+        "wednesday": "9 AM–11:30 PM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/shamiat-restaurant-trade-centre-area/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWng7WaNeSyC5PoJljc73fcOXqyNP_b0vv6t1SCWmqBkwnh3vQKskQtq2GnqQ3uUBSYSd5HZD5IqrVQDeOYqfZm3kmDChzo8EdpAUqBNayftyeIBeWwqYaXOngLKh81MtgOmdMWgxQ=w122-h92-k-no"
+    },
+    {
+      "position": 6,
+      "ludocid": "15746901620889326761",
+      "place_id": "ChIJ59pg2YpDXz4RqZQh8pc7iNo",
+      "kgmid": "/g/11fnyztfyt",
+      "data_id": "0x3e5f438ad960dae7:0xda883b97f22194a9",
+      "title": "Khun Chai Thai Restaurant -Jumeira3- مطعم كون شاي تاي-جميرا ٣",
+      "address": "Jumeira St - Jumeirah - Jumeirah 3 - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 388 7995",
+      "rating": 4.8,
+      "reviews": 1782,
+      "review_text": "\"From the food, service, setting & area, it’s perfection!\"",
+      "gps_coordinates": {
+        "latitude": 25.1896985,
+        "longitude": 55.2317113
+      },
+      "type": "Thai restaurant",
+      "types": [
+        "Thai restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlA2Nalt-mIKNYrA5UVxkiw9rIXJTzGfqoCqcKvy4oNezal0qQzX2ShRL5ywrBmJPPU_BsopVxLSIyRg_Zu5P36dOHV6cR2TE8y4TO9acKzbXn2DwrGkGRIp8MLaU8BgvaS6fQf=w80-h106-k-no"
+    },
+    {
+      "position": 2,
+      "ludocid": "17546683087257953417",
+      "place_id": "ChIJOVQ-RYhCXz4RiWRdMk1XgvM",
+      "kgmid": "/g/11bbwncvwm",
+      "data_id": "0x3e5f4288453e5439:0xf382574d325d6489",
+      "title": "Dunes Cafe",
+      "address": "1 Sheikh Zayed Rd - Trade Center First - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 405 2703",
+      "rating": 4.6,
+      "reviews": 291,
+      "review_text": "\"Every dish we tried was fresh, flavorful, and beautifully presented.\"",
+      "website": "http://www.shangri-la.com/dubai/shangrila/dining/restaurants/dunes-cafe/",
+      "domain": "shangri-la.com",
+      "gps_coordinates": {
+        "latitude": 25.2080737,
+        "longitude": 55.2720776
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11 PM",
+      "open_hours": {
+        "thursday": "6 AM–11 PM",
+        "friday": "6 AM–11 PM",
+        "saturday": "6–10:30 AM",
+        "sunday": "12–3 PM",
+        "monday": "6 AM–11 PM",
+        "tuesday": "6 AM–11 PM",
+        "wednesday": "6 AM–11 PM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/dunes-cafe-shangri-la-trade-centre-area/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmH6qDqhkhM6ySxqnuT8DPueDWxCymU-0_sXcXiPjY2UxA1JB6GXVXYrLx6u7_I2Rr8wpVs1lmI1dcCXA__ol1zAXkHBTC7tgOw6s0dYWg_3ULcwraXbnToGVOGCCl6ltsx5V8w=w122-h92-k-no"
+    },
+    {
+      "position": 5,
+      "ludocid": "10921409400655260372",
+      "place_id": "ChIJo-27MZBCXz4R1CqrXPyjkJc",
+      "kgmid": "/g/11cn6hkg4t",
+      "data_id": "0x3e5f429031bbeda3:0x9790a3fc5cab2ad4",
+      "title": "Carnival by Trèsind Restaurant & Bar | DIFC, Dubai",
+      "description": "Hip restaurant with a seasonal menu. Trendy restaurant featuring global fare that changes with the seasons, plus a chef's tasting menu.",
+      "address": "The Buildings by Daman - 312 Al Sa'ada Street - Zaa'beel Second - DIFC - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "800 1604",
+      "rating": 4.6,
+      "reviews": 3268,
+      "review_text": "\"Good service, delicious food, tasty drinks with wow presentation.\"",
+      "website": "https://carnivalbytresind.com/best-restaurant-in-difc/",
+      "domain": "carnivalbytresind.com",
+      "gps_coordinates": {
+        "latitude": 25.2116863,
+        "longitude": 55.28187
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bar",
+        "Brunch restaurant",
+        "Cocktail bar",
+        "Indian restaurant",
+        "Lounge bar",
+        "Modern Indian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "12–11:30 PM",
+        "friday": "12–11:30 PM",
+        "saturday": "12–11:30 PM",
+        "sunday": "12–11:30 PM",
+        "monday": "12–11:30 PM",
+        "tuesday": "12–11:30 PM",
+        "wednesday": "12–11:30 PM"
+      },
+      "reservation": {
+        "link": "https://carnivalbytresind.com/best-restaurant-in-difc/",
+        "source": "carnivalbytresind.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn-f3fQ5UGBiyc14yL1pKYZUpzRYNKWbf-DLF8ktQ52_-0dHdGRi2CUy6qjvMqoz2Yif4F0lD44DUdoCDG9Q5r0keQX6NzdiU-ahf7EMQ0HLSnKw-z3F3dqgc0ic6myt-O4iFL1BA=w128-h92-k-no"
+    },
+    {
+      "position": 7,
+      "ludocid": "9880970597606159217",
+      "place_id": "ChIJ92k5UTNDXz4RcfNkKmhCIIk",
+      "kgmid": "/g/11jtrrrfyq",
+      "data_id": "0x3e5f4333513969f7:0x892042682a64f371",
+      "title": "The Cycle Bistro",
+      "address": "15 75B St - Jumeirah - JumeirahJumeirah 1 - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 332 2209",
+      "rating": 4.8,
+      "reviews": 291,
+      "review_text": "\"The food, ambience, and Gift's exceptional service left us enamored.\"",
+      "website": "http://www.thecyclebistro.com/",
+      "domain": "thecyclebistro.com",
+      "gps_coordinates": {
+        "latitude": 25.2151853,
+        "longitude": 55.2521122
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Closed",
+      "hours": "Closed · Opens 8 AM Fri",
+      "open_hours": {
+        "thursday": "8 AM–8 PM",
+        "friday": "8 AM–8 PM",
+        "saturday": "8 AM–6 PM",
+        "sunday": "8 AM–6 PM",
+        "monday": "8 AM–8 PM",
+        "tuesday": "8 AM–8 PM",
+        "wednesday": "8 AM–6 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmJQdhkbt0lHnL0A5_tAzCWrjVgeWRHr3KRS57ymLtIKX7v61YWEasXtEAo1gK5VvzJuZIrhgSEdzWXAnGxCa6a6DGRtbxkjxssfrEgO99Zaq0tMhBA6iq2NKATVrdgVZx4RY343w=w122-h92-k-no"
+    },
+    {
+      "position": 8,
+      "ludocid": "1255462454594032236",
+      "place_id": "ChIJETWUmiloXz4RbNLqYnNMbBE",
+      "kgmid": "/g/11bbwr2g8q",
+      "data_id": "0x3e5f68299a943511:0x116c4c7362ead26c",
+      "title": "Kanpai Restaurant & Lounge",
+      "address": "Souk Al Bahar - Shop No.G-5, Level 3 - Sheikh Mohammed bin Rashid Blvd - Burj Khalifa - Downtown Dubai - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 441 9262",
+      "rating": 4.7,
+      "reviews": 2855,
+      "review_text": "\"The food was delicious, the atmosphere is relaxing and great service.\"",
+      "website": "http://kanpaime.com/",
+      "domain": "kanpaime.com",
+      "gps_coordinates": {
+        "latitude": 25.1947765,
+        "longitude": 55.2763972
+      },
+      "type": "Japanese restaurant",
+      "types": [
+        "Japanese restaurant",
+        "Asian fusion restaurant",
+        "Bar",
+        "Lounge bar"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–1 AM",
+        "saturday": "12 PM–1 AM",
+        "sunday": "12 PM–1 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "reservation": {
+        "link": "http://www.kanpaime.com/",
+        "source": "kanpaime.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlbvi_MbNbQRVTrsV4hRodFRSaaZwhD6-mqcyj1Ypo4TOvQKT8Z9AF-DqK46PvKidUxMDI9pCizWgF8yWZc7Tdm8d-ZvMn-q4oZpnARI-vIVrZR5CYGpVaYWpzSTbfL4rZebB_A=w138-h92-k-no"
+    },
+    {
+      "position": 9,
+      "ludocid": "6042304601926393894",
+      "place_id": "ChIJ5YovkGNDXz4RJuCHngWU2lM",
+      "kgmid": "/g/11fksprrsg",
+      "data_id": "0x3e5f4363902f8ae5:0x53da94059e87e026",
+      "title": "Mara Lounge Restaurant - Al Wasl 51, Dubai",
+      "address": "323 Al Wasl Rd - Jumeirah - Jumeira First - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 347 6007",
+      "rating": 4.6,
+      "reviews": 2286,
+      "review_text": "\"Very good food, friendly staff, and nice restaurant atmosphere.\"",
+      "website": "http://www.maralounge.com/",
+      "domain": "maralounge.com",
+      "gps_coordinates": {
+        "latitude": 25.2183791,
+        "longitude": 55.2610774
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bakery",
+        "Breakfast restaurant",
+        "Cafe",
+        "Caterer",
+        "Coffee shop",
+        "Delivery service",
+        "Dessert shop"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "8 AM–12 AM",
+        "friday": "8 AM–1 AM",
+        "saturday": "8 AM–1 AM",
+        "sunday": "8 AM–12 AM",
+        "monday": "8 AM–12 AM",
+        "tuesday": "8 AM–12 AM",
+        "wednesday": "8 AM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlPP9JmNGQyGqg-MrO-BKJdxs-LaKlQJJAAFUUaW9u2iK2wmglYZvcs7ujPPN1LwZculjtJ88QyjoQjo9YJDT1nhGF0LoZw-0clRUrl3wa8QyHUk_nsTPy8lHjsPYyB0LVOk7Ab=w122-h92-k-no"
+    },
+    {
+      "position": 10,
+      "ludocid": "10278054734299948112",
+      "place_id": "ChIJcbccDidpXz4RUGT4S1P8oo4",
+      "kgmid": "/g/11pvhlb3c7",
+      "data_id": "0x3e5f69270e1cb771:0x8ea2fc534bf86450",
+      "title": "Alphorn Restaurant",
+      "address": "Al Asayel Street - 3rd Floor - 2 Barceló - Business Bay - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 574 7555",
+      "rating": 4.7,
+      "reviews": 117,
+      "review_text": "\"The food was delicious, and the outdoor ambiance was lovely.\"",
+      "website": "https://www.barcelo.com/en-es/barcelo-business-bay-dubai/cuisine/?utm_source=google&utm_medium=organic&utm_campaign=my_business&utm_content=97590rA",
+      "domain": "barcelo.com",
+      "gps_coordinates": {
+        "latitude": 25.1791851,
+        "longitude": 55.271535
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "6:30 AM–11:30 PM",
+        "friday": "6:30 AM–11:30 PM",
+        "saturday": "6:30 AM–11:30 PM",
+        "sunday": "6:30 AM–11:30 PM",
+        "monday": "6:30 AM–11:30 PM",
+        "tuesday": "6:30 AM–11:30 PM",
+        "wednesday": "6:30 AM–11:30 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkFrFs08zBAqDQ_w7jDp1R5K1CgsHFO9F5ZCRRN8xJK0ga3H9irGZ6o0ZN_rdNd_QYfcxgvlwC74uCKMYn8Xx7IAxVFPi7zYXmON_5676XJrPe4ByPkLDVo3HJgAnEHudPvZb4=w140-h92-k-no"
+    }
+  ]
+}

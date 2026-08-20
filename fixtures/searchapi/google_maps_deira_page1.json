@@ -1,0 +1,400 @@
+{
+  "search_metadata": {
+    "id": "search_1g3L6weL3bSVQLrVXkpaP2rB",
+    "status": "Success",
+    "created_at": "2026-08-20T16:54:41Z",
+    "request_time_taken": 2.01,
+    "parsing_time_taken": 0.01,
+    "total_time_taken": 2.01,
+    "request_url": "https://www.google.com/maps/search/restaurants/@25.2697,55.3095,15z?hl=en"
+  },
+  "search_parameters": {
+    "engine": "google_maps",
+    "q": "restaurants",
+    "ll": "@25.2697,55.3095,15z",
+    "hl": "en",
+    "gl": "ae"
+  },
+  "search_information": {
+    "query_displayed": "restaurants",
+    "state": "Showing results for exact spelling."
+  },
+  "local_results": [
+    {
+      "position": 1,
+      "ludocid": "1363283276450512490",
+      "place_id": "ChIJW5B5DgBdXz4Raj4Qvepa6xI",
+      "kgmid": "/g/11wmtbsfp3",
+      "data_id": "0x3e5f5d000e79905b:0x12eb5aeabd103e6a",
+      "title": "New Marina Restaurant - Union",
+      "address": "Near Al Ghurair Centre, Al Rigga Rd - Al Muraqqabat - UAE7889+CM2 - Al Rigga - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 227 3177",
+      "rating": 4.7,
+      "reviews": 507,
+      "website": "https://linktr.ee/newmarinarestaurant?utm_source=linktree_profile_share&ltsid=8a1ffc71-5483-4223-bc41-6e7a4144b3b9",
+      "domain": "linktr.ee",
+      "gps_coordinates": {
+        "latitude": 25.266044,
+        "longitude": 55.3191582
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Arab restaurant",
+        "Filipino restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 4 AM",
+      "open_hours": {
+        "thursday": "8 AM–4 AM",
+        "friday": "8 AM–4 AM",
+        "saturday": "8 AM–4 AM",
+        "sunday": "8 AM–4 AM",
+        "monday": "8 AM–4 AM",
+        "tuesday": "8 AM–4 AM",
+        "wednesday": "8 AM–4 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkPt7AaCdrtBLJWlINjS_93C71JI7V4vDojGaO2vPfg2OeVKv5YJKtT2fMhhztr90BmobX5v7DYUMLK1LZ9qg-zojHNOyj7UlH15ekx2WxeZ30yedOcyxVtgfZ-zAVvVuO18PArCQ=w163-h92-k-no"
+    },
+    {
+      "position": 2,
+      "ludocid": "13995733565925783866",
+      "place_id": "ChIJ39EO0T9dXz4ROnkEkIbVOsI",
+      "kgmid": "/g/11q95gswyl",
+      "data_id": "0x3e5f5d3fd10ed1df:0xc23ad5869004793a",
+      "title": "Super Bowl - Asian Cafe - Deira",
+      "address": "Port Saeed, Copthorne Hotel Opposite Centurion Star Tower Street 9 C Deira City Center Area - Port Saeed - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 571 2888",
+      "rating": 4.8,
+      "reviews": 11222,
+      "website": "https://www.superbowlcafe.com/",
+      "domain": "superbowlcafe.com",
+      "gps_coordinates": {
+        "latitude": 25.2545687,
+        "longitude": 55.327991999999995
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "12–11:30 PM",
+        "friday": "12–11:30 PM",
+        "saturday": "12–11:30 PM",
+        "sunday": "12–11:30 PM",
+        "monday": "12–11:30 PM",
+        "tuesday": "12–11:30 PM",
+        "wednesday": "12–11:30 PM"
+      },
+      "reservation": {
+        "link": "https://www.zomato.com/dubai/super-bowl-asian-caf%C3%A9-deira-city-centre-area/book?utm_source=rwg",
+        "source": "zomato.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk1kG7YHooIGHrijRs0-thcPBM2epco-TrCq4odP-mwkLOXJPt8I4rD_BMlOVx7azz_u78ujoDUp58HIl3EvV8Cul3NKFWO4yWjr8m8I19ZrrfU4nAQTvgPE8HI0s5cdrm9x_pPiQ=w122-h92-k-no"
+    },
+    {
+      "position": 3,
+      "ludocid": "16110213357825925066",
+      "place_id": "ChIJ_WASaHBDXz4Ryp_3gLH5kt8",
+      "kgmid": "/g/11sysx8x52",
+      "data_id": "0x3e5f4370681260fd:0xdf92f9b180f79fca",
+      "title": "Creek City Restaurant",
+      "address": "Grand Souq - Bur Dubai - Al Souq Al Kabeer - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 360 2599",
+      "rating": 4.8,
+      "reviews": 1704,
+      "website": "https://app.qaayima.com/restaurant/creekcityrestaurant",
+      "domain": "app.qaayima.com",
+      "gps_coordinates": {
+        "latitude": 25.2649634,
+        "longitude": 55.2951408
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Family restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 1 AM",
+      "open_hours": {
+        "thursday": "10 AM–1 AM",
+        "friday": "10 AM–1 AM",
+        "saturday": "10 AM–1 AM",
+        "sunday": "10 AM–1 AM",
+        "monday": "9 AM–1 AM",
+        "tuesday": "10 AM–1 AM",
+        "wednesday": "10 AM–1 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnOD6QPwsAVUXzsYcli-TRlMlZEktRGbOoCHDe9FAjFcoTEdWGdNQeDyLUMSku6AzTGlaPBNRWDyiez2pnGgeaw50azULeUrpkANEnqxmEtl26Y8m8AB-7jvqlPSDA3ImlDeLvet9UMYN8s=w80-h106-k-no"
+    },
+    {
+      "position": 4,
+      "ludocid": "7447109264562118222",
+      "place_id": "ChIJ6ZaE3UBDXz4RTt6-bWtyWWc",
+      "kgmid": "/g/11ms0xj17k",
+      "data_id": "0x3e5f4340dd8496e9:0x6759726b6dbede4e",
+      "title": "Mr.TKR Restaurant",
+      "address": "saif center - 228 Naif Rd - Deira - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "055 267 5562",
+      "rating": 4.9,
+      "reviews": 19,
+      "gps_coordinates": {
+        "latitude": 25.2757474,
+        "longitude": 55.3126313
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open 24 hours",
+      "open_hours": {
+        "thursday": "Open 24 hours",
+        "friday": "Open 24 hours",
+        "saturday": "Open 24 hours",
+        "sunday": "Open 24 hours",
+        "monday": "Open 24 hours",
+        "tuesday": "Open 24 hours",
+        "wednesday": "Open 24 hours"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk3AF8W6Micdc827dYz5ZCPyruel1BYFdJFqsAjQftmKA9Twk6LITVLs0P7Mn8Jq3svq6UmJBMkWy_kxQPcvpAshxWJflh4FUuLWzQTXWg7NAma5L6h87ZRwjSyeYsbxRFZvERD54TKSp-O=w163-h92-k-no"
+    },
+    {
+      "position": 5,
+      "ludocid": "6712333409383524382",
+      "place_id": "ChIJ07Ff_UpDXz4RHqhKIKz_Jl0",
+      "kgmid": "/g/11vf0ftmwm",
+      "data_id": "0x3e5f434afd5fb1d3:0x5d26ffac204aa81e",
+      "title": "Curry Maria Restaurant",
+      "address": "Jacobs Garden Hotel - Level 1 - 316 Rolla Street - Bur Dubai - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 570 9319",
+      "rating": 4.7,
+      "reviews": 1533,
+      "website": "https://www.currymaria.com/",
+      "domain": "currymaria.com",
+      "gps_coordinates": {
+        "latitude": 25.2569631,
+        "longitude": 55.290202
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/curry-maria-restaurant-mankhool/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlwD08DlXBO4Y72C1KO53GxgeMWhX-WVRb-wOPS6VjfVJBnNu0DTubjjM1crS-rbEIFPzZ3jkHr_bnuw9iU57LX1xtZBS7UzelX08ZrTNEBzBYb_-h-QoO-8u0yarsnLBDY3o4UquMoV4U=w122-h92-k-no"
+    },
+    {
+      "position": 6,
+      "ludocid": "15623395122396530327",
+      "place_id": "ChIJ48_3ENpdXz4RlwYEaBZz0dg",
+      "kgmid": "/g/11rj6d294s",
+      "data_id": "0x3e5f5dda10f7cfe3:0xd8d1731668040697",
+      "title": "Asian Lotus Restaurant",
+      "address": "Deira - 24th Street - Port Saeed - Deira - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 331 0689",
+      "rating": 4.7,
+      "reviews": 478,
+      "gps_coordinates": {
+        "latitude": 25.2545603,
+        "longitude": 55.3283326
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "11 AM–12 AM",
+        "friday": "11 AM–12 AM",
+        "saturday": "11 AM–12 AM",
+        "sunday": "11 AM–12 AM",
+        "monday": "11 AM–12 AM",
+        "tuesday": "11 AM–12 AM",
+        "wednesday": "11 AM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmX-MVlHIRJ2uTbv__4heLHvnpm6uhdpaKHlicer2EBmG4IX57x2Zv6vVujK0xh9ktCiK0mX4zMGupkqWF11yyJ3zgSFvK6sBvm10z8j5CLc-iMsEkSSC4biUtdDqzVwJOpEwvttQ=w138-h92-k-no"
+    },
+    {
+      "position": 7,
+      "ludocid": "11479194777064547299",
+      "place_id": "ChIJbd2lgyZDXz4R46NzktRKTp8",
+      "kgmid": "/g/11t1646k_r",
+      "data_id": "0x3e5f432683a5dd6d:0x9f4e4ad49273a3e3",
+      "title": "Table 3 Restaurant",
+      "address": "TABLE 3 RESTAURANT EST. Maryam plaza 2 - 113 Rd - Al Dhagaya - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "056 100 9333",
+      "rating": 4.6,
+      "reviews": 816,
+      "website": "http://www.table3.ae/",
+      "domain": "table3.ae",
+      "gps_coordinates": {
+        "latitude": 25.272932,
+        "longitude": 55.2981329
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 2 AM",
+      "open_hours": {
+        "thursday": "6 AM–2 AM",
+        "friday": "6 AM–2 AM",
+        "saturday": "6 AM–2 AM",
+        "sunday": "6 AM–2 AM",
+        "monday": "6 AM–2 AM",
+        "tuesday": "6 AM–2 AM",
+        "wednesday": "6 AM–2 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmrKdBUtH_L5yjsEdVysSGwMF6tr2yrPmOBQk-4W01V2LAvZRtHXSLHDBIQsmdGv4ujKo3bKutYPWhhmDeaJz4cYRusbR1QOKBmL8MgDOoPGLNhQWvOwHa0v8EcF7YlVeR9hEm_7w=w199-h92-k-no"
+    },
+    {
+      "position": 8,
+      "ludocid": "984064688483807052",
+      "place_id": "ChIJf_aWCENdXz4RTC8V0Z4ZqA0",
+      "kgmid": "/g/11p5zblsbx",
+      "data_id": "0x3e5f5d430896f67f:0xda8199ed1152f4c",
+      "title": "Buonissimo Italian Restaurant",
+      "address": "Golden Sands Hotel Creek, Baniyas Road, Dubai Creek Located at the Lobby Level - Baniyas Rd - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 212 7030",
+      "rating": 4.8,
+      "reviews": 853,
+      "website": "http://www.buonissimo.ae/",
+      "domain": "buonissimo.ae",
+      "gps_coordinates": {
+        "latitude": 25.259901,
+        "longitude": 55.3181229
+      },
+      "type": "Italian restaurant",
+      "types": [
+        "Italian restaurant",
+        "Mediterranean restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkNb2Uut1D8xcJXyENjuE3mo9LX6YrD-hF_3WlVT7GCWi5_vKJibY3YEtljfnaanaQ0EOLxFiqtPdd15XBnCSZvtitRZZcwYHWyeVqF8TCkV7a8wKfOpikBLMExrAnVIUQ4QAn8=w137-h92-k-no"
+    },
+    {
+      "position": 9,
+      "ludocid": "3923146533949987662",
+      "place_id": "ChIJ25homExdXz4RTtvkpfzQcTY",
+      "kgmid": "/g/11txjjxkkd",
+      "data_id": "0x3e5f5d4c986898db:0x3671d0fca5e4db4e",
+      "title": "Landmark Restaurant ( Beside Delta Center | Al Rigga )",
+      "address": "Al Salmiya Building - Al Rigga Rd - beside Delta Center - Al Muraqqabat - Deira - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "054 252 9691",
+      "rating": 4.6,
+      "reviews": 890,
+      "website": "https://landmarkrestaurant.ae/",
+      "domain": "landmarkrestaurant.ae",
+      "gps_coordinates": {
+        "latitude": 25.2636142,
+        "longitude": 55.3241363
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open 24 hours",
+      "open_hours": {
+        "thursday": "Open 24 hours",
+        "friday": "Open 24 hours",
+        "saturday": "Open 24 hours",
+        "sunday": "Open 24 hours",
+        "monday": "Open 24 hours",
+        "tuesday": "Open 24 hours",
+        "wednesday": "Open 24 hours"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlaQG6CbaLArPM8jrnYtlefI4wlrqDFnIutSAvErHC1q6Ph9vRhiufCJtj1dzaB6-xUOe2aTF4nlgphF01fnwonPY7f7bLHE726e-K7KrQGxquXzOp8EhcVZNBZTShie1Zt8GFNUdXvNrKY=w122-h92-k-no"
+    },
+    {
+      "position": 10,
+      "ludocid": "893071263246236950",
+      "place_id": "ChIJP8a_72BdXz4RFr3mDJXTZAw",
+      "kgmid": "/g/11njczb9rv",
+      "data_id": "0x3e5f5d60efbfc63f:0xc64d3950ce6bd16",
+      "title": "SITIFIS 213 RESTURANT & CAFE",
+      "address": "AL KHABAISI STREET MABROOKA BUILDING SHOP 6 - Dubai",
+      "city": "Dubai",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 996 1084",
+      "rating": 4.8,
+      "reviews": 40,
+      "gps_coordinates": {
+        "latitude": 25.2634325,
+        "longitude": 55.330497599999994
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "1 PM–12 AM",
+        "friday": "3 PM–12 AM",
+        "saturday": "1 PM–12 AM",
+        "sunday": "1 PM–12 AM",
+        "monday": "1 PM–12 AM",
+        "tuesday": "1 PM–12 AM",
+        "wednesday": "1 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkQyu0Ep4WrHiwmZbEcn70VIA7JLzU6pcI6Gxnj9wm8jht3RPFLI6WLeCIe_QuFoSlkcULRKsjhSJB93NRHJBj-zf7hYP1fsvD0ee_4PCgU6zgW1yAMQ3r3Yu7MVp0aEnzcUq5NDI4U5TrU=w80-h106-k-no"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "search_metadata": {
+    "id": "search_G6ZMRV4jp7t7Mpr2Nk2X071E",
+    "status": "Success",
+    "created_at": "2026-08-20T16:54:40Z",
+    "request_time_taken": 1.06,
+    "parsing_time_taken": 0.0,
+    "total_time_taken": 1.06,
+    "request_url": "https://www.google.com/maps/search/restaurants/@25.2048,55.2708,14z?hl=en"
+  },
+  "search_parameters": {
+    "engine": "google_maps",
+    "q": "restaurants",
+    "ll": "@25.2048,55.2708,14z",
+    "hl": "en",
+    "gl": "ae",
+    "page": "11"
+  },
+  "search_information": {
+    "query_displayed": "restaurants",
+    "state": "Showing results for original spelling."
+  }
+}

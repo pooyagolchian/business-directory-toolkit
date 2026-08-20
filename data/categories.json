@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "note": "Seed queries for the crawl. Tier controls reach: broad runs everywhere and pages deep, standard runs in dense and medium tiles, niche runs only where that business type plausibly clusters. Changing this file changes the credit bill - always re-run `pnpm plan` and report the new request count.",
+  "tiers": {
+    "broad": "all tiles; deep pagination in dense areas",
+    "standard": "dense and medium tiles; shallow pagination",
+    "niche": "dense tiles only; first page only"
+  },
+  "categories": [
+    { "q": "restaurants", "tier": "broad" },
+    { "q": "cafes", "tier": "broad" },
+    { "q": "supermarkets", "tier": "broad" },
+    { "q": "pharmacies", "tier": "broad" },
+    { "q": "clinics", "tier": "broad" },
+    { "q": "salons", "tier": "broad" },
+    { "q": "gyms", "tier": "broad" },
+    { "q": "car repair", "tier": "broad" },
+    { "q": "laundry", "tier": "broad" },
+    { "q": "grocery stores", "tier": "broad" },
+
+    { "q": "hotels", "tier": "standard" },
+    { "q": "dentists", "tier": "standard" },
+    { "q": "hospitals", "tier": "standard" },
+    { "q": "barber shops", "tier": "standard" },
+    { "q": "spas", "tier": "standard" },
+    { "q": "real estate agencies", "tier": "standard" },
+    { "q": "banks", "tier": "standard" },
+    { "q": "exchange houses", "tier": "standard" },
+    { "q": "schools", "tier": "standard" },
+    { "q": "nurseries", "tier": "standard" },
+    { "q": "electronics stores", "tier": "standard" },
+    { "q": "mobile phone shops", "tier": "standard" },
+    { "q": "clothing stores", "tier": "standard" },
+    { "q": "furniture stores", "tier": "standard" },
+    { "q": "bakeries", "tier": "standard" },
+    { "q": "travel agencies", "tier": "standard" },
+    { "q": "opticians", "tier": "standard" },
+    { "q": "car rental", "tier": "standard" },
+    { "q": "hardware stores", "tier": "standard" },
+    { "q": "tailors", "tier": "standard" },
+
+    { "q": "jewellery stores", "tier": "niche" },
+    { "q": "law firms", "tier": "niche" },
+    { "q": "accounting firms", "tier": "niche" },
+    { "q": "insurance agencies", "tier": "niche" },
+    { "q": "veterinary clinics", "tier": "niche" },
+    { "q": "pet shops", "tier": "niche" },
+    { "q": "florists", "tier": "niche" },
+    { "q": "printing services", "tier": "niche" },
+    { "q": "driving schools", "tier": "niche" },
+    { "q": "shisha cafes", "tier": "niche" }
+  ]
+}

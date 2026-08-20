@@ -1,0 +1,848 @@
+{
+  "search_metadata": {
+    "id": "search_b65xNDvgndH3RKXOd48d73q0",
+    "status": "Success",
+    "created_at": "2026-08-20T16:53:54Z",
+    "request_time_taken": 0.6,
+    "parsing_time_taken": 0.02,
+    "total_time_taken": 0.61,
+    "request_url": "https://www.google.com/maps/search/restaurants/@25.2048,55.2708,14z?hl=en"
+  },
+  "search_parameters": {
+    "engine": "google_maps",
+    "q": "restaurants",
+    "ll": "@25.2048,55.2708,14z",
+    "hl": "en",
+    "gl": "ae"
+  },
+  "search_information": {
+    "query_displayed": "restaurants",
+    "state": "Showing results for exact spelling."
+  },
+  "local_results": [
+    {
+      "position": 1,
+      "ludocid": "11507298973195764623",
+      "place_id": "ChIJpabd1tppXz4RjwONpXIjsp8",
+      "kgmid": "/g/11j0b3fgk7",
+      "data_id": "0x3e5f69dad6dda6a5:0x9fb22372a58d038f",
+      "title": "The MAINE Land Brasserie Restaurant, Business Bay Dubai",
+      "description": "Upmarket venue for seafood & steak. Striking choice in the acclaimed Opus spotlighting steaks, oysters & seafood, plus cocktails & wine.",
+      "address": "The Opus by Omniyat - Ground Floor - Al A'amal St - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 577 6680",
+      "rating": 4.8,
+      "reviews": 2060,
+      "website": "https://themainegroup.com/restaurants/the-maine-land-brasserie?utm_campaign=SDM&utm_id=GMB&utm_medium=website+click&utm_source=GMB",
+      "domain": "themainegroup.com",
+      "gps_coordinates": {
+        "latitude": 25.1884918,
+        "longitude": 55.267011
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bar & grill",
+        "Brunch restaurant",
+        "Cocktail bar",
+        "Live music bar",
+        "Live music venue",
+        "Oyster bar restaurant",
+        "Seafood restaurant",
+        "Steak house"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 2 AM",
+      "open_hours": {
+        "thursday": "12 PM–2 AM",
+        "friday": "12 PM–2 AM",
+        "saturday": "12 PM–2 AM",
+        "sunday": "12 PM–1 AM",
+        "monday": "12 PM–1 AM",
+        "tuesday": "12 PM–1 AM",
+        "wednesday": "12 PM–2 AM"
+      },
+      "reservation": {
+        "link": "https://www.sevenrooms.com/reservations/themainelandbrasserie",
+        "source": "sevenrooms.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmu47XAryiTHvF8KYjqdH883xuDG6ZpTcJzFAHyZd8I-tOnEXlGMAuEqZiJHP-ypVY54HZ2kkAT381WUPLn5xPXOytTU9wj7Nl0B9HN2-aVr0rFAGd_R70cDe8rkzJadhqm4oe-Nw=w138-h92-k-no"
+    },
+    {
+      "position": 2,
+      "ludocid": "9819989682108124964",
+      "place_id": "ChIJN5PnefxpXz4RJE8OXJacR4g",
+      "kgmid": "/g/11shnpk_kk",
+      "data_id": "0x3e5f69fc79e79337:0x88479c965c0e4f24",
+      "title": "Krasota Dubai Restaurant",
+      "address": "The Address Downtown - G Floor Sheikh Mohammed bin Rashid Blvd - Burj Khalifa - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "052 253 3290",
+      "rating": 4.9,
+      "reviews": 1666,
+      "website": "https://bit.ly/krasota_reservation",
+      "domain": "bit.ly",
+      "gps_coordinates": {
+        "latitude": 25.1937462,
+        "longitude": 55.2790508
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bar",
+        "European restaurant",
+        "Fine dining restaurant",
+        "French restaurant",
+        "Modern European restaurant",
+        "Seafood restaurant",
+        "Vegan restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 1 AM",
+      "open_hours": {
+        "thursday": "1 PM–1 AM",
+        "friday": "1 PM–1 AM",
+        "saturday": "1 PM–1 AM",
+        "sunday": "1 PM–1 AM",
+        "monday": "1 PM–1 AM",
+        "tuesday": "1 PM–1 AM",
+        "wednesday": "1 PM–1 AM"
+      },
+      "reservation": {
+        "link": "http://ticket.krasota.art/",
+        "source": "krasota.art"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk-S_n5Xsf4JfUJUbps46Wgf_TN8cwIglzeUPs1fovnt0i77ycCGpzWwkAbYcJyIur4O-UC-DOOTjjC6Y_s81j-LoLlqrzGc6YBt_-Mc7J_ao-G6XQwIjWW-VNPVCSuYruSWyuc=w163-h92-k-no"
+    },
+    {
+      "position": 3,
+      "ludocid": "16267302341912673806",
+      "place_id": "ChIJH23ZiWlpXz4RDr6Vx0oRweE",
+      "kgmid": "/g/11sb6s5vz5",
+      "data_id": "0x3e5f696989d96d1f:0xe1c1114ac795be0e",
+      "title": "Maison De Curry | Restaurant with the best views of Burj Khalifa & Dubai Fountains",
+      "address": "Souk Al Bahar - Sheikh Mohammed bin Rashid Blvd - Burj Khalifa - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "052 406 6183",
+      "rating": 4.8,
+      "reviews": 5749,
+      "website": "https://maisondecurry.com/",
+      "domain": "maisondecurry.com",
+      "gps_coordinates": {
+        "latitude": 25.1950384,
+        "longitude": 55.2761253
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Arab restaurant",
+        "Bar",
+        "Italian restaurant",
+        "Japanese restaurant",
+        "Seafood restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–1 AM",
+        "saturday": "12 PM–1 AM",
+        "sunday": "12 PM–1 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "reservation": {
+        "link": "https://maisondecurry.com/reservations",
+        "source": "maisondecurry.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlnLyi_9uruzjnHgC9WVZNEcndkhNdWDbrj_jcJxK8_vsaCDrZZgRS3ABA9hliGfM8DC7TCVC5qipFL62bDm-o13A7Up9yKxNkvIBbQaMftXMYlvCrABoQpvIajSJd0c8frCrwlYw=w138-h92-k-no"
+    },
+    {
+      "position": 4,
+      "ludocid": "8955695648604969919",
+      "place_id": "ChIJ5UL06HJpXz4Rv1ucO74FSXw",
+      "kgmid": "/g/11pc9_rj6z",
+      "data_id": "0x3e5f6972e8f442e5:0x7c4905be3b9c5bbf",
+      "title": "Urla Restaurant & Lounge",
+      "address": "Address Downtown Hotel, Lobby Level - Sheikh Mohammed bin Rashid Blvd - Burj Khalifa - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "052 554 5997",
+      "rating": 4.6,
+      "reviews": 3455,
+      "website": "https://www.urlarestaurant.com/",
+      "domain": "urlarestaurant.com",
+      "gps_coordinates": {
+        "latitude": 25.1948808,
+        "longitude": 55.2780235
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 3 AM",
+      "open_hours": {
+        "thursday": "5:30 PM–3 AM",
+        "friday": "5:30 PM–3 AM",
+        "saturday": "5:30 PM–3 AM",
+        "sunday": "5:30 PM–3 AM",
+        "monday": "5:30 PM–3 AM",
+        "tuesday": "5:30 PM–3 AM",
+        "wednesday": "5:30 PM–3 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlwyCgsU2FeD9iwj4B8mJfalg8my03TZzchmTTPfht37jM2g2rH9eWGtGykFYoBY-JVaP_-E79a9Er_IfrEHvIuEi4lggG-WpX-QeAVDJ0JRxQMMIOWKfI9PlimNv5v7BLwVaPH=w137-h92-k-no"
+    },
+    {
+      "position": 5,
+      "ludocid": "5283209782234253570",
+      "place_id": "ChIJV7LsjBtDXz4RAgnxJ067UUk",
+      "kgmid": "/g/11m2_3k70s",
+      "data_id": "0x3e5f431b8cecb257:0x4951bb4e27f10902",
+      "title": "C Restaurant",
+      "address": "14 Sheikh Zayed Rd - Trade Center First - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "054 501 4111",
+      "rating": 4.7,
+      "reviews": 6205,
+      "website": "http://c-restaurant.com/",
+      "domain": "c-restaurant.com",
+      "gps_coordinates": {
+        "latitude": 25.228314,
+        "longitude": 55.2861741
+      },
+      "type": "Mediterranean restaurant",
+      "types": [
+        "Mediterranean restaurant",
+        "Lebanese restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 2 AM",
+      "open_hours": {
+        "thursday": "12 PM–2 AM",
+        "friday": "12 PM–2 AM",
+        "saturday": "12 PM–2 AM",
+        "sunday": "12 PM–2 AM",
+        "monday": "12 PM–2 AM",
+        "tuesday": "12 PM–2 AM",
+        "wednesday": "12 PM–2 AM"
+      },
+      "reservation": {
+        "link": "https://www.zomato.com/dubai/c-restaurant-trade-centre-area/book?utm_source=rwg",
+        "source": "zomato.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlf7oDmf8RJW3iszhiYPK5oiYiP3NCIGBe9aFd1ihQRnKC7gqJRXEWZDwF0Wa3OS2muFPq5D_29JYeKIyFmkIVkwZQymX1xVH00yyjC2A02HUCc4L1CAEtb6veJS05ra2ey8ge4=w122-h92-k-no"
+    },
+    {
+      "position": 6,
+      "ludocid": "8183277500385041491",
+      "place_id": "ChIJ5akli-VDXz4RU5zlnIfXkHE",
+      "kgmid": "/g/11ssz037z6",
+      "data_id": "0x3e5f43e58b25a9e5:0x7190d7879ce59c53",
+      "title": "Di MARE Restaurant and Cafe",
+      "address": "Sheikh Mohammed bin Rashid Blvd - Burj Khalifa - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 529 8109",
+      "rating": 4.7,
+      "reviews": 1016,
+      "website": "https://dimarerestaurant.com/",
+      "domain": "dimarerestaurant.com",
+      "gps_coordinates": {
+        "latitude": 25.1968522,
+        "longitude": 55.2706862
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 5 AM Fri",
+      "open_hours": {
+        "thursday": "10 AM–5 AM",
+        "friday": "10 AM–5 AM",
+        "saturday": "10 AM–5 AM",
+        "sunday": "10 AM–5 AM",
+        "monday": "10 AM–5 AM",
+        "tuesday": "10 AM–5 AM",
+        "wednesday": "10 AM–5 AM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/di-mare-restaurant-downtown-dubai/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlR5aydWOPpPN6DnUVzu_47iUyT8bW_vbbyVGz5XZQm2Keixs2VQujOq8gNURa5R5RYlBz58MaURYC_h3L4rJDHSAdBAxYsigj-Nxnk2dQzNDh_zkRvgBpmOgQLL1r3sk3mEu56=w163-h92-k-no"
+    },
+    {
+      "position": 7,
+      "ludocid": "5027773103392081244",
+      "place_id": "ChIJ3wNA_itDXz4RXMXyzv88xkU",
+      "kgmid": "/g/11txksmmjc",
+      "data_id": "0x3e5f432bfe4003df:0x45c63cffcef2c55c",
+      "title": "Massimo’s Italian Restaurant - City Walk",
+      "address": "City Walk 2 Unit B02 - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 283 6577",
+      "rating": 4.8,
+      "reviews": 2493,
+      "website": "https://massimos.ae/",
+      "domain": "massimos.ae",
+      "gps_coordinates": {
+        "latitude": 25.2079556,
+        "longitude": 55.2636857
+      },
+      "type": "Italian restaurant",
+      "types": [
+        "Italian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:45 PM",
+      "open_hours": {
+        "thursday": "11 AM–11:45 PM",
+        "friday": "11 AM–11:45 PM",
+        "saturday": "11 AM–11:45 PM",
+        "sunday": "11 AM–11:45 PM",
+        "monday": "11 AM–11:45 PM",
+        "tuesday": "11 AM–11:45 PM",
+        "wednesday": "11 AM–11:45 PM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/massimos-italian-restaurant-al-safa/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlW3tds6McINtD2eT-8tKYeTEZtP_u1ItB0kzq-Q_XaVe17LUr_AsENxENl1nbelkZ6PLnmM4YDb9wTxTaq19lJcM80VHieGjobxR3qkf_rPP2Z29GHcrtyYAWjXzzSRAkbxclaQg=w80-h100-k-no"
+    },
+    {
+      "position": 8,
+      "ludocid": "16794510695797713404",
+      "place_id": "ChIJkYVDvo5CXz4R_GmFJ38WEuk",
+      "kgmid": "/g/1hm3zjjht",
+      "data_id": "0x3e5f428ebe438591:0xe912167f278569fc",
+      "title": "O'lio Restaurant",
+      "address": "Rose Rayhaan by Rotana - Sheikh Zayed Rd - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 323 0111",
+      "rating": 4.8,
+      "reviews": 1065,
+      "website": "https://www.rotana.com/rayhaanhotelandresorts/unitedarabemirates/dubai/roserayhaanbyrotana/dining",
+      "domain": "rotana.com",
+      "gps_coordinates": {
+        "latitude": 25.211889,
+        "longitude": 55.2765311
+      },
+      "type": "Fusion restaurant",
+      "types": [
+        "Fusion restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 10 PM",
+      "open_hours": {
+        "thursday": "7 AM–10 PM",
+        "friday": "7 AM–10 PM",
+        "saturday": "7 AM–10 PM",
+        "sunday": "7 AM–10 PM",
+        "monday": "7 AM–10 PM",
+        "tuesday": "7 AM–10 PM",
+        "wednesday": "7 AM–10 PM"
+      },
+      "reservation": {
+        "link": "https://www.rotana.com/rayhaanhotelandresorts/unitedarabemirates/dubai/roserayhaanbyrotana/dining/booknow",
+        "source": "rotana.com"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWln1oUxwyqlYOd3QP5vSMVbuOk1D2eg-J3yrCvptZnTdMhVqb0Fsx5vrK7yqGXfUIDhs5WCV3aBxYySf2sQYHR_ye8dIDsSHMy8EAOubs8xSOFv_FST4qo9yK5xGtAVdP4sRaE=w138-h92-k-no"
+    },
+    {
+      "position": 9,
+      "ludocid": "15565765262052905690",
+      "place_id": "ChIJsdbBclFDXz4R2lLH7Qi1BNg",
+      "kgmid": "/g/11sgbfgm09",
+      "data_id": "0x3e5f435172c1d6b1:0xd804b508edc752da",
+      "title": "Jovee - Japanese & European Restaurant",
+      "address": "souk al bahar , Level 2 - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 786 8343",
+      "rating": 4.8,
+      "reviews": 2936,
+      "website": "https://www.joveedubai.com/",
+      "domain": "joveedubai.com",
+      "gps_coordinates": {
+        "latitude": 25.1951779,
+        "longitude": 55.2763581
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Lounge bar"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–1 AM",
+        "saturday": "12 PM–1 AM",
+        "sunday": "12 PM–1 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkrl30UHIxrBGbfEnfxNGJvjBCXTfe-F9UizR3XL1S0h4PZ5cpmZMFkVDoQDRvn86eJ32DSLlh82Y9I14F10bwQ7iSrAddZIREf9ijAO1toLIrtGGFklOuix-X1Bjxl3ijuTDI=w138-h92-k-no"
+    },
+    {
+      "position": 10,
+      "ludocid": "16158978011417704341",
+      "place_id": "ChIJO7_PoYVDXz4RlXfmL-M4QOA",
+      "kgmid": "/g/11pf1n802m",
+      "data_id": "0x3e5f4385a1cfbf3b:0xe04038e32fe67795",
+      "title": "Empress Palace Restaurant",
+      "address": "same building as Jollibee, Manila Centre - 12A St - Al Satwa - Dubai 61 - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "052 922 7116",
+      "rating": 4.8,
+      "reviews": 758,
+      "website": "https://www.facebook.com/Empress-Palace-Restaurant-106195988557530/",
+      "domain": "facebook.com",
+      "gps_coordinates": {
+        "latitude": 25.2304737,
+        "longitude": 55.2726336
+      },
+      "type": "Asian restaurant",
+      "types": [
+        "Asian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11 PM",
+      "open_hours": {
+        "thursday": "11 AM–11 PM",
+        "friday": "11 AM–11 PM",
+        "saturday": "11 AM–11 PM",
+        "sunday": "11 AM–11 PM",
+        "monday": "11 AM–11 PM",
+        "tuesday": "11 AM–11 PM",
+        "wednesday": "11 AM–11 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk_gmxb9bgj8jVtDzJKZF2s_xFF5js0_PDlvkr0OsT0JuZtx5ZqUMUuIR3LNGPABjtomh61A5spzo57mrPjNU85fgCFF2HPaGHpV6uCRK9oG6O_UA3QuZLu38rvidYs8b_fFwiqMw=w122-h92-k-no"
+    },
+    {
+      "position": 11,
+      "ludocid": "2420407865712422594",
+      "place_id": "ChIJBa8-KABpXz4Rwq5ZRyEElyE",
+      "kgmid": "/g/11w3h0d2b4",
+      "data_id": "0x3e5f6900283eaf05:0x219704214759aec2",
+      "title": "SANAVS RESTAURANT AND CAFE",
+      "address": "Dubai The Citadel - 10 - Tower S - 011 Marasi Dr - Business Bay - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "052 658 6513",
+      "rating": 4.9,
+      "reviews": 624,
+      "website": "https://sanavsrestaurantandcafe.com/",
+      "domain": "sanavsrestaurantandcafe.com",
+      "gps_coordinates": {
+        "latitude": 25.1834432,
+        "longitude": 55.2607453
+      },
+      "type": "Indian restaurant",
+      "types": [
+        "Indian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11 PM",
+      "open_hours": {
+        "thursday": "12:30–11 PM",
+        "friday": "12:30–11 PM",
+        "saturday": "12:30–11 PM",
+        "sunday": "Closed",
+        "monday": "12:30–11 PM",
+        "tuesday": "12:30–11 PM",
+        "wednesday": "12:30–11 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmOILwmMe79AkTgX5PHeHuktef3noQ-v_VADDhktucslWqqMLrvnlKJeizrT3nhXLLmwb1OILr49Z9GDBygBD0ktPqV-vZ6K7zwXv5ZFxtV-C8I2O0nvrKUKfTPqdsobFInLBosTVpXIioB=w80-h106-k-no"
+    },
+    {
+      "position": 12,
+      "ludocid": "9399647754646510320",
+      "place_id": "ChIJBXyFupVDXz4R8NqA1dRBcoI",
+      "kgmid": "/g/11j1hhnwqr",
+      "data_id": "0x3e5f4395ba857c05:0x827241d4d580daf0",
+      "title": "Nido Restaurant & Bar",
+      "address": "Sheraton Grand Hotel - 5th Floor - 3 Sheikh Zayed Rd - Trade Center First - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 333 3055",
+      "rating": 4.9,
+      "reviews": 1676,
+      "website": "https://reserve.nidodxb.com/",
+      "domain": "reserve.nidodxb.com",
+      "gps_coordinates": {
+        "latitude": 25.2295547,
+        "longitude": 55.2866742
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bar",
+        "Lounge bar",
+        "Spanish restaurant",
+        "Tapas bar",
+        "Tapas restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 2 AM",
+      "open_hours": {
+        "thursday": "6 PM–2 AM",
+        "friday": "6 PM–3 AM",
+        "saturday": "6 PM–3 AM",
+        "sunday": "Closed",
+        "monday": "Closed",
+        "tuesday": "Closed",
+        "wednesday": "6 PM–2 AM"
+      },
+      "reservation": {
+        "link": "https://eatapp.co/reserve/moes-on-the-5th-sheraton-grand-hotel-trade-centre-area",
+        "source": "eatapp.co"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWl9f6noUK7s4EBiE78VUjpSCQHy1CiQ1l-jYUG8T6j7AaOqdQxziYv2-Te0Vj-e8u4RsaFlBGFDcBcskmYhnGTbls46D1p15CzDB7OKSIOa7Qy8fV_2Lu59PNmr7qurVy3XbyoQ=w122-h92-k-no"
+    },
+    {
+      "position": 13,
+      "ludocid": "16772231037937010525",
+      "place_id": "ChIJ98qoMwBDXz4RXUcEE0Tvwug",
+      "kgmid": "/g/11lthnx6f7",
+      "data_id": "0x3e5f430033a8caf7:0xe8c2ef441304475d",
+      "title": "Coco Dubai - Best Restaurant & Shisha - Downtown DIFC",
+      "address": "Al Murooj Complex - opp. Dubai Mall - Trade Center Second - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 422 5211",
+      "rating": 4.9,
+      "reviews": 1735,
+      "website": "https://www.coco-restaurants.ae/",
+      "domain": "coco-restaurants.ae",
+      "gps_coordinates": {
+        "latitude": 25.2026083,
+        "longitude": 55.2760252
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Bar & grill",
+        "Breakfast restaurant",
+        "Brunch restaurant",
+        "Continental restaurant",
+        "Hookah bar",
+        "Lounge bar",
+        "Pan-Asian restaurant",
+        "Steak house",
+        "Sushi restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 3 AM",
+      "open_hours": {
+        "thursday": "12 PM–3 AM",
+        "friday": "12 PM–3 AM",
+        "saturday": "12 PM–3 AM",
+        "sunday": "12 PM–3 AM",
+        "monday": "12 PM–3 AM",
+        "tuesday": "12 PM–3 AM",
+        "wednesday": "12 PM–3 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk5tE22eKErjAyu8lZHZ9yiq7Ydg-5i-g2U8jxAYN9hwaEpCbhRAnuzZ2Iu7KphOoR17otsoodm_PihN7hdooe9kumQ7Mate7-n2EYgDZMDivzu5nBXV1jPW-7OEAyUUuR8eUoqafcQ3RAQ=w122-h92-k-no"
+    },
+    {
+      "position": 14,
+      "ludocid": "3671747403878777620",
+      "place_id": "ChIJoXWjf8RpXz4RFEMoYc-q9DI",
+      "kgmid": "/g/11v0y_kpg6",
+      "data_id": "0x3e5f69c47fa375a1:0x32f4aacf61284314",
+      "title": "Icarus Restaurant Dubai",
+      "address": "Souk Al Bahar, Level 2 - Dubai Mall - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "058 280 7801",
+      "rating": 4.9,
+      "reviews": 656,
+      "website": "https://www.sevenrooms.com/explore/icarus/reservations/create/search",
+      "domain": "sevenrooms.com",
+      "gps_coordinates": {
+        "latitude": 25.1946394,
+        "longitude": 55.2765141
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Asian restaurant",
+        "Mediterranean restaurant",
+        "Russian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmplp7aljwzZ8S15XpIaAVBotKseF2KChKltwfWo359DTSU8n1A1u05_fMVDEZCGN_mTxR2zhDkD2ca5Uu5WMqE_yivpnQEP5k9p3O-TtG59lO24x8RSoNY1bldZbmE8SneXRpWLDgwJA2D=w122-h92-k-no"
+    },
+    {
+      "position": 15,
+      "ludocid": "5995637997798440130",
+      "place_id": "ChIJG0jtnQZpXz4RwjycJP7INFM",
+      "kgmid": "/g/11vdh4pf7n",
+      "data_id": "0x3e5f69069ded481b:0x5334c8fe249c3cc2",
+      "title": "Askim Restaurant and Cafe (مطعم ومقهى أشكم)",
+      "address": "Ground floor, Boulevard Heights - Al Tahani St - Burj Khalifa - Downtown Dubai - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 266 7099",
+      "rating": 4.8,
+      "reviews": 2310,
+      "website": "https://askim.ae/",
+      "domain": "askim.ae",
+      "gps_coordinates": {
+        "latitude": 25.1932822,
+        "longitude": 55.269234999999995
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 2 AM",
+      "open_hours": {
+        "thursday": "9 AM–2 AM",
+        "friday": "9 AM–2 AM",
+        "saturday": "9 AM–2 AM",
+        "sunday": "9 AM–2 AM",
+        "monday": "9 AM–2 AM",
+        "tuesday": "9 AM–2 AM",
+        "wednesday": "9 AM–2 AM"
+      },
+      "reservation": {
+        "link": "https://wa.me/971509828302",
+        "source": "wa.me"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlg_cErOh4tC2T2VubPVflXXkveq2khmFmmYL-han1Tz0eiyJiiSiOhO4aOuDDTAXgmBpkQQqus7LvYOSoQIIchw0Sj1eaHDZArP1PKgkuW7m1YDKUAizc4qvRpNYFYwB4goBSBVGBmqSqi=w138-h92-k-no"
+    },
+    {
+      "position": 16,
+      "ludocid": "17499334412902589003",
+      "place_id": "ChIJvw-ZlIppXz4RS-LT3u4f2vI",
+      "kgmid": "/g/11p5jg7y9z",
+      "data_id": "0x3e5f698a94990fbf:0xf2da1feeded3e24b",
+      "title": "So Tasty Restaurant",
+      "address": "Silver Tower - Marasi Dr - Business Bay - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "055 315 1234",
+      "rating": 4.6,
+      "reviews": 662,
+      "website": "https://app.qaayima.com/restaurant/sotastyrestaurant",
+      "domain": "app.qaayima.com",
+      "gps_coordinates": {
+        "latitude": 25.1848149,
+        "longitude": 55.26419
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant",
+        "Indian restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "7 AM–11:30 PM",
+        "friday": "7 AM–11:30 PM",
+        "saturday": "7 AM–11:30 PM",
+        "sunday": "7 AM–10 PM",
+        "monday": "7 AM–11:30 PM",
+        "tuesday": "7 AM–11:30 PM",
+        "wednesday": "7 AM–11:30 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmMDaXKa5P92sAtxr2IX3bLh7mUPYhfddGQzhUGPeeJAflCXxcr5B6MOmOuxY6_PiQ7JtMdYIMt9MPZTMIxWurdFvyf20KK2qbzypQ9omNhafzrY8FxHVqueEw60QwHUzMv8WIC=w80-h106-k-no"
+    },
+    {
+      "position": 17,
+      "ludocid": "2501942567020008910",
+      "place_id": "ChIJ_TSIXLNcXz4RzhWoQ4KvuCI",
+      "kgmid": "/g/11ggbd1bg2",
+      "data_id": "0x3e5f5cb35c8834fd:0x22b8af8243a815ce",
+      "title": "Shamiat Restaurant مطعم شاميات - Dubai",
+      "address": "Duja Tower - Sheikh Zayed Rd - Trade Center First - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "054 781 6266",
+      "rating": 4.6,
+      "reviews": 912,
+      "website": "https://www.facebook.com/Shamiat.Restaurant.ae?mibextid=LQQJ4d",
+      "domain": "facebook.com",
+      "gps_coordinates": {
+        "latitude": 25.2288653,
+        "longitude": 55.2862823
+      },
+      "type": "Syrian restaurant",
+      "types": [
+        "Syrian restaurant",
+        "Grill",
+        "Breakfast restaurant",
+        "Lebanese restaurant",
+        "Lunch restaurant",
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:30 PM",
+      "open_hours": {
+        "thursday": "9 AM–11:30 PM",
+        "friday": "9 AM–11:30 PM",
+        "saturday": "9 AM–11:30 PM",
+        "sunday": "9 AM–11:30 PM",
+        "monday": "9 AM–11:30 PM",
+        "tuesday": "9 AM–11:30 PM",
+        "wednesday": "9 AM–11:30 PM"
+      },
+      "reservation": {
+        "link": "https://www.district.in/dining/dubai/shamiat-restaurant-trade-centre-area/book?utm_source=rwg",
+        "source": "district.in"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWng7WaNeSyC5PoJljc73fcOXqyNP_b0vv6t1SCWmqBkwnh3vQKskQtq2GnqQ3uUBSYSd5HZD5IqrVQDeOYqfZm3kmDChzo8EdpAUqBNayftyeIBeWwqYaXOngLKh81MtgOmdMWgxQ=w122-h92-k-no"
+    },
+    {
+      "position": 18,
+      "ludocid": "2128360283303990232",
+      "place_id": "ChIJa16CPHdDXz4R2FNisGZ0iR0",
+      "kgmid": "/g/11t2z1fnpb",
+      "data_id": "0x3e5f43773c825e6b:0x1d897466b06253d8",
+      "title": "Shandiz Palace Restaurant Est",
+      "address": "Jumeira St - opposite Mercato Shopping Mall - Jumeirah - Jumeirah 1 - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "050 404 0533",
+      "rating": 4.6,
+      "reviews": 634,
+      "website": "http://shandizpalace.ae/",
+      "domain": "shandizpalace.ae",
+      "gps_coordinates": {
+        "latitude": 25.2151791,
+        "longitude": 55.2502194
+      },
+      "type": "Restaurant",
+      "types": [
+        "Restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "11:30 AM–12 AM",
+        "friday": "11:30 AM–12 AM",
+        "saturday": "11:30 AM–12 AM",
+        "sunday": "11:30 AM–12 AM",
+        "monday": "11:30 AM–12 AM",
+        "tuesday": "11:30 AM–12 AM",
+        "wednesday": "11:30 AM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlT0IRRZspN6celsNEHz2sAVykG0m-KGIGkpHj7oi2eWp4FBDRxzaQmVARChZQgn2cn4DEEBRhVK_j12lJucZ6fXRzQACSkyZeUPTFaUlTDwpwu2e4qpr9z1ghMq9UUnsqGK6ST6w=w122-h92-k-no"
+    },
+    {
+      "position": 19,
+      "ludocid": "15746901620889326761",
+      "place_id": "ChIJ59pg2YpDXz4RqZQh8pc7iNo",
+      "kgmid": "/g/11fnyztfyt",
+      "data_id": "0x3e5f438ad960dae7:0xda883b97f22194a9",
+      "title": "Khun Chai Thai Restaurant -Jumeira3- مطعم كون شاي تاي-جميرا ٣",
+      "address": "Jumeira St - Jumeirah - Jumeirah 3 - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "04 388 7995",
+      "rating": 4.8,
+      "reviews": 1782,
+      "gps_coordinates": {
+        "latitude": 25.1896985,
+        "longitude": 55.2317113
+      },
+      "type": "Thai restaurant",
+      "types": [
+        "Thai restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 12 AM",
+      "open_hours": {
+        "thursday": "12 PM–12 AM",
+        "friday": "12 PM–12 AM",
+        "saturday": "12 PM–12 AM",
+        "sunday": "12 PM–12 AM",
+        "monday": "12 PM–12 AM",
+        "tuesday": "12 PM–12 AM",
+        "wednesday": "12 PM–12 AM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlA2Nalt-mIKNYrA5UVxkiw9rIXJTzGfqoCqcKvy4oNezal0qQzX2ShRL5ywrBmJPPU_BsopVxLSIyRg_Zu5P36dOHV6cR2TE8y4TO9acKzbXn2DwrGkGRIp8MLaU8BgvaS6fQf=w80-h106-k-no"
+    },
+    {
+      "position": 20,
+      "ludocid": "18136665265011901563",
+      "place_id": "ChIJXUjX769pXz4Re0QzY_dgsvs",
+      "kgmid": "/g/11twp_pg22",
+      "data_id": "0x3e5f69afefd7485d:0xfbb260f76333447b",
+      "title": "Saigon Station Restaurant",
+      "address": "the 9 tower - Marasi Dr - Business Bay - Dubai - United Arab Emirates",
+      "city": "Dubai - United Arab Emirates",
+      "country_code": "AE",
+      "timezone": "Asia/Dubai",
+      "phone": "058 561 6777",
+      "rating": 4.8,
+      "reviews": 776,
+      "website": "http://saigonstations.com/",
+      "domain": "saigonstations.com",
+      "gps_coordinates": {
+        "latitude": 25.1864064,
+        "longitude": 55.272059
+      },
+      "type": "Vietnamese restaurant",
+      "types": [
+        "Vietnamese restaurant"
+      ],
+      "open_state": "Open",
+      "hours": "Open · Closes 11:55 PM",
+      "open_hours": {
+        "thursday": "10 AM–11:55 PM",
+        "friday": "10 AM–11:55 PM",
+        "saturday": "10 AM–11:55 PM",
+        "sunday": "10 AM–11:55 PM",
+        "monday": "10 AM–11:55 PM",
+        "tuesday": "10 AM–11:55 PM",
+        "wednesday": "10 AM–11:55 PM"
+      },
+      "thumbnail": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmSBVyhvFQAJ03Gb-cLfgf5LfLONhtb6Yashx5-EV085CtKwRngFFzfdn3xUP_g6P2bBZsclRdvG-IBtZTRfkW-ec8Tdl6_dx3-SXz5BA-5pyVTsFUq6hSHzbDT7F6AijSWXxLAJQ=w122-h92-k-no"
+    }
+  ]
+}

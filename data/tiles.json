@@ -1,0 +1,360 @@
+{
+  "version": 1,
+  "note": "Geographic tiles for the Dubai crawl. Tiling is mandatory, not an optimisation: the Maps engine caps a single query at ~200 results (page 11 returns zero), so no query can cover the city. Measured overlap between Downtown and Deira was 0, confirming tiles partition cleanly. Density controls pagination depth - dense areas justify deep paging, desert and outskirts do not. Higher zoom = smaller area.",
+  "tiles": [
+    {
+      "id": "downtown",
+      "name": "Downtown Dubai",
+      "lat": 25.1972,
+      "lng": 55.2744,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "business-bay",
+      "name": "Business Bay",
+      "lat": 25.1857,
+      "lng": 55.2766,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "difc",
+      "name": "DIFC",
+      "lat": 25.211,
+      "lng": 55.28,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "sheikh-zayed-road",
+      "name": "Sheikh Zayed Road",
+      "lat": 25.218,
+      "lng": 55.279,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "deira",
+      "name": "Deira",
+      "lat": 25.2697,
+      "lng": 55.3095,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "al-rigga",
+      "name": "Al Rigga",
+      "lat": 25.268,
+      "lng": 55.323,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "bur-dubai",
+      "name": "Bur Dubai",
+      "lat": 25.2582,
+      "lng": 55.2962,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "al-karama",
+      "name": "Al Karama",
+      "lat": 25.2455,
+      "lng": 55.3047,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "al-satwa",
+      "name": "Al Satwa",
+      "lat": 25.227,
+      "lng": 55.276,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "oud-metha",
+      "name": "Oud Metha",
+      "lat": 25.2333,
+      "lng": 55.31,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "dubai-marina",
+      "name": "Dubai Marina",
+      "lat": 25.0805,
+      "lng": 55.1403,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "jlt",
+      "name": "Jumeirah Lake Towers",
+      "lat": 25.0693,
+      "lng": 55.1416,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "al-barsha",
+      "name": "Al Barsha",
+      "lat": 25.1107,
+      "lng": 55.2007,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "jumeirah",
+      "name": "Jumeirah",
+      "lat": 25.2048,
+      "lng": 55.2422,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "al-quoz",
+      "name": "Al Quoz",
+      "lat": 25.1421,
+      "lng": 55.2334,
+      "zoom": 15,
+      "density": "dense"
+    },
+
+    {
+      "id": "jbr",
+      "name": "Jumeirah Beach Residence",
+      "lat": 25.0757,
+      "lng": 55.133,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "palm-jumeirah",
+      "name": "Palm Jumeirah",
+      "lat": 25.1124,
+      "lng": 55.139,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "umm-suqeim",
+      "name": "Umm Suqeim",
+      "lat": 25.1413,
+      "lng": 55.1918,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "media-city",
+      "name": "Dubai Media City",
+      "lat": 25.095,
+      "lng": 55.156,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "internet-city",
+      "name": "Dubai Internet City",
+      "lat": 25.094,
+      "lng": 55.162,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "silicon-oasis",
+      "name": "Dubai Silicon Oasis",
+      "lat": 25.1183,
+      "lng": 55.3776,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "international-city",
+      "name": "International City",
+      "lat": 25.16,
+      "lng": 55.4085,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "mirdif",
+      "name": "Mirdif",
+      "lat": 25.217,
+      "lng": 55.42,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "al-nahda",
+      "name": "Al Nahda",
+      "lat": 25.2905,
+      "lng": 55.3689,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "al-qusais",
+      "name": "Al Qusais",
+      "lat": 25.28,
+      "lng": 55.38,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "muhaisnah",
+      "name": "Muhaisnah",
+      "lat": 25.283,
+      "lng": 55.418,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "festival-city",
+      "name": "Dubai Festival City",
+      "lat": 25.2225,
+      "lng": 55.353,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "healthcare-city",
+      "name": "Dubai Healthcare City",
+      "lat": 25.23,
+      "lng": 55.32,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "za-abeel",
+      "name": "Za'abeel",
+      "lat": 25.22,
+      "lng": 55.3,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "jvc",
+      "name": "Jumeirah Village Circle",
+      "lat": 25.0553,
+      "lng": 55.2088,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "discovery-gardens",
+      "name": "Discovery Gardens",
+      "lat": 25.0424,
+      "lng": 55.1387,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "al-warqa",
+      "name": "Al Warqa",
+      "lat": 25.2,
+      "lng": 55.4,
+      "zoom": 14,
+      "density": "medium"
+    },
+    {
+      "id": "motor-city",
+      "name": "Motor City",
+      "lat": 25.05,
+      "lng": 55.24,
+      "zoom": 14,
+      "density": "medium"
+    },
+
+    {
+      "id": "dubai-hills",
+      "name": "Dubai Hills Estate",
+      "lat": 25.1,
+      "lng": 55.25,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "sports-city",
+      "name": "Dubai Sports City",
+      "lat": 25.04,
+      "lng": 55.22,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "arabian-ranches",
+      "name": "Arabian Ranches",
+      "lat": 25.027,
+      "lng": 55.268,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "nad-al-sheba",
+      "name": "Nad Al Sheba",
+      "lat": 25.15,
+      "lng": 55.32,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "town-square",
+      "name": "Town Square",
+      "lat": 25.0,
+      "lng": 55.25,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "academic-city",
+      "name": "Dubai Academic City",
+      "lat": 25.12,
+      "lng": 55.42,
+      "zoom": 14,
+      "density": "sparse"
+    },
+    {
+      "id": "dip",
+      "name": "Dubai Investment Park",
+      "lat": 24.9793,
+      "lng": 55.1637,
+      "zoom": 13,
+      "density": "sparse"
+    },
+    {
+      "id": "jebel-ali",
+      "name": "Jebel Ali",
+      "lat": 25.01,
+      "lng": 55.07,
+      "zoom": 13,
+      "density": "sparse"
+    },
+    {
+      "id": "dubai-south",
+      "name": "Dubai South",
+      "lat": 24.89,
+      "lng": 55.15,
+      "zoom": 13,
+      "density": "sparse"
+    },
+    {
+      "id": "al-awir",
+      "name": "Al Awir",
+      "lat": 25.18,
+      "lng": 55.47,
+      "zoom": 13,
+      "density": "sparse"
+    },
+    {
+      "id": "hatta",
+      "name": "Hatta",
+      "lat": 24.7994,
+      "lng": 56.1213,
+      "zoom": 13,
+      "density": "sparse"
+    }
+  ]
+}

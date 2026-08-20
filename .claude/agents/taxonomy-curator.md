@@ -24,7 +24,8 @@ That is unusable for browsing, for SEO page generation, or for filtering.
 This is the project's central cost decision. **Never send businesses to an LLM
 for classification.**
 
-10,000 businesses contain only ~1,200 _distinct_ category strings. So:
+Google's category vocabulary is finite, so distinct strings saturate while
+business count does not. The LLM only ever needs to see each string once. So:
 
 1. Extract the distinct set across the whole corpus
 2. Classify those strings **once**, batched (~50 per request) via the Claude
@@ -32,9 +33,14 @@ for classification.**
 3. Apply to every business by **deterministic lookup** — zero LLM calls
 4. Only businesses whose every string is unmapped get a fallback call
 
-This is roughly 50x cheaper than per-business classification, and the marginal
-cost of the next 1,000 businesses approaches zero. Any change that reintroduces
+The marginal cost of the next 1,000 businesses approaches zero, because they
+resolve by lookup rather than by inference. Any change that reintroduces
 per-business classification is a regression — say so.
+
+**Do not quote a savings multiple until it is measured.** A 100-business
+restaurant-only sample yielded 89 distinct strings; a single dense vertical
+saturates slowly and that ratio is not representative. Report the real distinct
+count from the actual corpus, and report it even if it undercuts the story.
 
 ## Taxonomy design rules
 

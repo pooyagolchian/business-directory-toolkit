@@ -39,20 +39,27 @@ are reproducible — run `pnpm crawl --probe` to re-derive them.
 **Don't classify businesses. Classify categories.**
 
 The obvious way to clean Google's category strings is to send all 10,000
-businesses to an LLM. That costs real money and scales linearly forever.
+businesses to an LLM. That cost scales linearly with the dataset, forever.
 
-But 10,000 businesses only contain **~1,200 distinct category strings**. So:
+But category vocabulary **saturates** while business count does not. Google's
+category list is finite, so the number of distinct strings flattens as the
+corpus grows, and the LLM only ever has to see each string once. So:
 
 1. Extract the distinct set of category strings across the whole corpus
-2. Classify those ~1,200 strings **once** into a three-level taxonomy
+2. Classify each distinct string **once** into a three-level taxonomy
 3. Apply the result to every business by **deterministic lookup** — zero LLM calls
 4. Commit the mapping as [`data/taxonomy-map.json`](./data/taxonomy-map.json)
 
 The mapping is a reviewable artifact, so a wrong category is fixable by pull
 request rather than by re-running a model. And because the map amortises, the
-**marginal cost of the next 1,000 businesses approaches zero.**
+**marginal cost of the next 1,000 businesses approaches zero** — re-running the
+pipeline over a larger crawl adds lookups, not tokens.
 
-Measured costs get published in the Milestone 1 write-up.
+How much this saves depends on how fast the vocabulary saturates, and that is an
+open measurement, not an assumption. A 100-business restaurant-only sample
+yielded 89 distinct strings — an unflattering 0.89 ratio, because a single dense
+vertical sits early on the saturation curve. The real number across ~40 verticals
+and 10,000 businesses is what Milestone 1 publishes, including if it disappoints.
 
 ## Architecture
 

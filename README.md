@@ -56,7 +56,7 @@ Measured costs get published in the Milestone 1 write-up.
 
 ## Architecture
 
-```
+```text
  SearchApi Google Maps engine
             │
      ┌──────▼───────┐   one SQS message per (tile, category, page)
@@ -78,8 +78,12 @@ Measured costs get published in the Milestone 1 write-up.
                                      Next.js on Lambda ──► directory.pooyagolchian.com
 ```
 
-Everything runs in **`me-central-1` (UAE)** — roughly 5 ms from Dubai versus
-~120 ms from Frankfurt. Milestone 2 publishes the measured difference.
+Everything runs in **`us-east-1`** on Node 24 (`nodejs24.x`). Serving a Dubai
+audience from Virginia is roughly a 250 ms round trip, so the interesting
+engineering question becomes how to make that _not_ matter: CloudFront caches
+every page at the Dubai edge, and the typeahead index is designed to avoid the
+origin entirely. Milestone 2 publishes the measured numbers, including what the
+edge actually absorbs. See [ADR 0003](./docs/adr/0003-deploy-region.md).
 
 ## Roadmap
 

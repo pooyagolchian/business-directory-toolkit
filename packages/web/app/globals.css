@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/*
+ * Monochrome by design — see docs/adr/0004-design-system.md.
+ *
+ * There is no brand hue. ~150 categories cannot be colour-coded legibly, so
+ * hierarchy is carried by type scale, weight, and spacing instead. Tailwind v4
+ * is CSS-first: these tokens ARE the config, there is no tailwind.config.js.
+ */
+@theme {
+  /* Neutral ramp, pure black through pure white. */
+  --color-ink-1000: oklch(0% 0 0);
+  --color-ink-900: oklch(18% 0 0);
+  --color-ink-700: oklch(38% 0 0);
+  --color-ink-500: oklch(56% 0 0);
+  --color-ink-300: oklch(76% 0 0);
+  --color-ink-200: oklch(88% 0 0);
+  --color-ink-100: oklch(95% 0 0);
+  --color-paper: oklch(100% 0 0);
+
+  /* The only non-neutral values, and both are accessibility requirements
+     rather than decoration. */
+  --color-focus: oklch(62% 0.19 255);
+  --color-danger: oklch(55% 0.21 27);
+
+  --font-display:
+    var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-plex-arabic), var(--font-geist), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --bg: var(--color-paper);
+  --fg: var(--color-ink-1000);
+  --muted: var(--color-ink-500);
+  --rule: var(--color-ink-200);
+}
+
+/* Dark mode is a token swap, not a second design. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--color-ink-1000);
+    --fg: var(--color-paper);
+    --muted: var(--color-ink-300);
+    --rule: var(--color-ink-900);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--color-ink-1000);
+  --fg: var(--color-paper);
+  --muted: var(--color-ink-300);
+  --rule: var(--color-ink-900);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Phone numbers, ratings and cost tables must align down a column. */
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Arabic runs inside bilingual titles get the face that was chosen for them. */
+:lang(ar),
+[dir="rtl"] {
+  font-family: var(--font-arabic);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}

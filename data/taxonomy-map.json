@@ -1,0 +1,223 @@
+{
+  "Restaurant": { "l1": "Food & Drink", "l2": "Restaurants" },
+  "Family restaurant": { "l1": "Food & Drink", "l2": "Restaurants" },
+  "Lunch restaurant": { "l1": "Food & Drink", "l2": "Restaurants" },
+  "Breakfast restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Breakfast"
+  },
+  "Brunch restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Breakfast"
+  },
+  "Fine dining restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Fine Dining"
+  },
+  "Buffet restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Buffet"
+  },
+
+  "Arab restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Arabic"
+  },
+  "Lebanese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Lebanese"
+  },
+  "Syrian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Syrian"
+  },
+  "Indian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian"
+  },
+  "Modern Indian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian"
+  },
+  "Biryani restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian"
+  },
+  "Asian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Asian"
+  },
+  "Asian fusion restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Asian"
+  },
+  "Pan-Asian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Asian"
+  },
+  "Chinese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Chinese"
+  },
+  "Japanese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Japanese"
+  },
+  "Authentic Japanese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Japanese"
+  },
+  "Sushi restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Japanese"
+  },
+  "Thai restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Thai"
+  },
+  "Vietnamese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Vietnamese"
+  },
+  "Filipino restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Filipino"
+  },
+  "Afghan restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Afghan"
+  },
+  "Italian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Italian"
+  },
+  "French restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "French"
+  },
+  "Spanish restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Spanish"
+  },
+  "Tapas restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Spanish"
+  },
+  "European restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "European"
+  },
+  "Modern European restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "European"
+  },
+  "Continental restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "European"
+  },
+  "Mediterranean restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Mediterranean"
+  },
+  "Russian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Russian"
+  },
+  "Fusion restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Fusion"
+  },
+  "Seafood restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Seafood"
+  },
+  "Oyster bar restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Seafood"
+  },
+  "Steak house": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Steakhouse"
+  },
+  "Grill": { "l1": "Food & Drink", "l2": "Restaurants", "l3": "Grill" },
+  "Bar & grill": { "l1": "Food & Drink", "l2": "Restaurants", "l3": "Grill" },
+  "Barbecue restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Grill"
+  },
+  "Chicken restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Chicken"
+  },
+  "Chicken wings restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Chicken"
+  },
+  "Vegan restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Vegan"
+  },
+
+  "Cafe": { "l1": "Food & Drink", "l2": "Cafes" },
+  "Coffee shop": { "l1": "Food & Drink", "l2": "Cafes", "l3": "Coffee" },
+  "Cafeteria": { "l1": "Food & Drink", "l2": "Cafes", "l3": "Cafeteria" },
+
+  "Bar": { "l1": "Food & Drink", "l2": "Bars" },
+  "Cocktail bar": { "l1": "Food & Drink", "l2": "Bars", "l3": "Cocktail" },
+  "Lounge bar": { "l1": "Food & Drink", "l2": "Bars", "l3": "Lounge" },
+  "Tapas bar": { "l1": "Food & Drink", "l2": "Bars", "l3": "Tapas" },
+  "Live music bar": { "l1": "Food & Drink", "l2": "Bars", "l3": "Live Music" },
+  "Hookah bar": { "l1": "Food & Drink", "l2": "Bars", "l3": "Shisha" },
+
+  "Bakery": { "l1": "Food & Drink", "l2": "Bakeries" },
+  "Dessert shop": { "l1": "Food & Drink", "l2": "Bakeries", "l3": "Desserts" },
+  "Candy store": { "l1": "Food & Drink", "l2": "Bakeries", "l3": "Sweets" },
+
+  "Caterer": { "l1": "Services", "l2": "Catering" },
+  "Catering food and drink supplier": { "l1": "Services", "l2": "Catering" },
+  "Delivery service": { "l1": "Services", "l2": "Delivery" },
+
+  "Live music venue": {
+    "l1": "Nightlife & Entertainment",
+    "l2": "Live Music Venues"
+  },
+  "Barbecue area": { "l1": "Nightlife & Entertainment", "l2": "Outdoor Venues" }
+}

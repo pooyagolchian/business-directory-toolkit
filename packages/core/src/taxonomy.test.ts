@@ -4,6 +4,10 @@ import type { RawLocalResult, TaxonomyMap } from "./types.js";
 
 const MAP: TaxonomyMap = {
   Restaurant: { l1: "Food & Drink", l2: "Restaurants" },
+  // "Bar & grill" sorts before "Seafood restaurant", so it is the category
+  // that competes with — and wrongly beats — the right answer under a naive
+  // first-match rule. It belongs in this map for the tests to mean anything.
+  "Bar & grill": { l1: "Food & Drink", l2: "Restaurants", l3: "Grill" },
   "Seafood restaurant": {
     l1: "Food & Drink",
     l2: "Restaurants",
@@ -30,6 +34,8 @@ describe("applyTaxonomy", () => {
         "Seafood restaurant",
         "Steak house",
       ],
+      description:
+        "Upmarket venue for seafood & steak. Striking choice in the acclaimed Opus spotlighting steaks, oysters & seafood, plus cocktails & wine.",
     };
     expect(applyTaxonomy(nineCategories, MAP)).toEqual({
       l1: "Food & Drink",
@@ -62,6 +68,39 @@ describe("applyTaxonomy", () => {
 
   test("returns null for a record with no categories at all", () => {
     expect(applyTaxonomy({}, MAP)).toBeNull();
+  });
+
+  test("uses the description to pick between competing sub-categories", () => {
+    // Measured: 85% of types[] tails come back alphabetically sorted, so array
+    // order carries NO relevance signal. Taking the first match filed this
+    // seafood-and-steak restaurant under "Grill", purely because "Bar & grill"
+    // sorts before "Seafood restaurant". The business describes itself.
+    const maine: RawLocalResult = {
+      type: "Restaurant",
+      types: ["Restaurant", "Bar & grill", "Seafood restaurant", "Steak house"],
+      description:
+        "Upmarket venue for seafood & steak. Striking choice in the acclaimed Opus spotlighting steaks, oysters & seafood, plus cocktails & wine.",
+    };
+    expect(applyTaxonomy(maine, MAP)?.l3).toBe("Seafood");
+  });
+
+  test("uses the title when the description is absent", () => {
+    const r: RawLocalResult = {
+      title: "Al Mahara Seafood",
+      types: ["Restaurant", "Bar & grill", "Seafood restaurant"],
+    };
+    expect(applyTaxonomy(r, MAP)?.l3).toBe("Seafood");
+  });
+
+  test("falls back to array order when the text gives no signal at all", () => {
+    // Deterministic rather than correct — and deliberately so. Without a
+    // signal there is nothing better than a stable choice.
+    const r: RawLocalResult = {
+      type: "Restaurant",
+      types: ["Restaurant", "Seafood restaurant", "Steak house"],
+      description: "A place to eat.",
+    };
+    expect(applyTaxonomy(r, MAP)?.l3).toBe("Seafood");
   });
 });
 

@@ -115,6 +115,7 @@ export function parseClassification(text: string): TaxonomyMap {
   } catch (error) {
     throw new Error(
       `Malformed classification JSON: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
     );
   }
   if (!Array.isArray(parsed)) {

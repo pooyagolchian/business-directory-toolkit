@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# No AWS and no SearchApi credentials are exposed to this workflow.
+# The test suite runs entirely against recorded fixtures, so CI never
+# spends API credits — including on pull requests from forks.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Assert no secrets committed
+        run: |
+          if git ls-files | grep -qxF '.env'; then
+            echo "::error::.env is tracked by git. Remove it and rotate the key."
+            exit 1
+          fi
+          echo "OK: .env is not tracked"
+
+      - name: Assert no dataset committed
+        run: |
+          # See docs/adr/0002-do-not-redistribute-the-dataset.md
+          if git ls-files | grep -qE '^data/(raw|out)/'; then
+            echo "::error::Crawled data must not be committed."
+            exit 1
+          fi
+          echo "OK: no crawled data tracked"

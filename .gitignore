@@ -1,0 +1,46 @@
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+
+# --- sst ---
+.sst/
+sst-env.d.ts
+
+# --- node ---
+node_modules/
+.pnpm-store/
+*.tsbuildinfo
+
+# --- next ---
+.next/
+.open-next/
+out/
+
+# --- build ---
+dist/
+build/
+coverage/
+
+# --- crawl output: never commit the dataset ---
+# Google Maps data redistribution is restricted. Ship the pipeline, not the data.
+# See docs/adr/0002-do-not-redistribute-the-dataset.md
+data/raw/
+data/out/
+*.ndjson
+!fixtures/**/*.ndjson
+
+# --- os / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# --- private business documents (see README note) ---
+# The SearchApi proposal contains commercial terms and contact details.
+# Un-ignore deliberately if you decide to publish it.
+searchapi-ambassador-proposal.pdf

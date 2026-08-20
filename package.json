@@ -1,0 +1,41 @@
+{
+  "name": "directory-from-scratch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An open-source Dubai business search engine, built in public on SearchApi's Google Maps engine.",
+  "license": "MIT",
+  "author": "Pooya Golchian <hello@pooyagolchian.com> (https://pooyagolchian.com)",
+  "homepage": "https://directory.pooyagolchian.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pooyagolchian/directory-from-scratch.git"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc --build --pretty false",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "plan": "tsx packages/pipeline/src/cli/plan.ts",
+    "crawl": "tsx packages/pipeline/src/cli/crawl.ts",
+    "classify": "tsx packages/pipeline/src/cli/classify.ts",
+    "load": "tsx packages/pipeline/src/cli/load.ts",
+    "deploy": "sst deploy",
+    "dev": "sst dev"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "sst": "4.17.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
+    "vitest": "^2.1.8"
+  }
+}

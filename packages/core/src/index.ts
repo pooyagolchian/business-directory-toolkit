@@ -9,6 +9,8 @@ export { nearestTile } from "./nearest.js";
 
 export { serializeJsonLd } from "./jsonld.js";
 
+export { keepGeneralisableThemes } from "./generalise.js";
+
 export {
   buildCorpusFrequency,
   deriveReviewSignals,

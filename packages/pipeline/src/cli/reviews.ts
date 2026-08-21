@@ -26,10 +26,25 @@ import { fileURLToPath } from "node:url";
 import {
   buildCorpusFrequency,
   deriveReviewSignals,
+  keepGeneralisableThemes,
   stripReviewIdentity,
   type Business,
   type ReviewSignals,
 } from "@directory/core";
+
+/**
+ * A theme must recur across at least this many businesses.
+ *
+ * Stripping reviewer identity is not enough on its own. Reviewers thank staff
+ * by name, and TF-IDF rewards exactly that shape — frequent here, rare
+ * elsewhere. The first run produced `Sofitel -> manava, wilbert, umesh`: three
+ * employees named on what would have been a public page.
+ *
+ * Measured against the live corpus, 5 is where the last known staff name
+ * disappears while 142 genuine themes survive. At 3, "abdul" still gets
+ * through.
+ */
+const MIN_BUSINESSES_PER_THEME = 5;
 
 const ENDPOINT = "https://www.searchapi.io/api/v1/search";
 
@@ -126,10 +141,15 @@ for (const [index, business] of targets.entries()) {
 // business, so it can only be built once all of them are in.
 const corpus = buildCorpusFrequency([...perBusiness.values()].flat());
 
-const signals: Record<string, ReviewSignals> = {};
+const candidates: Record<string, ReviewSignals> = {};
 for (const [placeId, reviews] of perBusiness) {
-  signals[placeId] = deriveReviewSignals(reviews, corpus);
+  candidates[placeId] = deriveReviewSignals(reviews, corpus);
 }
+
+// Second pass: drop anything that does not generalise. This is what keeps
+// staff names out of the output, and it needs every business's candidates in
+// hand, so it cannot happen inside the loop above.
+const signals = keepGeneralisableThemes(candidates, MIN_BUSINESSES_PER_THEME);
 
 // Review text goes out of scope here and is never written anywhere.
 perBusiness.clear();

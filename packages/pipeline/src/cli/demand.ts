@@ -23,7 +23,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { Business } from "@directory/core";
-import { loadCity } from "../plan.js";
+import { loadCity } from "../plan";
 
 const ENDPOINT = "https://www.searchapi.io/api/v1/search";
 

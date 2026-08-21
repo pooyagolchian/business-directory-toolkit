@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { normalizePhone } from "./phone.js";
+import { normalizePhone } from "./phone";
 
 // Every raw value below was returned by the live SearchApi Google Maps engine
 // for Dubai businesses on 2026-08-20. Google returns local format, never E.164.

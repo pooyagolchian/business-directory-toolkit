@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { toItems, typeaheadPrefixes } from "./items.js";
-import type { Business } from "./normalize.js";
+import { toItems, typeaheadPrefixes } from "./items";
+import type { Business } from "./normalize";
 
 const business: Business = {
   placeId: "ChIJpabd1tppXz4RjwONpXIjsp8",

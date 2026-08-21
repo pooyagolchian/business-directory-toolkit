@@ -1,4 +1,4 @@
-import type { RawLocalResult, TaxonomyMap, TaxonomyNode } from "./types.js";
+import type { RawLocalResult, TaxonomyMap, TaxonomyNode } from "./types";
 
 /**
  * Every category string a record carries, primary `type` first, then `types[]`

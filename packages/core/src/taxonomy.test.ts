@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { applyTaxonomy, distinctCategories } from "./taxonomy.js";
-import type { RawLocalResult, TaxonomyMap } from "./types.js";
+import { applyTaxonomy, distinctCategories } from "./taxonomy";
+import type { RawLocalResult, TaxonomyMap } from "./types";
 
 const MAP: TaxonomyMap = {
   Restaurant: { l1: "Food & Drink", l2: "Restaurants" },

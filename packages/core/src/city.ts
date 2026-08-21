@@ -1,4 +1,4 @@
-import type { CityConfig, RawLocalResult } from "./types.js";
+import type { CityConfig, RawLocalResult } from "./types";
 
 /**
  * The engine returns city in two forms — "Dubai" and

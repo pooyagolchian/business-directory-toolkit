@@ -7,7 +7,7 @@
  *   pnpm plan --json             write the plan to data/out/crawl-plan.json
  */
 import { mkdirSync, writeFileSync } from "node:fs";
-import { availableCities, buildCrawlPlan, loadCity } from "../plan.js";
+import { availableCities, buildCrawlPlan, loadCity } from "../plan";
 
 const argv = process.argv.slice(2);
 const flag = (name: string) => {

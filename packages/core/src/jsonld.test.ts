@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { serializeJsonLd } from "./jsonld.js";
+import { serializeJsonLd } from "./jsonld";
 
 /**
  * Business names come from Google, and a business owner controls their own

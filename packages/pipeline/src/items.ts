@@ -1,4 +1,4 @@
-import type { Business } from "./normalize.js";
+import type { Business } from "./normalize";
 
 export type DynamoItem = Record<string, string | number | boolean | string[]>;
 

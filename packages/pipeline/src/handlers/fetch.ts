@@ -1,9 +1,9 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { SendMessageCommand, SQSClient } from "@aws-sdk/client-sqs";
-import { resources } from "../resources.js";
-import { shouldFetchNextPage, type SearchParams } from "../fetch.js";
-import type { CrawlJob } from "../plan.js";
-import { createSearchApiClient } from "../searchapi.js";
+import { resources } from "../resources";
+import { shouldFetchNextPage, type SearchParams } from "../fetch";
+import type { CrawlJob } from "../plan";
+import { createSearchApiClient } from "../searchapi";
 
 const s3 = new S3Client({});
 const sqs = new SQSClient({});

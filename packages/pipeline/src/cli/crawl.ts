@@ -12,9 +12,9 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { runCrawl } from "../fetch.js";
-import { buildCrawlPlan, loadCity } from "../plan.js";
-import { createSearchApiClient } from "../searchapi.js";
+import { runCrawl } from "../fetch";
+import { buildCrawlPlan, loadCity } from "../plan";
+import { createSearchApiClient } from "../searchapi";
 
 const argv = process.argv.slice(2);
 const has = (flag: string) => argv.includes(flag);

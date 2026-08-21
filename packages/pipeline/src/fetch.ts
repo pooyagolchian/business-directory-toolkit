@@ -1,5 +1,5 @@
 import type { RawLocalResult } from "@directory/core";
-import type { CrawlJob } from "./plan.js";
+import type { CrawlJob } from "./plan";
 
 export interface SearchParams {
   q: string;

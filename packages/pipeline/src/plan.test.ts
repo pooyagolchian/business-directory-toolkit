@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { availableCities, buildCrawlPlan, loadCity } from "./plan.js";
+import { availableCities, buildCrawlPlan, loadCity } from "./plan";
 
 const dubai = loadCity("dubai");
 const tiles = dubai.tiles;

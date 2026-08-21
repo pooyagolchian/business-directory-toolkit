@@ -1,27 +1,27 @@
-export { normalizePhone } from "./phone.js";
-export type { NormalizedPhone, PhoneType } from "./phone.js";
+export { normalizePhone } from "./phone";
+export type { NormalizedPhone, PhoneType } from "./phone";
 
-export { toSlug } from "./slug.js";
+export { toSlug } from "./slug";
 
-export { isInCity } from "./city.js";
+export { isInCity } from "./city";
 
-export { nearestTile } from "./nearest.js";
+export { nearestTile } from "./nearest";
 
-export { serializeJsonLd } from "./jsonld.js";
+export { serializeJsonLd } from "./jsonld";
 
-export { keepGeneralisableThemes } from "./generalise.js";
+export { keepGeneralisableThemes } from "./generalise";
 
 export {
   buildCorpusFrequency,
   deriveReviewSignals,
   stripReviewIdentity,
-} from "./reviews.js";
-export type { AnonymousReview, ReviewSignals } from "./reviews.js";
+} from "./reviews";
+export type { AnonymousReview, ReviewSignals } from "./reviews";
 
-export { dedupeByPlaceId } from "./dedupe.js";
-export type { DedupeResult } from "./dedupe.js";
+export { dedupeByPlaceId } from "./dedupe";
+export type { DedupeResult } from "./dedupe";
 
-export { applyTaxonomy, distinctCategories } from "./taxonomy.js";
+export { applyTaxonomy, distinctCategories } from "./taxonomy";
 
 export type {
   BoundingBox,
@@ -34,4 +34,4 @@ export type {
   TaxonomyMap,
   TaxonomyNode,
   Tier,
-} from "./types.js";
+} from "./types";

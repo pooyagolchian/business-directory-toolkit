@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { buildSearchUrl, isRetryable } from "./searchapi.js";
+import { buildSearchUrl, isRetryable } from "./searchapi";
 
 describe("buildSearchUrl", () => {
   const params = {

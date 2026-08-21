@@ -7,7 +7,7 @@ import {
   estimateCost,
   mergeTaxonomy,
   parseClassification,
-} from "./classify.js";
+} from "./classify";
 
 const existing: TaxonomyMap = {
   Restaurant: { l1: "Food & Drink", l2: "Restaurants" },

@@ -1,4 +1,4 @@
-import type { ReviewSignals } from "./reviews.js";
+import type { ReviewSignals } from "./reviews";
 
 /**
  * Keep only themes that generalise across businesses.

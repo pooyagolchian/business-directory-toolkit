@@ -51,3 +51,6 @@ searchapi-ambassador-proposal.pdf
 
 # --- browser automation artifacts ---
 .playwright-mcp/
+
+# build artifact: dataset copied in at prebuild, never committed
+packages/web/.data/

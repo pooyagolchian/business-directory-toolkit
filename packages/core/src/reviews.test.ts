@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { deriveReviewSignals, stripReviewIdentity } from "./reviews.js";
+import { deriveReviewSignals, stripReviewIdentity } from "./reviews";
 
 // The engine returns reviewer names, contributor ids, profile links and photos.
 // None of that may be stored: the project indexes business listings, and a

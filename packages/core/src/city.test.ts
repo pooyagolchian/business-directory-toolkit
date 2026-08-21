@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { isInCity } from "./city.js";
-import type { CityConfig, RawLocalResult } from "./types.js";
+import { isInCity } from "./city";
+import type { CityConfig, RawLocalResult } from "./types";
 
 // The point of this file: nothing about the filter is Dubai-specific any more.
 // A city is data, so pointing the toolkit at Riyadh or Manchester is a config

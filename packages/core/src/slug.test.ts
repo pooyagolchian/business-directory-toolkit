@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { toSlug } from "./slug.js";
+import { toSlug } from "./slug";
 
 // Titles below are verbatim from the live SearchApi Google Maps engine for
 // Dubai on 2026-08-20. Dubai listings are messy: bilingual, punctuation-heavy,

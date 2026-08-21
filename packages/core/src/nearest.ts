@@ -1,4 +1,4 @@
-import type { CityTile } from "./types.js";
+import type { CityTile } from "./types";
 
 /**
  * Assign a business to the tile it is geographically closest to.

@@ -1,4 +1,4 @@
-import type { RawLocalResult } from "./types.js";
+import type { RawLocalResult } from "./types";
 
 export interface DedupeResult {
   unique: RawLocalResult[];

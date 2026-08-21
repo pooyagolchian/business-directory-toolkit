@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { keepGeneralisableThemes } from "./generalise.js";
+import { keepGeneralisableThemes } from "./generalise";
 
 /**
  * Stripping reviewer identity is not enough.

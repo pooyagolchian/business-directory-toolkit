@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
-import { dedupeByPlaceId } from "./dedupe.js";
-import type { RawLocalResult } from "./types.js";
+import { dedupeByPlaceId } from "./dedupe";
+import type { RawLocalResult } from "./types";
 
 function fixture(name: string): RawLocalResult[] {
   const raw = readFileSync(

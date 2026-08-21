@@ -47,9 +47,9 @@ import {
   type RawLocalResult,
   type TaxonomyMap,
 } from "@directory/core";
-import { loadCity } from "../plan.js";
-import { toItems } from "../items.js";
-import { normalizeAll } from "../normalize.js";
+import { loadCity } from "../plan";
+import { toItems } from "../items";
+import { normalizeAll } from "../normalize";
 
 const argv = process.argv.slice(2);
 const dryRun = argv.includes("--dry-run");

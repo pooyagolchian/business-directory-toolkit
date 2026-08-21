@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Business } from "@directory/core";
 
@@ -21,16 +21,28 @@ import type { Business } from "@directory/core";
 let businessCache: Business[] | null = null;
 let areaNameCache: Map<string, string> | null = null;
 
-function repoFile(relative: string): string {
-  // packages/web -> repo root
-  return join(process.cwd(), "..", "..", relative);
+/**
+ * Resolve a data file.
+ *
+ * Bundled copy first: inside a Lambda the repo root does not exist, so
+ * `.data/` — populated at prebuild and included via outputFileTracingIncludes —
+ * is the only path that resolves. Falling back to the repo root keeps local
+ * development working straight after a crawl, with no build step.
+ */
+function dataFile(bundled: string, repoRelative: string): string {
+  const local = join(process.cwd(), ".data", bundled);
+  if (existsSync(local)) return local;
+  return join(process.cwd(), "..", "..", repoRelative);
 }
 
 export function allBusinesses(): Business[] {
   if (businessCache) return businessCache;
   try {
     businessCache = JSON.parse(
-      readFileSync(repoFile("data/out/businesses.json"), "utf8"),
+      readFileSync(
+        dataFile("businesses.json", "data/out/businesses.json"),
+        "utf8",
+      ),
     ) as Business[];
   } catch {
     // No crawl has run yet. An empty directory is a valid state — pages render
@@ -53,7 +65,10 @@ export function areaNames(): Map<string, string> {
   areaNameCache = new Map();
   try {
     const parsed = JSON.parse(
-      readFileSync(repoFile(`data/cities/${CITY_ID}.json`), "utf8"),
+      readFileSync(
+        dataFile("city.json", `data/cities/${CITY_ID}.json`),
+        "utf8",
+      ),
     ) as { tiles: Array<{ id: string; name: string }> };
     for (const tile of parsed.tiles) areaNameCache.set(tile.id, tile.name);
   } catch {

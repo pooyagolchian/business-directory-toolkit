@@ -1,4 +1,4 @@
-import type { SearchClient, SearchParams, SearchResponse } from "./fetch.js";
+import type { SearchClient, SearchParams, SearchResponse } from "./fetch";
 
 const ENDPOINT = "https://www.searchapi.io/api/v1/search";
 

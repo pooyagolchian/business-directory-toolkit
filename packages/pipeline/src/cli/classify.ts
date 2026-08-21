@@ -23,7 +23,7 @@ import {
   estimateCost,
   mergeTaxonomy,
   parseClassification,
-} from "../classify.js";
+} from "../classify";
 
 const MODEL = "claude-haiku-4-5-20251001";
 const BATCH_SIZE = 50;

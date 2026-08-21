@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { nearestTile } from "./nearest.js";
-import type { CityTile } from "./types.js";
+import { nearestTile } from "./nearest";
+import type { CityTile } from "./types";
 
 const tiles: CityTile[] = [
   {

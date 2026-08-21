@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import type { RawLocalResult } from "@directory/core";
-import { runCrawl, shouldFetchNextPage } from "./fetch.js";
-import type { CrawlJob } from "./plan.js";
-import type { SearchParams, SearchResponse } from "./fetch.js";
+import { runCrawl, shouldFetchNextPage } from "./fetch";
+import type { CrawlJob } from "./plan";
+import type { SearchParams, SearchResponse } from "./fetch";
 
 function fixture(name: string): SearchResponse {
   return JSON.parse(

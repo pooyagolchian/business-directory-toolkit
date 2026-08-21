@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import type { CityConfig, RawLocalResult, TaxonomyMap } from "@directory/core";
-import { normalizeBusiness, normalizeAll } from "./normalize.js";
+import { normalizeBusiness, normalizeAll } from "./normalize";
 
 const DUBAI: CityConfig = {
   id: "dubai",

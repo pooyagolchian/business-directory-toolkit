@@ -17,6 +17,14 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    // Plain Node scripts, not browser or bundler code: `process` and `console`
+    // are globals there, and eslint's default env does not assume Node.
+    files: ["**/*.mjs", "**/scripts/**"],
+    languageOptions: {
+      globals: { process: "readonly", console: "readonly" },
+    },
+  },
+  {
     // SST provides its global types through a triple-slash reference; that is
     // the documented mechanism, not a style slip.
     files: ["sst.config.ts"],

@@ -28,6 +28,26 @@
   --color-danger: oklch(55% 0.21 27);
 
   /*
+   * THE ONE HUE, and the narrow job it is allowed to do.
+   *
+   * ADR 0004 rejects colour as *identity* — 150 category badges cannot be 150
+   * distinguishable hues — and defers a brand accent. Neither ruling covers
+   * colour as *magnitude*: a single hue, light to dark, encoding "how many".
+   * That is a sequential scale, it needs exactly one hue rather than 150, and
+   * it is the only thing these five steps are ever used for. See the amendment
+   * in docs/adr/0004-design-system.md.
+   *
+   * The values are GitHub's contribution-graph palette, kept literally rather
+   * than re-derived, because the recognisability IS the point: readers already
+   * know how to read this grid.
+   */
+  --color-level-0: #ebedf0;
+  --color-level-1: #9be9a8;
+  --color-level-2: #40c463;
+  --color-level-3: #30a14e;
+  --color-level-4: #216e39;
+
+  /*
    * FAMILIES.
    *
    * Body is IBM Plex Sans, and the reason is the corpus rather than taste.
@@ -199,8 +219,23 @@
    * with no hue in the design, the only way a plot can say "this bar is the
    * point" is to make it the darkest thing in the frame.
    */
-  --chart-mark: var(--color-ink-400);
-  --chart-mark-emphasis: var(--color-ink-1000);
+  --chart-mark: var(--color-level-3);
+  --chart-mark-emphasis: var(--color-level-4);
+
+  /*
+   * Heatmap steps. Level 0 is "no businesses at all", which must not read as a
+   * faint value — it is a different statement from "a few", so it stays the
+   * neutral step and never joins the green ramp.
+   */
+  --chart-level-0: var(--color-level-0);
+  --chart-level-1: var(--color-level-1);
+  --chart-level-2: var(--color-level-2);
+  --chart-level-3: var(--color-level-3);
+  --chart-level-4: var(--color-level-4);
+  /* Drawn on every cell, as GitHub does: it keeps the grid legible where two
+     neighbouring steps are close, and in forced-colors mode where the fills
+     are replaced outright. */
+  --chart-cell-edge: rgb(27 31 35 / 0.08);
 }
 
 body {
@@ -309,6 +344,24 @@ p {
 
 .chart-col:hover .chart-tip {
   opacity: 1;
+}
+
+/*
+ * Heatmap cells.
+ *
+ * Hover draws an ink outline rather than changing the fill, because the fill
+ * is the value — lightening a cell on hover would misreport it for as long as
+ * the pointer sits there.
+ */
+.chart-cell {
+  stroke: var(--chart-cell-edge);
+  stroke-width: 1;
+  transition: stroke 120ms ease-out;
+}
+
+.chart-col:hover .chart-cell {
+  stroke: var(--fg);
+  stroke-width: 2;
 }
 
 /*

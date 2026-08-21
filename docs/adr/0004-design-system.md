@@ -151,3 +151,43 @@ is correct; `CLAUDE.md` is stale.
   it is the standard directory look.
 - **A single brand accent hue.** Deferred. Easy to add later as one token; hard
   to remove once pages are indexed with it.
+
+## Amendment, 2026-08-22 — colour as magnitude
+
+The home page now carries an interactive statistics section whose lead chart is
+a rating-against-review-count grid, in the shape of GitHub's contribution
+graph. It uses colour, and the ruling above says the design has none. Both are
+true, because they are about different jobs.
+
+What this ADR rejected is colour as **identity**: one hue per category, across
+~150 categories, none of them distinguishable from the next. That reasoning is
+unchanged and still binding. What the grid needs is colour as **magnitude** —
+one hue, light to dark, encoding "how many businesses are in this cell". A
+sequential scale needs exactly one hue no matter how much data it covers, so
+the argument that killed category colours does not reach it.
+
+The scope is narrow and worth writing down, because "we added a green" is
+exactly the kind of decision that spreads:
+
+- Five steps, declared in `globals.css` as `--color-level-0` … `--color-level-4`,
+  mapped through `--chart-level-*` and `--chart-mark*` in the semantic layer.
+  Components never touch the palette steps directly.
+- **Charts only.** Not links, not buttons, not badges, not category chips, not
+  state. The deferred brand accent above is still deferred, and this is not it.
+- Level 0 is the neutral `#ebedf0`, deliberately outside the green ramp: an
+  empty cell means "no businesses", which is a different statement from "a few",
+  and must not read as the palest value.
+- The values are GitHub's own contribution palette, kept literally rather than
+  re-derived. Recognisability is the point — readers already know how to read
+  this grid, and that familiarity is worth more than a bespoke green.
+
+Two consequences accepted knowingly:
+
+- GitHub's palest green does not clear WCAG 1.4.11's 3:1 against paper. The grid
+  therefore never encodes by colour alone: every non-empty cell prints its own
+  count, every cell carries a hairline edge, and the section keeps its table
+  view. Colour is the at-a-glance channel, not the only one.
+- The ramp is light-mode only for now, matching the rest of the app. GitHub's
+  dark counterpart (`#161b22`, `#0e4429`, `#006d32`, `#26a641`, `#39d353`) is
+  the intended set when dark mode lands, and the tokens are already layered so
+  that it is a swap rather than a rewrite.

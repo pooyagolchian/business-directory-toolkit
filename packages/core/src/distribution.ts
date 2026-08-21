@@ -82,6 +82,21 @@ export const RATING_BANDS: ReadonlyArray<{
   { label: "5.0", min: 5, max: 5 },
 ];
 
+/**
+ * Which band a rating belongs to, or -1 if it is off the scale.
+ *
+ * Exported because ./pivot.ts builds the heatmap's rows from the same bands.
+ * Two copies of this comparison would drift, and the drift would show up as a
+ * heatmap row that does not add up to the band count printed beside it.
+ */
+export function ratingBandIndex(rating: number): number {
+  return RATING_BANDS.findIndex((band) =>
+    band.min === band.max
+      ? rating === band.min
+      : rating >= band.min && rating < band.max,
+  );
+}
+
 /** Snap to a tenth. See the test: 4.6999999 must bin with 4.7, not beside it. */
 function toTenth(value: number): number {
   return Math.round(value * 10) / 10;
@@ -145,12 +160,7 @@ export function ratingDistribution(
         ? Math.max(0, business.reviews)
         : 0;
 
-    const bandIndex = RATING_BANDS.findIndex((band) =>
-      band.min === band.max
-        ? rating === band.min
-        : rating >= band.min && rating < band.max,
-    );
-    bandReviews[bandIndex]?.push(reviews);
+    bandReviews[ratingBandIndex(rating)]?.push(reviews);
   }
 
   const bands: RatingBand[] = RATING_BANDS.map((band, i) => {

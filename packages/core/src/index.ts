@@ -21,6 +21,14 @@ export type { RankPrior } from "./rank";
 export { RATING_BANDS, ratingDistribution } from "./distribution";
 export type { RatingBand, RatingBin, RatingDistribution } from "./distribution";
 
+export { REVIEW_BUCKETS, buildChartDataset, sliceDataset } from "./pivot";
+export type {
+  ChartDataset,
+  ChartFilter,
+  ChartSlice,
+  ReviewBucket,
+} from "./pivot";
+
 export {
   MIN_BUSINESSES_PER_THEME,
   MIN_CATEGORY_CONCENTRATION,

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ratingDistribution } from "@directory/core";
+import { buildChartDataset } from "@directory/core";
 import { SearchBox } from "@/components/search-box";
 import { FacetGrid, Footer, Header } from "@/components/chrome";
 import { BusinessList } from "@/components/business-card";
-import { RatingDistributionFigure } from "@/components/rating-distribution";
-import { allBusinesses, areas, categories, stats } from "@/lib/data";
+import { RatingExplorer } from "@/components/rating-explorer";
+import { allBusinesses, areaLabel, areas, categories, stats } from "@/lib/data";
 
 export default function Home() {
   const s = stats();
@@ -15,7 +15,11 @@ export default function Home() {
   const notable = allBusinesses().slice(0, 8);
   // One linear pass over the corpus, at render time rather than at load, so the
   // figure describes whatever city this deployment was built for.
-  const distribution = ratingDistribution(allBusinesses());
+  const dataset = buildChartDataset(allBusinesses());
+  // Area labels are resolved here because areaLabel() reads the city config off
+  // disk; resolving them inside the client component would drag node:fs into
+  // the browser bundle.
+  const areaLabels = dataset.areas.map(areaLabel);
 
   const empty = s.businesses === 0;
 
@@ -121,7 +125,7 @@ export default function Home() {
             {/* Deliberately last. "Most reviewed" is the page saying which
                 businesses have the most evidence behind them; this is the page
                 explaining why that is the measure it sorts on. */}
-            <RatingDistributionFigure distribution={distribution} />
+            <RatingExplorer dataset={dataset} areaLabels={areaLabels} />
           </>
         )}
       </main>

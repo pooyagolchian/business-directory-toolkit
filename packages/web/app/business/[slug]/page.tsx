@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { serializeJsonLd } from "@directory/core";
 import { BusinessList } from "@/components/business-card";
+import { byRank } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import {
   allBusinesses,
@@ -69,10 +70,22 @@ export default async function BusinessPage({
   if (!business) notFound();
 
   const categorySlug = business.l2 ? slugify(business.l2) : null;
+  /**
+   * Recommendations: the same category, the same neighbourhood, ranked.
+   *
+   * Ordered by rankScore rather than by whatever order the data happened to be
+   * in — a recommendation list that leads with a 5.0 from three reviews is
+   * worse than none. SearchApi's google_maps_place returns a
+   * `people_also_search_for` block that would fill this from Google's own
+   * co-visitation data; that is a 1-credit-per-business upgrade to the same
+   * slot, not a rewrite.
+   */
   const nearby = categorySlug
-    ? byAreaCategory(business.area, categorySlug)
-        .filter((b) => b.placeId !== business.placeId)
-        .slice(0, 6)
+    ? byRank(
+        byAreaCategory(business.area, categorySlug).filter(
+          (b) => b.placeId !== business.placeId,
+        ),
+      ).slice(0, 6)
     : [];
 
   /**

@@ -11,6 +11,9 @@ export { serializeJsonLd } from "./jsonld";
 
 export { corpusPrior, rankScore } from "./rank";
 
+export { buildFaq, faqJsonLd } from "./faq";
+export type { FaqEntry, FaqInput } from "./faq";
+
 export { extractAmenities } from "./amenities";
 export type { Amenities } from "./amenities";
 export type { RankPrior } from "./rank";

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { FilterableBusinessList } from "@/components/filterable";
 import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
+import { Faq } from "@/components/faq";
+import { buildFaq } from "@directory/core";
 import {
   areaLabel,
   areas,
@@ -111,6 +113,11 @@ export default async function AreaCategoryPage({
     .slice(0, 8);
 
   const queries = popularQueries(facet.label, 8);
+  const faq = buildFaq({
+    category: facet.label,
+    area: areaLabel(area),
+    businesses,
+  });
 
   const otherHere = categoriesInArea(area)
     .filter((c) => c.slug !== l2)
@@ -218,6 +225,7 @@ export default async function AreaCategoryPage({
           </ul>
         </section>
       )}
+      <Faq entries={faq} />
     </Page>
   );
 }

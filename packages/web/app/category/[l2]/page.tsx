@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { FilterableBusinessList } from "@/components/filterable";
 import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
+import { Faq } from "@/components/faq";
+import { buildFaq } from "@directory/core";
 import { areasInCategory, byCategory, categories } from "@/lib/data";
 
 export async function generateStaticParams() {
@@ -47,6 +49,7 @@ export default async function CategoryPage({
 
   const businesses = byCategory(l2);
   const areaFacets = areasInCategory(l2);
+  const faq = buildFaq({ category: facet.label, businesses });
 
   return (
     <Page>
@@ -95,6 +98,7 @@ export default async function CategoryPage({
           searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}
         />
       </section>
+      <Faq entries={faq} />
     </Page>
   );
 }

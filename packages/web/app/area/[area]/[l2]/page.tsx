@@ -11,6 +11,7 @@ import {
   categories,
   categoriesInArea,
 } from "@/lib/data";
+import { demandedPages, popularQueries } from "@/lib/demand";
 
 /**
  * Below this, a page has nothing to say and should not be in the index.
@@ -25,13 +26,31 @@ const MIN_FOR_INDEX = 3;
  * cache at the edge.
  */
 export async function generateStaticParams() {
+  const seen = new Set<string>();
   const params: Array<{ area: string; l2: string }> = [];
+
+  const add = (area: string, l2: string) => {
+    const key = `${area}/${l2}`;
+    if (seen.has(key)) return;
+    if (byAreaCategory(area, l2).length < MIN_FOR_INDEX) return;
+    seen.add(key);
+    params.push({ area, l2 });
+  };
+
+  // DEMAND FIRST. These combinations came back from Google's own autocomplete,
+  // ordered by real query popularity, so they are the pages people actually
+  // look for. Prerendering by supply would have put 1,172 restaurants ahead of
+  // a nursery query that people type far more often.
+  for (const page of demandedPages()) add(page.area, page.l2Slug);
+
+  // Then fill with supply, so a combination nobody has searched yet still
+  // exists — it just does not get the build-time slot.
   for (const area of areas()) {
     for (const category of categoriesInArea(area.slug)) {
-      if (category.count < MIN_FOR_INDEX) continue;
-      params.push({ area: area.slug, l2: category.slug });
+      add(area.slug, category.slug);
     }
   }
+
   return params.slice(0, 1000);
 }
 
@@ -91,6 +110,8 @@ export default async function AreaCategoryPage({
     )
     .slice(0, 8);
 
+  const queries = popularQueries(facet.label, 8);
+
   const otherHere = categoriesInArea(area)
     .filter((c) => c.slug !== l2)
     .slice(0, 8);
@@ -136,6 +157,29 @@ export default async function AreaCategoryPage({
           searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}
         />
       </div>
+
+      {queries.length > 0 && (
+        <section className="mt-14">
+          <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            What people search for
+          </h2>
+          {/*
+            Straight from Google autocomplete, in popularity order. It tells a
+            visitor what is worth asking, and it is content no other directory
+            page has, because it is measured rather than generated.
+          */}
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {queries.map((q) => (
+              <li
+                key={q}
+                className="border border-[var(--rule)] px-2.5 py-1 text-xs text-[var(--muted)]"
+              >
+                {q}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {alsoIn.length > 0 && (
         <section className="mt-16">

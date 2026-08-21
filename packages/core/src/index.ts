@@ -7,6 +7,13 @@ export { isInCity } from "./city.js";
 
 export { nearestTile } from "./nearest.js";
 
+export {
+  buildCorpusFrequency,
+  deriveReviewSignals,
+  stripReviewIdentity,
+} from "./reviews.js";
+export type { AnonymousReview, ReviewSignals } from "./reviews.js";
+
 export { dedupeByPlaceId } from "./dedupe.js";
 export type { DedupeResult } from "./dedupe.js";
 

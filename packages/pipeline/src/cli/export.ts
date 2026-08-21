@@ -21,6 +21,7 @@
 import { createWriteStream, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import type { Business } from "@directory/core";
+import { BUSINESS_COLUMNS, CSV_BOM, csvRow } from "../csv";
 
 const argv = process.argv.slice(2);
 const flag = (name: string) => {
@@ -59,42 +60,6 @@ if (area) {
   businesses = businesses.filter((b) => b.area.toLowerCase() === needle);
 }
 
-const COLUMNS = [
-  "placeId",
-  "title",
-  "l1",
-  "l2",
-  "l3",
-  "area",
-  "address",
-  "phoneE164",
-  "phoneRaw",
-  "phoneType",
-  "website",
-  "domain",
-  "rating",
-  "reviews",
-  "lat",
-  "lng",
-  "accessibility",
-  "payments",
-  "services",
-] as const;
-
-/**
- * RFC 4180 quoting.
- *
- * Not optional here: Dubai addresses are full of commas, business names contain
- * quotes, and a title can hold a newline. Anything less and the file opens
- * misaligned in Excel — which is the one place most people will open it.
- */
-function csvCell(value: unknown): string {
-  if (value === undefined || value === null) return "";
-  const text = Array.isArray(value) ? value.join("; ") : String(value);
-  if (/[",\r\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
-  return text;
-}
-
 const stream = out ? createWriteStream(out) : process.stdout;
 
 function write(line: string) {
@@ -102,12 +67,10 @@ function write(line: string) {
 }
 
 if (format === "csv") {
-  // BOM so Excel reads it as UTF-8. Without it, every Arabic business name in
-  // the file renders as mojibake on a default Windows install.
-  write("﻿");
-  write(COLUMNS.join(",") + "\n");
+  write(CSV_BOM);
+  write(csvRow(BUSINESS_COLUMNS));
   for (const b of businesses) {
-    write(COLUMNS.map((c) => csvCell(b[c as keyof Business])).join(",") + "\n");
+    write(csvRow(BUSINESS_COLUMNS.map((c) => b[c as keyof Business])));
   }
 } else if (format === "ndjson") {
   for (const b of businesses) write(JSON.stringify(b) + "\n");

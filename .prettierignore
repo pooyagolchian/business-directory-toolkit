@@ -1,0 +1,23 @@
+node_modules
+dist
+.next
+.open-next
+.sst
+coverage
+pnpm-lock.yaml
+.playwright-mcp
+
+# Recorded API responses — reformatting them would obscure real diffs when a
+# fixture is re-recorded.
+fixtures
+
+# Files Next.js writes and rewrites on every `next dev`. Prettier and Next
+# disagree on their formatting, and letting both own a file means `next dev`
+# dirties the tree and breaks `format:check` in CI.
+packages/web/tsconfig.json
+packages/web/next-env.d.ts
+packages/web/AGENTS.md
+packages/web/CLAUDE.md
+
+# Local, untracked agent settings.
+.claude/*.local.*

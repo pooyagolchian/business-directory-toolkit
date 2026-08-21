@@ -46,4 +46,8 @@ Thumbs.db
 searchapi-ambassador-proposal.pdf
 
 # --- local agent session state ---
-.claude/*.local.md
+.claude/*.local.*
+.claude/settings.local.json
+
+# --- browser automation artifacts ---
+.playwright-mcp/

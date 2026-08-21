@@ -230,6 +230,28 @@ describe("leadScore", () => {
       leadScore(worse as Business, "weak-reputation", prior),
     ).toBeGreaterThan(leadScore(lessBad as Business, "weak-reputation", prior));
   });
+
+  test("low-visibility ranks a zero-review business above a nine-review one", () => {
+    // The deliberate exception: for every OTHER signal, health
+    // (`establishment`) is a function of reviews and the gap is something
+    // else (rating, or a binary flag), so multiplying the two together is
+    // safe. `low-visibility`'s gap IS the review count — the same quantity
+    // `establishment` is built from — so multiplying here double-counts the
+    // gap exactly as `rankScore` (a function of rating) once did for
+    // `weak-reputation` (a rating gap). Measured proof: with the multiplier
+    // included, `signalStrength × establishment` peaks at reviews = 5 (an
+    // arithmetic accident where the decreasing signal and increasing health
+    // curves cross) and buries every zero-review business — the clearest
+    // instance of "nobody has reviewed this business" there is — at the
+    // very bottom of the list. `leadScore` special-cases this signal to
+    // return `signalStrength` alone. Verified by mutation: temporarily
+    // reintroducing the multiplier for low-visibility makes this fail.
+    const zero = { ...base, reviews: 0 };
+    const nine = { ...base, reviews: 9 };
+    expect(
+      leadScore(zero as Business, "low-visibility", prior),
+    ).toBeGreaterThan(leadScore(nine as Business, "low-visibility", prior));
+  });
 });
 
 describe("establishment", () => {
@@ -350,6 +372,64 @@ describe("findLeads", () => {
       "mid",
       "lowest",
     ]);
+  });
+
+  test("breaks a score tie by rating, higher first", () => {
+    // Two no-website businesses with identical review counts have
+    // identical `establishment`, hence identical score (signalStrength is
+    // the constant 1 for no-website) — a tie the sort must not leave to
+    // whatever order the list happened to arrive in.
+    const { website, ...noWebsiteBase } = base;
+    void website;
+    const tied: Business[] = [
+      { ...noWebsiteBase, placeId: "lower-rated", reviews: 100, rating: 3.0 },
+      { ...noWebsiteBase, placeId: "higher-rated", reviews: 100, rating: 4.9 },
+    ] as Business[];
+
+    const { leads } = findLeads(tied, opts);
+    expect(leads[0]?.score).toBe(leads[1]?.score);
+    expect(leads.map((l) => l.business.placeId)).toEqual([
+      "higher-rated",
+      "lower-rated",
+    ]);
+  });
+
+  test("breaks a score-and-rating tie by placeId, ascending — the order is total", () => {
+    // Identical score AND identical rating: nothing left to break the tie
+    // except placeId, so this is what makes the full order reproducible
+    // across runs and machines rather than an accident of input order.
+    const { website, ...noWebsiteBase } = base;
+    void website;
+    const tied: Business[] = [
+      { ...noWebsiteBase, placeId: "zeta", reviews: 100, rating: 4.0 },
+      { ...noWebsiteBase, placeId: "alpha", reviews: 100, rating: 4.0 },
+      { ...noWebsiteBase, placeId: "mu", reviews: 100, rating: 4.0 },
+    ] as Business[];
+
+    const { leads } = findLeads(tied, opts);
+    expect(new Set(leads.map((l) => l.score)).size).toBe(1);
+    expect(leads.map((l) => l.business.placeId)).toEqual([
+      "alpha",
+      "mu",
+      "zeta",
+    ]);
+  });
+
+  test("sorts a missing rating last, not first, when scores tie", () => {
+    // An unrated business is not a better prospect than a well-rated one —
+    // `?? -Infinity`, not `?? 0`, so it loses to every real rating,
+    // including a 0 (if one ever occurred), not just positive ones.
+    const { website, ...noWebsiteBase } = base;
+    const { rating, ...noWebsiteNoRatingBase } = noWebsiteBase;
+    void website;
+    void rating;
+    const tied: Business[] = [
+      { ...noWebsiteNoRatingBase, placeId: "unrated", reviews: 100 },
+      { ...noWebsiteBase, placeId: "rated", reviews: 100, rating: 1.0 },
+    ] as Business[];
+
+    const { leads } = findLeads(tied, opts);
+    expect(leads.map((l) => l.business.placeId)).toEqual(["rated", "unrated"]);
   });
 
   test("never returns a suppressed business", () => {

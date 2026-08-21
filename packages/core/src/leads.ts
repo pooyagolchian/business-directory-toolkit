@@ -197,6 +197,24 @@ export function establishment(
  * describes the SIZE of a gap like `weak-reputation`, not here, where it
  * would double-count and cancel that same gap out.
  *
+ * THE GENERAL RULE — of which `weak-reputation` and `low-visibility` are two
+ * instances, not a one-off fix: the health term must never be a function of
+ * the quantity the signal itself measures. For `weak-reputation` the gap IS
+ * the rating, so health must not use rating — that's why `establishment` is
+ * built from reviews alone. For `low-visibility` the gap IS the review
+ * count, so health must not use review count either — but `establishment`
+ * is *defined* from review count, so multiplying it in here would
+ * double-count the gap in exactly the way the old rating-based health once
+ * did for `weak-reputation`. Measured on the real corpus: `signalStrength ×
+ * establishment` for `low-visibility` peaks at reviews = 5 — an arithmetic
+ * accident, not a design choice; it's simply where the decreasing signal
+ * and the increasing health curves cross — and it buries every zero-review
+ * business at the exact bottom of the list, when a zero-review business is
+ * the clearest instance of the very gap this signal exists to find. So
+ * `low-visibility` is the deliberate exception below: no health multiplier,
+ * ranked on gap severity alone. This is the same principle applied
+ * consistently, not an oversight.
+ *
  * A score is only ever compared within its own signal: a `no-website` score
  * and a `weak-reputation` score describe different sales conversations, not
  * points on a shared scale.
@@ -206,8 +224,14 @@ export function leadScore(
   signal: LeadSignal,
   prior: RankPrior,
 ): number {
-  const health = establishment(business.reviews, prior);
-  return signalStrength(business, signal) * health;
+  const strength = signalStrength(business, signal);
+
+  // See the rule above: `low-visibility`'s gap is the review count, the same
+  // input `establishment` is built from, so this signal alone skips the
+  // health multiplier rather than double-counting its own gap.
+  if (signal === "low-visibility") return strength;
+
+  return strength * establishment(business.reviews, prior);
 }
 
 export interface Lead {
@@ -321,7 +345,26 @@ export function findLeads(
       score: leadScore(business, options.signal, options.prior),
       reason: reasonFor(business, options.signal),
     }))
-    .sort((a, b) => b.score - a.score);
+    // Score descending, then two tie-breaks so the order is TOTAL —
+    // reproducible across runs and machines, not an accident of whatever
+    // order the input array (or a particular sort implementation) happened
+    // to preserve for equal scores:
+    //   1. Rating descending. Among leads that score identically, a
+    //      better-rated business is more likely to be genuinely trading and
+    //      worth the call. `?? -Infinity`, not `?? 0`, so a business with no
+    //      rating at all sorts LAST — an unrated business is not a better
+    //      prospect than a well-rated one, and this also loses to a
+    //      (hypothetical) 0-rated business, not just positive ratings.
+    //   2. `placeId` ascending — the final, always-available discriminator,
+    //      so two leads tied on both score and rating still sort the same
+    //      way every time rather than by insertion order.
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      const ratingA = a.business.rating ?? -Infinity;
+      const ratingB = b.business.rating ?? -Infinity;
+      if (ratingB !== ratingA) return ratingB - ratingA;
+      return a.business.placeId.localeCompare(b.business.placeId);
+    });
 
   return {
     leads: options.limit ? leads.slice(0, options.limit) : leads,

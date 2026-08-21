@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
   detectSignals,
+  establishment,
   findLeads,
   isContactable,
   LEAD_SIGNALS,
@@ -192,6 +193,91 @@ describe("leadScore", () => {
       expect(Number.isFinite(leadScore(sparse, signal, prior))).toBe(true);
     }
   });
+
+  test("a heavily-reviewed weak-reputation business outranks a lightly-reviewed one with the identical rating", () => {
+    // This is the bug the establishment fix exists to close. Under the OLD
+    // businessHealth (rankScore, a credibility-shrunk RATING), a below-prior
+    // rating is shrunk UPWARD toward the corpus mean, and shrunk LESS the
+    // more reviews back it — so rankScore DECREASED with review count for a
+    // below-average business. Multiplying by it demoted exactly the
+    // established, high-volume businesses this signal exists to surface: on
+    // the real corpus, a 3.6-rated hospital with 5,562 reviews sat at #522 of
+    // 641, below bank ATMs with 23-37 reviews. Same rating here isolates the
+    // effect to review count alone.
+    const veteran = { ...base, rating: 3.6, reviews: 5000 };
+    const newcomer = { ...base, rating: 3.6, reviews: 25 };
+    expect(
+      leadScore(veteran as Business, "weak-reputation", prior),
+    ).toBeGreaterThan(
+      leadScore(newcomer as Business, "weak-reputation", prior),
+    );
+  });
+
+  test("a more severe reputation gap outranks a less severe one at equal health", () => {
+    // Pins the MULTIPLICATION itself, not just signalStrength in isolation.
+    // The two product tests above ("ranks a thriving business..." and the
+    // veteran/newcomer test just above) both still pass if leadScore's body
+    // is replaced with `return health;` — for "ranks a thriving business",
+    // signalStrength is the constant 1.0 for no-website, so the product is
+    // tautologically just health; for veteran/newcomer, health itself
+    // already orders correctly by review count regardless of signalStrength.
+    // Equal reviews here (hence equal establishment/health for both) removes
+    // health as a variable, so only signalStrength — multiplied in — can
+    // explain the expected ordering. Verified by mutation: see the report.
+    const worse = { ...base, rating: 2.0, reviews: 200 };
+    const lessBad = { ...base, rating: 3.7, reviews: 200 };
+    expect(
+      leadScore(worse as Business, "weak-reputation", prior),
+    ).toBeGreaterThan(leadScore(lessBad as Business, "weak-reputation", prior));
+  });
+});
+
+describe("establishment", () => {
+  const prior: RankPrior = { mean: 4.5, weight: 76 };
+
+  test("is zero with no reviews", () => {
+    expect(establishment(0, prior)).toBe(0);
+    expect(establishment(undefined, prior)).toBe(0);
+  });
+
+  test("reaches exactly half at the prior's weight, and rises toward but never reaches 1", () => {
+    expect(establishment(76, prior)).toBeCloseTo(0.5, 10);
+    expect(establishment(10_000, prior)).toBeGreaterThan(0.99);
+    expect(establishment(10_000, prior)).toBeLessThan(1);
+  });
+
+  test("is monotonically increasing in review count", () => {
+    expect(establishment(500, prior)).toBeGreaterThan(establishment(20, prior));
+    expect(establishment(20, prior)).toBeGreaterThan(establishment(0, prior));
+  });
+
+  test("treats absent, zero, negative, and non-finite reviews as no evidence", () => {
+    expect(establishment(undefined, prior)).toBe(0);
+    expect(establishment(0, prior)).toBe(0);
+    expect(establishment(-5, prior)).toBe(0);
+    expect(establishment(NaN, prior)).toBe(0);
+    expect(establishment(Infinity, prior)).toBe(0);
+  });
+
+  test("never returns NaN or Infinity even with a degenerate prior", () => {
+    // A zero weight would divide by zero when reviews is also zero — the
+    // one combination `rankScore`'s own guard doesn't have to worry about,
+    // since establishment's shape (v / (v + m)) puts m in the denominator
+    // unconditionally, unlike rankScore's early return on evidence === 0.
+    const degeneratePriors: RankPrior[] = [
+      { mean: 4.5, weight: 0 },
+      { mean: 4.5, weight: -10 },
+      { mean: 4.5, weight: NaN },
+    ];
+    for (const degenerate of degeneratePriors) {
+      for (const reviews of [0, 5, undefined, NaN, -3]) {
+        const result = establishment(reviews, degenerate);
+        expect(Number.isFinite(result)).toBe(true);
+        expect(result).toBeGreaterThanOrEqual(0);
+        expect(result).toBeLessThan(1);
+      }
+    }
+  });
 });
 
 describe("findLeads", () => {
@@ -240,6 +326,32 @@ describe("findLeads", () => {
     expect(leads[0]?.business.placeId).toBe("A");
   });
 
+  test("returns the FULL ranked order, not just the top lead", () => {
+    // `corpus` above happens to already be listed in descending-score order
+    // (A then B), so deleting `.sort()` from `findLeads` entirely would still
+    // leave `leads[0]` correct and the whole suite green — only `leads[0]`
+    // was ever inspected. This corpus is listed in an order UNRELATED to
+    // score (list order is not review-count order), so only a real sort
+    // produces the expected array; with `.sort()` removed, `Array.prototype
+    // .filter().map()` preserves this shuffled list order instead.
+    const { website, ...noWebsiteBase } = base;
+    void website;
+    const shuffled: Business[] = [
+      { ...noWebsiteBase, placeId: "mid", title: "Mid", reviews: 50 },
+      { ...noWebsiteBase, placeId: "lowest", title: "Lowest", reviews: 5 },
+      { ...noWebsiteBase, placeId: "highest", title: "Highest", reviews: 900 },
+      { ...noWebsiteBase, placeId: "second", title: "Second", reviews: 300 },
+    ] as Business[];
+
+    const { leads } = findLeads(shuffled, opts);
+    expect(leads.map((l) => l.business.placeId)).toEqual([
+      "highest",
+      "second",
+      "mid",
+      "lowest",
+    ]);
+  });
+
   test("never returns a suppressed business", () => {
     // A business that asked to be removed must not resurface on a call list.
     const { leads, suppressed } = findLeads(corpus, {
@@ -266,6 +378,20 @@ describe("findLeads", () => {
     expect(leads[0]?.business.l2).toBe("Restaurants");
   });
 
+  test("matches category against l3 as well as l2", () => {
+    // The filter is `b.l2 !== category && b.l3 !== category`, both halves
+    // required — a business the taxonomy placed only at l3 (a niche
+    // sub-category with a distinct l2 parent) must still match a `--category`
+    // query for that l3 value. Deleting the `b.l3` half leaves this business
+    // filtered out, since its l2 ("Food") does not equal "Sushi".
+    const { leads } = findLeads(
+      [{ ...corpus[0], l2: "Food", l3: "Sushi" }] as Business[],
+      { ...opts, category: "Sushi" },
+    );
+    expect(leads).toHaveLength(1);
+    expect(leads[0]?.business.l3).toBe("Sushi");
+  });
+
   test("filters by area", () => {
     const { leads } = findLeads(
       [
@@ -282,6 +408,16 @@ describe("findLeads", () => {
     expect(leads.every((l) => (l.business.reviews ?? 0) >= 100)).toBe(true);
   });
 
+  test("filters by minimum rating", () => {
+    // `corpus` carries A (rating 4.8) and B (rating 3.1). Deleting the
+    // `minRating` check leaves B on the list despite failing the 4.0 floor.
+    const { leads } = findLeads(corpus, { ...opts, minRating: 4.0 });
+    const ids = leads.map((l) => l.business.placeId);
+    expect(ids).toContain("A");
+    expect(ids).not.toContain("B");
+    expect(leads.every((l) => (l.business.rating ?? 0) >= 4.0)).toBe(true);
+  });
+
   test("respects the limit", () => {
     expect(findLeads(corpus, { ...opts, limit: 1 }).leads).toHaveLength(1);
   });
@@ -292,6 +428,35 @@ describe("findLeads", () => {
     for (const lead of findLeads(corpus, opts).leads) {
       expect(lead.reason.length).toBeGreaterThan(0);
     }
+  });
+
+  test("the no-website reason does not claim 'established' for a business with few or no reviews", () => {
+    // The reason string used to read "N reviews suggest an established
+    // business" unconditionally — on the real corpus, 268 of 3,820
+    // no-website leads have 0 reviews, so 7% of rows made a claim false on
+    // its face in a CSV a client might open directly.
+    const { website, ...noWebsiteBase } = base;
+    void website;
+    const zero = { ...noWebsiteBase, placeId: "Z", reviews: 0 };
+    const few = { ...noWebsiteBase, placeId: "F", reviews: 4 };
+    const many = { ...noWebsiteBase, placeId: "M", reviews: 500 };
+
+    const { leads } = findLeads([zero, few, many] as Business[], {
+      signal: "no-website",
+      prior,
+    });
+    const reasonOf = (id: string) =>
+      leads.find((l) => l.business.placeId === id)?.reason ?? "";
+
+    // The specific false claim this fix removes is "N reviews suggest an
+    // established business" for a business with too few (or zero) reviews
+    // to support that claim — not the word "established" in isolation, which
+    // an honest negation ("may not be an established business") legitimately
+    // still contains.
+    const falseClaim = /reviews suggest an established business/;
+    expect(reasonOf("Z")).not.toMatch(falseClaim);
+    expect(reasonOf("F")).not.toMatch(falseClaim);
+    expect(reasonOf("M")).toMatch(falseClaim);
   });
 
   test("returns an empty result rather than throwing on an empty corpus", () => {

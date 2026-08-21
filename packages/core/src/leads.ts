@@ -1,15 +1,18 @@
-import { rankScore, type RankPrior } from "./rank";
+import type { RankPrior } from "./rank";
 import { dropSuppressed } from "./suppression";
 import type { Business } from "./types";
 
 /**
- * Lead signal detection.
+ * Lead detection and scoring.
  *
  * A lead is a business with a gap somebody can sell against. Each signal maps
  * to a real service: no website to web design, weak reputation to reputation
  * management, low visibility to local SEO, no hours to listing management.
- * Scoring those signals into a ranked lead list is later work (Tasks 4–5) —
- * this module only decides which gaps a business has.
+ * This module detects which gaps a business has (`detectSignals`), measures
+ * how severe each one is (`signalStrength`), combines that with how
+ * established the business is into a single rank (`leadScore`), and turns
+ * the whole corpus into a filtered, ranked, suppression-aware call list
+ * (`findLeads`).
  */
 export const LEAD_SIGNALS = [
   "no-website",
@@ -127,17 +130,72 @@ export function signalStrength(business: Business, signal: LeadSignal): number {
 }
 
 /**
+ * How much real trade this business has evidence of, independent of rating.
+ *
+ * "The best lead is a successful business with a fixable gap" turns on what
+ * "successful" means here: not well-rated — for `weak-reputation` the rating
+ * IS the gap being sold against — but ESTABLISHED, in the sense of having
+ * enough transaction history that the gap is worth fixing. A business with
+ * thousands of reviews and no website is a real commercial concern that
+ * happens to be invisible online; a business with three reviews and no
+ * website might not be trading at all.
+ *
+ * Shaped like the credibility term inside `rankScore` (`v / (v + m)`), reused
+ * here for the same reason: a business needs enough reviews relative to the
+ * corpus norm (`m`, the prior's weight) before its volume counts as real
+ * evidence rather than noise. Deliberately excludes rating, unlike
+ * `rankScore` — folding a credibility-shrunk rating back in here would
+ * double-count the very deficiency `weak-reputation` sells against. Measured
+ * on the real 641-lead reputation list: the old rankScore-based health gave
+ * `corr(score, businessHealth) = -0.328`, topped by bank ATMs with 23–37
+ * reviews, while a 3.6-rated hospital with 5,562 reviews — the most valuable
+ * reputation-management prospect in the crawl — sat at #522 of 641. A
+ * below-prior rating is shrunk UPWARD by rankScore toward the corpus mean,
+ * and shrunk LESS the more reviews back it, so rankScore *decreases* with
+ * review count for exactly the businesses `weak-reputation` targets;
+ * multiplying by it demoted the highest-volume prospects instead of
+ * surfacing them.
+ *
+ * `m` must come from the prior passed in — the corpus median review count —
+ * never a hardcoded constant, so "established" self-scales with the corpus
+ * (see `corpusPrior`'s own doc comment for why a fixed number is wrong on a
+ * different city or crawl size).
+ *
+ * Guards independently against every way `reviews` and `prior.weight` can be
+ * degenerate: an absent, zero, negative, or non-finite `reviews` all read as
+ * "no evidence yet" (0) rather than throwing or producing NaN; a zero,
+ * absent, or non-finite `prior.weight` falls back to 1 rather than dividing
+ * by zero when `reviews` is also 0 — a combination only a malformed prior can
+ * produce, since `corpusPrior` itself always returns at least 1
+ * (`Math.max(1, median)`). With both inputs non-negative and the denominator
+ * strictly positive, the result is always in [0, 1): it can approach but
+ * never reach 1, however many reviews a business has.
+ */
+export function establishment(
+  reviews: number | undefined,
+  prior: RankPrior,
+): number {
+  const v =
+    typeof reviews === "number" && Number.isFinite(reviews) && reviews > 0
+      ? reviews
+      : 0;
+  const m =
+    Number.isFinite(prior.weight) && prior.weight > 0 ? prior.weight : 1;
+  return v / (v + m);
+}
+
+/**
  * The best lead is a successful business with a fixable gap.
  *
  * Multiplying signal strength by business health is what separates a
- * 4.8-rated restaurant with 500 reviews and no website from a 3.1-rated one
- * with 20. Both match the filter; only the score says which is worth calling
- * first.
+ * heavily-reviewed restaurant with no website from a barely-reviewed one
+ * with the same gap. Both match the filter; only the score says which is
+ * worth calling first.
  *
- * `businessHealth` comes from `rankScore` rather than the raw star average,
- * so a lone 5-star review can't float a barely-reviewed prospect to the top
- * of a call list — the same credibility weighting that keeps the directory's
- * own rankings honest applies here too.
+ * `businessHealth` is `establishment` — see that function's doc comment for
+ * why a credibility-shrunk RATING belongs in `signalStrength`, where it
+ * describes the SIZE of a gap like `weak-reputation`, not here, where it
+ * would double-count and cancel that same gap out.
  *
  * A score is only ever compared within its own signal: a `no-website` score
  * and a `weak-reputation` score describe different sales conversations, not
@@ -148,7 +206,7 @@ export function leadScore(
   signal: LeadSignal,
   prior: RankPrior,
 ): number {
-  const health = rankScore(business.rating, business.reviews, prior);
+  const health = establishment(business.reviews, prior);
   return signalStrength(business, signal) * health;
 }
 
@@ -191,8 +249,20 @@ export interface LeadResult {
 function reasonFor(business: Business, signal: LeadSignal): string {
   const reviews = business.reviews ?? 0;
   switch (signal) {
-    case "no-website":
+    case "no-website": {
+      // The "established" claim is only true above the same visibility
+      // floor `low-visibility` uses — on the real corpus, 268 of 3,820
+      // no-website leads have 0 reviews, and the old unconditional wording
+      // made a claim false on its face for every one of them in an
+      // auditable, client-facing CSV.
+      if (reviews === 0) {
+        return "No website listed; no reviews yet, so this may not be an established business at all";
+      }
+      if (reviews < LOW_VISIBILITY_REVIEWS) {
+        return `No website listed; only ${reviews.toLocaleString()} reviews, too few to call this established`;
+      }
       return `No website listed; ${reviews.toLocaleString()} reviews suggest an established business`;
+    }
     case "weak-reputation":
       return `Rated ${(business.rating ?? 0).toFixed(1)} across ${reviews.toLocaleString()} reviews`;
     case "low-visibility":

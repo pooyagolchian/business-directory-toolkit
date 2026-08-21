@@ -36,6 +36,8 @@ export interface RawLocalResult {
   open_hours?: Record<string, string>;
   thumbnail?: string;
   images?: string[];
+  /** Accessibility, payments, service options. Present on ~91% of listings. */
+  extensions?: unknown;
 }
 
 /** A resolved position in the three-level taxonomy. `l3` is optional by design. */
@@ -76,6 +78,10 @@ export interface Business {
   thumbnail?: string;
   openHours?: Record<string, string>;
   dataId?: string;
+  /** Slugified attributes, e.g. "wheelchair-accessible-entrance". */
+  accessibility?: string[];
+  payments?: string[];
+  services?: string[];
 }
 
 /** `data/taxonomy-map.json`: one Google category string → one taxonomy node. */

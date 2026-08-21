@@ -10,14 +10,13 @@ export { nearestTile } from "./nearest";
 export { serializeJsonLd } from "./jsonld";
 
 export { corpusPrior, rankScore } from "./rank";
+
+export { extractAmenities } from "./amenities";
+export type { Amenities } from "./amenities";
 export type { RankPrior } from "./rank";
 
 export { RATING_BANDS, ratingDistribution } from "./distribution";
-export type {
-  RatingBand,
-  RatingBin,
-  RatingDistribution,
-} from "./distribution";
+export type { RatingBand, RatingBin, RatingDistribution } from "./distribution";
 
 export {
   MIN_BUSINESSES_PER_THEME,

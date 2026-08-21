@@ -64,7 +64,10 @@ export function rankScore(
  * fixed constant would be wrong in both directions on a different city.
  */
 export function corpusPrior(
-  businesses: Array<{ rating?: number; reviews?: number }>,
+  businesses: Array<{
+    rating?: number | undefined;
+    reviews?: number | undefined;
+  }>,
 ): RankPrior {
   const ratings: number[] = [];
   const counts: number[] = [];

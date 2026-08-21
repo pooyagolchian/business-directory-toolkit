@@ -103,7 +103,10 @@ function median(values: number[]): number {
 }
 
 export function ratingDistribution(
-  businesses: Array<{ rating?: number; reviews?: number }>,
+  businesses: Array<{
+    rating?: number | undefined;
+    reviews?: number | undefined;
+  }>,
 ): RatingDistribution {
   const binCount = Math.round((MAX_RATING - MIN_RATING) / BIN_STEP) + 1;
   // Every bin is materialised up front, including the empty ones. A histogram

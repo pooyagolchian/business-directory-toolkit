@@ -1,5 +1,6 @@
 import {
   applyTaxonomy,
+  extractAmenities,
   isInCity,
   normalizePhone,
   toSlug,
@@ -68,6 +69,15 @@ export function normalizeBusiness(
   if (record.thumbnail) business.thumbnail = record.thumbnail;
   if (record.open_hours) business.openHours = record.open_hours;
   if (record.data_id) business.dataId = record.data_id;
+
+  // Recovered from `extensions`, which the pipeline previously discarded. This
+  // is data the crawl already paid for — accessibility especially, which is the
+  // one attribute a directory can offer that Google's own listing page buries.
+  const amenities = extractAmenities(record.extensions);
+  if (amenities.accessibility.length)
+    business.accessibility = amenities.accessibility;
+  if (amenities.payments.length) business.payments = amenities.payments;
+  if (amenities.services.length) business.services = amenities.services;
   if (taxonomy) {
     business.l1 = taxonomy.l1;
     business.l2 = taxonomy.l2;

@@ -69,7 +69,7 @@ reviews; the most-reviewed business on it, a 3.6-rated hospital with 5,562
 reviews, ranked #522 of 641. At all 18 distinct rating values in the corpus, the
 most-reviewed business ranked below the least-reviewed one carrying the same
 rating. After the change: `corr(score, reviews) = +0.08`, and that hospital
-ranks #101.
+ranks #271.
 
 It does not move to first, correctly — at 3.6 it is barely below the 3.8
 threshold, so its `signalStrength` is small, and a severe problem at a mid-sized

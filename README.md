@@ -348,7 +348,7 @@ trade a business had, the further down the call sheet it went. The list was
 topped by bank ATMs with 23–37 reviews, and the most-reviewed business on it — a
 3.6-rated hospital with 5,562 reviews — sat at **#522 of 641**, past the end of
 the default view. After the change that correlation is **+0.08** and the same
-hospital ranks **#101**.
+hospital ranks **#271**.
 
 It does not jump to first, and should not: at 3.6 it is only just below the 3.8
 threshold, so its `signalStrength` is small. That is the formula working — a
@@ -436,8 +436,9 @@ reviews, of which 321 have no website.
 exits before reaching this point:
 
 > These are business listings, not permission to contact. Unsolicited
-> commercial messaging is regulated in the UAE — check the rules that apply
-> before you use this list.
+> commercial messaging is regulated wherever these businesses operate — this
+> toolkit is not scoped to one jurisdiction (a city here is data, not code), so
+> check the rules that apply to YOUR crawl before you use this list.
 
 A phone number surfaced by a crawl is not an opt-in, and the CLI says so every
 time rather than once in a README nobody reads before running the tool.

@@ -71,3 +71,16 @@ describe("parseSuppressionList", () => {
     expect(() => parseSuppressionList("not json")).toThrow();
   });
 });
+
+test("accepts the normalised camelCase shape as well as the raw one", () => {
+  // Raw engine records carry place_id; normalised Business records carry
+  // placeId. Suppression has to work on both, or it silently protects only
+  // half the pipeline.
+  const ids = new Set(["SUPPRESSED"]);
+  const result = dropSuppressed(
+    [{ placeId: "SUPPRESSED" }, { placeId: "KEPT" }],
+    ids,
+  );
+  expect(result.removed).toBe(1);
+  expect(result.kept).toEqual([{ placeId: "KEPT" }]);
+});

@@ -19,15 +19,27 @@
  * nobody.
  */
 
-/** A record carrying enough identity to be suppressed. */
+/**
+ * Either spelling of the identifier.
+ *
+ * Raw engine records use `place_id`; normalised Business records use
+ * `placeId`. Suppression must apply to both — a filter that only understands
+ * one shape protects only half the pipeline, and the half it misses is the one
+ * that reaches users.
+ */
 export interface Identifiable {
-  place_id?: string;
+  place_id?: string | undefined;
+  placeId?: string | undefined;
 }
 
 export interface SuppressionResult<T> {
   kept: T[];
   /** How many records the list removed, so a load can report it rather than lose them quietly. */
   removed: number;
+}
+
+function identifierOf(item: Identifiable): string | undefined {
+  return item.place_id ?? item.placeId;
 }
 
 /**
@@ -58,7 +70,7 @@ export function parseSuppressionList(json: string): Set<string> {
   return ids;
 }
 
-/** Drop every record whose `place_id` appears in the suppression list. */
+/** Drop every record whose identifier appears in the suppression list. */
 export function dropSuppressed<T extends Identifiable>(
   records: readonly T[],
   suppressed: ReadonlySet<string>,
@@ -71,7 +83,8 @@ export function dropSuppressed<T extends Identifiable>(
     // A record with no place_id cannot be matched against the list. Dedupe
     // already drops those; keeping them here means suppression never becomes a
     // second, silent reason for a record to disappear.
-    if (record.place_id && suppressed.has(record.place_id)) {
+    const id = identifierOf(record);
+    if (id && suppressed.has(id)) {
       removed++;
       continue;
     }

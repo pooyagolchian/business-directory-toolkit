@@ -40,6 +40,18 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
+# --- lead exports: same reasoning as crawl output above ---
+# `pnpm leads --out <path>` writes real crawled business records (name,
+# address, phone, coordinates) to whatever path is given. The documented
+# example writes into data/out/, already ignored above, but this is a
+# safety net for a repo-root path a user might type instead — the exact
+# gap that would make the TAKEDOWN.md promise unenforceable once a leads
+# export reaches git history. See docs/adr/0002-do-not-redistribute-the-dataset.md.
+/leads*.csv
+/leads*.json
+/*-leads.csv
+/*-leads.json
+
 # --- private business documents (see README note) ---
 # The SearchApi proposal contains commercial terms and contact details.
 # Un-ignore deliberately if you decide to publish it.

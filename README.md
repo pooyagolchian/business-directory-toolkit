@@ -282,7 +282,7 @@ list. No new query, no credits — everything it reads is already on disk.
 ```bash
 pnpm leads --list-signals
 pnpm leads --signal no-website --category Restaurants --min-reviews 20
-pnpm leads --signal weak-reputation --format csv --out leads.csv
+pnpm leads --signal weak-reputation --format csv --out data/out/leads.csv
 ```
 
 | Signal            | Condition                     | Who buys                     | Leads |
@@ -356,12 +356,16 @@ while the business it was meant to suppress quietly reappears at the top of
 the call list — the one failure mode this feature cannot afford, because the
 output would look correct.
 
-Matching is an exact string comparison against `place_id`, so it is
-case- and whitespace-sensitive: `place_id` is an opaque token Google assigns,
-not something a person types from memory. Hand-adding an entry with the wrong
-case, or a stray space carried over from a copy-paste, produces a silent
-non-match — the entry sits in the file looking correct, and the business it
-was meant to suppress keeps showing up anyway.
+Every entry is trimmed on load
+([`parseSuppressionList`](./packages/core/src/suppression.ts)), so a stray
+leading or trailing space — the likeliest slip when a `place_id` is
+copy-pasted out of a takedown request — still matches. What is **not**
+forgiven is case: matching is an exact, case-sensitive string comparison
+against `place_id`, because `place_id` is an opaque token Google assigns
+rather than something a person types from memory or would notice is wrong.
+Hand-editing the wrong case into an entry produces a silent non-match — the
+entry sits in the file looking correct, and the business it was meant to
+suppress keeps showing up anyway.
 
 ### Flags
 

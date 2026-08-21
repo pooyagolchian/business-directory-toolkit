@@ -57,19 +57,42 @@ shared vocabulary asserts itself quickly.
 3. Publish the curve, including its unflattering start. The turn is more
    convincing than any endpoint.
 
-## Projection, explicitly labelled
+## VERIFIED at crawl completion (2026-08-21)
 
-Extrapolating the decay, the vocabulary appears to converge toward **~1,100–1,300
-distinct categories** at 10,000 businesses, a ratio near 0.12. **This is a
-projection, not a measurement**, and must be labelled as such anywhere it
-appears until the crawl completes.
+The crawl finished at 1,400 requests. Re-running the measurement over the full
+corpus:
 
-## What would change this decision
+| Businesses | Distinct | Ratio | New categories per 100 businesses |
+| ---------: | -------: | ----: | --------------------------------: |
+|      2,000 |      954 | 0.477 |                              47.7 |
+|      4,000 |    1,244 | 0.311 |                              14.5 |
+|      6,000 |    1,377 | 0.230 |                               6.7 |
+|      8,000 |    1,472 | 0.184 |                               4.8 |
+|     10,000 |    1,560 | 0.156 |                               4.4 |
+|     12,000 |    1,671 | 0.139 |                               5.5 |
+|     14,000 |    1,735 | 0.124 |                               3.2 |
 
-If marginal discovery plateaus above roughly 15 new categories per 100
-businesses through the remainder of the crawl, the vocabulary is not saturating
-as cleanly as this data suggests and the article's thesis needs rewriting rather
-than restating. Re-run the measurement at crawl completion before publishing.
+**15,246 businesses → 1,788 distinct categories. Ratio 0.117. Final marginal
+rate 4.3 new categories per 100 businesses.**
+
+The pre-registered threshold was 15 per 100. At 4.3 the thesis is **confirmed**.
+
+**Publishable claim:** classifying categories instead of businesses puts
+**1,788 items** in front of the model instead of **15,246** — **8.5x fewer** —
+and the marginal rate of 4.3 means the next thousand businesses add roughly 43
+new strings, not a thousand.
+
+### Where the earlier projection was wrong
+
+This document previously projected ~1,100–1,300 distinct categories at 10,000
+businesses. The measured figure at 10,000 was **1,560** — the projection
+undershot by 20–40%.
+
+The decay is slower in the tail than the early curve suggested, and it is not
+perfectly monotonic: the marginal rate ticked back up at 12,000 (5.5) as sparse
+outer tiles introduced business types the city centre never contained. The
+direction of the thesis was right; the specific number was too optimistic.
+Publish the measurement, not the extrapolation.
 
 ## Why this matters beyond the cost number
 

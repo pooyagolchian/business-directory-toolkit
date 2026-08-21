@@ -70,18 +70,21 @@ seems obvious. Present it, wait for a yes.
 Probed live on 2026-08-20. These cost credits to learn; treat them as settled
 and do not spend more re-deriving them.
 
-| Fact                             | Value                                                                                    |
-| -------------------------------- | ---------------------------------------------------------------------------------------- |
-| Result ceiling per query         | **~200** — `page=11` returns zero. Tiling is mandatory.                                  |
-| Results per page                 | 20                                                                                       |
-| Unique yield per request         | **~17.5** (~12% in-query duplicate rate)                                                 |
-| Cross-tile overlap               | **0** measured between Downtown and Deira — tiles are disjoint                           |
-| Phone format returned            | Local, never E.164 — `04 577 6680`, `052 253 3290`                                       |
-| Free geo filters on every result | `country_code`, `city`, `timezone`                                                       |
-| Category mess                    | Up to 9 `types[]` strings on a single business                                           |
-| `types[]` ordering               | **Alphabetical, not ranked** — 85% of tails sorted. Carries no relevance signal          |
-| Category saturation              | 2,816 businesses → 983 distinct. Marginal fell 76 → 4.8 per 100 businesses. See ADR 0006 |
-| Titles                           | Often bilingual — `Shamiat Restaurant مطعم شاميات - Dubai`                               |
+| Fact                             | Value                                                                                                                  |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Result ceiling per query         | **~200** — `page=11` returns zero. Tiling is mandatory.                                                                |
+| Results per page                 | 20                                                                                                                     |
+| Unique yield per request         | **10.9 measured over a full crawl.** The ~17.5 in-query figure overestimated by 38% — cross-category overlap dominates |
+| Cross-category duplicate rate    | **~45%** — a business tagged with several categories is returned by each one's query                                   |
+| Cross-tile overlap               | **0** measured between Downtown and Deira — tiles are disjoint                                                         |
+| Phone format returned            | Local, never E.164 — `04 577 6680`, `052 253 3290`                                                                     |
+| Free geo filters on every result | `country_code`, `city`, `timezone`                                                                                     |
+| Category mess                    | Up to 9 `types[]` strings on a single business                                                                         |
+| `types[]` ordering               | **Alphabetical, not ranked** — 85% of tails sorted. Carries no relevance signal                                        |
+| Category saturation              | **15,246 businesses → 1,788 distinct** (0.117). Final marginal 4.3 per 100. 8.5x fewer LLM items. ADR 0006             |
+| v0.1 crawl actuals               | 1,400 requests → 15,246 unique → 14,981 in Dubai. 0 errors                                                             |
+| Area from provenance is wrong    | **52% of businesses** sat in a different tile than the query that found them. Assign by coordinates                    |
+| Titles                           | Often bilingual — `Shamiat Restaurant مطعم شاميات - Dubai`                                                             |
 
 Credit budget: 100k total, ~2,000 planned for the v0.1 crawl.
 

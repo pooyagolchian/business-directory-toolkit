@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FilterableBusinessList } from "@/components/filterable";
-import { toRow } from "@/lib/rows";
+import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
 import { areaLabel, areas, byArea, categoriesInArea } from "@/lib/data";
 
@@ -52,16 +52,14 @@ export default async function AreaPage({
       <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl">
         Businesses in {areaLabel(area)}
       </h1>
-      <p className="mt-2 text-sm text-[var(--muted)]">
+      <p className="mt-3 text-[var(--muted)]">
         <span className="tabular">{facet.count.toLocaleString()}</span> listings
         across <span className="tabular">{categoryFacets.length}</span>{" "}
         {categoryFacets.length === 1 ? "category" : "categories"}.
       </p>
 
       <section className="mt-10">
-        <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-          By category
-        </h2>
+        <h2 className="label text-[var(--muted)]">By category</h2>
         <div className="mt-3">
           <FacetGrid
             items={categoryFacets}
@@ -71,15 +69,15 @@ export default async function AreaPage({
       </section>
 
       <section className="mt-12">
-        <h2 className="font-[family-name:var(--font-display)] text-xl">
+        <h2 className="font-[family-name:var(--font-display)] text-2xl">
           Most reviewed
         </h2>
-        <p className="mt-1 mb-4 text-xs text-[var(--muted)]">
+        <p className="mt-2 mb-5 text-sm text-[var(--muted)]">
           Showing the {Math.min(businesses.length, 120)} most reviewed of{" "}
           {facet.count.toLocaleString()}.
         </p>
         <FilterableBusinessList
-          rows={businesses.slice(0, 120).map(toRow)}
+          rows={byRank(businesses).slice(0, 120).map(toRow)}
           noun="shown"
           placeholder={`Filter businesses in ${areaLabel(area)}`}
           searchAllHref={`/search?q=${encodeURIComponent(areaLabel(area))}`}

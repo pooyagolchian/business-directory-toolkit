@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FilterableBusinessList } from "@/components/filterable";
-import { toRow } from "@/lib/rows";
+import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import {
   areaLabel,
@@ -135,7 +135,7 @@ export default async function AreaCategoryPage({
         Every page needs something derived from its own data, or the template
         reads as duplicated across thousands of URLs with only a noun swapped.
       */}
-      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)]">
+      <p className="mt-4 max-w-2xl text-[var(--muted)]">
         <span className="tabular">{businesses.length}</span>{" "}
         {facet.label.toLowerCase()} in {areaLabel(area)}, Dubai.{" "}
         <span className="tabular">{withPhone}</span> list a phone number
@@ -151,7 +151,7 @@ export default async function AreaCategoryPage({
 
       <div className="mt-8">
         <FilterableBusinessList
-          rows={businesses.map(toRow)}
+          rows={byRank(businesses).map(toRow)}
           noun="shown"
           placeholder={`Filter ${facet.label.toLowerCase()} in ${areaLabel(area)}`}
           searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}
@@ -160,9 +160,7 @@ export default async function AreaCategoryPage({
 
       {queries.length > 0 && (
         <section className="mt-14">
-          <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-            What people search for
-          </h2>
+          <h2 className="label text-[var(--muted)]">What people search for</h2>
           {/*
             Straight from Google autocomplete, in popularity order. It tells a
             visitor what is worth asking, and it is content no other directory
@@ -172,7 +170,7 @@ export default async function AreaCategoryPage({
             {queries.map((q) => (
               <li
                 key={q}
-                className="border border-[var(--rule)] px-2.5 py-1 text-xs text-[var(--muted)]"
+                className="border border-[var(--rule)] px-3 py-1.5 text-sm text-[var(--muted)]"
               >
                 {q}
               </li>
@@ -183,10 +181,10 @@ export default async function AreaCategoryPage({
 
       {alsoIn.length > 0 && (
         <section className="mt-16">
-          <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+          <h2 className="label text-[var(--muted)]">
             {facet.label} elsewhere in Dubai
           </h2>
-          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2.5">
             {alsoIn.map((a) => (
               <li key={a.slug}>
                 <Link
@@ -203,10 +201,10 @@ export default async function AreaCategoryPage({
 
       {otherHere.length > 0 && (
         <section className="mt-10">
-          <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+          <h2 className="label text-[var(--muted)]">
             Other categories in {areaLabel(area)}
           </h2>
-          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2.5">
             {otherHere.map((c) => (
               <li key={c.slug}>
                 <Link

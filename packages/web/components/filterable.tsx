@@ -18,9 +18,108 @@ export interface ListRow {
   title: string;
   meta: string;
   detail?: string;
+  /** Formatted for display. */
   rating?: string;
   reviews?: string;
   phone?: string;
+  /** Raw values, for sorting and filtering — "1,204" sorts before "89". */
+  ratingValue?: number;
+  reviewsValue?: number;
+  /** Credibility-weighted score; see packages/core/src/rank.ts. */
+  rank?: number;
+}
+
+/**
+ * Sort orders.
+ *
+ * "Best" is the default and is NOT the raw star average. Sorting by rating
+ * alone puts a lone 5-star review above 2,000 reviews averaging 4.6, which is
+ * wrong in a way anyone scanning the page can see. "Top rated" is still
+ * offered, because sometimes that is genuinely what you want — it is just not
+ * a sensible default.
+ */
+const SORTS = {
+  rank: {
+    label: "Best",
+    compare: (a: ListRow, b: ListRow) => (b.rank ?? 0) - (a.rank ?? 0),
+  },
+  reviews: {
+    label: "Most reviewed",
+    compare: (a: ListRow, b: ListRow) =>
+      (b.reviewsValue ?? 0) - (a.reviewsValue ?? 0),
+  },
+  rating: {
+    label: "Top rated",
+    compare: (a: ListRow, b: ListRow) =>
+      (b.ratingValue ?? 0) - (a.ratingValue ?? 0),
+  },
+  name: {
+    label: "A–Z",
+    compare: (a: ListRow, b: ListRow) => a.title.localeCompare(b.title),
+  },
+} as const;
+
+type SortKey = keyof typeof SORTS;
+
+/** Minimum-rating steps. 4.5 is roughly the corpus mean, so it is a real cut. */
+const RATING_STEPS = [
+  { value: 0, label: "Any rating" },
+  { value: 4, label: "4.0+" },
+  { value: 4.5, label: "4.5+" },
+] as const;
+
+function Controls({
+  sort,
+  onSort,
+  minRating,
+  onMinRating,
+}: {
+  sort: SortKey;
+  onSort: (s: SortKey) => void;
+  minRating: number;
+  onMinRating: (r: number) => void;
+}) {
+  return (
+    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+      <div className="flex items-center gap-2">
+        <span className="label text-[var(--muted)]">Sort</span>
+        {(Object.keys(SORTS) as SortKey[]).map((key) => (
+          <button
+            key={key}
+            type="button"
+            aria-pressed={sort === key}
+            onClick={() => onSort(key)}
+            className={`text-sm underline-offset-4 transition-colors ${
+              sort === key
+                ? "text-[var(--fg)] underline"
+                : "text-[var(--muted)] hover:text-[var(--fg)]"
+            }`}
+          >
+            {SORTS[key].label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="label text-[var(--muted)]">Rating</span>
+        {RATING_STEPS.map((step) => (
+          <button
+            key={step.value}
+            type="button"
+            aria-pressed={minRating === step.value}
+            onClick={() => onMinRating(step.value)}
+            className={`tabular text-sm underline-offset-4 transition-colors ${
+              minRating === step.value
+                ? "text-[var(--fg)] underline"
+                : "text-[var(--muted)] hover:text-[var(--fg)]"
+            }`}
+          >
+            {step.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 /** Strip diacritics so "Tresind" finds "Trèsind". */
@@ -43,18 +142,18 @@ function FilterField({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <div className="flex min-w-0 flex-1 items-center gap-2 border border-[var(--field-border)] px-3 py-2 transition-colors hover:border-[var(--field-border-hover)] focus-within:border-[var(--field-border-active)]">
+      <div className="flex min-w-0 flex-1 items-center gap-2.5 border border-[var(--field-border)] px-3.5 py-2.5 transition-colors hover:border-[var(--field-border-hover)] focus-within:border-[var(--field-border-active)]">
         <Search
           aria-hidden="true"
           strokeWidth={1.5}
-          className="h-4 w-4 shrink-0 text-[var(--muted)]"
+          className="h-4.5 w-4.5 shrink-0 text-[var(--muted)]"
         />
         <input
           type="search"
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full min-w-0 bg-transparent text-sm outline-none placeholder:text-[var(--muted)]"
+          className="w-full min-w-0 bg-transparent text-base outline-none placeholder:text-[var(--muted)]"
         />
         {value && (
           <button
@@ -69,7 +168,7 @@ function FilterField({
       </div>
       <p
         aria-live="polite"
-        className="tabular shrink-0 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]"
+        className="tabular label shrink-0 text-[var(--muted)]"
       >
         {count.toLocaleString()} {noun}
       </p>
@@ -97,16 +196,22 @@ export function FilterableBusinessList({
   searchAllHref?: string;
 }) {
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<SortKey>("rank");
+  const [minRating, setMinRating] = useState(0);
 
   const filtered = useMemo(() => {
     const needle = fold(query.trim());
-    if (!needle) return rows;
-    return rows.filter((r) =>
-      fold(`${r.title} ${r.meta} ${r.detail ?? ""} ${r.phone ?? ""}`).includes(
-        needle,
-      ),
-    );
-  }, [rows, query]);
+    const matched = rows.filter((r) => {
+      if (minRating > 0 && (r.ratingValue ?? 0) < minRating) return false;
+      if (!needle) return true;
+      return fold(
+        `${r.title} ${r.meta} ${r.detail ?? ""} ${r.phone ?? ""}`,
+      ).includes(needle);
+    });
+    // Copy before sorting: `rows` is a server-rendered prop and must not be
+    // mutated in place.
+    return [...matched].sort(SORTS[sort].compare);
+  }, [rows, query, sort, minRating]);
 
   return (
     <div>
@@ -118,15 +223,24 @@ export function FilterableBusinessList({
         noun={noun}
       />
 
+      <Controls
+        sort={sort}
+        onSort={setSort}
+        minRating={minRating}
+        onMinRating={setMinRating}
+      />
+
       {filtered.length === 0 ? (
         <div className="py-12">
           <p className="text-[var(--muted)]">
-            Nothing on this page matches &ldquo;{query}&rdquo;.
+            {minRating > 0 && !query.trim()
+              ? `Nothing on this page is rated ${minRating.toFixed(1)} or above.`
+              : `Nothing on this page matches “${query}”.`}
           </p>
           {searchAllHref && (
             <Link
               href={searchAllHref}
-              className="mt-2 inline-block text-sm underline underline-offset-4"
+              className="mt-3 inline-block underline underline-offset-4"
             >
               Search the whole directory instead
             </Link>
@@ -141,22 +255,19 @@ export function FilterableBusinessList({
             >
               <Link
                 href={row.href}
-                className="flex gap-4 py-5 transition-opacity hover:opacity-60"
+                className="flex gap-5 py-6 transition-opacity hover:opacity-60"
               >
                 <div className="min-w-0 flex-1">
-                  <h3
-                    dir="auto"
-                    className="font-[family-name:var(--font-display)] text-lg leading-snug"
-                  >
+                  {/* Sans 600, matching BusinessCard — see the note there on
+                      why the display serif does not set scanned rows. */}
+                  <h3 dir="auto" className="text-lg font-semibold">
                     {row.title}
                   </h3>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                    {row.meta}
-                  </p>
+                  <p className="label mt-1.5 text-[var(--muted)]">{row.meta}</p>
                   {row.detail && (
                     <p
                       dir="auto"
-                      className="mt-1.5 line-clamp-1 text-sm text-[var(--muted)]"
+                      className="mt-2 line-clamp-1 text-sm text-[var(--muted)]"
                     >
                       {row.detail}
                     </p>
@@ -164,10 +275,10 @@ export function FilterableBusinessList({
                 </div>
                 <div className="shrink-0 text-right">
                   {row.rating && (
-                    <p className="tabular text-sm">
+                    <p className="tabular text-base">
                       {row.rating}
                       {row.reviews && (
-                        <span className="text-[var(--muted)]">
+                        <span className="text-sm text-[var(--muted)]">
                           {" "}
                           ({row.reviews})
                         </span>
@@ -175,7 +286,7 @@ export function FilterableBusinessList({
                     </p>
                   )}
                   {row.phone && (
-                    <p className="tabular mt-1 text-xs text-[var(--muted)]">
+                    <p className="tabular mt-1.5 text-sm text-[var(--muted)]">
                       {row.phone}
                     </p>
                   )}
@@ -235,10 +346,10 @@ export function FilterableFacetGrid({
             <li key={item.slug} className="bg-[var(--bg)]">
               <Link
                 href={`${hrefPrefix}/${item.slug}`}
-                className="flex items-baseline justify-between gap-3 p-4 transition-opacity hover:opacity-60"
+                className="flex items-baseline justify-between gap-3 px-5 py-4 transition-opacity hover:opacity-60"
               >
-                <span className="min-w-0 truncate text-sm">{item.label}</span>
-                <span className="tabular shrink-0 text-xs text-[var(--muted)]">
+                <span className="min-w-0 truncate text-base">{item.label}</span>
+                <span className="tabular shrink-0 text-sm text-[var(--muted)]">
                   {item.count.toLocaleString()}
                 </span>
               </Link>

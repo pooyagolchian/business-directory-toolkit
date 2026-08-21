@@ -9,7 +9,16 @@ export { nearestTile } from "./nearest";
 
 export { serializeJsonLd } from "./jsonld";
 
-export { keepGeneralisableThemes } from "./generalise";
+export { corpusPrior, rankScore } from "./rank";
+export type { RankPrior } from "./rank";
+
+export {
+  MIN_BUSINESSES_PER_THEME,
+  MIN_CATEGORY_CONCENTRATION,
+  keepGeneralisableThemes,
+  keepTopicalThemes,
+} from "./generalise";
+export type { CategorisedBusiness } from "./generalise";
 
 export {
   buildCorpusFrequency,
@@ -17,6 +26,9 @@ export {
   stripReviewIdentity,
 } from "./reviews";
 export type { AnonymousReview, ReviewSignals } from "./reviews";
+
+export { dropSuppressed, parseSuppressionList } from "./suppression";
+export type { Identifiable, SuppressionResult } from "./suppression";
 
 export { dedupeByPlaceId } from "./dedupe";
 export type { DedupeResult } from "./dedupe";

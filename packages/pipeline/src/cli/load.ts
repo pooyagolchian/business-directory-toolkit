@@ -43,6 +43,8 @@ import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   dedupeByPlaceId,
+  dropSuppressed,
+  parseSuppressionList,
   nearestTile,
   type RawLocalResult,
   type TaxonomyMap,
@@ -77,6 +79,9 @@ const city = loadCityOrExit(
 
 const root = new URL("../../../../", import.meta.url);
 const mapPath = fileURLToPath(new URL("data/taxonomy-map.json", root));
+const suppressionPath = fileURLToPath(
+  new URL("data/suppression-list.json", root),
+);
 const recordsPath = fileURLToPath(new URL("data/out/raw-records.json", root));
 
 type SourcedRecord = RawLocalResult & { _source?: { tileId: string } };
@@ -144,6 +149,18 @@ const map = JSON.parse(readFileSync(mapPath, "utf8")) as TaxonomyMap;
 const deduped = dedupeByPlaceId(records);
 
 /**
+ * Honour takedown requests before anything is published.
+ *
+ * TAKEDOWN.md promises a removed business stays removed. A crawl cannot keep
+ * that promise on its own — it returns whatever Google returns — so the list is
+ * applied here, at the one point both a fresh crawl and a `--from-archive`
+ * replay must pass through. Filtering at fetch time instead would leave the raw
+ * archive as a way back in.
+ */
+const suppressed = parseSuppressionList(readFileSync(suppressionPath, "utf8"));
+const surviving = dropSuppressed(deduped.unique, suppressed);
+
+/**
  * Assign each business to the neighbourhood it is actually in.
  *
  * The tile that surfaced a listing is NOT its neighbourhood: Google returns
@@ -156,7 +173,7 @@ const deduped = dedupeByPlaceId(records);
  */
 const byArea = new Map<string, RawLocalResult[]>();
 let reassigned = 0;
-for (const record of deduped.unique) {
+for (const record of surviving.kept) {
   const provenance = (record as { _source?: { tileId: string } })._source
     ?.tileId;
   const gps = record.gps_coordinates;
@@ -206,6 +223,7 @@ Load — ${city.name}
 ====
 Raw records         ${records.length.toLocaleString()}
 After dedupe        ${deduped.unique.length.toLocaleString()}  (-${deduped.duplicatesRemoved} duplicates, -${deduped.skippedNoPlaceId} without place_id)
+Suppressed          ${surviving.removed.toLocaleString()}  (takedown requests honoured, from data/suppression-list.json)
 Businesses          ${businesses.length.toLocaleString()}
 Rejected non-Dubai  ${rejectedNotDubai.toLocaleString()}
 Rejected no place_id ${rejectedNoPlaceId.toLocaleString()}
@@ -245,22 +263,66 @@ if (!tableName) {
 
 const client = new DynamoDBClient({});
 const BATCH = 25; // DynamoDB BatchWriteItem hard limit
+const MAX_WRITE_ATTEMPTS = 8;
 let written = 0;
 
+/**
+ * BatchWriteItem is not all-or-nothing.
+ *
+ * When DynamoDB throttles individual puts it still answers 200 and hands the
+ * rejected ones back in `UnprocessedItems`; the SDK's own retries do not cover
+ * them, because as far as HTTP is concerned nothing failed. Ignoring that field
+ * and adding `chunk.length` to a counter would print a total that was never
+ * written — and a new on-demand table starts at 4,000 WCU while this load fires
+ * ~7,400 batches, so throttling here is expected rather than exotic.
+ *
+ * That is the failure this repo calls the worst possible outcome elsewhere:
+ * "a silently incomplete dataset ... because nothing looks wrong"
+ * (sst.config.ts). So leftovers are resubmitted with backoff, `written` counts
+ * only what DynamoDB actually accepted, and anything still unwritten after the
+ * retry budget fails the load loudly.
+ */
+let throttled = 0;
 for (let i = 0; i < items.length; i += BATCH) {
   const chunk = items.slice(i, i + BATCH);
-  await client.send(
-    new BatchWriteItemCommand({
-      RequestItems: {
-        [tableName]: chunk.map((item) => ({
-          PutRequest: { Item: marshall(item, { removeUndefinedValues: true }) },
-        })),
-      },
-    }),
-  );
-  written += chunk.length;
+  let pending = chunk.map((item) => ({
+    PutRequest: { Item: marshall(item, { removeUndefinedValues: true }) },
+  }));
+
+  for (let attempt = 0; pending.length > 0; attempt++) {
+    if (attempt === MAX_WRITE_ATTEMPTS) {
+      console.error(
+        `\n  ${pending.length} items would not write after ${MAX_WRITE_ATTEMPTS} attempts.\n` +
+          `  Wrote ${written.toLocaleString()} of ${items.length.toLocaleString()}.\n` +
+          "  The table is incomplete; re-run `pnpm load --yes` once throttling clears.\n",
+      );
+      process.exit(1);
+    }
+    if (attempt > 0) {
+      // Exponential backoff with jitter, so 25 retried puts do not resynchronise
+      // into the same throttled millisecond on the next attempt.
+      const backoff = 50 * 2 ** (attempt - 1);
+      await new Promise((resolve) =>
+        setTimeout(resolve, backoff + Math.random() * backoff),
+      );
+    }
+
+    const response = await client.send(
+      new BatchWriteItemCommand({ RequestItems: { [tableName]: pending } }),
+    );
+    const leftover = response.UnprocessedItems?.[tableName] ?? [];
+    written += pending.length - leftover.length;
+    throttled += leftover.length;
+    pending = leftover as typeof pending;
+  }
+
   if (written % 500 === 0)
     process.stdout.write(`  ${written}/${items.length}\r`);
 }
 
-console.log(`\nWrote ${written.toLocaleString()} items to ${tableName}.\n`);
+console.log(`\nWrote ${written.toLocaleString()} items to ${tableName}.`);
+if (throttled > 0)
+  console.log(
+    `  ${throttled.toLocaleString()} puts were retried after throttling.`,
+  );
+console.log();

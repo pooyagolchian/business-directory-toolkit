@@ -27,7 +27,7 @@ export default async function SearchPage({
       </div>
 
       {q.trim() && (
-        <p className="mt-6 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+        <p className="mt-6 label text-[var(--muted)]">
           {result.total === 0
             ? "No matches"
             : `${result.total.toLocaleString()} ${result.total === 1 ? "match" : "matches"}`}
@@ -38,7 +38,7 @@ export default async function SearchPage({
       )}
 
       {result.matchedByPhone && (
-        <p className="mt-4 max-w-xl text-sm text-[var(--muted)]">
+        <p className="mt-5 max-w-xl text-[var(--muted)]">
           That number belongs to a business listing. Phone numbers are stored in
           E.164 so a search matches however you type it.
         </p>

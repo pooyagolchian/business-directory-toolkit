@@ -24,27 +24,16 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
+  MIN_BUSINESSES_PER_THEME,
+  MIN_CATEGORY_CONCENTRATION,
   buildCorpusFrequency,
   deriveReviewSignals,
   keepGeneralisableThemes,
+  keepTopicalThemes,
   stripReviewIdentity,
   type Business,
   type ReviewSignals,
 } from "@directory/core";
-
-/**
- * A theme must recur across at least this many businesses.
- *
- * Stripping reviewer identity is not enough on its own. Reviewers thank staff
- * by name, and TF-IDF rewards exactly that shape — frequent here, rare
- * elsewhere. The first run produced `Sofitel -> manava, wilbert, umesh`: three
- * employees named on what would have been a public page.
- *
- * Measured against the live corpus, 5 is where the last known staff name
- * disappears while 142 genuine themes survive. At 3, "abdul" still gets
- * through.
- */
-const MIN_BUSINESSES_PER_THEME = 5;
 
 const ENDPOINT = "https://www.searchapi.io/api/v1/search";
 
@@ -146,10 +135,24 @@ for (const [placeId, reviews] of perBusiness) {
   candidates[placeId] = deriveReviewSignals(reviews, corpus);
 }
 
-// Second pass: drop anything that does not generalise. This is what keeps
-// staff names out of the output, and it needs every business's candidates in
-// hand, so it cannot happen inside the loop above.
-const signals = keepGeneralisableThemes(candidates, MIN_BUSINESSES_PER_THEME);
+// Second pass: drop anything that does not generalise, then anything that is
+// not about a kind of business. Both gates need every business's candidates in
+// hand, so neither can happen inside the loop above.
+//
+// Two gates rather than one because they fail differently. Recurrence removes
+// a name belonging to a single business; it cannot remove a common name, which
+// recurs on its own — "neha" cleared it at exactly 5 businesses and was
+// published as the only theme of two medical facilities. Topicality removes
+// that one, and being a ratio it does not weaken as the crawl grows.
+const generalised = keepGeneralisableThemes(
+  candidates,
+  MIN_BUSINESSES_PER_THEME,
+);
+const signals = keepTopicalThemes(
+  generalised,
+  businesses,
+  MIN_CATEGORY_CONCENTRATION,
+);
 
 // Review text goes out of scope here and is never written anywhere.
 perBusiness.clear();

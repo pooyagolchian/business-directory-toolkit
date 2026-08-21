@@ -27,7 +27,7 @@ export default function Home() {
 
         <div className="mt-10 max-w-2xl">
           <SearchBox />
-          <p className="mt-3 text-xs text-[var(--muted)]">
+          <p className="mt-4 text-sm text-[var(--muted)]">
             Search by name, category, neighbourhood — or paste a{" "}
             <span className="tabular">+971</span> number to find who it belongs
             to.
@@ -36,10 +36,10 @@ export default function Home() {
 
         {empty ? (
           <div className="mt-16 border border-[var(--rule)] p-6">
-            <h2 className="font-[family-name:var(--font-display)] text-xl">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl">
               No data yet
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">
+            <p className="mt-3 max-w-xl text-[var(--muted)]">
               This deployment has no crawl output. Run{" "}
               <code className="font-mono">pnpm crawl --city dubai --yes</code>{" "}
               then <code className="font-mono">pnpm load</code> to populate it,
@@ -60,8 +60,8 @@ export default function Home() {
                 },
               ].map((stat) => (
                 <div key={stat.l} className="bg-[var(--bg)] p-5">
-                  <dt className="tabular text-2xl">{stat.v}</dt>
-                  <dd className="mt-1 text-xs text-[var(--muted)]">{stat.l}</dd>
+                  <dt className="tabular text-3xl">{stat.v}</dt>
+                  <dd className="label mt-2 text-[var(--muted)]">{stat.l}</dd>
                 </div>
               ))}
             </dl>
@@ -73,7 +73,7 @@ export default function Home() {
                 </h2>
                 <Link
                   href="/categories"
-                  className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--fg)]"
+                  className="label text-[var(--muted)] hover:text-[var(--fg)]"
                 >
                   All {s.categories}
                 </Link>
@@ -93,7 +93,7 @@ export default function Home() {
                 </h2>
                 <Link
                   href="/areas"
-                  className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--fg)]"
+                  className="label text-[var(--muted)] hover:text-[var(--fg)]"
                 >
                   All {s.areas}
                 </Link>

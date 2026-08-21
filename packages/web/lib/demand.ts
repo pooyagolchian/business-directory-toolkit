@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { slugify } from "./data";
 
@@ -28,12 +28,10 @@ function load(): RawDemand[] {
   if (cache) return cache;
   try {
     cache = JSON.parse(
-      readFileSync(
-        existsSync(join(process.cwd(), ".data", "demand.json"))
-          ? join(process.cwd(), ".data", "demand.json")
-          : join(process.cwd(), "..", "..", "data/demand.json"),
-        "utf8",
-      ),
+      // One static path, for the reason set out in lib/data.ts: a read Next
+      // cannot resolve statically makes its file tracer wildcard the repo root
+      // into the Lambda bundle. scripts/bundle-data.mjs puts this here.
+      readFileSync(join(process.cwd(), ".data", "demand.json"), "utf8"),
     ) as RawDemand[];
   } catch {
     // Demand is an enhancement, not a dependency. Without it the site falls

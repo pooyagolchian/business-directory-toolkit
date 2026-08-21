@@ -12,6 +12,13 @@ export { serializeJsonLd } from "./jsonld";
 export { corpusPrior, rankScore } from "./rank";
 export type { RankPrior } from "./rank";
 
+export { RATING_BANDS, ratingDistribution } from "./distribution";
+export type {
+  RatingBand,
+  RatingBin,
+  RatingDistribution,
+} from "./distribution";
+
 export {
   MIN_BUSINESSES_PER_THEME,
   MIN_CATEGORY_CONCENTRATION,

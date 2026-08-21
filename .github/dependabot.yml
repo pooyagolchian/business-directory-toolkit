@@ -1,0 +1,39 @@
+version: 2
+
+updates:
+  # One entry covers every workspace package. pnpm resolves the whole
+  # `packages/*` graph into a single root pnpm-lock.yaml, so pointing
+  # Dependabot at "/" updates core, pipeline and web together — and keeps
+  # their shared transitive dependencies on one consistent version. Listing
+  # each package separately would produce PRs that fight over that lockfile.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # Patch and minor bumps are noise individually and meaningful in bulk.
+      # Grouping them means one PR a week to review instead of a dozen, which
+      # is the difference between the updates getting merged and getting
+      # ignored. Majors stay ungrouped so each breaking change is read on
+      # its own.
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    labels:
+      - dependencies
+
+  # The workflows pin actions to commit SHAs rather than tags (a tag can be
+  # re-pointed at malicious code — this is exactly how the tj-actions
+  # compromise spread). A pinned SHA never updates itself, so without
+  # Dependabot watching this ecosystem the pins silently rot and the repo
+  # ends up running actions with known CVEs. Dependabot reads the `# vX.Y.Z`
+  # comment beside each SHA to know what it is looking at.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+      - github-actions

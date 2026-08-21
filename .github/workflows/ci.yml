@@ -20,11 +20,19 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # Actions are pinned to commit SHAs, not tags. A tag is a mutable
+      # pointer: whoever controls the action's repository can move `v4` onto
+      # new code, and every workflow that trusts the tag runs it on the next
+      # push. That is not hypothetical — it is how the tj-actions compromise
+      # reached thousands of repositories. A SHA cannot be re-pointed.
+      #
+      # The trailing comment is what Dependabot reads to offer upgrades, so
+      # keep it in step with the SHA above it.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .nvmrc
           cache: pnpm

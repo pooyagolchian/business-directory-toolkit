@@ -133,12 +133,12 @@ export default async function BusinessPage({
       <article>
         <h1
           dir="auto"
-          className="font-[family-name:var(--font-display)] text-3xl leading-tight sm:text-5xl"
+          className="font-[family-name:var(--font-display)] text-3xl sm:text-5xl"
         >
           {business.title}
         </h1>
 
-        <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-[var(--muted)]">
+        <p className="mt-3 label text-[var(--muted)]">
           {[business.l3, business.l2, areaLabel(business.area)]
             .filter(Boolean)
             .join(" · ")}
@@ -146,11 +146,9 @@ export default async function BusinessPage({
 
         <dl className="mt-10 grid gap-px bg-[var(--rule)] sm:grid-cols-2">
           {business.phoneRaw && (
-            <div className="bg-[var(--bg)] p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                Phone
-              </dt>
-              <dd className="tabular mt-1 text-lg">
+            <div className="bg-[var(--bg)] p-6">
+              <dt className="label text-[var(--muted)]">Phone</dt>
+              <dd className="tabular mt-2 text-xl">
                 <a
                   href={`tel:${business.phoneE164}`}
                   className="underline underline-offset-4"
@@ -159,7 +157,7 @@ export default async function BusinessPage({
                 </a>
               </dd>
               {business.phoneE164 && (
-                <dd className="tabular mt-1 text-xs text-[var(--muted)]">
+                <dd className="tabular mt-2 text-sm text-[var(--muted)]">
                   {business.phoneE164}
                   {business.phoneType && ` · ${business.phoneType}`}
                 </dd>
@@ -168,38 +166,34 @@ export default async function BusinessPage({
           )}
 
           {business.rating !== undefined && (
-            <div className="bg-[var(--bg)] p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                Rating
-              </dt>
-              <dd className="tabular mt-1 text-lg">
+            <div className="bg-[var(--bg)] p-6">
+              <dt className="label text-[var(--muted)]">Rating</dt>
+              <dd className="tabular mt-2 text-xl">
                 {business.rating.toFixed(1)}
                 {business.reviews !== undefined && (
-                  <span className="text-[var(--muted)]">
+                  <span className="text-base text-[var(--muted)]">
                     {" "}
                     from {business.reviews.toLocaleString()} reviews
                   </span>
                 )}
               </dd>
-              <dd className="mt-1 text-xs text-[var(--muted)]">
+              <dd className="mt-2 text-sm text-[var(--muted)]">
                 Rating from Google, not collected here.
               </dd>
             </div>
           )}
 
           {business.address && (
-            <div className="bg-[var(--bg)] p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                Address
-              </dt>
-              <dd dir="auto" className="mt-1 text-sm leading-relaxed">
+            <div className="bg-[var(--bg)] p-6">
+              <dt className="label text-[var(--muted)]">Address</dt>
+              <dd dir="auto" className="mt-2">
                 {business.address}
               </dd>
               {business.lat !== undefined && business.lng !== undefined && (
                 <dd className="mt-2">
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${business.lat},${business.lng}`}
-                    className="text-xs underline underline-offset-4"
+                    className="text-sm underline underline-offset-4"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -211,11 +205,9 @@ export default async function BusinessPage({
           )}
 
           {business.website && (
-            <div className="bg-[var(--bg)] p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                Website
-              </dt>
-              <dd className="mt-1 truncate text-sm">
+            <div className="bg-[var(--bg)] p-6">
+              <dt className="label text-[var(--muted)]">Website</dt>
+              <dd className="mt-2 truncate">
                 <a
                   href={business.website}
                   className="underline underline-offset-4"
@@ -231,20 +223,20 @@ export default async function BusinessPage({
 
         {business.openHours && (
           <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-xl">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl">
               Opening hours
             </h2>
-            <table className="mt-4 w-full max-w-md text-sm">
+            <table className="mt-5 w-full max-w-md">
               <tbody>
                 {DAYS.filter((d) => business.openHours?.[d]).map((day) => (
                   <tr key={day} className="border-t border-[var(--rule)]">
                     <th
                       scope="row"
-                      className="py-2 text-left font-normal capitalize text-[var(--muted)]"
+                      className="py-2.5 text-left font-normal capitalize text-[var(--muted)]"
                     >
                       {day}
                     </th>
-                    <td className="tabular py-2 text-right">
+                    <td className="tabular py-2.5 text-right">
                       {business.openHours?.[day]}
                     </td>
                   </tr>
@@ -256,10 +248,10 @@ export default async function BusinessPage({
 
         {business.types.length > 0 && (
           <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-xl">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl">
               Categories on Google
             </h2>
-            <p className="mt-2 text-sm text-[var(--muted)]">
+            <p className="mt-3 max-w-xl text-[var(--muted)]">
               Google returns these unranked and alphabetised. The taxonomy above
               is derived from them.
             </p>
@@ -267,7 +259,7 @@ export default async function BusinessPage({
               {business.types.map((type) => (
                 <li
                   key={type}
-                  className="border border-[var(--rule)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]"
+                  className="border border-[var(--rule)] px-3 py-1.5 label text-[var(--muted)]"
                 >
                   {type}
                 </li>
@@ -278,13 +270,13 @@ export default async function BusinessPage({
 
         {nearby.length > 0 && business.l2 && (
           <section className="mt-16">
-            <h2 className="font-[family-name:var(--font-display)] text-xl">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl">
               Other {business.l2.toLowerCase()} in {areaLabel(business.area)}
             </h2>
             <BusinessList businesses={nearby} />
             <Link
               href={`/area/${business.area}/${categorySlug}`}
-              className="mt-4 inline-block font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--fg)]"
+              className="mt-4 inline-block label text-[var(--muted)] hover:text-[var(--fg)]"
             >
               See all →
             </Link>

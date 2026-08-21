@@ -42,18 +42,63 @@ let shadcn components inherit it. Dark mode is a token swap, not a second design
 
 Typography is the design, so it gets a real budget:
 
-| Role             | Face                     | Why                                                            |
-| ---------------- | ------------------------ | -------------------------------------------------------------- |
-| Display/headings | **Instrument Serif**     | Editorial character; makes a business name feel like a title   |
-| Body/UI          | **Geist Sans**           | Neutral grotesque, excellent at small sizes and dense listings |
-| Arabic           | **IBM Plex Sans Arabic** | Real weight range and a genuine match to Latin body text       |
-| Numerals/data    | **Geist Mono**           | Tabular figures for phone numbers, ratings, and cost tables    |
+| Role             | Face                     | Why                                                                     |
+| ---------------- | ------------------------ | ----------------------------------------------------------------------- |
+| Display/headings | **Instrument Serif**     | Editorial character; makes a business name feel like a title            |
+| Body/UI          | **IBM Plex Sans**        | Tall x-height, open apertures, and the Latin sibling of the Arabic face |
+| Arabic           | **IBM Plex Sans Arabic** | Real weight range and a genuine match to Latin body text                |
+| Numerals/data    | **IBM Plex Mono**        | Tabular figures for phone numbers, ratings, and cost tables             |
 
 Load via `next/font` for self-hosting and zero layout shift. Phone numbers and
 ratings must use tabular figures so columns align down a listing page.
 
 Arabic gets a real face rather than a fallback. Bilingual titles should set
-correctly inline, with `dir="auto"` on user-facing title elements.
+correctly inline, with `dir="auto"` on user-facing title elements. The Arabic
+face is also appended to the Latin stacks, not only bound to `:lang(ar)` —
+bilingual titles carry `dir="auto"` but no `lang`, so the Arabic run is resolved
+by per-character font fallback and would otherwise drop to a system default.
+
+**Instrument Serif is display-only.** It is a high-contrast face whose hairlines
+thin out below roughly 22px, so it sets headings and the wordmark and nothing
+else. Rows in a results list are scanned rather than read, and they use the sans
+at 600 instead.
+
+The scale is defined once, centrally, in the `@theme` block — including a
+`line-height` for every step. Leading is the largest single readability lever
+here and the one that never stays consistent when it is set per call-site.
+Steps are tight (~1.13) through the reading sizes and open up (~1.22) through
+the display sizes, so the jump between a heading and its body does the work a
+colour change would normally do.
+
+### Revision — 2026-08-21
+
+The first implementation shipped a body scale that was too small to read: most
+content sat at 12–14px, and a hard-coded 10px appeared 21 times, carrying the
+category and area on every listing row. Rebuilt around a 17px base. Two changes
+worth recording because they are easy to reintroduce:
+
+- `-webkit-font-smoothing: antialiased` was removed. It thins every stem by
+  roughly a subpixel, which is the wrong trade in a design whose entire
+  hierarchy is stroke weight and size.
+- `--muted` moved from ink-500 to ink-600 (4.65:1 → 6.5:1) and `--field-border`
+  from ink-300 to ink-400 (2.15:1 → 3.4:1). The claim below that "meeting WCAG
+  AA takes effort to _fail_" held for the black-on-white body text and quietly
+  did not hold for the secondary text and field borders built on the mid ramp.
+- **Arabic was never actually rendering in the Arabic face.** The section above
+  says "Arabic gets a real face rather than a fallback"; it had not been true in
+  practice. `next/font` folds a synthetic `local(Arial)` fallback into the
+  variable it returns, and unlike every real face it emits, that one carries no
+  `unicode-range` — so it matched the Arabic run in bilingual titles before the
+  stack reached IBM Plex Sans Arabic. Fixed by naming the real families in
+  `--font-sans` / `--font-display` so the Arabic face sits ahead of the
+  catch-all; `adjustFontFallback: false` does not work, because Turbopack
+  ignores it. The full reasoning is in `globals.css`.
+
+  This is worth a standing check rather than a one-off note, because nothing
+  about it is visible in the CSS you wrote — only in what the browser chose.
+  `CSS.getPlatformFontsForNode` over CDP reports the faces that actually
+  rendered; a bilingual title must come back as IBM Plex Sans + IBM Plex Sans
+  Arabic, never Arial or Times New Roman.
 
 ### Components
 

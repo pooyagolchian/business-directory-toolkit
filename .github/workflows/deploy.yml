@@ -32,11 +32,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.stage }}
     steps:
-      - uses: actions/checkout@v4
+      # Pinned to commit SHAs rather than tags — see the note in ci.yml. It
+      # matters more here than there: this job holds an OIDC token that can
+      # assume a role in the AWS account, so a hijacked action tag would be
+      # running with deploy credentials rather than against fixtures.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .nvmrc
           cache: pnpm
@@ -63,7 +67,7 @@ jobs:
       # Scoping `sub` to the repo matters: without it, any repository on GitHub
       # could assume the role.
       - name: Assume AWS role via OIDC
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-1

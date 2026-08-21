@@ -9,6 +9,11 @@ import { areaLabel } from "@/lib/data";
  * routinely bilingual ("Shamiat Restaurant مطعم شاميات"), and without it the
  * Arabic run renders in the wrong direction mid-line.
  *
+ * The title is sans 600, not the display serif. A results row is scanned, not
+ * read: the eye is matching a shape against a remembered name, and Instrument
+ * Serif's thin stems at 19px gave it less to match on than the muted address
+ * underneath. The serif stays on headings, where the size makes it work.
+ *
  * Ratings and review counts use tabular figures so numbers line up down the
  * column — with no colour in the design, alignment is doing the work that
  * colour usually does.
@@ -20,24 +25,21 @@ export function BusinessCard({ business }: { business: Business }) {
     <li className="border-t border-[var(--rule)] last:border-b">
       <Link
         href={`/business/${business.slug}`}
-        className="group flex gap-4 py-5 transition-opacity hover:opacity-60"
+        className="group flex gap-5 py-6 transition-opacity hover:opacity-60"
       >
         <div className="min-w-0 flex-1">
-          <h3
-            dir="auto"
-            className="font-[family-name:var(--font-display)] text-lg leading-snug"
-          >
+          <h3 dir="auto" className="text-lg font-semibold">
             {business.title}
           </h3>
 
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+          <p className="label mt-1.5 text-[var(--muted)]">
             {[category, areaLabel(business.area)].filter(Boolean).join(" · ")}
           </p>
 
           {business.address && (
             <p
               dir="auto"
-              className="mt-1.5 line-clamp-1 text-sm text-[var(--muted)]"
+              className="mt-2 line-clamp-1 text-sm text-[var(--muted)]"
             >
               {business.address}
             </p>
@@ -46,10 +48,10 @@ export function BusinessCard({ business }: { business: Business }) {
 
         <div className="shrink-0 text-right">
           {business.rating !== undefined && (
-            <p className="tabular text-sm">
+            <p className="tabular text-base">
               {business.rating.toFixed(1)}
               {business.reviews !== undefined && (
-                <span className="text-[var(--muted)]">
+                <span className="text-sm text-[var(--muted)]">
                   {" "}
                   ({business.reviews.toLocaleString()})
                 </span>
@@ -57,7 +59,7 @@ export function BusinessCard({ business }: { business: Business }) {
             </p>
           )}
           {business.phoneRaw && (
-            <p className="tabular mt-1 text-xs text-[var(--muted)]">
+            <p className="tabular mt-1.5 text-sm text-[var(--muted)]">
               {business.phoneRaw}
             </p>
           )}

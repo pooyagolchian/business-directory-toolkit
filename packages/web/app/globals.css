@@ -12,7 +12,9 @@
   --color-ink-1000: oklch(0% 0 0);
   --color-ink-900: oklch(18% 0 0);
   --color-ink-700: oklch(38% 0 0);
+  --color-ink-600: oklch(48% 0 0);
   --color-ink-500: oklch(56% 0 0);
+  --color-ink-400: oklch(64% 0 0);
   --color-ink-300: oklch(76% 0 0);
   --color-ink-200: oklch(88% 0 0);
   --color-ink-100: oklch(95% 0 0);
@@ -25,11 +27,132 @@
   --color-focus: var(--color-ink-1000);
   --color-danger: oklch(55% 0.21 27);
 
-  --font-display:
-    var(--font-instrument-serif), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-arabic: var(--font-plex-arabic), var(--font-geist), sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /*
+   * FAMILIES.
+   *
+   * Body is IBM Plex Sans, and the reason is the corpus rather than taste.
+   * Dubai titles are routinely bilingual, so the Latin face has to sit on the
+   * same line as an Arabic one all day; IBM Plex Sans is the Latin sibling of
+   * IBM Plex Sans Arabic, which means shared x-height, stroke weight and
+   * vertical metrics instead of two unrelated designs colliding mid-title.
+   * It also has a tall x-height and open apertures — the two properties that
+   * actually decide legibility at listing sizes — and disambiguated 1/l/I and
+   * 0/O, which matters on a page that is mostly phone numbers.
+   *
+   * The Arabic face is appended to the Latin stacks rather than only being
+   * applied via :lang(). Bilingual titles carry dir="auto" but no lang, so the
+   * Arabic run is resolved by per-character font fallback — without it here,
+   * those glyphs drop to an arbitrary system face.
+   *
+   * NOTE THE LITERAL FAMILY NAMES. They are not a style choice, and replacing
+   * them with next/font's own --font-plex-sans / --font-instrument-serif
+   * reintroduces a bug worth stating in full:
+   *
+   *   next/font appends a synthetic "<family> Fallback" face built from
+   *   `local(Arial)` (or local Times New Roman for the serif) with metric
+   *   overrides, and folds it INTO the variable it hands back. Every real face
+   *   it emits carries a `unicode-range`; that synthetic one carries none, so
+   *   it matches any codepoint the local font can draw — Arabic included. It
+   *   therefore intercepted the Arabic run in every bilingual title before the
+   *   stack reached IBM Plex Sans Arabic, and roughly half the corpus was
+   *   quietly setting in Arial. Naming the real family instead lets the Arabic
+   *   face sit ahead of that catch-all.
+   *
+   * The supported escape hatches do not work here: `adjustFontFallback: false`
+   * is honoured by the webpack loader but ignored by Turbopack (the Next 16
+   * default, and what this app builds with), and the `fallback` option appends
+   * AFTER the synthetic face rather than before it.
+   *
+   * Verify with CDP's CSS.getPlatformFontsForNode, which reports the faces that
+   * actually rendered rather than the ones we asked for. A bilingual title
+   * should come back as IBM Plex Sans + IBM Plex Sans Arabic, never Arial.
+   *
+   * Georgia sits AHEAD of the Arabic face in the display stack on purpose. It
+   * has no Arabic coverage, so Arabic still falls through to Plex Arabic, but
+   * a Latin heading in the swap window gets a serif rather than a sans. Times
+   * New Roman is deliberately absent: some builds of it do cover Arabic, which
+   * would reintroduce exactly the interception this stack exists to avoid.
+   */
+  --font-display: "Instrument Serif", Georgia, var(--font-plex-arabic), serif;
+  --font-sans:
+    "IBM Plex Sans", var(--font-plex-arabic), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-arabic: var(--font-plex-arabic), var(--font-plex-sans), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /*
+   * SCALE.
+   *
+   * These override Tailwind's defaults, so `text-sm` here is 15px, not 14px.
+   * The scale is redefined centrally rather than corrected at call sites
+   * because the fix that matters most is line-height, and a per-site fix would
+   * never stay consistent across ~40 usages.
+   *
+   * Two shapes in one ramp. Steps are tight (~1.13) through the reading sizes,
+   * where hierarchy comes from leading and weight and a big jump would just
+   * look broken; they open up (~1.22) through the display sizes, where the
+   * jump IS the hierarchy. With no colour in the design, that separation is
+   * doing work a palette would normally do.
+   *
+   * Leading falls as size rises, which is the standard inverse relationship:
+   * long measures of small text need air between lines to keep the eye on the
+   * right one; a 64px headline needs the lines to bind into a single shape.
+   */
+
+  /* 12px — mono, uppercase, tracked. Only ever used by the `label` utility
+     below, where uppercase and tracking make it read a size larger than the
+     nominal figure. This replaces a hard-coded 10px that appeared 21 times. */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.45;
+  --text-2xs--letter-spacing: 0.07em;
+
+  /* 13px — genuine fine print: provenance notes, disclaimers. */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.55;
+  --text-xs--letter-spacing: 0.004em;
+
+  /* 15px — secondary text: addresses, counts, list detail. */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+  --text-sm--letter-spacing: 0.002em;
+
+  /* 17px — body. The default for anything without a size class. */
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-base--letter-spacing: 0;
+
+  /* 19px — list row titles, the most-scanned text on the site. */
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.45;
+  --text-lg--letter-spacing: -0.003em;
+
+  /* 22px — subheads and the wordmark. */
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.35;
+  --text-xl--letter-spacing: -0.006em;
+
+  /* 27px — section headings. Needs to clear 17px body by enough to register
+     as a break without a rule or a colour to help it. */
+  --text-2xl: 1.6875rem;
+  --text-2xl--line-height: 1.25;
+  --text-2xl--letter-spacing: -0.01em;
+
+  /* Display range: page and listing titles. */
+  --text-3xl: 2.0625rem; /* 33px */
+  --text-3xl--line-height: 1.18;
+  --text-3xl--letter-spacing: -0.014em;
+
+  --text-4xl: 2.5rem; /* 40px */
+  --text-4xl--line-height: 1.12;
+  --text-4xl--letter-spacing: -0.018em;
+
+  --text-5xl: 3.25rem; /* 52px */
+  --text-5xl--line-height: 1.06;
+  --text-5xl--letter-spacing: -0.021em;
+
+  --text-6xl: 4rem; /* 64px */
+  --text-6xl--line-height: 1;
+  --text-6xl--letter-spacing: -0.024em;
 }
 
 /*
@@ -46,7 +169,11 @@
 
   --bg: var(--color-paper);
   --fg: var(--color-ink-1000);
-  --muted: var(--color-ink-500);
+  /* ink-600, not ink-500: 6.5:1 against paper rather than 4.65:1. Secondary
+     text here is category, area and address — content, not chrome — and the
+     old value cleared WCAG AA by a tenth of a point while carrying most of the
+     small type on the page. */
+  --muted: var(--color-ink-600);
   --rule: var(--color-ink-200);
 
   /* raised surfaces: dropdowns, popovers */
@@ -56,16 +183,74 @@
 
   /* form fields */
   --field-bg: var(--color-paper);
-  --field-border: var(--color-ink-300);
+  /* ink-400, not ink-300: an input's border is the only thing marking where
+     the control is, so WCAG 1.4.11 wants 3:1 against the background. ink-300
+     managed 2.15:1 — the field edge was effectively invisible in daylight. */
+  --field-border: var(--color-ink-400);
   --field-border-hover: var(--color-ink-500);
   --field-border-active: var(--color-ink-1000);
+
+  /*
+   * Chart marks.
+   *
+   * ink-400 for exactly the reason the field border uses it: a bar carries its
+   * meaning with no text on it, so WCAG 1.4.11 asks for 3:1 against the
+   * surface, and ink-300 manages 2.15:1. The emphasis step is full ink —
+   * with no hue in the design, the only way a plot can say "this bar is the
+   * point" is to make it the darkest thing in the frame.
+   */
+  --chart-mark: var(--color-ink-400);
+  --chart-mark-emphasis: var(--color-ink-1000);
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  /*
+   * No -webkit-font-smoothing: antialiased.
+   *
+   * It looks tidier in a screenshot and reads worse on the page: it thins every
+   * stem by roughly a subpixel, which is exactly the wrong trade for a design
+   * whose entire hierarchy is stroke weight and size. Subpixel rendering is the
+   * platform default because it is the more legible one.
+   */
+}
+
+/*
+ * Headings set their own optical rhythm.
+ *
+ * `balance` stops a two-line business name from leaving one orphaned word on
+ * line two — common here, since titles are long and often bilingual. `pretty`
+ * does the cheaper version of the same job for running text.
+ */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/*
+ * The mono meta line: category · area, breadcrumbs, section eyebrows, counts.
+ *
+ * This appeared 21 times as `font-mono text-[10px] uppercase tracking-wider`.
+ * At 10px it was the smallest text on the site while carrying the second most
+ * important fact in a listing — what the business is and where it is. Making
+ * it one utility raised the floor everywhere at once and removed the magic
+ * number that made the regression invisible in review.
+ */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  line-height: var(--text-2xs--line-height);
+  letter-spacing: var(--text-2xs--letter-spacing);
+  text-transform: uppercase;
 }
 
 /*
@@ -73,7 +258,7 @@ body {
  *
  * Tabular figures are NOT the same thing as a monospace face. Switching family
  * here gave every separator a full monospace cell, so "7,245" rendered as
- * "7 , 245". Geist Sans carries tabular figures, so ask for the feature and
+ * "7 , 245". IBM Plex Sans carries tabular figures, so ask for the feature and
  * leave the family alone. Use `font-mono` explicitly where a monospace
  * *texture* is wanted, such as the label chips.
  */
@@ -82,10 +267,60 @@ body {
   font-feature-settings: "tnum" 1;
 }
 
-/* Arabic runs inside bilingual titles get the face that was chosen for them. */
+/*
+ * Charts.
+ *
+ * The hover layer is CSS-only on purpose. These figures render inside Server
+ * Components, and shipping a client bundle to the home page so that a tooltip
+ * can appear would cost more than the tooltip is worth. `:hover` on the column
+ * group does the entire job, and the <details> table under each figure keeps
+ * every value reachable with no pointer at all — which is also what lets the
+ * SVG be exposed as one labelled image instead of 41 separate tab stops.
+ */
+.chart-hit {
+  fill: transparent;
+  /* A transparent fill is still painted, so this is belt-and-braces rather than
+     a fix — but it states the intent: the hit area is the whole column, not the
+     bar inside it. Aiming at the bar itself would be a pinpoint target on the
+     short bins, which are precisely the ones a reader needs help reading. */
+  pointer-events: all;
+}
+
+.chart-mark {
+  fill: var(--chart-mark);
+  transition: fill 120ms ease-out;
+}
+
+/* Applied to the one mark the figure is about. Ordered after .chart-mark so it
+   wins on equal specificity. */
+.chart-mark-emphasis {
+  fill: var(--chart-mark-emphasis);
+}
+
+.chart-col:hover .chart-mark {
+  fill: var(--chart-mark-emphasis);
+}
+
+.chart-tip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-out;
+}
+
+.chart-col:hover .chart-tip {
+  opacity: 1;
+}
+
+/*
+ * Arabic runs inside bilingual titles get the face that was chosen for them.
+ *
+ * Arabic also needs more leading than Latin at the same size: the script hangs
+ * descenders and stacks diacritics, so Latin line-heights crowd it.
+ */
 :lang(ar),
 [dir="rtl"] {
   font-family: var(--font-arabic);
+  line-height: 1.85;
 }
 
 :focus-visible {

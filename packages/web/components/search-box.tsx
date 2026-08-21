@@ -156,7 +156,7 @@ export function SearchBox({
         className={`group flex items-center gap-3 border bg-[var(--field-bg)] transition-colors
           border-[var(--field-border)] hover:border-[var(--field-border-hover)]
           focus-within:border-[var(--field-border-active)]
-          ${large ? "px-4 py-3.5" : "px-3 py-2"}`}
+          ${large ? "px-4.5 py-4" : "px-3.5 py-2.5"}`}
       >
         <Search
           aria-hidden="true"
@@ -186,7 +186,7 @@ export function SearchBox({
           // The field itself carries no ring; the wrapper's border is the focus
           // affordance, so the control reads as one object.
           className={`w-full min-w-0 bg-transparent outline-none placeholder:text-[var(--muted)] ${
-            large ? "text-lg" : "text-sm"
+            large ? "text-xl" : "text-base"
           }`}
         />
 
@@ -211,7 +211,9 @@ export function SearchBox({
         ) : (
           large &&
           chordHint && (
-            <kbd className="hidden shrink-0 border border-[var(--rule)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--muted)] sm:block">
+            // Not the `label` utility: the glyph is already uppercase, and the
+            // tracking that opens up a word makes "⌘K" fall apart.
+            <kbd className="hidden shrink-0 border border-[var(--rule)] px-2 py-0.5 font-mono text-2xs text-[var(--muted)] sm:block">
               {chordHint}
             </kbd>
           )
@@ -239,17 +241,15 @@ export function SearchBox({
                 e.preventDefault();
                 router.push(`/business/${s.slug}`);
               }}
-              className={`flex cursor-pointer flex-col items-start gap-0.5 px-4 py-2.5 text-left transition-colors ${
+              className={`flex cursor-pointer flex-col items-start gap-1 px-4 py-3 text-left transition-colors ${
                 i === active ? "bg-[var(--surface-hover)]" : ""
               }`}
             >
-              <span dir="auto" className="line-clamp-1 text-sm">
+              <span dir="auto" className="line-clamp-1 text-base">
                 {s.title}
               </span>
               {s.label && (
-                <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                  {s.label}
-                </span>
+                <span className="label text-[var(--muted)]">{s.label}</span>
               )}
             </div>
           ))}

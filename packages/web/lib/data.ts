@@ -1,48 +1,53 @@
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Business } from "@directory/core";
 
 /**
  * Data access for the site.
  *
- * In local development this reads the crawl output from data/out/, which is
- * git-ignored — the dataset is never committed (ADR 0002). In production the
- * same functions are backed by DynamoDB; every query below maps onto an index
- * that already exists in the table:
+ * Every query below is a linear scan of the crawl output, loaded once per
+ * container. That is Milestone 1's stopgap, not the architecture — this
+ * package has no DynamoDB client at all — and the dataset itself is never
+ * committed (ADR 0002).
+ *
+ * The signatures are kept index-shaped so Milestone 2 can swap the backend
+ * without rewriting a single page. Each one already has a table index waiting
+ * for it, written by packages/pipeline:
  *
  *   bySlug / byArea / byCategory  -> GSI2  CAT#{l2}#AREA#{area}
  *   byPhone                       -> GSI1  PH#{e164}
  *   typeahead                     -> PFX#{prefix} partitions
- *
- * Keeping the signatures index-shaped is the point: swapping the backend must
- * not require rewriting a single page.
  */
 
 let businessCache: Business[] | null = null;
 let areaNameCache: Map<string, string> | null = null;
 
 /**
- * Resolve a data file.
+ * Resolve a bundled data file.
  *
- * Bundled copy first: inside a Lambda the repo root does not exist, so
- * `.data/` — populated at prebuild and included via outputFileTracingIncludes —
- * is the only path that resolves. Falling back to the repo root keeps local
- * development working straight after a crawl, with no build step.
+ * Everything the site reads is copied into `.data/` by scripts/bundle-data.mjs,
+ * which runs at both `predev` and `prebuild`, and reaches the server bundle via
+ * `outputFileTracingIncludes` in next.config.ts.
+ *
+ * There is deliberately no fallback to the repo root, and the single static
+ * path is the whole point. Next traces the files a route needs by reading the
+ * source: a path it cannot resolve statically makes it give up and wildcard the
+ * directory instead. With a `process.cwd()/../..` fallback here it did exactly
+ * that — `page.js.nft.json` listed 1,679 files, 1,400 of them raw crawl archive
+ * carrying 20,226 verbatim Google review snippets, some naming individual
+ * employees. None of it is read by any code, all of it would have shipped
+ * inside the Lambda, and republishing it is the thing packages/core/src/reviews.ts
+ * refuses to do on purpose.
  */
-function dataFile(bundled: string, repoRelative: string): string {
-  const local = join(process.cwd(), ".data", bundled);
-  if (existsSync(local)) return local;
-  return join(process.cwd(), "..", "..", repoRelative);
+function dataFile(bundled: string): string {
+  return join(process.cwd(), ".data", bundled);
 }
 
 export function allBusinesses(): Business[] {
   if (businessCache) return businessCache;
   try {
     businessCache = JSON.parse(
-      readFileSync(
-        dataFile("businesses.json", "data/out/businesses.json"),
-        "utf8",
-      ),
+      readFileSync(dataFile("businesses.json"), "utf8"),
     ) as Business[];
   } catch {
     // No crawl has run yet. An empty directory is a valid state — pages render
@@ -64,12 +69,9 @@ export function areaNames(): Map<string, string> {
   if (areaNameCache) return areaNameCache;
   areaNameCache = new Map();
   try {
-    const parsed = JSON.parse(
-      readFileSync(
-        dataFile("city.json", `data/cities/${CITY_ID}.json`),
-        "utf8",
-      ),
-    ) as { tiles: Array<{ id: string; name: string }> };
+    const parsed = JSON.parse(readFileSync(dataFile("city.json"), "utf8")) as {
+      tiles: Array<{ id: string; name: string }>;
+    };
     for (const tile of parsed.tiles) areaNameCache.set(tile.id, tile.name);
   } catch {
     /* fall back to the slug itself */

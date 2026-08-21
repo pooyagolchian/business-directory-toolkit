@@ -18,9 +18,14 @@ Written up at **[pooyagolchian.com](https://pooyagolchian.com)**
 
 ```bash
 pnpm install
-pnpm test          # 158 tests, fully offline, costs nothing — no API key needed
-pnpm dev           # the app, running on committed fixtures
+pnpm test                # the whole suite, offline — no API key, no credits
+pnpm plan --city dubai   # what a crawl would cost, before spending anything
 ```
+
+Both work on a fresh clone with no API key and no AWS account. Running the site
+itself needs a dataset, and the dataset is deliberately not in this repo — see
+[why](./docs/adr/0002-do-not-redistribute-the-dataset.md) — so bring your own
+key and crawl your own city first.
 
 ---
 

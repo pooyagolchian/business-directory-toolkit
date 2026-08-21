@@ -264,6 +264,117 @@ ones listed at the top: `load.ts` hardcodes `AE` in the label and prints
 `countryCode` out of the city config. The gate is city-agnostic; its wording is
 not yet.
 
+## Find leads in your own crawl
+
+The same crawl that builds a directory also answers a commercially useful
+question: **which businesses have a fixable gap?**
+[`pnpm leads`](./packages/pipeline/src/cli/leads.ts) scores your own
+`data/out/businesses.json` against four signals and prints a ranked prospect
+list. No new query, no credits — everything it reads is already on disk.
+
+```bash
+pnpm leads --list-signals
+pnpm leads --signal no-website --category Restaurants --min-reviews 20
+pnpm leads --signal weak-reputation --format csv --out leads.csv
+```
+
+| Signal            | Condition                     | Who buys                     | Leads |
+| ----------------- | ----------------------------- | ---------------------------- | ----: |
+| `no-website`      | No `website` field            | Web design, agencies         | 3,820 |
+| `weak-reputation` | Rating < 3.8 with 20+ reviews | Reputation management        |   641 |
+| `low-visibility`  | Fewer than 10 reviews         | Local SEO, review generation | 2,259 |
+| `no-hours`        | No opening hours listed       | Listing-management services  |   892 |
+
+Counted against the Dubai crawl's 13,811 businesses that carry a usable phone
+number, not all 14,981 — see why below.
+
+**These numbers are lower than the design spec's own signal counts** (4,633
+businesses with no website at all, for one). That is deliberate, not a
+discrepancy: `findLeads` runs `isContactable` before it scores anything and
+drops every business with no phone number, because a lead nobody can call is
+not a lead. The spec's table counts businesses that _have_ a gap; the table
+above counts reachable prospects that have one. Of Dubai's 14,981 businesses,
+13,811 (the same 92.2% phone-coverage ceiling documented under
+[What the crawl actually measured](#what-the-crawl-actually-measured)) clear
+that bar, and only those are ever considered.
+
+### One signal per run, always
+
+`--signal` takes exactly one value, and the CLI refuses anything else. Scores
+are comparable only _within_ a signal: a `no-website` score and a
+`weak-reputation` score both happen to be plain numbers, but they describe
+different products sold to different buyers — a web designer and a
+reputation-management firm are not competing for the same call list, so
+ranking the two together would produce an order that means nothing. Run the
+command again with a different `--signal` rather than expecting one combined
+list.
+
+### Scoring: successful businesses first
+
+```
+leadScore = signalStrength × businessHealth
+```
+
+`businessHealth` is `rankScore` — the same credibility-weighted rating the
+directory itself is ranked by
+([`packages/core/src/rank.ts`](./packages/core/src/rank.ts)), not the raw star
+average, so a single 5-star review cannot float a barely-reviewed prospect to
+the top of a call list. `signalStrength` is how badly a business has the
+problem, normalised 0–1: a constant `1.0` for `no-website` and `no-hours` (a
+business either has one or it does not — there is no partial), scaled by
+distance below threshold for `weak-reputation` and `low-visibility` (a
+2.0-rated business outranks a 3.7-rated one; zero reviews outranks nine).
+Multiplying the two together is what the filter alone cannot do: the best
+lead is a **successful** business with a fixable gap, not merely any business
+that happens to match it.
+
+### Suppression is enforced, not assumed
+
+Every lead passes through the same
+[`data/suppression-list.json`](./data/suppression-list.json), via
+[`dropSuppressed`](./packages/core/src/suppression.ts), before it is ever
+scored — a business that filed a takedown request under
+[`TAKEDOWN.md`](./TAKEDOWN.md) must never resurface on a cold-call list. The
+CLI prints how many were withheld on every run, including "0 withheld": the
+point of reporting the number is that the filter stays visibly working, not
+that it only speaks up when it has something to hide.
+
+Matching is an exact string comparison against `place_id`, so it is
+case- and whitespace-sensitive: `place_id` is an opaque token Google assigns,
+not something a person types from memory. Hand-adding an entry with the wrong
+case, or a stray space carried over from a copy-paste, produces a silent
+non-match — the entry sits in the file looking correct, and the business it
+was meant to suppress keeps showing up anyway.
+
+### Flags
+
+| Flag                        | Meaning                                                                                                                                                                                |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--signal <name>`           | Required. One of `no-website`, `weak-reputation`, `low-visibility`, `no-hours`.                                                                                                        |
+| `--category <name>`         | Restrict to one `l2`/`l3` category, e.g. `Restaurants`.                                                                                                                                |
+| `--area <slug>`             | Restrict to one area, e.g. `dubai-marina`.                                                                                                                                             |
+| `--min-reviews <n>`         | Drop businesses under this review count.                                                                                                                                               |
+| `--min-rating <n>`          | Drop businesses under this rating.                                                                                                                                                     |
+| `--limit <n>`               | Cap the ranked list.                                                                                                                                                                   |
+| `--format table\|csv\|json` | `table` (default) prints the top 40 to the terminal. `csv` reuses the export CLI's writer — RFC 4180 quoting, UTF-8 BOM — so it opens correctly in Excel. `json` is the full `Lead[]`. |
+| `--out <path>`              | Write leads to a file instead of stdout. Counts and the consent notice always go to stderr, so `pnpm leads --format csv > file.csv` still gets a clean file.                           |
+| `--list-signals`            | Print what each signal means and exit 0. Does not need a crawl on disk.                                                                                                                |
+
+Filters compose: `--signal no-website --category Restaurants --min-reviews 20`
+narrows the 13,811 contactable businesses to 1,019 Restaurants with 20+
+reviews, of which 321 have no website.
+
+### The consent notice
+
+`pnpm leads` prints this on every run:
+
+> These are business listings, not permission to contact. Unsolicited
+> commercial messaging is regulated in the UAE — check the rules that apply
+> before you use this list.
+
+A phone number surfaced by a crawl is not an opt-in, and the CLI says so every
+time rather than once in a README nobody reads before running the tool.
+
 ## Why tiling exists, and what a crawl costs
 
 A single query cannot enumerate a city, so the plan is tiles × categories — and

@@ -137,6 +137,7 @@ pnpm plan --list             # every city config in the repo
 pnpm plan --city dubai       # build crawl plan, no API calls
 pnpm crawl --city dubai --dry-run   # request count + credit cost BEFORE spending
 pnpm crawl --city dubai --yes       # spends credits (--yes is required)
+pnpm leads --list-signals    # prospect signals, no API calls
 npx sst deploy --stage dev
 ```
 

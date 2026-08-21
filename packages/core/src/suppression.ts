@@ -38,6 +38,14 @@ export interface SuppressionResult<T> {
   removed: number;
 }
 
+/**
+ * Extract the identifier, preferring the raw engine key over the normalised one.
+ *
+ * `place_id` is the raw engine key, closest to the source of truth that the
+ * suppression list is written against. If a record ever carried both keys
+ * (which the normaliser deliberately avoids), place_id wins so suppression
+ * enforces the takedown promise even in pathological cases.
+ */
 function identifierOf(item: Identifiable): string | undefined {
   return item.place_id ?? item.placeId;
 }

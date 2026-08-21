@@ -152,6 +152,18 @@ describe("leadScore", () => {
     );
   });
 
+  test("never returns NaN when reviews itself is NaN", () => {
+    // `?? 0` only replaces null/undefined — NaN sails straight through it.
+    // Mirrors the same non-finite guard `weak-reputation` already has.
+    const strength = signalStrength(
+      { ...base, reviews: NaN } as Business,
+      "low-visibility",
+    );
+    expect(Number.isFinite(strength)).toBe(true);
+    expect(strength).toBeGreaterThanOrEqual(0);
+    expect(strength).toBeLessThanOrEqual(1);
+  });
+
   test("treats a binary gap as full strength", () => {
     const { website, ...noWebsite } = base;
     void website;

@@ -112,7 +112,14 @@ export function signalStrength(business: Business, signal: LeadSignal): number {
     // zero reviews is the strongest possible signal, and anything at or
     // above the floor is none at all.
     case "low-visibility": {
-      const reviews = Math.max(0, business.reviews ?? 0);
+      // `?? 0` alone only replaces null/undefined — NaN sails straight
+      // through it, so this narrows the same way the non-finite guard above
+      // does before doing arithmetic, rather than trusting the nullish
+      // check to catch every degenerate input.
+      const reviews =
+        business.reviews === undefined || !Number.isFinite(business.reviews)
+          ? 0
+          : Math.max(0, business.reviews);
       const below = Math.max(0, LOW_VISIBILITY_REVIEWS - reviews);
       return Math.min(1, below / LOW_VISIBILITY_REVIEWS);
     }

@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 
   // DEMAND FIRST. These combinations came back from Google's own autocomplete,
   // ordered by real query popularity, so they are the pages people actually
-  // look for. Prerendering by supply would have put 1,172 restaurants ahead of
+  // look for. Prerendering by supply would have put 1,164 restaurants ahead of
   // a nursery query that people type far more often.
   for (const page of demandedPages()) add(page.area, page.l2Slug);
 

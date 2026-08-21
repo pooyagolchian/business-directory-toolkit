@@ -397,6 +397,36 @@ function MedianReviews({ bands }: { bands: RatingBand[] }) {
 // ---------------------------------------------------------------- figure
 
 /**
+ * One figure: a caption, and a plot that scrolls rather than shrinks.
+ *
+ * The plot holds its width instead of scaling down to the viewport, because
+ * SVG text scales with the viewBox — fitting 41 bins onto a phone would set the
+ * axis labels at four pixels. Scrolling is the honest trade, so the narrow
+ * widths where it actually happens get told about it.
+ */
+function ChartFrame({
+  className,
+  label,
+  children,
+}: {
+  className: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <figure className={className}>
+      <figcaption className="mb-4 flex items-baseline justify-between gap-4">
+        <span className="label text-[var(--muted)]">{label}</span>
+        <span className="label shrink-0 text-[var(--muted)] sm:hidden">
+          Scroll &rarr;
+        </span>
+      </figcaption>
+      <div className="overflow-x-auto">{children}</div>
+    </figure>
+  );
+}
+
+/**
  * The table is not a fallback, it is the other half of the figure.
  *
  * Every number the SVG draws or reveals on hover is here in text, which is what
@@ -514,32 +544,22 @@ export function RatingDistributionFigure({
         how much evidence stands behind it, rather than by stars alone.
       </p>
 
-      <figure className="mt-10">
-        <figcaption className="label mb-4 text-[var(--muted)]">
-          Businesses by rating, in 0.1 steps
-        </figcaption>
-        <div className="overflow-x-auto">
-          <Histogram
-            bins={bins}
-            rated={rated}
-            note={[
-              `${low?.count.toLocaleString() ?? "0"} businesses rate below ${(
-                low?.max ?? 3
-              ).toFixed(1)}.`,
-              `That is ${lowShare}% of the city.`,
-            ]}
-          />
-        </div>
-      </figure>
+      <ChartFrame className="mt-10" label="Businesses by rating, in 0.1 steps">
+        <Histogram
+          bins={bins}
+          rated={rated}
+          note={[
+            `${low?.count.toLocaleString() ?? "0"} businesses rate below ${(
+              low?.max ?? 3
+            ).toFixed(1)}.`,
+            `That is ${lowShare}% of the city.`,
+          ]}
+        />
+      </ChartFrame>
 
-      <figure className="mt-14">
-        <figcaption className="label mb-4 text-[var(--muted)]">
-          Median reviews behind each rating
-        </figcaption>
-        <div className="overflow-x-auto">
-          <MedianReviews bands={bands} />
-        </div>
-      </figure>
+      <ChartFrame className="mt-14" label="Median reviews behind each rating">
+        <MedianReviews bands={bands} />
+      </ChartFrame>
 
       <p className="mt-8 text-xs text-[var(--muted)]">
         {rated.toLocaleString()} rated businesses. {unrated.toLocaleString()}{" "}

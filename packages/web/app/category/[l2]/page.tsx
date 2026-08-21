@@ -15,7 +15,7 @@ export async function generateStaticParams() {
  * How many rows to hand the client filter.
  *
  * The filter narrows what is on the page, so the page has to hold enough to be
- * worth narrowing — but shipping 1,172 restaurants as JSON to filter in the
+ * worth narrowing — but shipping 1,164 restaurants as JSON to filter in the
  * browser is a payload, not a feature. Beyond this, the real search is offered.
  */
 const PAGE_SIZE = 120;

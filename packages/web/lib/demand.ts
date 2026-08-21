@@ -7,8 +7,8 @@ import { slugify } from "./data";
  *
  * Google orders autocomplete by real query popularity, so this is what people
  * actually search for — as opposed to what the crawl happened to find. The two
- * disagree sharply: Restaurants has 1,172 listings but people name only four
- * neighbourhoods; Nurseries has 216 listings and people name seven.
+ * disagree sharply: Restaurants has 1,164 listings but people name only four
+ * neighbourhoods; Nurseries has 213 listings and people name seven.
  *
  * This is what should decide which of the ~2,000 possible area x category
  * pages get built. Generating every combination and hoping is the default

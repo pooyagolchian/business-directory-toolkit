@@ -1,14 +1,14 @@
 /**
  * Structured attributes from the engine's `extensions` block.
  *
- * 91% of crawled listings carry one, and the pipeline was discarding all of it
+ * 90% of crawled listings carry one, and the pipeline was discarding all of it
  * — paying for the data and then dropping it on the floor. Re-reading the
  * existing raw archive recovers it for zero credits.
  *
  * Accessibility is the part that earns its place. "Which pharmacies on my route
  * have a wheelchair-accessible entrance" is a question no Dubai directory
  * answers, and for a lot of people it is the only question that matters. The
- * crawl already knew the answer for 3,690 businesses.
+ * crawl already knew the answer for 10,461 businesses.
  */
 export interface Amenities {
   accessibility: string[];

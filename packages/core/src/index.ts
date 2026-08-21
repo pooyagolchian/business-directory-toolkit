@@ -5,6 +5,8 @@ export { toSlug } from "./slug.js";
 
 export { isInCity } from "./city.js";
 
+export { nearestTile } from "./nearest.js";
+
 export { dedupeByPlaceId } from "./dedupe.js";
 export type { DedupeResult } from "./dedupe.js";
 

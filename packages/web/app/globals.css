@@ -61,10 +61,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Phone numbers, ratings and cost tables must align down a column. */
+/*
+ * Phone numbers, ratings and cost tables must align down a column.
+ *
+ * Tabular figures are NOT the same thing as a monospace face. Switching family
+ * here gave every separator a full monospace cell, so "7,245" rendered as
+ * "7 , 245". Geist Sans carries tabular figures, so ask for the feature and
+ * leave the family alone. Use `font-mono` explicitly where a monospace
+ * *texture* is wanted, such as the label chips.
+ */
 .tabular {
-  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 /* Arabic runs inside bilingual titles get the face that was chosen for them. */

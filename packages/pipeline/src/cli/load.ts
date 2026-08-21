@@ -12,10 +12,12 @@ import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 import { marshall } from "@aws-sdk/util-dynamodb";
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   dedupeByPlaceId,
+  nearestTile,
   type RawLocalResult,
   type TaxonomyMap,
 } from "@directory/core";
@@ -51,25 +53,93 @@ const root = new URL("../../../../", import.meta.url);
 const mapPath = fileURLToPath(new URL("data/taxonomy-map.json", root));
 const recordsPath = fileURLToPath(new URL("data/out/raw-records.json", root));
 
-let records: (RawLocalResult & { _source?: { tileId: string } })[];
-try {
-  records = JSON.parse(readFileSync(recordsPath, "utf8"));
-} catch {
-  console.error(
-    "No crawl output at data/out/raw-records.json. Run `pnpm crawl` first.\n",
+type SourcedRecord = RawLocalResult & { _source?: { tileId: string } };
+
+/**
+ * Rebuild the record set from the raw S3/disk archive.
+ *
+ * This is the payoff for archiving every response before parsing: a crawl that
+ * is still running, or one that finished months ago, can be re-normalised and
+ * re-loaded without spending a single credit. The tile is recovered from the
+ * archive path, which is why the fetcher writes raw/{runId}/{tile}/{query}-p{n}.
+ */
+function recordsFromArchive(): SourcedRecord[] {
+  const rawRoot = fileURLToPath(new URL("data/raw/", root));
+  const out: SourcedRecord[] = [];
+
+  const walk = (dir: string, tile: string | null) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        // raw/{runId}/{tileId}/ — the second level down is the tile
+        walk(full, tile ?? (dir === rawRoot ? null : entry.name));
+      } else if (entry.name.endsWith(".json")) {
+        const tileId = tile ?? basename(dir);
+        try {
+          const page = JSON.parse(readFileSync(full, "utf8")) as {
+            local_results?: RawLocalResult[];
+          };
+          for (const r of page.local_results ?? []) {
+            out.push({ ...r, _source: { tileId } });
+          }
+        } catch {
+          // A half-written page from a crawl still in flight. Skip it rather
+          // than aborting a rebuild over one truncated file.
+        }
+      }
+    }
+  };
+
+  walk(rawRoot, null);
+  return out;
+}
+
+let records: SourcedRecord[];
+if (argv.includes("--from-archive")) {
+  records = recordsFromArchive();
+  console.log(
+    `Rebuilt ${records.length.toLocaleString()} records from data/raw/ — no credits spent.`,
   );
-  process.exit(1);
+} else {
+  try {
+    records = JSON.parse(readFileSync(recordsPath, "utf8"));
+  } catch {
+    console.error(
+      "No crawl output at data/out/raw-records.json.\n" +
+        "Run `pnpm crawl` first, or `pnpm load --from-archive` to rebuild from\n" +
+        "already-archived responses without spending credits.\n",
+    );
+    process.exit(1);
+  }
 }
 
 const map = JSON.parse(readFileSync(mapPath, "utf8")) as TaxonomyMap;
 
 const deduped = dedupeByPlaceId(records);
 
-// Each record carries the tile that surfaced it, which becomes its area.
+/**
+ * Assign each business to the neighbourhood it is actually in.
+ *
+ * The tile that surfaced a listing is NOT its neighbourhood: Google returns
+ * results from a radius around the query point, so a DIFC query returns hotels
+ * in Jumeirah. Provenance put "Rove La Mer Beach, Jumeirah" on the DIFC page.
+ * Since area backs every browse page and every area x category page, using
+ * provenance would have quietly corrupted the entire SEO surface.
+ *
+ * Coordinates decide. Provenance is only the fallback for listings with no GPS.
+ */
 const byArea = new Map<string, RawLocalResult[]>();
+let reassigned = 0;
 for (const record of deduped.unique) {
-  const area =
-    (record as { _source?: { tileId: string } })._source?.tileId ?? "dubai";
+  const provenance = (record as { _source?: { tileId: string } })._source
+    ?.tileId;
+  const gps = record.gps_coordinates;
+  const geographic = gps
+    ? nearestTile(gps.latitude, gps.longitude, city.tiles)
+    : null;
+  const area = geographic ?? provenance ?? city.id;
+  if (geographic && provenance && geographic !== provenance) reassigned++;
+
   const bucket = byArea.get(area) ?? [];
   bucket.push(record);
   byArea.set(area, bucket);
@@ -92,6 +162,7 @@ for (const [area, group] of byArea) {
 // web app reads in local development, standing in for DynamoDB. It lands in
 // data/out/, which is git-ignored — the dataset is never committed (ADR 0002).
 businesses.sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0));
+mkdirSync(fileURLToPath(new URL("data/out/", root)), { recursive: true });
 writeFileSync(
   fileURLToPath(new URL("data/out/businesses.json", root)),
   JSON.stringify(businesses),
@@ -112,6 +183,7 @@ After dedupe        ${deduped.unique.length.toLocaleString()}  (-${deduped.dupli
 Businesses          ${businesses.length.toLocaleString()}
 Rejected non-Dubai  ${rejectedNotDubai.toLocaleString()}
 Rejected no place_id ${rejectedNoPlaceId.toLocaleString()}
+Area reassigned     ${reassigned.toLocaleString()}  (found by one tile's query, actually located in another)
 DynamoDB items      ${items.length.toLocaleString()}  (${businesses.length} business + ${items.length - businesses.length} typeahead)
 
 v0.1 QUALITY GATES

@@ -1,0 +1,80 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { BusinessList } from "@/components/business-card";
+import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
+import { areaLabel, areas, byArea, categoriesInArea } from "@/lib/data";
+
+export async function generateStaticParams() {
+  return areas().map((a) => ({ area: a.slug }));
+}
+
+export const dynamicParams = true;
+export const revalidate = 86_400;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ area: string }>;
+}): Promise<Metadata> {
+  const { area } = await params;
+  const facet = areas().find((a) => a.slug === area);
+  if (!facet) return { title: "Not found" };
+  return {
+    title: `Businesses in ${facet.label}, Dubai`,
+    description: `${facet.count} businesses in ${facet.label}, Dubai, by category.`,
+    alternates: { canonical: `/area/${area}` },
+  };
+}
+
+export default async function AreaPage({
+  params,
+}: {
+  params: Promise<{ area: string }>;
+}) {
+  const { area } = await params;
+  const facet = areas().find((a) => a.slug === area);
+  if (!facet) notFound();
+
+  const categoryFacets = categoriesInArea(area);
+  const businesses = byArea(area);
+
+  return (
+    <Page>
+      <Breadcrumbs
+        trail={[
+          { href: "/", label: "Home" },
+          { href: "/areas", label: "Areas" },
+          { label: areaLabel(area) },
+        ]}
+      />
+
+      <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl">
+        Businesses in {areaLabel(area)}
+      </h1>
+      <p className="mt-2 text-sm text-[var(--muted)]">
+        <span className="tabular">{facet.count.toLocaleString()}</span> listings
+        across <span className="tabular">{categoryFacets.length}</span>{" "}
+        {categoryFacets.length === 1 ? "category" : "categories"}.
+      </p>
+
+      <section className="mt-10">
+        <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+          By category
+        </h2>
+        <div className="mt-3">
+          <FacetGrid
+            items={categoryFacets}
+            hrefFor={(slug) => `/area/${area}/${slug}`}
+          />
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="font-[family-name:var(--font-display)] text-xl">
+          Most reviewed
+        </h2>
+        <BusinessList businesses={businesses.slice(0, 50)} />
+      </section>
+    </Page>
+  );
+}

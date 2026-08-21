@@ -1,105 +1,122 @@
-const MILESTONES = [
-  {
-    tag: "v0.1",
-    title: "The data pipeline",
-    body: "Crawl, deduplicate, and categorise ~10,000 Dubai businesses from the Maps engine.",
-    state: "In progress",
-  },
-  {
-    tag: "v0.2",
-    title: "Search",
-    body: "Phone lookup over +971 numbers in E.164, search-as-you-type, measured latency.",
-    state: "Planned",
-  },
-  {
-    tag: "v1.0",
-    title: "The payoff",
-    body: "Programmatic SEO toward 10,000 pages, a Search Console retro, and the full AWS bill.",
-    state: "Planned",
-  },
-] as const;
-
-const FINDINGS = [
-  { value: "~200", label: "result ceiling per query" },
-  { value: "0", label: "overlap between tiles" },
-  { value: "17.5", label: "unique results per request" },
-  { value: "9", label: "categories on one business" },
-] as const;
+import Link from "next/link";
+import { SearchBox } from "@/components/search-box";
+import { FacetGrid, Footer, Header } from "@/components/chrome";
+import { BusinessList } from "@/components/business-card";
+import { allBusinesses, areas, categories, stats } from "@/lib/data";
 
 export default function Home() {
+  const s = stats();
+  const topCategories = categories().slice(0, 12);
+  const topAreas = areas().slice(0, 12);
+  // The dataset is sorted by review count at load, so the head is the most
+  // reviewed businesses in the city.
+  const notable = allBusinesses().slice(0, 8);
+
+  const empty = s.businesses === 0;
+
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 sm:py-32">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-        Building in public
-      </p>
+    <>
+      <Header />
 
-      <h1 className="mt-6 font-[family-name:var(--font-display)] text-5xl leading-[1.05] tracking-tight sm:text-7xl">
-        Directory
-        <br />
-        from Scratch
-      </h1>
+      <main className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl leading-[1.05] tracking-tight sm:text-6xl">
+          Find a business
+          <br />
+          in Dubai
+        </h1>
 
-      <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--muted)]">
-        An open-source Dubai business search engine, built on SearchApi&rsquo;s
-        Google Maps engine — from the first paged request to a live product,
-        with the AWS bill published at the end.
-      </p>
+        <div className="mt-10 max-w-2xl">
+          <SearchBox autoFocus />
+          <p className="mt-3 text-xs text-[var(--muted)]">
+            Search by name, category, neighbourhood — or paste a{" "}
+            <span className="tabular">+971</span> number to find who it belongs
+            to.
+          </p>
+        </div>
 
-      <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-[var(--rule)] sm:grid-cols-4">
-        {FINDINGS.map((f) => (
-          <div key={f.label} className="bg-[var(--bg)] p-5">
-            <dt className="tabular text-2xl">{f.value}</dt>
-            <dd className="mt-1 text-xs leading-snug text-[var(--muted)]">
-              {f.label}
-            </dd>
+        {empty ? (
+          <div className="mt-16 border border-[var(--rule)] p-6">
+            <h2 className="font-[family-name:var(--font-display)] text-xl">
+              No data yet
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">
+              This deployment has no crawl output. Run{" "}
+              <code className="font-mono">pnpm crawl --city dubai --yes</code>{" "}
+              then <code className="font-mono">pnpm load</code> to populate it,
+              or point <code className="font-mono">DIRECTORY_CITY</code> at a
+              city you have already crawled.
+            </p>
           </div>
-        ))}
-      </dl>
-      <p className="mt-3 text-xs text-[var(--muted)]">
-        Measured against the live engine before any code was written.
-      </p>
+        ) : (
+          <>
+            <dl className="mt-16 grid grid-cols-2 gap-px bg-[var(--rule)] sm:grid-cols-4">
+              {[
+                { v: s.businesses.toLocaleString(), l: "businesses" },
+                { v: s.categories.toLocaleString(), l: "categories" },
+                { v: s.areas.toLocaleString(), l: "neighbourhoods" },
+                {
+                  v: `${Math.round((100 * s.withPhone) / s.businesses)}%`,
+                  l: "with a phone number",
+                },
+              ].map((stat) => (
+                <div key={stat.l} className="bg-[var(--bg)] p-5">
+                  <dt className="tabular text-2xl">{stat.v}</dt>
+                  <dd className="mt-1 text-xs text-[var(--muted)]">{stat.l}</dd>
+                </div>
+              ))}
+            </dl>
 
-      <ol className="mt-20 space-y-px">
-        {MILESTONES.map((m) => (
-          <li
-            key={m.tag}
-            className="flex gap-6 border-t border-[var(--rule)] py-6 last:border-b"
-          >
-            <span className="tabular w-12 shrink-0 text-sm text-[var(--muted)]">
-              {m.tag}
-            </span>
-            <div className="min-w-0">
-              <h2 className="font-[family-name:var(--font-display)] text-xl">
-                {m.title}
+            <section className="mt-20">
+              <div className="flex items-baseline justify-between">
+                <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                  Browse by category
+                </h2>
+                <Link
+                  href="/categories"
+                  className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--fg)]"
+                >
+                  All {s.categories}
+                </Link>
+              </div>
+              <div className="mt-5">
+                <FacetGrid
+                  items={topCategories}
+                  hrefFor={(slug) => `/category/${slug}`}
+                />
+              </div>
+            </section>
+
+            <section className="mt-20">
+              <div className="flex items-baseline justify-between">
+                <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                  Browse by neighbourhood
+                </h2>
+                <Link
+                  href="/areas"
+                  className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--fg)]"
+                >
+                  All {s.areas}
+                </Link>
+              </div>
+              <div className="mt-5">
+                <FacetGrid
+                  items={topAreas}
+                  hrefFor={(slug) => `/area/${slug}`}
+                />
+              </div>
+            </section>
+
+            <section className="mt-20">
+              <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                Most reviewed
               </h2>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
-                {m.body}
-              </p>
-            </div>
-            <span className="ml-auto shrink-0 self-start font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-              {m.state}
-            </span>
-          </li>
-        ))}
-      </ol>
+              <BusinessList businesses={notable} />
+            </section>
+          </>
+        )}
+      </main>
 
-      <footer className="mt-20 flex flex-wrap gap-x-6 gap-y-2 border-t border-[var(--rule)] pt-6 text-sm">
-        <a
-          className="underline underline-offset-4 hover:text-[var(--muted)]"
-          href="https://github.com/pooyagolchian/directory-from-scratch"
-        >
-          Source
-        </a>
-        <a
-          className="underline underline-offset-4 hover:text-[var(--muted)]"
-          href="https://pooyagolchian.com"
-        >
-          Write-ups
-        </a>
-        <span className="ml-auto text-[var(--muted)]">
-          Business listings only. Takedown requests honoured.
-        </span>
-      </footer>
-    </main>
+      <Footer />
+    </>
   );
 }

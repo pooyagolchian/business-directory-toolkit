@@ -1,0 +1,5204 @@
+[
+  {
+    "category": "Hotels",
+    "seed": "hotels in dubai",
+    "suggestions": [
+      {
+        "query": "hotels in dubai with private pool",
+        "rank": 0
+      },
+      {
+        "query": "hotels in dubai marina",
+        "rank": 1,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "hotels in dubai cheap",
+        "rank": 2
+      },
+      {
+        "query": "hotels in dubai with waterpark",
+        "rank": 3
+      },
+      {
+        "query": "hotels in dubai with burj khalifa view",
+        "rank": 4
+      },
+      {
+        "query": "hotels in dubai with beach access",
+        "rank": 5
+      },
+      {
+        "query": "hotels in dubai with indoor pool",
+        "rank": 6
+      },
+      {
+        "query": "hotels in dubai downtown",
+        "rank": 7
+      },
+      {
+        "query": "hotels in dubai for staycation",
+        "rank": 8
+      },
+      {
+        "query": "hotels in dubai with kids water park",
+        "rank": 9
+      },
+      {
+        "query": "hotels in dubai careers",
+        "rank": 10
+      },
+      {
+        "query": "hotels in dubai with private pool in room",
+        "rank": 11
+      },
+      {
+        "query": "hotels in dubai with kids activities",
+        "rank": 12
+      },
+      {
+        "query": "hotels in dubai with pool",
+        "rank": 13
+      },
+      {
+        "query": "hotels in dubai festival city",
+        "rank": 14,
+        "area": "festival-city"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "festival-city"
+    ]
+  },
+  {
+    "category": "Insurance",
+    "seed": "insurance in dubai",
+    "suggestions": [
+      {
+        "query": "insurance in dubai health",
+        "rank": 0
+      },
+      {
+        "query": "insurance in dubai for employees",
+        "rank": 1
+      },
+      {
+        "query": "insurance in dubai for family",
+        "rank": 2
+      },
+      {
+        "query": "insurance in dubai price",
+        "rank": 3
+      },
+      {
+        "query": "insurance in dubai for pregnancy",
+        "rank": 4
+      },
+      {
+        "query": "insurance in dubai car",
+        "rank": 5
+      },
+      {
+        "query": "insurance companies in dubai",
+        "rank": 6
+      },
+      {
+        "query": "insurance jobs in dubai",
+        "rank": 7
+      },
+      {
+        "query": "insurance brokers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "medical insurance in dubai",
+        "rank": 9
+      },
+      {
+        "query": "best insurance in dubai",
+        "rank": 10
+      },
+      {
+        "query": "travel insurance in dubai",
+        "rank": 11
+      },
+      {
+        "query": "life insurance in dubai",
+        "rank": 12
+      },
+      {
+        "query": "property insurance in dubai",
+        "rank": 13
+      },
+      {
+        "query": "health insurance in dubai cost",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Jewellery",
+    "seed": "jewellery in dubai",
+    "suggestions": [
+      {
+        "query": "jewellery in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "jewellery in dubai airport",
+        "rank": 1
+      },
+      {
+        "query": "jewellery in dubai price",
+        "rank": 2
+      },
+      {
+        "query": "jewellery in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "jewellery in dubai duty free",
+        "rank": 4
+      },
+      {
+        "query": "jewellery in dubai online",
+        "rank": 5
+      },
+      {
+        "query": "jewellery in dubai gold",
+        "rank": 6
+      },
+      {
+        "query": "jewellers in dubai",
+        "rank": 7
+      },
+      {
+        "query": "jewellers in dubai mall",
+        "rank": 8
+      },
+      {
+        "query": "jewellers in dubai gold souk",
+        "rank": 9
+      },
+      {
+        "query": "jewellers in dubai online",
+        "rank": 10
+      },
+      {
+        "query": "jewellery jobs in dubai",
+        "rank": 11
+      },
+      {
+        "query": "jewellery shops in dubai",
+        "rank": 12
+      },
+      {
+        "query": "artificial jewellery in dubai",
+        "rank": 13
+      },
+      {
+        "query": "artificial jewellery in dubai with prices",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Hospitals",
+    "seed": "hospitals in dubai",
+    "suggestions": [
+      {
+        "query": "hospitals in dubai careers",
+        "rank": 0
+      },
+      {
+        "query": "hospitals in dubai healthcare city",
+        "rank": 1,
+        "area": "healthcare-city"
+      },
+      {
+        "query": "hospitals in dubai list",
+        "rank": 2
+      },
+      {
+        "query": "hospitals in dubai south",
+        "rank": 3,
+        "area": "dubai-south"
+      },
+      {
+        "query": "hospitals in dubai silicon oasis",
+        "rank": 4,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "hospitals in dubai hills",
+        "rank": 5
+      },
+      {
+        "query": "hospitals in dubai careers for nurses",
+        "rank": 6
+      },
+      {
+        "query": "hospitals in dubai uae",
+        "rank": 7
+      },
+      {
+        "query": "hospitals in dubai vacancy",
+        "rank": 8
+      },
+      {
+        "query": "hospitals in dubai hiring nurses",
+        "rank": 9
+      },
+      {
+        "query": "hospitals in dubai government",
+        "rank": 10
+      },
+      {
+        "query": "hospitals in dubai deira",
+        "rank": 11,
+        "area": "deira"
+      },
+      {
+        "query": "hospital in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "hospital in dubai hiring",
+        "rank": 13
+      },
+      {
+        "query": "hospital in dubai marina",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "healthcare-city",
+      "dubai-south",
+      "silicon-oasis",
+      "deira",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Restaurants",
+    "seed": "restaurants in dubai",
+    "suggestions": [
+      {
+        "query": "restaurants in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "restaurants in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "restaurants in dubai festival city",
+        "rank": 2,
+        "area": "festival-city"
+      },
+      {
+        "query": "restaurants in dubai hills",
+        "rank": 3
+      },
+      {
+        "query": "restaurants in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "restaurants in dubai festival city mall",
+        "rank": 5,
+        "area": "festival-city"
+      },
+      {
+        "query": "restaurants in dubai airport",
+        "rank": 6
+      },
+      {
+        "query": "restaurants in dubai marina mall",
+        "rank": 7,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "restaurants in dubai creek harbour",
+        "rank": 8
+      },
+      {
+        "query": "restaurants in dubai south",
+        "rank": 9,
+        "area": "dubai-south"
+      },
+      {
+        "query": "restaurants in dubai outlet mall",
+        "rank": 10
+      },
+      {
+        "query": "restaurants in dubai silicon oasis",
+        "rank": 11,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "restaurants in dubai mall with fountain view",
+        "rank": 12
+      },
+      {
+        "query": "restaurants in dubai industrial city",
+        "rank": 13
+      },
+      {
+        "query": "restaurants in dubai airport terminal 3",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "festival-city",
+      "dubai-marina",
+      "dubai-south",
+      "silicon-oasis"
+    ]
+  },
+  {
+    "category": "Attractions",
+    "seed": "attractions in dubai",
+    "suggestions": [
+      {
+        "query": "attractions in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "attractions in dubai for kids",
+        "rank": 1
+      },
+      {
+        "query": "attractions in dubai hills mall",
+        "rank": 2
+      },
+      {
+        "query": "attractions in dubai today",
+        "rank": 3
+      },
+      {
+        "query": "attractions in dubai festival city",
+        "rank": 4,
+        "area": "festival-city"
+      },
+      {
+        "query": "attractions in dubai for free",
+        "rank": 5
+      },
+      {
+        "query": "attractions in dubai and abu dhabi",
+        "rank": 6
+      },
+      {
+        "query": "attractions in dubai for tourist",
+        "rank": 7
+      },
+      {
+        "query": "attractions in dubai marina",
+        "rank": 8,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "attractions in dubai airport",
+        "rank": 9
+      },
+      {
+        "query": "attractions in dubai for families",
+        "rank": 10
+      },
+      {
+        "query": "attractions in dubai mall for kids",
+        "rank": 11
+      },
+      {
+        "query": "attractions in dubai with prices",
+        "rank": 12
+      },
+      {
+        "query": "attractions in dubai near me",
+        "rank": 13
+      },
+      {
+        "query": "attractions in dubai for adults",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "festival-city",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Cafes",
+    "seed": "cafes in dubai",
+    "suggestions": [
+      {
+        "query": "cafes in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "cafes in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "cafes in dubai hills",
+        "rank": 2
+      },
+      {
+        "query": "cafes in dubai festival city mall",
+        "rank": 3,
+        "area": "festival-city"
+      },
+      {
+        "query": "cafes in dubai to watch world cup",
+        "rank": 4
+      },
+      {
+        "query": "cafes in dubai creek harbour",
+        "rank": 5
+      },
+      {
+        "query": "cafes in dubai marina",
+        "rank": 6,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "cafes in dubai design district",
+        "rank": 7
+      },
+      {
+        "query": "cafes in dubai festival city",
+        "rank": 8,
+        "area": "festival-city"
+      },
+      {
+        "query": "cafes in dubai to watch football",
+        "rank": 9
+      },
+      {
+        "query": "cafes in dubai mall to work",
+        "rank": 10
+      },
+      {
+        "query": "cafes in dubai near me",
+        "rank": 11
+      },
+      {
+        "query": "cafes in dubai near metro",
+        "rank": 12
+      },
+      {
+        "query": "cafes in dubai airport",
+        "rank": 13
+      },
+      {
+        "query": "cafes in dubai marina mall",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "festival-city",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Supermarkets",
+    "seed": "supermarkets in dubai",
+    "suggestions": [
+      {
+        "query": "supermarkets in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "supermarkets in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "supermarkets in dubai south",
+        "rank": 2,
+        "area": "dubai-south"
+      },
+      {
+        "query": "supermarkets in dubai hills",
+        "rank": 3
+      },
+      {
+        "query": "supermarkets in dubai sports city",
+        "rank": 4,
+        "area": "sports-city"
+      },
+      {
+        "query": "supermarkets in dubai marina",
+        "rank": 5,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "supermarkets in dubai list",
+        "rank": 6
+      },
+      {
+        "query": "supermarkets in dubai deira",
+        "rank": 7,
+        "area": "deira"
+      },
+      {
+        "query": "supermarkets in dubai investment park",
+        "rank": 8,
+        "area": "dip"
+      },
+      {
+        "query": "supermarkets in dubai silicon oasis",
+        "rank": 9,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "supermarkets in dubai names",
+        "rank": 10
+      },
+      {
+        "query": "supermarket in dubai marina mall",
+        "rank": 11,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "supermarket in dubai airport",
+        "rank": 12
+      },
+      {
+        "query": "supermarket in dubai job vacancy",
+        "rank": 13
+      },
+      {
+        "query": "supermarket in dubai industrial city",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "sports-city",
+      "dubai-marina",
+      "deira",
+      "dip",
+      "silicon-oasis"
+    ]
+  },
+  {
+    "category": "Auto Repair",
+    "seed": "auto repair in dubai",
+    "suggestions": [
+      {
+        "query": "auto mechanic in dubai",
+        "rank": 0
+      },
+      {
+        "query": "auto shop in dubai",
+        "rank": 1
+      },
+      {
+        "query": "auto service in dubai",
+        "rank": 2
+      },
+      {
+        "query": "auto mechanics in dubai 2025",
+        "rank": 3
+      },
+      {
+        "query": "auto repair shop in dubai",
+        "rank": 4
+      },
+      {
+        "query": "auto repair garage in dubai",
+        "rank": 5
+      },
+      {
+        "query": "auto repair services in dubai",
+        "rank": 6
+      },
+      {
+        "query": "auto glass repair in dubai",
+        "rank": 7
+      },
+      {
+        "query": "best auto repair in dubai",
+        "rank": 8
+      },
+      {
+        "query": "auto repair workshop in dubai",
+        "rank": 9
+      },
+      {
+        "query": "automobile shop in dubai",
+        "rank": 10
+      },
+      {
+        "query": "automotive shop in dubai",
+        "rank": 11
+      },
+      {
+        "query": "automotive service in dubai",
+        "rank": 12
+      },
+      {
+        "query": "auto body repair dubai",
+        "rank": 13
+      },
+      {
+        "query": "auto mechanic jobs in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Malls",
+    "seed": "malls in dubai",
+    "suggestions": [
+      {
+        "query": "malls in dubai near me",
+        "rank": 0
+      },
+      {
+        "query": "malls in dubai list",
+        "rank": 1
+      },
+      {
+        "query": "malls in dubai to visit",
+        "rank": 2
+      },
+      {
+        "query": "malls in dubai with free parking",
+        "rank": 3
+      },
+      {
+        "query": "malls in dubai open 24 hours",
+        "rank": 4
+      },
+      {
+        "query": "malls in dubai south",
+        "rank": 5,
+        "area": "dubai-south"
+      },
+      {
+        "query": "malls in dubai near metro",
+        "rank": 6
+      },
+      {
+        "query": "malls in dubai marina",
+        "rank": 7,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "malls in dubai and sharjah",
+        "rank": 8
+      },
+      {
+        "query": "malls in dubai near sharjah",
+        "rank": 9
+      },
+      {
+        "query": "malls in dubai by size",
+        "rank": 10
+      },
+      {
+        "query": "malls in dubai for shopping",
+        "rank": 11
+      },
+      {
+        "query": "malls in dubai with metro access",
+        "rank": 12
+      },
+      {
+        "query": "malls in dubai near me open",
+        "rank": 13
+      },
+      {
+        "query": "malls in dubai names",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Clinics",
+    "seed": "clinics in dubai",
+    "suggestions": [
+      {
+        "query": "clinics in dubai healthcare city",
+        "rank": 0,
+        "area": "healthcare-city"
+      },
+      {
+        "query": "clinics in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "clinics in dubai south",
+        "rank": 2,
+        "area": "dubai-south"
+      },
+      {
+        "query": "clinics in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "clinics in dubai list",
+        "rank": 4
+      },
+      {
+        "query": "clinics in dubai hills",
+        "rank": 5
+      },
+      {
+        "query": "clinics in dubai careers",
+        "rank": 6
+      },
+      {
+        "query": "clinics in dubai silicon oasis",
+        "rank": 7,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "clinics in dubai marina",
+        "rank": 8,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "clinics in dubai internet city",
+        "rank": 9,
+        "area": "internet-city"
+      },
+      {
+        "query": "clinics in dubai investment park",
+        "rank": 10,
+        "area": "dip"
+      },
+      {
+        "query": "clinics in dubai industrial city",
+        "rank": 11
+      },
+      {
+        "query": "clinics in dubailand",
+        "rank": 12
+      },
+      {
+        "query": "clinics in dubai open now",
+        "rank": 13
+      },
+      {
+        "query": "clinics in dubai festival city",
+        "rank": 14,
+        "area": "festival-city"
+      }
+    ],
+    "areasInDemand": [
+      "healthcare-city",
+      "dubai-south",
+      "silicon-oasis",
+      "dubai-marina",
+      "internet-city",
+      "dip",
+      "festival-city"
+    ]
+  },
+  {
+    "category": "Real Estate",
+    "seed": "real estate in dubai",
+    "suggestions": [
+      {
+        "query": "real estate in dubai now",
+        "rank": 0
+      },
+      {
+        "query": "real estate in dubai 2026",
+        "rank": 1
+      },
+      {
+        "query": "real estate in dubai news",
+        "rank": 2
+      },
+      {
+        "query": "real estate in dubai jobs",
+        "rank": 3
+      },
+      {
+        "query": "real estate in dubai after war",
+        "rank": 4
+      },
+      {
+        "query": "real estate in dubai for sale",
+        "rank": 5
+      },
+      {
+        "query": "real estate in dubai salary",
+        "rank": 6
+      },
+      {
+        "query": "real estate in dubai price",
+        "rank": 7
+      },
+      {
+        "query": "real estate in dubai reddit",
+        "rank": 8
+      },
+      {
+        "query": "real estate in dubai investment",
+        "rank": 9
+      },
+      {
+        "query": "real estate in dubai after iran war",
+        "rank": 10
+      },
+      {
+        "query": "real estate in dubai 2025",
+        "rank": 11
+      },
+      {
+        "query": "real estate in dubai for rent",
+        "rank": 12
+      },
+      {
+        "query": "real estate in dubai hills",
+        "rank": 13
+      },
+      {
+        "query": "real estate in dubai marina",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Travel Agencies",
+    "seed": "travel agencies in dubai",
+    "suggestions": [
+      {
+        "query": "travel agencies in dubai job vacancies",
+        "rank": 0
+      },
+      {
+        "query": "travel agencies in dubai uae",
+        "rank": 1
+      },
+      {
+        "query": "travel agencies in dubai providing visit visa",
+        "rank": 2
+      },
+      {
+        "query": "travel agencies in dubai list",
+        "rank": 3
+      },
+      {
+        "query": "travel agency in dubai for visit visa",
+        "rank": 4
+      },
+      {
+        "query": "travel agency in dubai for tourist visa",
+        "rank": 5
+      },
+      {
+        "query": "travel agency in dubai contact number",
+        "rank": 6
+      },
+      {
+        "query": "travel agency in dubai jobs",
+        "rank": 7
+      },
+      {
+        "query": "travel agency in dubai mall",
+        "rank": 8
+      },
+      {
+        "query": "travel agency in dubai silicon oasis",
+        "rank": 9,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "travel agency in dubai deira",
+        "rank": 10,
+        "area": "deira"
+      },
+      {
+        "query": "travel agency in dubai for visa",
+        "rank": 11
+      },
+      {
+        "query": "travel agency in dubai for schengen visa",
+        "rank": 12
+      },
+      {
+        "query": "travel agency in dubai investment park",
+        "rank": 13,
+        "area": "dip"
+      },
+      {
+        "query": "travel agency in dubai for filipino",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "silicon-oasis",
+      "deira",
+      "dip"
+    ]
+  },
+  {
+    "category": "Electronics",
+    "seed": "electronics in dubai",
+    "suggestions": [
+      {
+        "query": "electronics in dubai cheap",
+        "rank": 0
+      },
+      {
+        "query": "electronics in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "electronics in dubai duty free",
+        "rank": 2
+      },
+      {
+        "query": "electronics in dubai airport",
+        "rank": 3
+      },
+      {
+        "query": "electronics in dubai vs india",
+        "rank": 4
+      },
+      {
+        "query": "electronics in dubai hills mall",
+        "rank": 5
+      },
+      {
+        "query": "electronics in dubai outlet mall",
+        "rank": 6
+      },
+      {
+        "query": "electronics in dubai festival city",
+        "rank": 7,
+        "area": "festival-city"
+      },
+      {
+        "query": "electronics in dubai price",
+        "rank": 8
+      },
+      {
+        "query": "used electronics in dubai",
+        "rank": 9
+      },
+      {
+        "query": "electronics store in dubai",
+        "rank": 10
+      },
+      {
+        "query": "electronics jobs in dubai",
+        "rank": 11
+      },
+      {
+        "query": "electronics company in dubai",
+        "rank": 12
+      },
+      {
+        "query": "electronics shop in dubai",
+        "rank": 13
+      },
+      {
+        "query": "electronics jobs in dubai for freshers",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "festival-city"
+    ]
+  },
+  {
+    "category": "Bars",
+    "seed": "bars in dubai",
+    "suggestions": [
+      {
+        "query": "bars in dubai hills",
+        "rank": 0
+      },
+      {
+        "query": "bars in dubai marina",
+        "rank": 1,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "bars in dubai mall",
+        "rank": 2
+      },
+      {
+        "query": "bars in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "bars in dubai silicon oasis",
+        "rank": 4,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "bars in dubai airport",
+        "rank": 5
+      },
+      {
+        "query": "bars in dubai creek harbour",
+        "rank": 6
+      },
+      {
+        "query": "bars in dubai harbour",
+        "rank": 7
+      },
+      {
+        "query": "bars in dubai investment park",
+        "rank": 8,
+        "area": "dip"
+      },
+      {
+        "query": "bars in dubai to watch football",
+        "rank": 9
+      },
+      {
+        "query": "bars in dubai south",
+        "rank": 10,
+        "area": "dubai-south"
+      },
+      {
+        "query": "bars in dubai airport terminal 3",
+        "rank": 11
+      },
+      {
+        "query": "bars in dubai near me",
+        "rank": 12
+      },
+      {
+        "query": "bars in dubai showing world cup",
+        "rank": 13
+      },
+      {
+        "query": "bars in dubai media city",
+        "rank": 14,
+        "area": "media-city"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "silicon-oasis",
+      "dip",
+      "dubai-south",
+      "media-city"
+    ]
+  },
+  {
+    "category": "Car Rental",
+    "seed": "car rental in dubai",
+    "suggestions": [
+      {
+        "query": "car rental in dubai with driver",
+        "rank": 0
+      },
+      {
+        "query": "car rental in dubai without deposit",
+        "rank": 1
+      },
+      {
+        "query": "car rental in dubai monthly",
+        "rank": 2
+      },
+      {
+        "query": "car rental in dubai with driver price",
+        "rank": 3
+      },
+      {
+        "query": "car rental in dubai airport",
+        "rank": 4
+      },
+      {
+        "query": "car rental in dubai per day",
+        "rank": 5
+      },
+      {
+        "query": "car rental in dubai airport terminal 3",
+        "rank": 6
+      },
+      {
+        "query": "car rental in dubai reddit",
+        "rank": 7
+      },
+      {
+        "query": "car rental in dubai for tourist",
+        "rank": 8
+      },
+      {
+        "query": "car rental in dubai one click drive",
+        "rank": 9
+      },
+      {
+        "query": "car rental in dubai saadatrent",
+        "rank": 10
+      },
+      {
+        "query": "car rental in dubai marina",
+        "rank": 11,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "car rental in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "car rental in dubai airport terminal 1",
+        "rank": 13
+      },
+      {
+        "query": "car rental in dubai self drive",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Gyms",
+    "seed": "gyms in dubai",
+    "suggestions": [
+      {
+        "query": "gyms in dubai hills",
+        "rank": 0
+      },
+      {
+        "query": "gyms in dubai marina",
+        "rank": 1,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "gyms in dubai mall",
+        "rank": 2
+      },
+      {
+        "query": "gyms in dubai south",
+        "rank": 3,
+        "area": "dubai-south"
+      },
+      {
+        "query": "gyms in dubai silicon oasis",
+        "rank": 4,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "gyms in dubailand",
+        "rank": 5
+      },
+      {
+        "query": "gyms in dubai hills mall",
+        "rank": 6
+      },
+      {
+        "query": "gyms in dubai hills estate",
+        "rank": 7,
+        "area": "dubai-hills"
+      },
+      {
+        "query": "gyms in dubai internet city",
+        "rank": 8,
+        "area": "internet-city"
+      },
+      {
+        "query": "gyms in dubai creek harbour",
+        "rank": 9
+      },
+      {
+        "query": "gyms in dubai downtown",
+        "rank": 10
+      },
+      {
+        "query": "gyms in dubai investment park",
+        "rank": 11,
+        "area": "dip"
+      },
+      {
+        "query": "gyms in dubai business bay",
+        "rank": 12,
+        "area": "business-bay"
+      },
+      {
+        "query": "gyms in dubai with sauna",
+        "rank": 13
+      },
+      {
+        "query": "gyms in dubai with free trial",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "dubai-south",
+      "silicon-oasis",
+      "dubai-hills",
+      "internet-city",
+      "dip",
+      "business-bay"
+    ]
+  },
+  {
+    "category": "Furniture",
+    "seed": "furniture in dubai",
+    "suggestions": [
+      {
+        "query": "furniture in dubai hills mall",
+        "rank": 0
+      },
+      {
+        "query": "furniture in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "furniture in dubai cheap",
+        "rank": 2
+      },
+      {
+        "query": "furniture in dubai online",
+        "rank": 3
+      },
+      {
+        "query": "furniture in dubai hills",
+        "rank": 4
+      },
+      {
+        "query": "furniture in dubai price",
+        "rank": 5
+      },
+      {
+        "query": "furniture in dubai for sale",
+        "rank": 6
+      },
+      {
+        "query": "furniture in dubai reddit",
+        "rank": 7
+      },
+      {
+        "query": "furniture movers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "office furniture in dubai",
+        "rank": 9
+      },
+      {
+        "query": "furniture stores in dubai",
+        "rank": 10
+      },
+      {
+        "query": "used furniture in dubai",
+        "rank": 11
+      },
+      {
+        "query": "furniture company in dubai",
+        "rank": 12
+      },
+      {
+        "query": "selling furniture in dubai",
+        "rank": 13
+      },
+      {
+        "query": "outdoor furniture in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Driving Schools",
+    "seed": "driving schools in dubai",
+    "suggestions": [
+      {
+        "query": "driving schools in dubai list",
+        "rank": 0
+      },
+      {
+        "query": "driving schools in dubai silicon oasis",
+        "rank": 1,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "driving schools in dubai near me",
+        "rank": 2
+      },
+      {
+        "query": "driving schools in dubai south",
+        "rank": 3,
+        "area": "dubai-south"
+      },
+      {
+        "query": "driving schools in dubai reddit",
+        "rank": 4
+      },
+      {
+        "query": "driving school in dubai fees",
+        "rank": 5
+      },
+      {
+        "query": "driving school in dubai international city",
+        "rank": 6,
+        "area": "international-city"
+      },
+      {
+        "query": "driving school in dubai offers",
+        "rank": 7
+      },
+      {
+        "query": "driving school in dubai industrial city",
+        "rank": 8
+      },
+      {
+        "query": "driving school in dubai investment park",
+        "rank": 9,
+        "area": "dip"
+      },
+      {
+        "query": "driving school in dubailand",
+        "rank": 10
+      },
+      {
+        "query": "driving school in dubai mall",
+        "rank": 11
+      },
+      {
+        "query": "driving school in dubai marina",
+        "rank": 12,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "driving school in dubai discovery gardens",
+        "rank": 13,
+        "area": "discovery-gardens"
+      },
+      {
+        "query": "driving school in dubai cost",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "silicon-oasis",
+      "dubai-south",
+      "international-city",
+      "dip",
+      "dubai-marina",
+      "discovery-gardens"
+    ]
+  },
+  {
+    "category": "Grocery Stores",
+    "seed": "grocery stores in dubai",
+    "suggestions": [
+      {
+        "query": "grocery stores in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "grocery stores in dubai uae",
+        "rank": 1
+      },
+      {
+        "query": "grocery stores in dubai marina",
+        "rank": 2,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "grocery store in dubai for sale",
+        "rank": 3
+      },
+      {
+        "query": "grocery store in dubai hills",
+        "rank": 4
+      },
+      {
+        "query": "grocery store in dubai airport",
+        "rank": 5
+      },
+      {
+        "query": "grocery store in dubai south",
+        "rank": 6,
+        "area": "dubai-south"
+      },
+      {
+        "query": "grocery shopping in dubai",
+        "rank": 7
+      },
+      {
+        "query": "convenience stores in dubai",
+        "rank": 8
+      },
+      {
+        "query": "general stores in dubai",
+        "rank": 9
+      },
+      {
+        "query": "grocery mall in dubai",
+        "rank": 10
+      },
+      {
+        "query": "supermarket stores in dubai",
+        "rank": 11
+      },
+      {
+        "query": "grocery shopping in dubai online",
+        "rank": 12
+      },
+      {
+        "query": "indian grocery stores in dubai",
+        "rank": 13
+      },
+      {
+        "query": "best grocery stores in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "dubai-south"
+    ]
+  },
+  {
+    "category": "Clothing",
+    "seed": "clothing in dubai",
+    "suggestions": [
+      {
+        "query": "clothing in dubai for women",
+        "rank": 0
+      },
+      {
+        "query": "clothing in dubai for men",
+        "rank": 1
+      },
+      {
+        "query": "clothing in dubai mall",
+        "rank": 2
+      },
+      {
+        "query": "clothes in dubai price",
+        "rank": 3
+      },
+      {
+        "query": "clothes in dubai cheap",
+        "rank": 4
+      },
+      {
+        "query": "clothes in dubai online",
+        "rank": 5
+      },
+      {
+        "query": "clothing shops in dubai mall",
+        "rank": 6
+      },
+      {
+        "query": "clothing stores in dubai",
+        "rank": 7
+      },
+      {
+        "query": "clothing brands in dubai",
+        "rank": 8
+      },
+      {
+        "query": "clothing brands in dubai mall",
+        "rank": 9
+      },
+      {
+        "query": "clothing rules in dubai",
+        "rank": 10
+      },
+      {
+        "query": "clothing offers in dubai",
+        "rank": 11
+      },
+      {
+        "query": "clothing stores in dubai hills mall",
+        "rank": 12
+      },
+      {
+        "query": "traditional clothing in dubai",
+        "rank": 13
+      },
+      {
+        "query": "clothing business in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Bakeries",
+    "seed": "bakeries in dubai",
+    "suggestions": [
+      {
+        "query": "bakeries in dubai hills mall",
+        "rank": 0
+      },
+      {
+        "query": "bakeries in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "bakers in dubai",
+        "rank": 2
+      },
+      {
+        "query": "bakery in dubai hills",
+        "rank": 3
+      },
+      {
+        "query": "bakery in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "bakery in dubai marina mall",
+        "rank": 5,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "bakery in dubai near me",
+        "rank": 6
+      },
+      {
+        "query": "bakery in dubai airport",
+        "rank": 7
+      },
+      {
+        "query": "best bakeries in dubai",
+        "rank": 8
+      },
+      {
+        "query": "top bakeries in dubai",
+        "rank": 9
+      },
+      {
+        "query": "famous bakeries in dubai",
+        "rank": 10
+      },
+      {
+        "query": "french bakeries in dubai",
+        "rank": 11
+      },
+      {
+        "query": "good bakeries in dubai",
+        "rank": 12
+      },
+      {
+        "query": "cake bakeries in dubai",
+        "rank": 13
+      },
+      {
+        "query": "big bakeries in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Hardware",
+    "seed": "hardware in dubai",
+    "suggestions": [
+      {
+        "query": "hardware in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "hardware shop in dubai",
+        "rank": 1
+      },
+      {
+        "query": "hardware suppliers in dubai",
+        "rank": 2
+      },
+      {
+        "query": "hardware companies in dubai",
+        "rank": 3
+      },
+      {
+        "query": "hardware wholesalers in dubai",
+        "rank": 4
+      },
+      {
+        "query": "hardware market in dubai",
+        "rank": 5
+      },
+      {
+        "query": "ace hardware in dubai",
+        "rank": 6
+      },
+      {
+        "query": "hardware jobs in dubai",
+        "rank": 7
+      },
+      {
+        "query": "hardware importers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "hardware shop in dubai silicon oasis",
+        "rank": 9,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "door hardware in dubai",
+        "rank": 10
+      },
+      {
+        "query": "ace hardware in dubai hills mall",
+        "rank": 11
+      },
+      {
+        "query": "hardware store in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "hardware shops in dubai industrial city",
+        "rank": 13
+      },
+      {
+        "query": "hardware shop in dubai south",
+        "rank": 14,
+        "area": "dubai-south"
+      }
+    ],
+    "areasInDemand": [
+      "silicon-oasis",
+      "dubai-south"
+    ]
+  },
+  {
+    "category": "Florists",
+    "seed": "florists in dubai",
+    "suggestions": [
+      {
+        "query": "florists in dubai delivery",
+        "rank": 0
+      },
+      {
+        "query": "florist in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "florist in dubai salary",
+        "rank": 2
+      },
+      {
+        "query": "florist in dubai marina",
+        "rank": 3,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "florist in dubai hills mall",
+        "rank": 4
+      },
+      {
+        "query": "florist in dubai hills",
+        "rank": 5
+      },
+      {
+        "query": "florist in dubai job",
+        "rank": 6
+      },
+      {
+        "query": "florist in dubai airport",
+        "rank": 7
+      },
+      {
+        "query": "best florists in dubai",
+        "rank": 8
+      },
+      {
+        "query": "florists dubai online",
+        "rank": 9
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Pharmacies",
+    "seed": "pharmacies in dubai",
+    "suggestions": [
+      {
+        "query": "pharmacies in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "pharmacies in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "pharmacies in dubai online",
+        "rank": 2
+      },
+      {
+        "query": "pharmacies in dubai airport",
+        "rank": 3
+      },
+      {
+        "query": "pharmacy in dubai south",
+        "rank": 4,
+        "area": "dubai-south"
+      },
+      {
+        "query": "pharmacy in dubai hills",
+        "rank": 5
+      },
+      {
+        "query": "pharmacy in dubai airport terminal 3",
+        "rank": 6
+      },
+      {
+        "query": "pharmacy in dubai festival city mall",
+        "rank": 7,
+        "area": "festival-city"
+      },
+      {
+        "query": "pharmacy in dubai salary",
+        "rank": 8
+      },
+      {
+        "query": "pharmacy in dubai outlet mall",
+        "rank": 9
+      },
+      {
+        "query": "pharmacy in dubai marina mall",
+        "rank": 10,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "pharmacy in dubai terminal 3",
+        "rank": 11
+      },
+      {
+        "query": "pharmacy in dubai airport terminal 1",
+        "rank": 12
+      },
+      {
+        "query": "pharmacy in dubai festival city",
+        "rank": 13,
+        "area": "festival-city"
+      },
+      {
+        "query": "pharmacy in dubai healthcare city",
+        "rank": 14,
+        "area": "healthcare-city"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "festival-city",
+      "dubai-marina",
+      "healthcare-city"
+    ]
+  },
+  {
+    "category": "Car Wash",
+    "seed": "car wash in dubai",
+    "suggestions": [
+      {
+        "query": "car wash in dubai industrial city",
+        "rank": 0
+      },
+      {
+        "query": "car wash in dubai silicon oasis",
+        "rank": 1,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "car wash in dubai investment park",
+        "rank": 2,
+        "area": "dip"
+      },
+      {
+        "query": "car wash in dubai price",
+        "rank": 3
+      },
+      {
+        "query": "car wash in dubai mall",
+        "rank": 4
+      },
+      {
+        "query": "car wash in dubai hills mall",
+        "rank": 5
+      },
+      {
+        "query": "car wash in dubai south",
+        "rank": 6,
+        "area": "dubai-south"
+      },
+      {
+        "query": "car wash in dubai hills",
+        "rank": 7
+      },
+      {
+        "query": "car wash in dubai for sale",
+        "rank": 8
+      },
+      {
+        "query": "car wash in dubailand",
+        "rank": 9
+      },
+      {
+        "query": "car wash in dubai salary",
+        "rank": 10
+      },
+      {
+        "query": "car wash in dubai at home",
+        "rank": 11
+      },
+      {
+        "query": "car wash in dubai marina",
+        "rank": 12,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "car wash in dubai job",
+        "rank": 13
+      },
+      {
+        "query": "car wash in dubai near me",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "silicon-oasis",
+      "dip",
+      "dubai-south",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Dentists",
+    "seed": "dentists in dubai",
+    "suggestions": [
+      {
+        "query": "dentists in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "dentistry in dubai",
+        "rank": 1
+      },
+      {
+        "query": "dental in dubai",
+        "rank": 2
+      },
+      {
+        "query": "dentist in dubai jobs",
+        "rank": 3
+      },
+      {
+        "query": "dentist in dubai prices",
+        "rank": 4
+      },
+      {
+        "query": "dentist in dubai silicon oasis",
+        "rank": 5,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "dentistry in dubai after bds",
+        "rank": 6
+      },
+      {
+        "query": "dentist in dubai mall",
+        "rank": 7
+      },
+      {
+        "query": "dentist in dubai hills",
+        "rank": 8
+      },
+      {
+        "query": "dentist in dubai healthcare city",
+        "rank": 9,
+        "area": "healthcare-city"
+      },
+      {
+        "query": "dentistry in dubai university",
+        "rank": 10
+      },
+      {
+        "query": "dentist in dubai hills mall",
+        "rank": 11
+      },
+      {
+        "query": "dentist in dubai reddit",
+        "rank": 12
+      },
+      {
+        "query": "dentist in dubai cheap",
+        "rank": 13
+      },
+      {
+        "query": "dentist in dubai near me",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "silicon-oasis",
+      "healthcare-city"
+    ]
+  },
+  {
+    "category": "Banking & Exchange",
+    "seed": "banking & exchange in dubai",
+    "suggestions": [
+      {
+        "query": "exchange bank in dubai",
+        "rank": 0
+      },
+      {
+        "query": "federal bank exchange in dubai",
+        "rank": 1
+      },
+      {
+        "query": "crypto exchange bank in dubai",
+        "rank": 2
+      },
+      {
+        "query": "money exchange bank in dubai",
+        "rank": 3
+      },
+      {
+        "query": "list of exchange in dubai",
+        "rank": 4
+      },
+      {
+        "query": "banking dubai",
+        "rank": 5
+      },
+      {
+        "query": "banking and finance in dubai",
+        "rank": 6
+      },
+      {
+        "query": "banking services dubai",
+        "rank": 7
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Salons",
+    "seed": "salons in dubai",
+    "suggestions": [
+      {
+        "query": "salons in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "salons in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "salons in dubai hills",
+        "rank": 2
+      },
+      {
+        "query": "salons in dubai festival city mall",
+        "rank": 3,
+        "area": "festival-city"
+      },
+      {
+        "query": "salons in dubailand",
+        "rank": 4
+      },
+      {
+        "query": "salons in dubai silicon oasis",
+        "rank": 5,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "salons in dubai marina",
+        "rank": 6,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "salons in dubai south",
+        "rank": 7,
+        "area": "dubai-south"
+      },
+      {
+        "query": "salons in dubailand residence complex",
+        "rank": 8
+      },
+      {
+        "query": "salon in dubai airport",
+        "rank": 9
+      },
+      {
+        "query": "salon in dubai price list",
+        "rank": 10
+      },
+      {
+        "query": "salon in dubai for ladies",
+        "rank": 11
+      },
+      {
+        "query": "salon in dubai festival city",
+        "rank": 12,
+        "area": "festival-city"
+      },
+      {
+        "query": "salon in dubai for sale",
+        "rank": 13
+      },
+      {
+        "query": "salon in dubai for men",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "festival-city",
+      "silicon-oasis",
+      "dubai-marina",
+      "dubai-south"
+    ]
+  },
+  {
+    "category": "Mobile Phone Shops",
+    "seed": "mobile phone shops in dubai",
+    "suggestions": [
+      {
+        "query": "mobile phone shops in dubai airport",
+        "rank": 0
+      },
+      {
+        "query": "mobile phone buy in dubai",
+        "rank": 1
+      },
+      {
+        "query": "mobile phone shops in deira dubai",
+        "rank": 2,
+        "area": "deira"
+      },
+      {
+        "query": "mobile phone shops in bur dubai",
+        "rank": 3,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "best mobile phone shops in dubai",
+        "rank": 4
+      },
+      {
+        "query": "mobile phone shops in dubai mall",
+        "rank": 5
+      },
+      {
+        "query": "mobile phone online shopping in dubai",
+        "rank": 6
+      },
+      {
+        "query": "cheapest mobile phone store in dubai",
+        "rank": 7
+      },
+      {
+        "query": "mobile shops in dubai",
+        "rank": 8
+      },
+      {
+        "query": "mobile shops in dubai plaza rawalpindi",
+        "rank": 9
+      },
+      {
+        "query": "mobile shops in dubai plaza",
+        "rank": 10
+      },
+      {
+        "query": "mobile shop in dubai airport",
+        "rank": 11
+      },
+      {
+        "query": "mobile shops in dubai deira",
+        "rank": 12,
+        "area": "deira"
+      }
+    ],
+    "areasInDemand": [
+      "deira",
+      "bur-dubai"
+    ]
+  },
+  {
+    "category": "Pet Shops",
+    "seed": "pet shops in dubai",
+    "suggestions": [
+      {
+        "query": "pet shops in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "pet shops in dubai that sell dogs",
+        "rank": 1
+      },
+      {
+        "query": "pet shops in dubai marina",
+        "rank": 2,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "pet shops in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "pet shops in dubai near me",
+        "rank": 4
+      },
+      {
+        "query": "dog shops in dubai",
+        "rank": 5
+      },
+      {
+        "query": "dog shops in dubai mall",
+        "rank": 6
+      },
+      {
+        "query": "best pet shops in dubai",
+        "rank": 7
+      },
+      {
+        "query": "pet shops in bur dubai",
+        "rank": 8,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "biggest pet shops in dubai",
+        "rank": 9
+      },
+      {
+        "query": "pet shops in jlt dubai",
+        "rank": 10
+      },
+      {
+        "query": "pet food shops in dubai",
+        "rank": 11
+      },
+      {
+        "query": "big pet shops in dubai",
+        "rank": 12
+      },
+      {
+        "query": "pet grooming shops in dubai",
+        "rank": 13
+      },
+      {
+        "query": "top pet shops in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "bur-dubai"
+    ]
+  },
+  {
+    "category": "Spas",
+    "seed": "spas in dubai",
+    "suggestions": [
+      {
+        "query": "spa in dubai marina",
+        "rank": 0,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "spa in dubai near me",
+        "rank": 1
+      },
+      {
+        "query": "spa in dubai airport",
+        "rank": 2
+      },
+      {
+        "query": "spa in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "spa in dubai price",
+        "rank": 4
+      },
+      {
+        "query": "spa in dubai airport terminal 3",
+        "rank": 5
+      },
+      {
+        "query": "spa in dubai production city",
+        "rank": 6
+      },
+      {
+        "query": "spa in dubai deira",
+        "rank": 7,
+        "area": "deira"
+      },
+      {
+        "query": "spa in dubai south",
+        "rank": 8,
+        "area": "dubai-south"
+      },
+      {
+        "query": "spa in dubai investment park",
+        "rank": 9,
+        "area": "dip"
+      },
+      {
+        "query": "spa in dubai silicon oasis",
+        "rank": 10,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "spa in dubai 24 hours",
+        "rank": 11
+      },
+      {
+        "query": "spa in dubai industrial city",
+        "rank": 12
+      },
+      {
+        "query": "spa in dubai hills",
+        "rank": 13
+      },
+      {
+        "query": "spa in dubai land",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "deira",
+      "dubai-south",
+      "dip",
+      "silicon-oasis"
+    ]
+  },
+  {
+    "category": "Schools",
+    "seed": "schools in dubai",
+    "suggestions": [
+      {
+        "query": "schools in dubai south",
+        "rank": 0,
+        "area": "dubai-south"
+      },
+      {
+        "query": "schools in dubai careers",
+        "rank": 1
+      },
+      {
+        "query": "schools in dubai silicon oasis",
+        "rank": 2,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "schools in dubailand",
+        "rank": 3
+      },
+      {
+        "query": "schools in dubai hills",
+        "rank": 4
+      },
+      {
+        "query": "schools in dubai list",
+        "rank": 5
+      },
+      {
+        "query": "schools in dubai cbse",
+        "rank": 6
+      },
+      {
+        "query": "schools in dubai investment park",
+        "rank": 7,
+        "area": "dip"
+      },
+      {
+        "query": "schools in dubai sports city",
+        "rank": 8,
+        "area": "sports-city"
+      },
+      {
+        "query": "schools in dubai south area",
+        "rank": 9,
+        "area": "dubai-south"
+      },
+      {
+        "query": "schools in dubai british curriculum",
+        "rank": 10
+      },
+      {
+        "query": "schools in dubai land area",
+        "rank": 11
+      },
+      {
+        "query": "schools in dubai with low fees",
+        "rank": 12
+      },
+      {
+        "query": "schools in dubai hiring",
+        "rank": 13
+      },
+      {
+        "query": "schools in dubai marina",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "silicon-oasis",
+      "dip",
+      "sports-city",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Laundry",
+    "seed": "laundry in dubai",
+    "suggestions": [
+      {
+        "query": "laundry in dubai south",
+        "rank": 0,
+        "area": "dubai-south"
+      },
+      {
+        "query": "laundry in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "laundry in dubailand",
+        "rank": 2
+      },
+      {
+        "query": "laundry in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "laundry in dubai industrial city",
+        "rank": 4
+      },
+      {
+        "query": "laundry in dubai silicon oasis",
+        "rank": 5,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "laundry in dubai marina",
+        "rank": 6,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "laundry in dubai hills",
+        "rank": 7
+      },
+      {
+        "query": "laundry in dubai sports city",
+        "rank": 8,
+        "area": "sports-city"
+      },
+      {
+        "query": "laundry in dubai investment park",
+        "rank": 9,
+        "area": "dip"
+      },
+      {
+        "query": "laundry in dubai price",
+        "rank": 10
+      },
+      {
+        "query": "laundry in dubai creek harbour",
+        "rank": 11
+      },
+      {
+        "query": "laundry in dubailand residence complex",
+        "rank": 12
+      },
+      {
+        "query": "laundry in dubai near me",
+        "rank": 13
+      },
+      {
+        "query": "laundry in dubai festival city mall",
+        "rank": 14,
+        "area": "festival-city"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "silicon-oasis",
+      "dubai-marina",
+      "sports-city",
+      "dip",
+      "festival-city"
+    ]
+  },
+  {
+    "category": "Barbers",
+    "seed": "barbers in dubai",
+    "suggestions": [
+      {
+        "query": "barbers in dubai hills",
+        "rank": 0
+      },
+      {
+        "query": "barbers in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "barbers in dubai hills mall",
+        "rank": 2
+      },
+      {
+        "query": "barbers in dubai marina",
+        "rank": 3,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "barbers in dubai south",
+        "rank": 4,
+        "area": "dubai-south"
+      },
+      {
+        "query": "barbers in dubai airport",
+        "rank": 5
+      },
+      {
+        "query": "haircut in dubai",
+        "rank": 6
+      },
+      {
+        "query": "haircut in dubai price",
+        "rank": 7
+      },
+      {
+        "query": "haircut in dubai for ladies",
+        "rank": 8
+      },
+      {
+        "query": "haircut in dubai mall",
+        "rank": 9
+      },
+      {
+        "query": "haircut in dubai airport",
+        "rank": 10
+      },
+      {
+        "query": "haircut in dubai hills mall",
+        "rank": 11
+      },
+      {
+        "query": "barber in dubai salary",
+        "rank": 12
+      },
+      {
+        "query": "haircut in dubai machine",
+        "rank": 13
+      },
+      {
+        "query": "barber in dubai silicon oasis",
+        "rank": 14,
+        "area": "silicon-oasis"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "dubai-south",
+      "silicon-oasis"
+    ]
+  },
+  {
+    "category": "Training",
+    "seed": "training in dubai",
+    "suggestions": [
+      {
+        "query": "training courses in dubai",
+        "rank": 0
+      },
+      {
+        "query": "training institute in dubai",
+        "rank": 1
+      },
+      {
+        "query": "barista training in dubai",
+        "rank": 2
+      },
+      {
+        "query": "personal training in dubai",
+        "rank": 3
+      },
+      {
+        "query": "pilot training in dubai",
+        "rank": 4
+      },
+      {
+        "query": "pilot training in dubai cost",
+        "rank": 5
+      },
+      {
+        "query": "training companies in dubai",
+        "rank": 6
+      },
+      {
+        "query": "corporate training in dubai",
+        "rank": 7
+      },
+      {
+        "query": "training jobs in dubai",
+        "rank": 8
+      },
+      {
+        "query": "sap training in dubai",
+        "rank": 9
+      },
+      {
+        "query": "safety training in dubai",
+        "rank": 10
+      },
+      {
+        "query": "ai training in dubai",
+        "rank": 11
+      },
+      {
+        "query": "bls training in dubai",
+        "rank": 12
+      },
+      {
+        "query": "training centers in dubai",
+        "rank": 13
+      },
+      {
+        "query": "security training in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Clubs & Lounges",
+    "seed": "clubs & lounges in dubai",
+    "suggestions": [
+      {
+        "query": "clubs bars in dubai",
+        "rank": 0
+      },
+      {
+        "query": "lounge clubs in dubai",
+        "rank": 1
+      },
+      {
+        "query": "clubs and pubs in dubai",
+        "rank": 2
+      },
+      {
+        "query": "best clubs bars in dubai",
+        "rank": 3
+      },
+      {
+        "query": "best lounge clubs in dubai",
+        "rank": 4
+      },
+      {
+        "query": "dubai hotels with club lounge access",
+        "rank": 5
+      },
+      {
+        "query": "club lounge access meaning",
+        "rank": 6
+      },
+      {
+        "query": "lounge bars in dubai",
+        "rank": 7
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Movers & Storage",
+    "seed": "movers & storage in dubai",
+    "suggestions": [
+      {
+        "query": "movers and storage in dubai",
+        "rank": 0
+      },
+      {
+        "query": "moving and storage in dubai",
+        "rank": 1
+      },
+      {
+        "query": "storage dubai prices",
+        "rank": 2
+      },
+      {
+        "query": "storage unit cost dubai",
+        "rank": 3
+      },
+      {
+        "query": "storage with movers near me",
+        "rank": 4
+      },
+      {
+        "query": "movers and storage service",
+        "rank": 5
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Landscaping",
+    "seed": "landscaping in dubai",
+    "suggestions": [
+      {
+        "query": "landscaping salary in dubai",
+        "rank": 0
+      },
+      {
+        "query": "lawn care in dubai",
+        "rank": 1
+      },
+      {
+        "query": "landscaping companies in dubai",
+        "rank": 2
+      },
+      {
+        "query": "landscaping services in dubai",
+        "rank": 3
+      },
+      {
+        "query": "landscaping jobs in dubai",
+        "rank": 4
+      },
+      {
+        "query": "landscaping contractors in dubai",
+        "rank": 5
+      },
+      {
+        "query": "villa landscaping in dubai",
+        "rank": 6
+      },
+      {
+        "query": "landscaping courses in dubai",
+        "rank": 7
+      },
+      {
+        "query": "landscaping work in dubai",
+        "rank": 8
+      },
+      {
+        "query": "garden landscaping in dubai",
+        "rank": 9
+      },
+      {
+        "query": "landscaping companies in dubai jobs",
+        "rank": 10
+      },
+      {
+        "query": "landscaping business in dubai",
+        "rank": 11
+      },
+      {
+        "query": "commercial landscaping in dubai",
+        "rank": 12
+      },
+      {
+        "query": "best landscaping in dubai",
+        "rank": 13
+      },
+      {
+        "query": "landscaping cost in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Consulting",
+    "seed": "consulting in dubai",
+    "suggestions": [
+      {
+        "query": "consultants in dubai for jobs",
+        "rank": 0
+      },
+      {
+        "query": "consultants in dubai for study abroad",
+        "rank": 1
+      },
+      {
+        "query": "consultants in dubai for construction",
+        "rank": 2
+      },
+      {
+        "query": "consultant in dubai salary",
+        "rank": 3
+      },
+      {
+        "query": "consulting firms in dubai",
+        "rank": 4
+      },
+      {
+        "query": "consulting firms in dubai for jobs",
+        "rank": 5
+      },
+      {
+        "query": "consulting roles in dubai",
+        "rank": 6
+      },
+      {
+        "query": "business consulting in dubai",
+        "rank": 7
+      },
+      {
+        "query": "management consulting in dubai",
+        "rank": 8
+      },
+      {
+        "query": "consulting internships in dubai",
+        "rank": 9
+      },
+      {
+        "query": "ai consulting in dubai",
+        "rank": 10
+      },
+      {
+        "query": "hr consulting in dubai",
+        "rank": 11
+      },
+      {
+        "query": "strategy consulting in dubai",
+        "rank": 12
+      },
+      {
+        "query": "fti consulting in dubai",
+        "rank": 13
+      },
+      {
+        "query": "deloitte consulting in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Photography",
+    "seed": "photography in dubai",
+    "suggestions": [
+      {
+        "query": "photography in dubai rules",
+        "rank": 0
+      },
+      {
+        "query": "photography in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "photographer in dubai",
+        "rank": 2
+      },
+      {
+        "query": "photo in dubai",
+        "rank": 3
+      },
+      {
+        "query": "photographer in dubai price",
+        "rank": 4
+      },
+      {
+        "query": "photographer in dubai jobs",
+        "rank": 5
+      },
+      {
+        "query": "photographer in dubai mall",
+        "rank": 6
+      },
+      {
+        "query": "dubai mall photos",
+        "rank": 7
+      },
+      {
+        "query": "photographer in dubai salary",
+        "rank": 8
+      },
+      {
+        "query": "photo in dubai airport",
+        "rank": 9
+      },
+      {
+        "query": "photo in dubai hills mall",
+        "rank": 10
+      },
+      {
+        "query": "photographer in dubai instagram",
+        "rank": 11
+      },
+      {
+        "query": "photo in dubai frame",
+        "rank": 12
+      },
+      {
+        "query": "photography jobs in dubai",
+        "rank": 13
+      },
+      {
+        "query": "photography courses in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Auto Parts",
+    "seed": "auto parts in dubai",
+    "suggestions": [
+      {
+        "query": "spare parts in dubai",
+        "rank": 0
+      },
+      {
+        "query": "car parts in dubai",
+        "rank": 1
+      },
+      {
+        "query": "spare parts in dubai wholesale",
+        "rank": 2
+      },
+      {
+        "query": "vehicle parts in dubai",
+        "rank": 3
+      },
+      {
+        "query": "spare parts in dubai for toyota",
+        "rank": 4
+      },
+      {
+        "query": "motor parts in dubai",
+        "rank": 5
+      },
+      {
+        "query": "auto spare parts in dubai",
+        "rank": 6
+      },
+      {
+        "query": "auto parts market in dubai",
+        "rank": 7
+      },
+      {
+        "query": "used auto parts in dubai",
+        "rank": 8
+      },
+      {
+        "query": "auto parts shop in dubai",
+        "rank": 9
+      },
+      {
+        "query": "auto parts dealers in dubai",
+        "rank": 10
+      },
+      {
+        "query": "auto parts supplier in dubai",
+        "rank": 11
+      },
+      {
+        "query": "auto parts importers in dubai",
+        "rank": 12
+      },
+      {
+        "query": "auto parts jobs in dubai",
+        "rank": 13
+      },
+      {
+        "query": "toyota auto parts in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Gifts",
+    "seed": "gifts in dubai",
+    "suggestions": [
+      {
+        "query": "gifts in dubai delivery",
+        "rank": 0
+      },
+      {
+        "query": "gifts in dubai online",
+        "rank": 1
+      },
+      {
+        "query": "gifts in dubai mall",
+        "rank": 2
+      },
+      {
+        "query": "gifts in dubai for kids",
+        "rank": 3
+      },
+      {
+        "query": "gifts in dubai for men",
+        "rank": 4
+      },
+      {
+        "query": "gifts in dubai airport",
+        "rank": 5
+      },
+      {
+        "query": "corporate gifts in dubai",
+        "rank": 6
+      },
+      {
+        "query": "promotional gifts in dubai",
+        "rank": 7
+      },
+      {
+        "query": "send gifts in dubai",
+        "rank": 8
+      },
+      {
+        "query": "birthday gifts in dubai",
+        "rank": 9
+      },
+      {
+        "query": "personalized gifts in dubai",
+        "rank": 10
+      },
+      {
+        "query": "customized gifts in dubai",
+        "rank": 11
+      },
+      {
+        "query": "gifts companies in dubai",
+        "rank": 12
+      },
+      {
+        "query": "best gifts in dubai",
+        "rank": 13
+      },
+      {
+        "query": "diwali gifts in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Printing",
+    "seed": "printing in dubai",
+    "suggestions": [
+      {
+        "query": "printing in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "printing in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "printing in dubai airport",
+        "rank": 2
+      },
+      {
+        "query": "printing in dubai hills",
+        "rank": 3
+      },
+      {
+        "query": "printing in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "printers in dubai",
+        "rank": 5
+      },
+      {
+        "query": "printer in dubai mall",
+        "rank": 6
+      },
+      {
+        "query": "printer in dubai price",
+        "rank": 7
+      },
+      {
+        "query": "printer in dubai airport",
+        "rank": 8
+      },
+      {
+        "query": "printer in dubai hills mall",
+        "rank": 9
+      },
+      {
+        "query": "printing press in dubai",
+        "rank": 10
+      },
+      {
+        "query": "printing services in dubai",
+        "rank": 11
+      },
+      {
+        "query": "printing company in dubai",
+        "rank": 12
+      },
+      {
+        "query": "3d printing in dubai",
+        "rank": 13
+      },
+      {
+        "query": "printing jobs in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Accounting",
+    "seed": "accounting in dubai",
+    "suggestions": [
+      {
+        "query": "accounting in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "accounting in dubai jobs",
+        "rank": 1
+      },
+      {
+        "query": "accountant in dubai hiring",
+        "rank": 2
+      },
+      {
+        "query": "accountant in dubai salary per month",
+        "rank": 3
+      },
+      {
+        "query": "accountant in dubai reddit",
+        "rank": 4
+      },
+      {
+        "query": "accountant in dubai for filipino",
+        "rank": 5
+      },
+      {
+        "query": "accounting services in dubai",
+        "rank": 6
+      },
+      {
+        "query": "accounting firms in dubai",
+        "rank": 7
+      },
+      {
+        "query": "accounting jobs in dubai with visa sponsorship",
+        "rank": 8
+      },
+      {
+        "query": "accounting courses in dubai",
+        "rank": 9
+      },
+      {
+        "query": "accounting companies in dubai",
+        "rank": 10
+      },
+      {
+        "query": "accounting software in dubai",
+        "rank": 11
+      },
+      {
+        "query": "accounting consultancy in dubai",
+        "rank": 12
+      },
+      {
+        "query": "accounting firm in dubai uae",
+        "rank": 13
+      },
+      {
+        "query": "accounting jobs in dubai for freshers",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Veterinary",
+    "seed": "veterinary in dubai",
+    "suggestions": [
+      {
+        "query": "vet in dubai",
+        "rank": 0
+      },
+      {
+        "query": "vet in dubai salary",
+        "rank": 1
+      },
+      {
+        "query": "vet in dubai south",
+        "rank": 2,
+        "area": "dubai-south"
+      },
+      {
+        "query": "vet in dubai silicon oasis",
+        "rank": 3,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "vet in dubai hills",
+        "rank": 4
+      },
+      {
+        "query": "vet in dubai marina",
+        "rank": 5,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "vet in dubai near me",
+        "rank": 6
+      },
+      {
+        "query": "vet in dubailand",
+        "rank": 7
+      },
+      {
+        "query": "veterinary jobs in dubai",
+        "rank": 8
+      },
+      {
+        "query": "veterinary clinic in dubai",
+        "rank": 9
+      },
+      {
+        "query": "veterinary courses in dubai",
+        "rank": 10
+      },
+      {
+        "query": "veterinary jobs in dubai for foreigners",
+        "rank": 11
+      },
+      {
+        "query": "veterinary hospital in dubai",
+        "rank": 12
+      },
+      {
+        "query": "veterinary pharmacy in dubai",
+        "rank": 13
+      },
+      {
+        "query": "veterinary colleges in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "silicon-oasis",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Opticians",
+    "seed": "opticians in dubai",
+    "suggestions": [
+      {
+        "query": "opticians in dubai hills mall",
+        "rank": 0
+      },
+      {
+        "query": "opticians in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "opticians in dubai hills",
+        "rank": 2
+      },
+      {
+        "query": "opticians in dubai marina mall",
+        "rank": 3,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "optical in dubai",
+        "rank": 4
+      },
+      {
+        "query": "optical in dubai mall",
+        "rank": 5
+      },
+      {
+        "query": "optical in dubai hills mall",
+        "rank": 6
+      },
+      {
+        "query": "vision express in dubai",
+        "rank": 7
+      },
+      {
+        "query": "specsavers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "optical in dubai hills",
+        "rank": 9
+      },
+      {
+        "query": "vision express in dubai mall",
+        "rank": 10
+      },
+      {
+        "query": "best opticians in dubai",
+        "rank": 11
+      },
+      {
+        "query": "opticians jobs in dubai",
+        "rank": 12
+      },
+      {
+        "query": "opticians in bur dubai",
+        "rank": 13,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "opticians dubai marina",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "bur-dubai"
+    ]
+  },
+  {
+    "category": "Tailors",
+    "seed": "tailors in dubai",
+    "suggestions": [
+      {
+        "query": "tailors in dubai for ladies",
+        "rank": 0
+      },
+      {
+        "query": "tailors in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "tailors in dubai for men",
+        "rank": 2
+      },
+      {
+        "query": "tailors in dubai hills mall",
+        "rank": 3
+      },
+      {
+        "query": "tailors in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "tailors in dubailand",
+        "rank": 5
+      },
+      {
+        "query": "tailors in dubai hills",
+        "rank": 6
+      },
+      {
+        "query": "tailors in dubai silicon oasis",
+        "rank": 7,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "best tailors in dubai",
+        "rank": 8
+      },
+      {
+        "query": "suit tailors in dubai",
+        "rank": 9
+      },
+      {
+        "query": "cheap tailors in dubai",
+        "rank": 10
+      },
+      {
+        "query": "bespoke tailors in dubai",
+        "rank": 11
+      },
+      {
+        "query": "tailors in bur dubai",
+        "rank": 12,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "good tailors in dubai",
+        "rank": 13
+      },
+      {
+        "query": "tailors job in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "silicon-oasis",
+      "bur-dubai"
+    ]
+  },
+  {
+    "category": "Wholesale & Manufacturing",
+    "seed": "wholesale & manufacturing in dubai",
+    "suggestions": [
+      {
+        "query": "wholesale abaya manufacturers in dubai",
+        "rank": 0
+      },
+      {
+        "query": "wholesale perfume manufacturers in dubai",
+        "rank": 1
+      },
+      {
+        "query": "wholesale furniture manufacturers in dubai",
+        "rank": 2
+      },
+      {
+        "query": "wholesale.abaya.factory in dubai",
+        "rank": 3
+      },
+      {
+        "query": "wholesale perfume factory in dubai",
+        "rank": 4
+      },
+      {
+        "query": "wholesale gold jewellery manufacturers in dubai",
+        "rank": 5
+      },
+      {
+        "query": "wholesale distributors in uae",
+        "rank": 6
+      },
+      {
+        "query": "wholesale dates market in dubai",
+        "rank": 7
+      },
+      {
+        "query": "wholesale dates suppliers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "wholesale markets in dubai",
+        "rank": 9
+      },
+      {
+        "query": "wholesale manufacturers dubai",
+        "rank": 10
+      },
+      {
+        "query": "wholesale in dubai",
+        "rank": 11
+      },
+      {
+        "query": "wholesale product in dubai",
+        "rank": 12
+      },
+      {
+        "query": "wholesale in uae",
+        "rank": 13
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Nail Salons",
+    "seed": "nail salons in dubai",
+    "suggestions": [
+      {
+        "query": "nail salons in dubai hills mall",
+        "rank": 0
+      },
+      {
+        "query": "nail salons in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "nail salons in dubai hills",
+        "rank": 2
+      },
+      {
+        "query": "nail salons in dubai marina",
+        "rank": 3,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "nail salons in dubai near me",
+        "rank": 4
+      },
+      {
+        "query": "nail salons in dubai silicon oasis",
+        "rank": 5,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "nail salon in dubai airport",
+        "rank": 6
+      },
+      {
+        "query": "nail salon in dubai festival city",
+        "rank": 7,
+        "area": "festival-city"
+      },
+      {
+        "query": "nail salon in dubai south",
+        "rank": 8,
+        "area": "dubai-south"
+      },
+      {
+        "query": "nail salon in dubai marina mall",
+        "rank": 9,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "nail salon in dubai festival city mall",
+        "rank": 10,
+        "area": "festival-city"
+      },
+      {
+        "query": "nail salon in dubai under 100 dirhams",
+        "rank": 11
+      },
+      {
+        "query": "nail salon in dubai land",
+        "rank": 12
+      },
+      {
+        "query": "nail salon in dubai design district",
+        "rank": 13
+      },
+      {
+        "query": "nail places in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "silicon-oasis",
+      "festival-city",
+      "dubai-south"
+    ]
+  },
+  {
+    "category": "Labs & Diagnostics",
+    "seed": "labs & diagnostics in dubai",
+    "suggestions": [
+      {
+        "query": "diagnostics labs in dubai",
+        "rank": 0
+      },
+      {
+        "query": "top diagnostic labs in dubai",
+        "rank": 1
+      },
+      {
+        "query": "list of diagnostic labs in india",
+        "rank": 2
+      },
+      {
+        "query": "labs and diagnostics near me",
+        "rank": 3
+      },
+      {
+        "query": "laboratory diagnostic near me",
+        "rank": 4
+      },
+      {
+        "query": "labs in dubai",
+        "rank": 5
+      },
+      {
+        "query": "labs in dubai healthcare city",
+        "rank": 6,
+        "area": "healthcare-city"
+      },
+      {
+        "query": "labs in deira",
+        "rank": 7,
+        "area": "deira"
+      }
+    ],
+    "areasInDemand": [
+      "healthcare-city",
+      "deira"
+    ]
+  },
+  {
+    "category": "Security",
+    "seed": "security in dubai",
+    "suggestions": [
+      {
+        "query": "security in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "security in dubai airport",
+        "rank": 1
+      },
+      {
+        "query": "security in dubai jobs",
+        "rank": 2
+      },
+      {
+        "query": "security in dubai salary per month",
+        "rank": 3
+      },
+      {
+        "query": "security in dubai mall",
+        "rank": 4
+      },
+      {
+        "query": "security companies in dubai",
+        "rank": 5
+      },
+      {
+        "query": "security jobs in dubai with free visa and ticket",
+        "rank": 6
+      },
+      {
+        "query": "security jobs in dubai for foreigners",
+        "rank": 7
+      },
+      {
+        "query": "security jobs in dubai salary per month",
+        "rank": 8
+      },
+      {
+        "query": "security guard in dubai salary",
+        "rank": 9
+      },
+      {
+        "query": "security jobs in dubai salary",
+        "rank": 10
+      },
+      {
+        "query": "security companies in dubai vacancies",
+        "rank": 11
+      },
+      {
+        "query": "cyber security in dubai",
+        "rank": 12
+      },
+      {
+        "query": "security services in dubai",
+        "rank": 13
+      },
+      {
+        "query": "security course in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Marketing & Tech",
+    "seed": "marketing & tech in dubai",
+    "suggestions": [
+      {
+        "query": "tech market in dubai",
+        "rank": 0
+      },
+      {
+        "query": "tech marketing jobs in dubai",
+        "rank": 1
+      },
+      {
+        "query": "tech marketing summit in dubai",
+        "rank": 2
+      },
+      {
+        "query": "dubai marketing job vacancy",
+        "rank": 3
+      },
+      {
+        "query": "marketing courses in dubai",
+        "rank": 4
+      },
+      {
+        "query": "technical marketing co llc dubai photos",
+        "rank": 5
+      },
+      {
+        "query": "marketing team in dubai",
+        "rank": 6
+      },
+      {
+        "query": "marketing in dubai",
+        "rank": 7
+      },
+      {
+        "query": "technical marketing co llc dubai reviews",
+        "rank": 8
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Physiotherapy",
+    "seed": "physiotherapy in dubai",
+    "suggestions": [
+      {
+        "query": "physiotherapy in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "physiotherapy in dubai jobs",
+        "rank": 1
+      },
+      {
+        "query": "physiotherapy in dubai salary in indian rupees",
+        "rank": 2
+      },
+      {
+        "query": "physiotherapy in dubai healthcare city",
+        "rank": 3,
+        "area": "healthcare-city"
+      },
+      {
+        "query": "physiotherapy in dubai price",
+        "rank": 4
+      },
+      {
+        "query": "physiotherapy in dubai marina",
+        "rank": 5,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "physiotherapy in dubai hills",
+        "rank": 6
+      },
+      {
+        "query": "physiotherapy in dubai salary per month",
+        "rank": 7
+      },
+      {
+        "query": "physiotherapy in dubai reddit",
+        "rank": 8
+      },
+      {
+        "query": "physiotherapy in dubai silicon oasis",
+        "rank": 9,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "physiotherapist in dubai",
+        "rank": 10
+      },
+      {
+        "query": "physio in dubai",
+        "rank": 11
+      },
+      {
+        "query": "physiotherapist in dubai salary",
+        "rank": 12
+      },
+      {
+        "query": "physiotherapist in dubai jobs",
+        "rank": 13
+      },
+      {
+        "query": "physiotherapist in dubai hiring",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "healthcare-city",
+      "dubai-marina",
+      "silicon-oasis"
+    ]
+  },
+  {
+    "category": "Books & Stationery",
+    "seed": "books & stationery in dubai",
+    "suggestions": [],
+    "areasInDemand": []
+  },
+  {
+    "category": "Tours & Charters",
+    "seed": "tours & charters in dubai",
+    "suggestions": [],
+    "areasInDemand": []
+  },
+  {
+    "category": "Cinemas & Venues",
+    "seed": "cinemas & venues in dubai",
+    "suggestions": [
+      {
+        "query": "cinema halls in dubai",
+        "rank": 0
+      },
+      {
+        "query": "cinema places in dubai",
+        "rank": 1
+      },
+      {
+        "query": "reel cinemas locations in dubai",
+        "rank": 2
+      },
+      {
+        "query": "vox cinemas locations in dubai",
+        "rank": 3
+      },
+      {
+        "query": "movie theaters in dubai",
+        "rank": 4
+      },
+      {
+        "query": "cinema ticket price in dubai",
+        "rank": 5
+      },
+      {
+        "query": "cheapest cinema in dubai",
+        "rank": 6
+      },
+      {
+        "query": "latest movies in vox cinemas dubai",
+        "rank": 7
+      },
+      {
+        "query": "cinema venues in dubai",
+        "rank": 8
+      },
+      {
+        "query": "cinemas with beds dubai",
+        "rank": 9
+      },
+      {
+        "query": "cinemas in dubai investment park",
+        "rank": 10,
+        "area": "dip"
+      }
+    ],
+    "areasInDemand": [
+      "dip"
+    ]
+  },
+  {
+    "category": "Events",
+    "seed": "events in dubai",
+    "suggestions": [
+      {
+        "query": "events in dubai today",
+        "rank": 0
+      },
+      {
+        "query": "events in dubai this weekend",
+        "rank": 1
+      },
+      {
+        "query": "events in dubai this week",
+        "rank": 2
+      },
+      {
+        "query": "events in dubai tomorrow",
+        "rank": 3
+      },
+      {
+        "query": "events in dubai july 2026",
+        "rank": 4
+      },
+      {
+        "query": "events in dubai in october 2026",
+        "rank": 5
+      },
+      {
+        "query": "events in dubai 2026",
+        "rank": 6
+      },
+      {
+        "query": "events in dubai june 2026",
+        "rank": 7
+      },
+      {
+        "query": "events in dubai tonight",
+        "rank": 8
+      },
+      {
+        "query": "events in dubai july",
+        "rank": 9
+      },
+      {
+        "query": "events in dubai in november 2026",
+        "rank": 10
+      },
+      {
+        "query": "events in dubai in september 2026",
+        "rank": 11
+      },
+      {
+        "query": "events in dubai today free",
+        "rank": 12
+      },
+      {
+        "query": "events in dubai this month",
+        "rank": 13
+      },
+      {
+        "query": "events in dubai august 2026",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Maintenance",
+    "seed": "maintenance in dubai",
+    "suggestions": [
+      {
+        "query": "maintenance company in dubai",
+        "rank": 0
+      },
+      {
+        "query": "maintenance jobs in dubai",
+        "rank": 1
+      },
+      {
+        "query": "ac maintenance in dubai",
+        "rank": 2
+      },
+      {
+        "query": "maintenance work in dubai",
+        "rank": 3
+      },
+      {
+        "query": "maintenance services in dubai",
+        "rank": 4
+      },
+      {
+        "query": "building maintenance in dubai",
+        "rank": 5
+      },
+      {
+        "query": "maintenance jobs in dubai salary",
+        "rank": 6
+      },
+      {
+        "query": "home maintenance in dubai",
+        "rank": 7
+      },
+      {
+        "query": "property maintenance in dubai",
+        "rank": 8
+      },
+      {
+        "query": "pool maintenance in dubai",
+        "rank": 9
+      },
+      {
+        "query": "garden maintenance in dubai",
+        "rank": 10
+      },
+      {
+        "query": "villa maintenance in dubai",
+        "rank": 11
+      },
+      {
+        "query": "website maintenance in dubai",
+        "rank": 12
+      },
+      {
+        "query": "car maintenance in dubai",
+        "rank": 13
+      },
+      {
+        "query": "maintenance engineer in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Car Dealers",
+    "seed": "car dealers in dubai",
+    "suggestions": [
+      {
+        "query": "car dealers in dubai used",
+        "rank": 0
+      },
+      {
+        "query": "car dealers in dubai uae",
+        "rank": 1
+      },
+      {
+        "query": "car dealership in dubai",
+        "rank": 2
+      },
+      {
+        "query": "car dealership in dubai for sale",
+        "rank": 3
+      },
+      {
+        "query": "car sales in dubai",
+        "rank": 4
+      },
+      {
+        "query": "car showroom in dubai",
+        "rank": 5
+      },
+      {
+        "query": "car garages in dubai",
+        "rank": 6
+      },
+      {
+        "query": "car sales in dubai jobs",
+        "rank": 7
+      },
+      {
+        "query": "car showroom in dubai sheikh zayed road",
+        "rank": 8,
+        "area": "sheikh-zayed-road"
+      },
+      {
+        "query": "car sales in dubai dubizzle",
+        "rank": 9
+      },
+      {
+        "query": "automobile dealers in dubai",
+        "rank": 10
+      },
+      {
+        "query": "car showrooms in dubai investment park",
+        "rank": 11,
+        "area": "dip"
+      },
+      {
+        "query": "car showroom in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "vehicle dealers in dubai",
+        "rank": 13
+      },
+      {
+        "query": "car lots in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "sheikh-zayed-road",
+      "dip"
+    ]
+  },
+  {
+    "category": "Nurseries",
+    "seed": "nurseries in dubai",
+    "suggestions": [
+      {
+        "query": "nurseries in dubai south",
+        "rank": 0,
+        "area": "dubai-south"
+      },
+      {
+        "query": "nurseries in dubai hills",
+        "rank": 1
+      },
+      {
+        "query": "nurseries in dubailand",
+        "rank": 2
+      },
+      {
+        "query": "nurseries in dubai silicon oasis",
+        "rank": 3,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "nurseries in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "nurseries in dubai careers",
+        "rank": 5
+      },
+      {
+        "query": "nurseries in dubai sports city",
+        "rank": 6,
+        "area": "sports-city"
+      },
+      {
+        "query": "nursery in dubai near me",
+        "rank": 7
+      },
+      {
+        "query": "nursery in dubai price",
+        "rank": 8
+      },
+      {
+        "query": "nursery in dubailand residence complex",
+        "rank": 9
+      },
+      {
+        "query": "nursery in dubai investment park",
+        "rank": 10,
+        "area": "dip"
+      },
+      {
+        "query": "nursery in dubai internet city",
+        "rank": 11,
+        "area": "internet-city"
+      },
+      {
+        "query": "nursery in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "nursery in dubai al nahda",
+        "rank": 13,
+        "area": "al-nahda"
+      },
+      {
+        "query": "nursery in dubai creek harbour",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south",
+      "silicon-oasis",
+      "dubai-marina",
+      "sports-city",
+      "dip",
+      "internet-city",
+      "al-nahda"
+    ]
+  },
+  {
+    "category": "Petrol Stations",
+    "seed": "petrol stations in dubai",
+    "suggestions": [
+      {
+        "query": "petrol station in dubai hills",
+        "rank": 0
+      },
+      {
+        "query": "petrol station in dubai industrial city",
+        "rank": 1
+      },
+      {
+        "query": "petrol station in dubai south",
+        "rank": 2,
+        "area": "dubai-south"
+      },
+      {
+        "query": "gas stations in dubai",
+        "rank": 3
+      },
+      {
+        "query": "petrol pumps in dubai",
+        "rank": 4
+      },
+      {
+        "query": "fuel stations in dubai",
+        "rank": 5
+      },
+      {
+        "query": "adnoc petrol stations in dubai",
+        "rank": 6
+      },
+      {
+        "query": "best petrol stations in dubai",
+        "rank": 7
+      },
+      {
+        "query": "emarat petrol stations in dubai",
+        "rank": 8
+      },
+      {
+        "query": "enoc petrol stations in dubai",
+        "rank": 9
+      },
+      {
+        "query": "gas station in dubai for sale",
+        "rank": 10
+      },
+      {
+        "query": "filling station in dubai",
+        "rank": 11
+      },
+      {
+        "query": "gas station in dubai hills",
+        "rank": 12
+      },
+      {
+        "query": "petrol station jobs in dubai",
+        "rank": 13
+      },
+      {
+        "query": "biggest petrol station in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-south"
+    ]
+  },
+  {
+    "category": "Legal",
+    "seed": "legal in dubai",
+    "suggestions": [
+      {
+        "query": "legal jobs in dubai",
+        "rank": 0
+      },
+      {
+        "query": "legal translation in dubai",
+        "rank": 1
+      },
+      {
+        "query": "legal consultants in dubai",
+        "rank": 2
+      },
+      {
+        "query": "legal age in dubai",
+        "rank": 3
+      },
+      {
+        "query": "legal jobs in dubai for indian lawyers",
+        "rank": 4
+      },
+      {
+        "query": "legal advisor in dubai",
+        "rank": 5
+      },
+      {
+        "query": "legal jobs in dubai with salary",
+        "rank": 6
+      },
+      {
+        "query": "legal firms in dubai",
+        "rank": 7
+      },
+      {
+        "query": "legal services in dubai",
+        "rank": 8
+      },
+      {
+        "query": "weed legal in dubai",
+        "rank": 9
+      },
+      {
+        "query": "legal jobs in dubai for indian lawyers for freshers",
+        "rank": 10
+      },
+      {
+        "query": "alcohol legal in dubai",
+        "rank": 11
+      },
+      {
+        "query": "legal jobs in dubai for foreigners",
+        "rank": 12
+      },
+      {
+        "query": "legal jobs in dubai for freshers",
+        "rank": 13
+      },
+      {
+        "query": "exness legal in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Tattoo & Piercing",
+    "seed": "tattoo & piercing in dubai",
+    "suggestions": [
+      {
+        "query": "tattoo shop in dubai",
+        "rank": 0
+      },
+      {
+        "query": "tattoo shop in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "tattoo shop in dubai deira",
+        "rank": 2,
+        "area": "deira"
+      },
+      {
+        "query": "tattoo shop in dubai price",
+        "rank": 3
+      },
+      {
+        "query": "tattoo shop in dubai near me",
+        "rank": 4
+      },
+      {
+        "query": "tattoo shop in bur dubai",
+        "rank": 5,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "tattoo shop in karama dubai",
+        "rank": 6
+      },
+      {
+        "query": "tattoo machine shop in dubai",
+        "rank": 7
+      },
+      {
+        "query": "tattoo shop in satwa dubai",
+        "rank": 8
+      },
+      {
+        "query": "temporary tattoo shop in dubai",
+        "rank": 9
+      },
+      {
+        "query": "tattoo ink shop in dubai",
+        "rank": 10
+      },
+      {
+        "query": "best tattoo parlors in dubai",
+        "rank": 11
+      },
+      {
+        "query": "tattoo machine shop in dubai price",
+        "rank": 12
+      },
+      {
+        "query": "tattoo supply shop in dubai",
+        "rank": 13
+      },
+      {
+        "query": "tattoo shop dubai marina",
+        "rank": 14,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "deira",
+      "bur-dubai",
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Sports Clubs",
+    "seed": "sports clubs in dubai",
+    "suggestions": [
+      {
+        "query": "sports teams in dubai",
+        "rank": 0
+      },
+      {
+        "query": "athletics clubs in dubai",
+        "rank": 1
+      },
+      {
+        "query": "best sports clubs in dubai",
+        "rank": 2
+      },
+      {
+        "query": "sports club in bur dubai",
+        "rank": 3,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "sports club jobs in dubai",
+        "rank": 4
+      },
+      {
+        "query": "women's sports club in dubai",
+        "rank": 5
+      },
+      {
+        "query": "list of sports clubs in dubai",
+        "rank": 6
+      },
+      {
+        "query": "professional sports teams in dubai",
+        "rank": 7
+      },
+      {
+        "query": "sports club in al nahda dubai",
+        "rank": 8,
+        "area": "al-nahda"
+      },
+      {
+        "query": "sports clubs in india",
+        "rank": 9
+      },
+      {
+        "query": "sports club locations",
+        "rank": 10
+      },
+      {
+        "query": "sports clubs in uae",
+        "rank": 11
+      }
+    ],
+    "areasInDemand": [
+      "bur-dubai",
+      "al-nahda"
+    ]
+  },
+  {
+    "category": "Government",
+    "seed": "government in dubai",
+    "suggestions": [
+      {
+        "query": "gov in dubai",
+        "rank": 0
+      },
+      {
+        "query": "government hospitals in dubai",
+        "rank": 1
+      },
+      {
+        "query": "government jobs in dubai",
+        "rank": 2
+      },
+      {
+        "query": "government schools in dubai",
+        "rank": 3
+      },
+      {
+        "query": "government companies in dubai",
+        "rank": 4
+      },
+      {
+        "query": "government jobs in dubai for other nationalities",
+        "rank": 5
+      },
+      {
+        "query": "government jobs in dubai for indian",
+        "rank": 6
+      },
+      {
+        "query": "government jobs in dubai for indian females",
+        "rank": 7
+      },
+      {
+        "query": "government developers in dubai",
+        "rank": 8
+      },
+      {
+        "query": "government university in dubai",
+        "rank": 9
+      },
+      {
+        "query": "government hospitals in dubai near me",
+        "rank": 10
+      },
+      {
+        "query": "government hospital in dubai list",
+        "rank": 11
+      },
+      {
+        "query": "government holiday in dubai",
+        "rank": 12
+      },
+      {
+        "query": "government clinics in dubai",
+        "rank": 13
+      },
+      {
+        "query": "government jobs in dubai for freshers",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Catering",
+    "seed": "catering in dubai",
+    "suggestions": [
+      {
+        "query": "caterers in dubai cheap",
+        "rank": 0
+      },
+      {
+        "query": "catering companies in dubai",
+        "rank": 1
+      },
+      {
+        "query": "catering services in dubai",
+        "rank": 2
+      },
+      {
+        "query": "catering jobs in dubai",
+        "rank": 3
+      },
+      {
+        "query": "best catering in dubai",
+        "rank": 4
+      },
+      {
+        "query": "bbq catering in dubai",
+        "rank": 5
+      },
+      {
+        "query": "catering courses in dubai",
+        "rank": 6
+      },
+      {
+        "query": "catering restaurants in dubai",
+        "rank": 7
+      },
+      {
+        "query": "catering business in dubai",
+        "rank": 8
+      },
+      {
+        "query": "catering salary in dubai",
+        "rank": 9
+      },
+      {
+        "query": "capital catering in dubai",
+        "rank": 10
+      },
+      {
+        "query": "self catering in dubai",
+        "rank": 11
+      },
+      {
+        "query": "food catering in dubai",
+        "rank": 12
+      },
+      {
+        "query": "indian catering in dubai",
+        "rank": 13
+      },
+      {
+        "query": "school catering in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Libraries",
+    "seed": "libraries in dubai",
+    "suggestions": [
+      {
+        "query": "libraries in dubai to study",
+        "rank": 0
+      },
+      {
+        "query": "libraries in dubai near me",
+        "rank": 1
+      },
+      {
+        "query": "libraries in dubai mall",
+        "rank": 2
+      },
+      {
+        "query": "libraries in dubai for kids",
+        "rank": 3
+      },
+      {
+        "query": "libraries in dubai open on sunday",
+        "rank": 4
+      },
+      {
+        "query": "libraries in dubai reddit",
+        "rank": 5
+      },
+      {
+        "query": "libraries in dubai marina",
+        "rank": 6,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "libraries in dubai hills mall",
+        "rank": 7
+      },
+      {
+        "query": "library in dubai free",
+        "rank": 8
+      },
+      {
+        "query": "library in dubai silicon oasis",
+        "rank": 9,
+        "area": "silicon-oasis"
+      },
+      {
+        "query": "library in dubai festival city",
+        "rank": 10,
+        "area": "festival-city"
+      },
+      {
+        "query": "library dubai hills",
+        "rank": 11
+      },
+      {
+        "query": "library in dubai deira",
+        "rank": 12,
+        "area": "deira"
+      },
+      {
+        "query": "library in dubai open now",
+        "rank": 13
+      },
+      {
+        "query": "public libraries in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina",
+      "silicon-oasis",
+      "festival-city",
+      "deira"
+    ]
+  },
+  {
+    "category": "Cleaning",
+    "seed": "cleaning in dubai",
+    "suggestions": [
+      {
+        "query": "cleaning in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "cleaners in dubai",
+        "rank": 1
+      },
+      {
+        "query": "cleaners in dubai salary",
+        "rank": 2
+      },
+      {
+        "query": "cleaners in dubai agency philippines",
+        "rank": 3
+      },
+      {
+        "query": "cleaners in dubai salary per month",
+        "rank": 4
+      },
+      {
+        "query": "cleaners in dubai agency philippines salary",
+        "rank": 5
+      },
+      {
+        "query": "cleaners in dubai hiring",
+        "rank": 6
+      },
+      {
+        "query": "cleaners in dubai jobs",
+        "rank": 7
+      },
+      {
+        "query": "cleaners in dubai agency",
+        "rank": 8
+      },
+      {
+        "query": "cleaning companies in dubai",
+        "rank": 9
+      },
+      {
+        "query": "cleaning services in dubai",
+        "rank": 10
+      },
+      {
+        "query": "cleaning jobs in dubai with free visa",
+        "rank": 11
+      },
+      {
+        "query": "cleaning jobs in dubai",
+        "rank": 12
+      },
+      {
+        "query": "cleaning jobs in dubai for female",
+        "rank": 13
+      },
+      {
+        "query": "sofa cleaning in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Interior Design",
+    "seed": "interior design in dubai",
+    "suggestions": [
+      {
+        "query": "interior design in dubai salary",
+        "rank": 0
+      },
+      {
+        "query": "interior design in dubai jobs",
+        "rank": 1
+      },
+      {
+        "query": "interior design in dubai university",
+        "rank": 2
+      },
+      {
+        "query": "interior design in dubai companies",
+        "rank": 3
+      },
+      {
+        "query": "interior design in dubai cost",
+        "rank": 4
+      },
+      {
+        "query": "interior design in dubai course",
+        "rank": 5
+      },
+      {
+        "query": "interior decorators in dubai",
+        "rank": 6
+      },
+      {
+        "query": "house design in dubai",
+        "rank": 7
+      },
+      {
+        "query": "interior design firms in dubai",
+        "rank": 8
+      },
+      {
+        "query": "interior design services in dubai",
+        "rank": 9
+      },
+      {
+        "query": "interior design courses in dubai fees",
+        "rank": 10
+      },
+      {
+        "query": "interior design contractors in dubai",
+        "rank": 11
+      },
+      {
+        "query": "villa interior design in dubai",
+        "rank": 12
+      },
+      {
+        "query": "office interior design in dubai",
+        "rank": 13
+      },
+      {
+        "query": "interior design studio in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Toys & Games",
+    "seed": "toys & games in dubai",
+    "suggestions": [
+      {
+        "query": "board games in dubai",
+        "rank": 0
+      },
+      {
+        "query": "board games in dubai mall",
+        "rank": 1
+      },
+      {
+        "query": "board games cafe in dubai",
+        "rank": 2
+      },
+      {
+        "query": "buy board games in dubai",
+        "rank": 3
+      },
+      {
+        "query": "board games shop in dubai",
+        "rank": 4
+      },
+      {
+        "query": "board games places in dubai",
+        "rank": 5
+      },
+      {
+        "query": "board games shop in dubai mall",
+        "rank": 6
+      },
+      {
+        "query": "best board games in dubai",
+        "rank": 7
+      },
+      {
+        "query": "board games dubai hills mall",
+        "rank": 8
+      },
+      {
+        "query": "games to play in dubai",
+        "rank": 9
+      },
+      {
+        "query": "toys to keep cats entertained",
+        "rank": 10
+      },
+      {
+        "query": "toys and games trading",
+        "rank": 11
+      },
+      {
+        "query": "toys in dubai mall",
+        "rank": 12
+      },
+      {
+        "query": "toys market in dubai",
+        "rank": 13
+      },
+      {
+        "query": "toys in dubai city centre",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Recruitment",
+    "seed": "recruitment in dubai",
+    "suggestions": [
+      {
+        "query": "recruitment in dubai for jobs",
+        "rank": 0
+      },
+      {
+        "query": "recruitment in dubai companies",
+        "rank": 1
+      },
+      {
+        "query": "recruitment agencies in dubai",
+        "rank": 2
+      },
+      {
+        "query": "tiger recruitment in dubai",
+        "rank": 3
+      },
+      {
+        "query": "hays recruitment in dubai",
+        "rank": 4
+      },
+      {
+        "query": "job in dubai recruitment agencies",
+        "rank": 5
+      },
+      {
+        "query": "nadia recruitment in dubai",
+        "rank": 6
+      },
+      {
+        "query": "top recruitment agencies in dubai",
+        "rank": 7
+      },
+      {
+        "query": "best recruitment agencies in dubai",
+        "rank": 8
+      },
+      {
+        "query": "top recruitment agencies in dubai for foreigners",
+        "rank": 9
+      },
+      {
+        "query": "alliance recruitment agency in dubai",
+        "rank": 10
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Universities",
+    "seed": "universities in dubai",
+    "suggestions": [
+      {
+        "query": "universities in dubai list",
+        "rank": 0
+      },
+      {
+        "query": "universities in dubai academic city",
+        "rank": 1,
+        "area": "academic-city"
+      },
+      {
+        "query": "universities in dubai knowledge park",
+        "rank": 2
+      },
+      {
+        "query": "universities in dubai for international students",
+        "rank": 3
+      },
+      {
+        "query": "universities in dubai jobs",
+        "rank": 4
+      },
+      {
+        "query": "universities in dubai careers",
+        "rank": 5
+      },
+      {
+        "query": "universities in dubai for masters",
+        "rank": 6
+      },
+      {
+        "query": "universities in dubai internet city",
+        "rank": 7,
+        "area": "internet-city"
+      },
+      {
+        "query": "universities in dubai for psychology",
+        "rank": 8
+      },
+      {
+        "query": "universities in dubai with low tuition fees",
+        "rank": 9
+      },
+      {
+        "query": "universities in dubai for mba",
+        "rank": 10
+      },
+      {
+        "query": "universities in dubai ranking",
+        "rank": 11
+      },
+      {
+        "query": "universities in dubai knowledge village",
+        "rank": 12
+      },
+      {
+        "query": "universities in dubai with full scholarship",
+        "rank": 13
+      },
+      {
+        "query": "universities in dubai for masters in finance",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "academic-city",
+      "internet-city"
+    ]
+  },
+  {
+    "category": "Perfume & Cosmetics",
+    "seed": "perfume & cosmetics in dubai",
+    "suggestions": [],
+    "areasInDemand": []
+  },
+  {
+    "category": "Parks & Beaches",
+    "seed": "parks & beaches in dubai",
+    "suggestions": [
+      {
+        "query": "beach parks in dubai",
+        "rank": 0
+      },
+      {
+        "query": "parks open in dubai",
+        "rank": 1
+      },
+      {
+        "query": "is there a beach in dubai",
+        "rank": 2
+      },
+      {
+        "query": "beach parks in uae",
+        "rank": 3
+      },
+      {
+        "query": "parks in dubai marina",
+        "rank": 4,
+        "area": "dubai-marina"
+      }
+    ],
+    "areasInDemand": [
+      "dubai-marina"
+    ]
+  },
+  {
+    "category": "Documents & Visas",
+    "seed": "documents & visas in dubai",
+    "suggestions": [
+      {
+        "query": "documents for visa in dubai",
+        "rank": 0
+      },
+      {
+        "query": "documents required for visa in dubai",
+        "rank": 1
+      },
+      {
+        "query": "documents for work visa in dubai",
+        "rank": 2
+      },
+      {
+        "query": "documents for residence visa in dubai",
+        "rank": 3
+      },
+      {
+        "query": "documents for dubai tourist visa",
+        "rank": 4
+      },
+      {
+        "query": "documents required for dubai work visa",
+        "rank": 5
+      },
+      {
+        "query": "documents dubai",
+        "rank": 6
+      },
+      {
+        "query": "documents for the visa",
+        "rank": 7
+      },
+      {
+        "query": "documents for visit visa dubai",
+        "rank": 8
+      },
+      {
+        "query": "documents needed for visa application dubai",
+        "rank": 9
+      },
+      {
+        "query": "documents needed for visa in uae",
+        "rank": 10
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Sports Shops",
+    "seed": "sports shops in dubai",
+    "suggestions": [
+      {
+        "query": "sports shops in dubai mall",
+        "rank": 0
+      },
+      {
+        "query": "sports shops in dubai hills mall",
+        "rank": 1
+      },
+      {
+        "query": "sports shops in dubai outlet mall",
+        "rank": 2
+      },
+      {
+        "query": "sports shops in dubai festival city",
+        "rank": 3,
+        "area": "festival-city"
+      },
+      {
+        "query": "sports shops in dubai marina mall",
+        "rank": 4,
+        "area": "dubai-marina"
+      },
+      {
+        "query": "sports shops in dubai airport",
+        "rank": 5
+      },
+      {
+        "query": "sports shops in dubai hills",
+        "rank": 6
+      },
+      {
+        "query": "wholesale sports shops in dubai",
+        "rank": 7
+      },
+      {
+        "query": "sportswear shops in dubai",
+        "rank": 8
+      },
+      {
+        "query": "best sports shops in dubai",
+        "rank": 9
+      },
+      {
+        "query": "cricket sports shops in dubai",
+        "rank": 10
+      },
+      {
+        "query": "sports wear shops in dubai mall",
+        "rank": 11
+      },
+      {
+        "query": "sports shops in karama dubai",
+        "rank": 12
+      },
+      {
+        "query": "sports shops in bur dubai",
+        "rank": 13,
+        "area": "bur-dubai"
+      },
+      {
+        "query": "sports card shops in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": [
+      "festival-city",
+      "dubai-marina",
+      "bur-dubai"
+    ]
+  },
+  {
+    "category": "Charities",
+    "seed": "charities in dubai",
+    "suggestions": [
+      {
+        "query": "charities in dubai uae",
+        "rank": 0
+      },
+      {
+        "query": "charity in dubai for medical billing",
+        "rank": 1
+      },
+      {
+        "query": "charity in dubai for school fees",
+        "rank": 2
+      },
+      {
+        "query": "charity in dubai hospital",
+        "rank": 3
+      },
+      {
+        "query": "charity in dubai donate",
+        "rank": 4
+      },
+      {
+        "query": "charity in dubai for furniture",
+        "rank": 5
+      },
+      {
+        "query": "top.charities in dubai",
+        "rank": 6
+      },
+      {
+        "query": "animal charities in dubai",
+        "rank": 7
+      },
+      {
+        "query": "local charities in dubai",
+        "rank": 8
+      },
+      {
+        "query": "cancer charities in dubai",
+        "rank": 9
+      },
+      {
+        "query": "registered charities in dubai",
+        "rank": 10
+      },
+      {
+        "query": "list of charities in dubai",
+        "rank": 11
+      },
+      {
+        "query": "top 10 charities in dubai",
+        "rank": 12
+      },
+      {
+        "query": "are there charities in dubai",
+        "rank": 13
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Contractors",
+    "seed": "contractors in dubai",
+    "suggestions": [
+      {
+        "query": "pool contractors in dubai",
+        "rank": 0
+      },
+      {
+        "query": "mep contractors in dubai",
+        "rank": 1
+      },
+      {
+        "query": "demolition contractors in dubai",
+        "rank": 2
+      },
+      {
+        "query": "hvac contractors in dubai",
+        "rank": 3
+      },
+      {
+        "query": "painting contractors in dubai",
+        "rank": 4
+      },
+      {
+        "query": "villa contractors in dubai",
+        "rank": 5
+      },
+      {
+        "query": "main contractors in dubai",
+        "rank": 6
+      },
+      {
+        "query": "fitout contractors in dubai",
+        "rank": 7
+      },
+      {
+        "query": "electrical contractors in dubai",
+        "rank": 8
+      },
+      {
+        "query": "landscape contractors in dubai",
+        "rank": 9
+      },
+      {
+        "query": "building contractors in dubai",
+        "rank": 10
+      },
+      {
+        "query": "civil contractors in dubai",
+        "rank": 11
+      },
+      {
+        "query": "piling contractors in dubai",
+        "rank": 12
+      },
+      {
+        "query": "shoring contractors in dubai",
+        "rank": 13
+      },
+      {
+        "query": "pergola contractors in dubai",
+        "rank": 14
+      }
+    ],
+    "areasInDemand": []
+  },
+  {
+    "category": "Trades",
+    "seed": "trades in dubai",
+    "suggestions": [
+      {
+        "query": "trade in dubai phone",
+        "rank": 0
+      },
+      {
+        "query": "trade in dubai apple",
+        "rank": 1
+      },
+      {
+        "query": "trade in dubai iphone",
+        "rank": 2
+      },
+      {
+        "query": "trading jobs in dubai",
+        "rank": 3
+      },
+      {
+        "query": "trades in the uae",
+        "rank": 4
+      },
+      {
+        "query": "tradesman dubai",
+        "rank": 5
+      }
+    ],
+    "areasInDemand": []
+  }
+]

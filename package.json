@@ -26,7 +26,9 @@
     "classify": "tsx packages/pipeline/src/cli/classify.ts",
     "load": "tsx packages/pipeline/src/cli/load.ts",
     "deploy": "sst deploy",
-    "dev": "sst dev"
+    "dev": "sst dev",
+    "seed-taxonomy": "tsx packages/pipeline/src/cli/seed-taxonomy.ts",
+    "demand": "tsx packages/pipeline/src/cli/demand.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

@@ -90,7 +90,18 @@ describe("ratingDistribution — the bands", () => {
   });
 
   test("puts every rated business in exactly one band", () => {
-    const input = [b(1, 1), b(2.9, 1), b(3, 1), b(3.4, 1), b(3.9, 1), b(4, 1), b(4.4, 1), b(4.5, 1), b(4.9, 1), b(5, 1)];
+    const input = [
+      b(1, 1),
+      b(2.9, 1),
+      b(3, 1),
+      b(3.4, 1),
+      b(3.9, 1),
+      b(4, 1),
+      b(4.4, 1),
+      b(4.5, 1),
+      b(4.9, 1),
+      b(5, 1),
+    ];
     const { bands, rated } = ratingDistribution(input);
     expect(bands.reduce((sum, band) => sum + band.count, 0)).toBe(rated);
     expect(rated).toBe(input.length);
@@ -101,7 +112,12 @@ describe("ratingDistribution — provenance", () => {
   test("counts the unrated separately so the figure can declare its n", () => {
     // 940 of Dubai's 14,981 businesses carry no rating. A chart that quietly
     // drops them would imply the corpus is smaller than it is.
-    const { rated, unrated } = ratingDistribution([b(4.5, 2), b(), b(), b(3, 1)]);
+    const { rated, unrated } = ratingDistribution([
+      b(4.5, 2),
+      b(),
+      b(),
+      b(3, 1),
+    ]);
     expect(rated).toBe(2);
     expect(unrated).toBe(2);
   });

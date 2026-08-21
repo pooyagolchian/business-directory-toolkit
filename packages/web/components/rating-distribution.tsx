@@ -1,4 +1,8 @@
-import type { RatingBand, RatingBin, RatingDistribution } from "@directory/core";
+import type {
+  RatingBand,
+  RatingBin,
+  RatingDistribution,
+} from "@directory/core";
 
 /**
  * "What a rating is worth" — the home page's statistical figure.
@@ -30,7 +34,10 @@ import type { RatingBand, RatingBin, RatingDistribution } from "@directory/core"
  * to draw a 15,000-business Dubai and a 400-business market town without
  * anyone editing it (ADR 0005).
  */
-function niceScale(max: number, intervals = 4): { ceiling: number; step: number } {
+function niceScale(
+  max: number,
+  intervals = 4,
+): { ceiling: number; step: number } {
   if (max <= 0) return { ceiling: 1, step: 1 };
   const rough = max / intervals;
   const magnitude = 10 ** Math.floor(Math.log10(rough));
@@ -96,7 +103,15 @@ const H_BAR = 14;
 const TIP_W = 116;
 const TIP_H = 40;
 
-function Histogram({ bins, rated }: { bins: RatingBin[]; rated: number }) {
+function Histogram({
+  bins,
+  rated,
+  note,
+}: {
+  bins: RatingBin[];
+  rated: number;
+  note: [string, string];
+}) {
   const max = Math.max(...bins.map((b) => b.count), 1);
   const { ceiling, step } = niceScale(max);
   const band = H_TRACK / bins.length;
@@ -142,12 +157,15 @@ function Histogram({ bins, rated }: { bins: RatingBin[]; rated: number }) {
         // renders as nothing and reads as "no businesses rated 1.4" — a
         // different and false claim. Anything non-zero gets a visible floor;
         // zero stays zero, so the gaps in the low tail remain real gaps.
-        const h = bin.count === 0 ? 0 : Math.max(1.5, (bin.count / ceiling) * H_PLOT);
+        const h =
+          bin.count === 0 ? 0 : Math.max(1.5, (bin.count / ceiling) * H_PLOT);
         const y = H_TOP + H_PLOT - h;
         const isPeak = bin.rating === peak.rating;
         const tipX = clamp(x + band / 2 - TIP_W / 2, 0, H_W - TIP_W);
         const tipY = clamp(y - TIP_H - 6, 0, H_TOP + H_PLOT - TIP_H);
-        const halfStep = Math.abs(bin.rating * 10 - Math.round(bin.rating * 10 / 5) * 5) < 0.01;
+        const halfStep =
+          Math.abs(bin.rating * 10 - Math.round((bin.rating * 10) / 5) * 5) <
+          0.01;
 
         return (
           <g key={bin.rating} className="chart-col">
@@ -182,7 +200,7 @@ function Histogram({ bins, rated }: { bins: RatingBin[]; rated: number }) {
                 point — a value over all 41 columns would go unread. */}
             {isPeak && (
               <text
-                x={clamp(x + band / 2, 0, H_W - 46)}
+                x={clamp(x + band / 2, 0, H_W - H_PAD_R - 18)}
                 y={y - 10}
                 textAnchor="middle"
                 className="tabular fill-[var(--fg)] font-[family-name:var(--font-mono)] text-[12px]"
@@ -222,6 +240,27 @@ function Histogram({ bins, rated }: { bins: RatingBin[]; rated: number }) {
         );
       })}
 
+      {/*
+        The left two-fifths of this plot are empty, and that emptiness is the
+        finding rather than a layout accident: a city that rates almost nothing
+        below 3.5 is not using the bottom of the scale at all. Annotating the
+        gap says so, and stops it reading as a chart that failed to load.
+      */}
+      <text
+        x={H_PAD_L + 14}
+        y={H_TOP + H_PLOT - 38}
+        className="tabular fill-[var(--fg)] font-[family-name:var(--font-mono)] text-[12px]"
+      >
+        {note[0]}
+      </text>
+      <text
+        x={H_PAD_L + 14}
+        y={H_TOP + H_PLOT - 20}
+        className="tabular fill-[var(--muted)] font-[family-name:var(--font-mono)] text-[12px]"
+      >
+        {note[1]}
+      </text>
+
       {/* Baseline drawn last so the bars sit on it rather than through it. */}
       <line
         x1={H_PAD_L}
@@ -240,7 +279,6 @@ function Histogram({ bins, rated }: { bins: RatingBin[]; rated: number }) {
 const B_W = 880;
 const B_ROW = 34;
 const B_HEAD = 26;
-const B_LABEL_W = 96;
 const B_TRACK_X = 104;
 const B_TRACK_W = 500;
 const B_BAR_H = 16;
@@ -447,6 +485,8 @@ export function RatingDistributionFigure({
 
   const near = bands.find((b) => b.label === "4.5–4.9");
   const perfect = bands.find((b) => b.label === "5.0");
+  const low = bands[0];
+  const lowShare = (((low?.count ?? 0) / rated) * 100).toFixed(1);
 
   return (
     <section className="mt-20">
@@ -479,7 +519,16 @@ export function RatingDistributionFigure({
           Businesses by rating, in 0.1 steps
         </figcaption>
         <div className="overflow-x-auto">
-          <Histogram bins={bins} rated={rated} />
+          <Histogram
+            bins={bins}
+            rated={rated}
+            note={[
+              `${low?.count.toLocaleString() ?? "0"} businesses rate below ${(
+                low?.max ?? 3
+              ).toFixed(1)}.`,
+              `That is ${lowShare}% of the city.`,
+            ]}
+          />
         </div>
       </figure>
 
@@ -493,10 +542,9 @@ export function RatingDistributionFigure({
       </figure>
 
       <p className="mt-8 text-xs text-[var(--muted)]">
-        {rated.toLocaleString()} rated businesses.{" "}
-        {unrated.toLocaleString()} carry no rating and are excluded. Ratings and
-        review counts are Google&rsquo;s, as returned by SearchApi on the day of
-        the crawl.
+        {rated.toLocaleString()} rated businesses. {unrated.toLocaleString()}{" "}
+        carry no rating and are excluded. Ratings and review counts are
+        Google&rsquo;s, as returned by SearchApi on the day of the crawl.
       </p>
 
       <Numbers bins={bins} bands={bands} />

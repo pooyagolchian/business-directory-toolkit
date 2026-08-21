@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { ratingDistribution } from "@directory/core";
 import { SearchBox } from "@/components/search-box";
 import { FacetGrid, Footer, Header } from "@/components/chrome";
 import { BusinessList } from "@/components/business-card";
+import { RatingDistributionFigure } from "@/components/rating-distribution";
 import { allBusinesses, areas, categories, stats } from "@/lib/data";
 
 export default function Home() {
@@ -11,6 +13,9 @@ export default function Home() {
   // The dataset is sorted by review count at load, so the head is the most
   // reviewed businesses in the city.
   const notable = allBusinesses().slice(0, 8);
+  // One linear pass over the corpus, at render time rather than at load, so the
+  // figure describes whatever city this deployment was built for.
+  const distribution = ratingDistribution(allBusinesses());
 
   const empty = s.businesses === 0;
 
@@ -112,6 +117,11 @@ export default function Home() {
               </h2>
               <BusinessList businesses={notable} />
             </section>
+
+            {/* Deliberately last. "Most reviewed" is the page saying which
+                businesses have the most evidence behind them; this is the page
+                explaining why that is the measure it sorts on. */}
+            <RatingDistributionFigure distribution={distribution} />
           </>
         )}
       </main>

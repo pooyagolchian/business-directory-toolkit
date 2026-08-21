@@ -1,6 +1,6 @@
 # ADR 0004 — Monochrome design system on Tailwind v4 + shadcn/ui
 
-- **Status:** Accepted
+- **Status:** Accepted · revised 2026-08-21
 - **Date:** 2026-08-20
 
 ## Context
@@ -81,9 +81,11 @@ worth recording because they are easy to reintroduce:
   roughly a subpixel, which is the wrong trade in a design whose entire
   hierarchy is stroke weight and size.
 - `--muted` moved from ink-500 to ink-600 (4.65:1 → 6.5:1) and `--field-border`
-  from ink-300 to ink-400 (2.15:1 → 3.4:1). The claim below that "meeting WCAG
-  AA takes effort to _fail_" held for the black-on-white body text and quietly
-  did not hold for the secondary text and field borders built on the mid ramp.
+  from ink-300 to ink-400 (2.15:1 → 3.4:1). This document originally claimed
+  that "meeting WCAG AA takes effort to _fail_". That held for the
+  black-on-white body text and quietly did not hold for the secondary text and
+  field borders built on the mid ramp; the Good list below has been corrected
+  and the failure moved to the Bad list, where it belongs.
 - **Arabic was never actually rendering in the Arabic face.** The section above
   says "Arabic gets a real face rather than a fallback"; it had not been true in
   practice. `next/font` folds a synthetic `local(Arial)` fallback into the
@@ -112,8 +114,8 @@ carrying a theme the design does not use.
 
 - Fast. Monochrome plus self-hosted fonts keeps Core Web Vitals healthy across
   10,000 pages, which is directly an SEO ranking input for Milestone 3
-- Accessible by default: pure black on white starts at 21:1 contrast, so meeting
-  WCAG AA takes effort to _fail_ rather than effort to achieve
+- Accessible by default _for body text_: pure black on white starts at 21:1
+  contrast. See the Bad list for where that stopped being true
 - Cheap to extend. A new category or page type needs no new colour decisions
 - Distinctive. Local directories are overwhelmingly blue-and-orange template work
 
@@ -121,10 +123,27 @@ carrying a theme the design does not use.
 
 - No colour means no colour-coding, so information hierarchy rests entirely on
   scale, weight, and spacing. Sloppy spacing has nowhere to hide
-- Four font families is a real payload; subset aggressively and load Arabic only
-  on pages that contain Arabic
+- **The 21:1 claim held for body text and quietly did not hold for anything
+  built on the mid ramp.** `--muted` shipped at 4.65:1 and `--field-border` at
+  2.15:1 — the second is below AA for non-text contrast — and nothing caught
+  either until the ramp was re-measured on 2026-08-21. A design whose selling
+  point is that failing AA takes effort is a design nobody thinks to measure
+- **Four font families is a real payload**, carried on every one of ~10,000
+  pages, against a Good-list entry that claims the design is fast. Arabic loads
+  on pages that contain no Arabic, because a bilingual title cannot be
+  identified before render
 - Photography from Google listings will fight a monochrome shell. Thumbnails
   need consistent treatment or they become the loudest thing on the page
+
+## What this contradicts in the repository
+
+`CLAUDE.md`'s Design section still lists the type stack as "Instrument Serif
+(display) · Geist Sans (body) · IBM Plex Sans Arabic (Arabic) · Geist Mono".
+That was the original choice and it is no longer what ships: `layout.tsx` and
+`globals.css` load IBM Plex Sans and IBM Plex Mono, which is what the table
+above records and what the Arabic fix in the 2026-08-21 revision depends on —
+the Latin body face is the sibling of the Arabic face on purpose. The table here
+is correct; `CLAUDE.md` is stale.
 
 ## Alternatives considered
 

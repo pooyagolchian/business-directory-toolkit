@@ -66,6 +66,29 @@ data in CSV or JSON.
 - "Toolkit" is a harder thing to demo in a video than a website. The reference
   deployment exists partly to solve that.
 
+## Alternatives considered
+
+- **Keep it a Dubai directory and refuse export.** Rejected. It leaves the
+  contradiction in ADR 0002 exactly where it was — a repository shipping code
+  that produces data the repository may not contain — and it competes with
+  Google Maps on Google Maps' own data. The export request is a symptom of that
+  framing, not a feature request that could be declined cleanly.
+- **Ship a hosted API or a paid dataset instead of a toolkit.** Rejected on
+  ADR 0002: we would be the redistributor, which is the one thing that decision
+  forbids. It also inverts the lead metric — a hosted API means _we_ hold the
+  SearchApi key, so nobody signing up through the tracked link ever needs one.
+- **Classify per business rather than per category, so a city needs no taxonomy
+  config at all.** Rejected on ADR 0006's measurement: 15,246 businesses against
+  1,788 distinct strings, 8.5× more items in front of the model, and a cost that
+  scales with every future crawl rather than saturating.
+- **Parameterise only the crawl, and leave the web layer Dubai-specific.**
+  Deferred, and this is what actually shipped for v0.1: page titles, the JSON-LD
+  `addressRegion`, `lib/data.ts`'s phone parser and the classifier prompt all
+  still say Dubai. It lost as a _decision_ because "a city is data" is not true
+  if a fork is still required to publish; it survives as a state because
+  finishing it was not on the v0.1 path. The root README says so in its opening
+  paragraph rather than in a footnote.
+
 ## What did not change
 
 The three monthly milestones, the measured findings, the takedown flow, and

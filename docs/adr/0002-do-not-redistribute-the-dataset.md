@@ -42,7 +42,7 @@ What _is_ committed:
 - Removes the redistribution risk entirely, rather than managing it
 - Makes takedown meaningful. A removed business can actually stay removed,
   which is impossible once records are in public git history
-- Produces a better open-source artifact. "Here is a reproducible machine, bring
+- Produces a better open-source artefact. "Here is a reproducible machine, bring
   your own key" is more useful and more honest than a stale CSV
 - Keeps the repository small and reviewable
 

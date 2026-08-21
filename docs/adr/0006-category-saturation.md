@@ -1,6 +1,6 @@
 # ADR 0006 — Category saturation is real, and it is now measured
 
-- **Status:** Accepted
+- **Status:** Accepted · verified 2026-08-21
 - **Date:** 2026-08-21
 
 ## Context
@@ -86,13 +86,54 @@ new strings, not a thousand.
 
 This document previously projected ~1,100–1,300 distinct categories at 10,000
 businesses. The measured figure at 10,000 was **1,560** — the projection
-undershot by 20–40%.
+undershot by 20–42% of its own value (1,100 was low by 460, 1,300 by 260).
 
 The decay is slower in the tail than the early curve suggested, and it is not
 perfectly monotonic: the marginal rate ticked back up at 12,000 (5.5) as sparse
 outer tiles introduced business types the city centre never contained. The
 direction of the thesis was right; the specific number was too optimistic.
 Publish the measurement, not the extrapolation.
+
+## Consequences
+
+**Good:**
+
+- The project's central cost claim is now a measurement rather than an
+  assertion: **1,788 items** in front of the model instead of 15,246, and a
+  marginal rate of 4.3 per 100 to say what the _next_ crawl costs.
+- It cost **zero API credits** to learn. Stage 1 archives every raw response
+  before parsing, so the corpus was already on disk
+  ([ADR 0001](./0001-tile-the-crawl.md)).
+- The saving compounds across crawls rather than repeating. Because
+  `data/taxonomy-map.json` is committed and `mergeTaxonomy` lets the existing
+  entry win, a string is classified once, ever.
+- The unflattering start is published — 0.89 distinct categories per business on
+  the restaurant-only sample — so the turn in the curve is checkable rather than
+  claimed.
+
+**Bad:**
+
+- **A wrong hand-mapped entry is permanent and silent.** `mergeTaxonomy` is
+  `{ ...incoming, ...existing }` — the committed entry always wins, over both
+  the keyword rules and the model. That is deliberate, and the root README sells
+  it as the whole reason a one-line taxonomy pull request is worth making. It
+  also means a category mapped to the wrong `l2` survives every future crawl,
+  every `seed-taxonomy` run and every `classify --yes`, with nothing that
+  re-examines it and no signal that anything is wrong. The 1,250 entries
+  currently committed have no expiry and no second reader.
+- **The tail is classified with no review step.** `pnpm classify --yes` calls
+  Haiku 4.5 and writes the merged map straight to disk — there is no
+  intermediate file to inspect and no approval gate between the model's answer
+  and a live browse page. On the v0.1 corpus that is **537 of 1,787 strings**
+  going in unreviewed. The `--dry-run` reports the count and the cost; it does
+  not report the mappings.
+- **The marginal rate is not monotonic, so 4.3 is an endpoint and not a law.**
+  It ticked back _up_ to 5.5 at 12,000 businesses when sparse outer tiles
+  introduced business types the city centre never contained. Nothing here
+  establishes that a city with a coarser or more fragmented Google taxonomy will
+  not tick up again, later, and further. The thesis is measured for Dubai; the
+  specific number is not portable, and the 15-per-100 pre-registered threshold
+  is the claim that ports, not the 4.3.
 
 ## Why this matters beyond the cost number
 

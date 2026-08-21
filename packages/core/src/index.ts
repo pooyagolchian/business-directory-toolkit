@@ -54,6 +54,7 @@ export { applyTaxonomy, distinctCategories } from "./taxonomy";
 
 export {
   detectSignals,
+  establishment,
   findLeads,
   isContactable,
   leadScore,

@@ -321,21 +321,66 @@ expecting one combined list.
 ### Scoring: successful businesses first
 
 ```
-leadScore = signalStrength × businessHealth
+leadScore = signalStrength × establishment
 ```
 
-`businessHealth` is `rankScore` — the same credibility-weighted rating the
-directory itself is ranked by
-([`packages/core/src/rank.ts`](./packages/core/src/rank.ts)), not the raw star
-average, so a single 5-star review cannot float a barely-reviewed prospect to
-the top of a call list. `signalStrength` is how badly a business has the
-problem, normalised 0–1: a constant `1.0` for `no-website` and `no-hours` (a
-business either has one or it does not — there is no partial), scaled by
-distance below threshold for `weak-reputation` and `low-visibility` (a
-2.0-rated business outranks a 3.7-rated one; zero reviews outranks nine).
-Multiplying the two together is what the filter alone cannot do: the best
-lead is a **successful** business with a fixable gap, not merely any business
-that happens to match it.
+`signalStrength` is how badly a business has the problem, normalised 0–1: a
+constant `1.0` for `no-website` and `no-hours` (a business either has one or it
+does not — there is no partial), scaled by distance below the threshold for
+`weak-reputation` and `low-visibility` (a 2.0-rated business outranks a
+3.7-rated one; zero reviews outranks nine).
+
+`establishment` is `reviews / (reviews + m)`, where `m` is the corpus median
+review count — 76 for the Dubai crawl. It measures how much evidence of real
+trade a business has, and it is the half of the formula a filter cannot
+express: the best lead is a **successful** business with a fixable gap, not
+merely any business that happens to match one.
+
+**Why not rank by rating.** The obvious health term is `rankScore`, the
+credibility-weighted rating this directory sorts by
+([`packages/core/src/rank.ts`](./packages/core/src/rank.ts)). It was the
+original choice here and it was wrong, in a way only running it revealed. Every
+`weak-reputation` lead sits below the corpus mean of 4.49 by definition, and
+`rankScore` shrinks a business toward that mean less as its review count grows
+— so it _falls_ as a business becomes more established. Measured across the 641
+real reputation leads, score correlated with review count at **−0.28**: the more
+trade a business had, the further down the call sheet it went. The list was
+topped by bank ATMs with 23–37 reviews, and the most-reviewed business on it — a
+3.6-rated hospital with 5,562 reviews — sat at **#522 of 641**, past the end of
+the default view. After the change that correlation is **+0.08** and the same
+hospital ranks **#101**.
+
+It does not jump to first, and should not: at 3.6 it is only just below the 3.8
+threshold, so its `signalStrength` is small. That is the formula working — a
+severe problem at a mid-sized business outranks a mild problem at a large one.
+What changed is that review volume stopped counting _against_ a prospect.
+
+The rule that fixes it generalises, and is worth stating because it is easy to
+break twice:
+
+> **The health term must never be a function of the quantity the signal
+> measures.** Otherwise the score double-counts the gap and inverts itself.
+
+`weak-reputation` sells against a poor rating, so its health term must not use
+rating — hence `establishment`, built from review count. Which is exactly why
+`low-visibility` is the one exception below.
+
+**The `low-visibility` exception.** That signal's gap _is_ the review count, so
+`establishment` would double-count it in precisely the way `rankScore` did for
+`weak-reputation` — the same mistake on the other axis. Its leads are therefore
+ranked by gap severity alone, with no health multiplier.
+
+Ties are broken by rating descending (a business with no rating at all sorts
+last — unrated is not better than well-rated), then by `placeId`, so the order
+is total and identical on every run rather than an artefact of the order the
+crawler happened to visit tiles in.
+
+One consequence worth knowing before you work the list: in the Dubai crawl, 481
+businesses have no reviews at all, so they tie at the maximum score and fall
+through to `placeId` order. They occupy the top of the `low-visibility` list
+because they genuinely are the strongest instance of that gap — but their order
+_relative to each other_ is arbitrary, not a ranking. Treat that band as a set,
+not a queue.
 
 ### Suppression is enforced, not assumed
 

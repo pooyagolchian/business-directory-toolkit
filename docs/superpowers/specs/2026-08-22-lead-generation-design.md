@@ -44,13 +44,64 @@ cannot express the difference; a score can.
 leadScore = signalStrength × businessHealth
 ```
 
-> **Scoring formula: pending.** The exact shape of `signalStrength` and
-> `businessHealth` — including which function computes the health term
-> (`packages/core/src/leads.ts` currently exports `establishment`, not the
-> directory's `rankScore`) — is being revised in a concurrent change and is
-> deliberately not detailed here to avoid documenting internals mid-rewrite.
-> Read `packages/core/src/leads.ts` directly in the meantime, or the README's
-> "Scoring" section once that change lands.
+**As built, the health term is `establishment`, not `rankScore` — and this
+section records why, because the original choice was wrong and only measurement
+showed it.**
+
+```text
+establishment = reviews / (reviews + m)      // m = the prior's weight
+leadScore     = signalStrength × establishment
+leadScore     = signalStrength               // low-visibility only
+```
+
+This spec originally proposed `businessHealth = rankScore`, the directory's
+credibility-weighted rating, on the reasoning that a lone 5-star review should
+not float a barely-reviewed prospect to the top. That reasoning is sound and the
+conclusion was still wrong. `rankScore` is a shrunk _rating_, and every
+`weak-reputation` lead sits below the corpus mean by definition — so `rankScore`
+shrinks it toward that mean less as its review count grows, and therefore
+_falls_ as a business becomes more established. Multiplying by it demoted
+exactly the businesses this feature exists to surface.
+
+Measured on the 641 real `weak-reputation` leads before the change:
+`corr(score, reviews) = −0.28`; the list was topped by bank ATMs with 23–37
+reviews; the most-reviewed business on it, a 3.6-rated hospital with 5,562
+reviews, ranked #522 of 641. At all 18 distinct rating values in the corpus, the
+most-reviewed business ranked below the least-reviewed one carrying the same
+rating. After the change: `corr(score, reviews) = +0.08`, and that hospital
+ranks #101.
+
+It does not move to first, correctly — at 3.6 it is barely below the 3.8
+threshold, so its `signalStrength` is small, and a severe problem at a mid-sized
+business should outrank a mild one at a large business. The defect was never
+that large businesses ranked low; it was that review volume counted _against_
+them.
+
+Every unit test passed throughout. The formula matched this spec exactly and the
+implementation was faithful to it. The defect was in the design, and it was only
+visible by running the tool over 14,981 real businesses and correlating the
+output — which is the argument for measuring a ranking against real data before
+publishing it, not merely testing it.
+
+The rule that replaces it:
+
+> **The health term must never be a function of the quantity the signal
+> measures.** Otherwise the score double-counts the gap and inverts itself.
+
+`weak-reputation` sells against a poor rating, so its health term must not use
+rating — hence `establishment`, built from review count. `low-visibility` sells
+against a low review count, so `establishment` would double-count _its_ gap in
+exactly the same way; that signal alone therefore drops the health term and
+ranks by severity, with ties broken by rating descending (unrated sorts last)
+and then `placeId`, so the order is total and reproducible.
+
+That exception has a knock-on worth recording: 481 businesses in the Dubai crawl
+have no reviews at all, so they tie at the maximum score and fall through to
+`placeId` order. They lead the `low-visibility` list correctly — they are the
+strongest instance of the gap — but their order among themselves is arbitrary
+and should be presented as a set rather than a ranking. Tie-breaking that band
+by other evidence of trading (a website, hours, a phone) is a plausible future
+refinement and was deliberately not done here.
 
 Scores are only ever compared **within** a signal. Ranking a `no-website` lead
 against a `weak-reputation` lead would be comparing different products being
@@ -156,9 +207,9 @@ Two things here differ from the original design above, both deliberately:
   itself was responsible for that step; making it part of `findLeads`'s own
   contract closes the gap where a caller could forget to call it first.
 
-`signalStrength` and the business-health term are exported too
-(`packages/core/src/index.ts`) for unit-testability, but their formulas are
-exactly what's pending above, so they're intentionally not reproduced here.
+`signalStrength`, `establishment` and `leadScore` are all exported from
+`packages/core/src/index.ts` as well, so the scoring can be unit-tested and
+reused independently of the CLI.
 
 `findLeads` takes the prior as a parameter rather than computing it internally,
 for the same reason the web app does: a prior built from the filtered subset

@@ -21,3 +21,8 @@ packages/web/CLAUDE.md
 
 # Local, untracked agent settings.
 .claude/*.local.*
+
+# Git-ignored scratch: plan ledgers, task briefs, and review diffs written by
+# the subagent-driven-development workflow. Format-gating machine-generated
+# scratch makes `format:check` fail for reasons no commit can fix.
+.superpowers

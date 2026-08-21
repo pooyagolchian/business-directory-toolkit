@@ -66,10 +66,7 @@
         "area": "festival-city"
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "festival-city"
-    ]
+    "areasInDemand": ["dubai-marina", "festival-city"]
   },
   {
     "category": "Insurance",
@@ -428,10 +425,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "festival-city",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["festival-city", "dubai-marina"]
   },
   {
     "category": "Cafes",
@@ -502,10 +496,7 @@
         "area": "dubai-marina"
       }
     ],
-    "areasInDemand": [
-      "festival-city",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["festival-city", "dubai-marina"]
   },
   {
     "category": "Supermarkets",
@@ -722,10 +713,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-south",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-south", "dubai-marina"]
   },
   {
     "category": "Clinics",
@@ -875,9 +863,7 @@
         "area": "dubai-marina"
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Travel Agencies",
@@ -947,11 +933,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "silicon-oasis",
-      "deira",
-      "dip"
-    ]
+    "areasInDemand": ["silicon-oasis", "deira", "dip"]
   },
   {
     "category": "Electronics",
@@ -1019,9 +1001,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "festival-city"
-    ]
+    "areasInDemand": ["festival-city"]
   },
   {
     "category": "Bars",
@@ -1167,9 +1147,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Gyms",
@@ -1467,10 +1445,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "dubai-south"
-    ]
+    "areasInDemand": ["dubai-marina", "dubai-south"]
   },
   {
     "category": "Clothing",
@@ -1606,9 +1581,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Hardware",
@@ -1677,10 +1650,7 @@
         "area": "dubai-south"
       }
     ],
-    "areasInDemand": [
-      "silicon-oasis",
-      "dubai-south"
-    ]
+    "areasInDemand": ["silicon-oasis", "dubai-south"]
   },
   {
     "category": "Florists",
@@ -1728,9 +1698,7 @@
         "rank": 9
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Pharmacies",
@@ -1878,12 +1846,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "silicon-oasis",
-      "dip",
-      "dubai-south",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["silicon-oasis", "dip", "dubai-south", "dubai-marina"]
   },
   {
     "category": "Dentists",
@@ -1952,10 +1915,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "silicon-oasis",
-      "healthcare-city"
-    ]
+    "areasInDemand": ["silicon-oasis", "healthcare-city"]
   },
   {
     "category": "Banking & Exchange",
@@ -2133,10 +2093,7 @@
         "area": "deira"
       }
     ],
-    "areasInDemand": [
-      "deira",
-      "bur-dubai"
-    ]
+    "areasInDemand": ["deira", "bur-dubai"]
   },
   {
     "category": "Pet Shops",
@@ -2205,10 +2162,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "bur-dubai"
-    ]
+    "areasInDemand": ["dubai-marina", "bur-dubai"]
   },
   {
     "category": "Spas",
@@ -2515,11 +2469,7 @@
         "area": "silicon-oasis"
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "dubai-south",
-      "silicon-oasis"
-    ]
+    "areasInDemand": ["dubai-marina", "dubai-south", "silicon-oasis"]
   },
   {
     "category": "Training",
@@ -3059,9 +3009,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Accounting",
@@ -3198,11 +3146,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-south",
-      "silicon-oasis",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-south", "silicon-oasis", "dubai-marina"]
   },
   {
     "category": "Opticians",
@@ -3272,10 +3216,7 @@
         "area": "dubai-marina"
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "bur-dubai"
-    ]
+    "areasInDemand": ["dubai-marina", "bur-dubai"]
   },
   {
     "category": "Tailors",
@@ -3345,11 +3286,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "silicon-oasis",
-      "bur-dubai"
-    ]
+    "areasInDemand": ["dubai-marina", "silicon-oasis", "bur-dubai"]
   },
   {
     "category": "Wholesale & Manufacturing",
@@ -3531,10 +3468,7 @@
         "area": "deira"
       }
     ],
-    "areasInDemand": [
-      "healthcare-city",
-      "deira"
-    ]
+    "areasInDemand": ["healthcare-city", "deira"]
   },
   {
     "category": "Security",
@@ -3714,11 +3648,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "healthcare-city",
-      "dubai-marina",
-      "silicon-oasis"
-    ]
+    "areasInDemand": ["healthcare-city", "dubai-marina", "silicon-oasis"]
   },
   {
     "category": "Books & Stationery",
@@ -3782,9 +3712,7 @@
         "area": "dip"
       }
     ],
-    "areasInDemand": [
-      "dip"
-    ]
+    "areasInDemand": ["dip"]
   },
   {
     "category": "Events",
@@ -3987,10 +3915,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "sheikh-zayed-road",
-      "dip"
-    ]
+    "areasInDemand": ["sheikh-zayed-road", "dip"]
   },
   {
     "category": "Nurseries",
@@ -4140,9 +4065,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-south"
-    ]
+    "areasInDemand": ["dubai-south"]
   },
   {
     "category": "Legal",
@@ -4279,11 +4202,7 @@
         "area": "dubai-marina"
       }
     ],
-    "areasInDemand": [
-      "deira",
-      "bur-dubai",
-      "dubai-marina"
-    ]
+    "areasInDemand": ["deira", "bur-dubai", "dubai-marina"]
   },
   {
     "category": "Sports Clubs",
@@ -4340,10 +4259,7 @@
         "rank": 11
       }
     ],
-    "areasInDemand": [
-      "bur-dubai",
-      "al-nahda"
-    ]
+    "areasInDemand": ["bur-dubai", "al-nahda"]
   },
   {
     "category": "Government",
@@ -4548,12 +4464,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "dubai-marina",
-      "silicon-oasis",
-      "festival-city",
-      "deira"
-    ]
+    "areasInDemand": ["dubai-marina", "silicon-oasis", "festival-city", "deira"]
   },
   {
     "category": "Cleaning",
@@ -4874,10 +4785,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "academic-city",
-      "internet-city"
-    ]
+    "areasInDemand": ["academic-city", "internet-city"]
   },
   {
     "category": "Perfume & Cosmetics",
@@ -4911,9 +4819,7 @@
         "area": "dubai-marina"
       }
     ],
-    "areasInDemand": [
-      "dubai-marina"
-    ]
+    "areasInDemand": ["dubai-marina"]
   },
   {
     "category": "Documents & Visas",
@@ -5034,11 +4940,7 @@
         "rank": 14
       }
     ],
-    "areasInDemand": [
-      "festival-city",
-      "dubai-marina",
-      "bur-dubai"
-    ]
+    "areasInDemand": ["festival-city", "dubai-marina", "bur-dubai"]
   },
   {
     "category": "Charities",

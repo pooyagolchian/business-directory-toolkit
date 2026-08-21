@@ -1,0 +1,200 @@
+{
+  "_readme": [
+    "The tail of the category vocabulary, classified by hand rather than by a",
+    "rule. seed-taxonomy.ts handles the head deterministically; these are the",
+    "strings no keyword rule could place without guessing.",
+    "",
+    "Two constraints held while writing this:",
+    "  1. Reuse the existing l2 vocabulary. A near-duplicate l2 fragments the",
+    "     taxonomy into competing SEO pages for the same intent.",
+    "  2. Only two new l2 values were added, both because nothing existing was",
+    "     honest: 'General Retail' for genuinely generic shop listings, and",
+    "     'Musical Instruments'. Each new l2 generates a new browse page, so the",
+    "     count is deliberately small.",
+    "",
+    "Deliberately NOT mapped: 'Bus stop', 'Apartment building' and similar.",
+    "They are infrastructure or dwellings, not businesses, and the project",
+    "indexes business listings only. Leaving them unmapped keeps them off the",
+    "browse pages."
+  ],
+
+  "Lodging": { "l1": "Travel & Hospitality", "l2": "Hotels" },
+  "Vacation rental": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Holiday Rentals"
+  },
+  "Serviced accommodation": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Serviced Apartments"
+  },
+  "Villa": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Holiday Rentals"
+  },
+  "Campground": { "l1": "Travel & Hospitality", "l2": "Attractions" },
+  "Airline ticket agency": {
+    "l1": "Travel & Hospitality",
+    "l2": "Travel Agencies"
+  },
+  "Airline": { "l1": "Travel & Hospitality", "l2": "Travel Agencies" },
+  "Airport shuttle service": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
+
+  "Apartment rental agency": { "l1": "Professional", "l2": "Real Estate" },
+  "Property investment company": { "l1": "Professional", "l2": "Real Estate" },
+  "Mortgage broker": { "l1": "Professional", "l2": "Banking & Exchange" },
+  "Finance broker": { "l1": "Professional", "l2": "Banking & Exchange" },
+  "Debt collection agency": { "l1": "Professional", "l2": "Accounting" },
+  "Accountant": { "l1": "Professional", "l2": "Accounting" },
+  "Lawyer": { "l1": "Professional", "l2": "Legal" },
+  "Corporate office": { "l1": "Professional", "l2": "Consulting" },
+  "Company": { "l1": "Professional", "l2": "Consulting" },
+  "Business to business service": { "l1": "Professional", "l2": "Consulting" },
+  "E-commerce service": { "l1": "Professional", "l2": "Marketing & Tech" },
+
+  "Print shop": { "l1": "Services", "l2": "Printing" },
+  "Commercial printer": { "l1": "Services", "l2": "Printing" },
+  "Digital printer": { "l1": "Services", "l2": "Printing" },
+  "Sign shop": { "l1": "Services", "l2": "Printing" },
+  "Banner store": { "l1": "Services", "l2": "Printing" },
+  "Laundromat": { "l1": "Services", "l2": "Laundry" },
+  "Dressmaker": { "l1": "Services", "l2": "Tailors" },
+  "Transportation service": { "l1": "Services", "l2": "Delivery & Logistics" },
+  "Bus company": { "l1": "Services", "l2": "Delivery & Logistics" },
+  "Service establishment": { "l1": "Services", "l2": "Maintenance" },
+  "Repair service": { "l1": "Services", "l2": "Maintenance" },
+  "Musical instrument repair shop": { "l1": "Services", "l2": "Maintenance" },
+
+  "Pet supply store": { "l1": "Pets", "l2": "Pet Shops" },
+  "Pet groomer": { "l1": "Pets", "l2": "Pet Shops", "l3": "Grooming" },
+  "Pet boarding service": { "l1": "Pets", "l2": "Pet Shops", "l3": "Boarding" },
+  "Reptile store": { "l1": "Pets", "l2": "Pet Shops" },
+  "Bird shop": { "l1": "Pets", "l2": "Pet Shops" },
+  "Fish store": { "l1": "Pets", "l2": "Pet Shops" },
+  "Animal feed store": { "l1": "Pets", "l2": "Pet Shops" },
+
+  "Educational institution": { "l1": "Education", "l2": "Schools" },
+  "Private educational institution": { "l1": "Education", "l2": "Schools" },
+  "Education center": { "l1": "Education", "l2": "Training" },
+  "Children's camp": { "l1": "Education", "l2": "Training" },
+  "Child care agency": { "l1": "Education", "l2": "Nurseries" },
+
+  "Car leasing service": { "l1": "Automotive", "l2": "Car Rental" },
+  "Chauffeur service": {
+    "l1": "Automotive",
+    "l2": "Car Rental",
+    "l3": "With Driver"
+  },
+  "Auto body shop": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto electrical service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto window tinting service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Window tinting service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Car inspection station": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Vehicle inspection service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto machine shop": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto tune up service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto tag agency": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Oil change service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Scooter repair shop": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto radiator repair service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Auto restoration service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Engine rebuilding service": { "l1": "Automotive", "l2": "Auto Repair" },
+  "Towing service": { "l1": "Automotive", "l2": "Auto Repair", "l3": "Towing" },
+  "Towing equipment provider": { "l1": "Automotive", "l2": "Auto Parts" },
+  "Car detailing service": { "l1": "Automotive", "l2": "Car Wash" },
+  "Car accessories store": { "l1": "Automotive", "l2": "Auto Parts" },
+  "Car stereo store": { "l1": "Automotive", "l2": "Auto Parts" },
+  "Auto broker": { "l1": "Automotive", "l2": "Car Dealers" },
+
+  "Emergency room": { "l1": "Health & Medical", "l2": "Hospitals" },
+  "Emergency care service": { "l1": "Health & Medical", "l2": "Hospitals" },
+  "Medical group": { "l1": "Health & Medical", "l2": "Clinics" },
+  "Community health center": { "l1": "Health & Medical", "l2": "Clinics" },
+  "Dialysis center": { "l1": "Health & Medical", "l2": "Clinics" },
+  "Allergist": { "l1": "Health & Medical", "l2": "Clinics" },
+  "Acupuncturist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "Alternative Medicine"
+  },
+  "Drug store": { "l1": "Health & Medical", "l2": "Pharmacies" },
+
+  "Wellness center": { "l1": "Beauty & Wellness", "l2": "Spas" },
+  "Esthetics service": { "l1": "Beauty & Wellness", "l2": "Salons" },
+  "Beautician": { "l1": "Beauty & Wellness", "l2": "Salons" },
+  "Beauty supply store": { "l1": "Shopping", "l2": "Perfume & Cosmetics" },
+  "Health and beauty shop": { "l1": "Shopping", "l2": "Perfume & Cosmetics" },
+
+  "Personal trainer": { "l1": "Sports & Fitness", "l2": "Gyms" },
+  "Body shaping class": { "l1": "Sports & Fitness", "l2": "Gyms" },
+  "Aerobics instructor": { "l1": "Sports & Fitness", "l2": "Gyms" },
+  "Volleyball club": { "l1": "Sports & Fitness", "l2": "Sports Clubs" },
+  "Basketball club": { "l1": "Sports & Fitness", "l2": "Sports Clubs" },
+  "Cricket club": { "l1": "Sports & Fitness", "l2": "Sports Clubs" },
+  "Chess club": { "l1": "Sports & Fitness", "l2": "Sports Clubs" },
+  "Adventure sports center": { "l1": "Sports & Fitness", "l2": "Sports Clubs" },
+  "ATV rental service": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
+  "Sportswear store": { "l1": "Shopping", "l2": "Sports Shops" },
+
+  "Kitchen supply store": { "l1": "Shopping", "l2": "Hardware" },
+  "Home improvement store": { "l1": "Shopping", "l2": "Hardware" },
+  "Bathroom supply store": { "l1": "Shopping", "l2": "Hardware" },
+  "Flooring store": { "l1": "Shopping", "l2": "Hardware" },
+  "Countertop store": { "l1": "Shopping", "l2": "Hardware" },
+  "Tool store": { "l1": "Shopping", "l2": "Hardware" },
+  "Acrylic store": { "l1": "Shopping", "l2": "Hardware" },
+  "Home goods store": { "l1": "Shopping", "l2": "Furniture" },
+  "Lighting store": { "l1": "Shopping", "l2": "Furniture" },
+  "Carpet store": { "l1": "Shopping", "l2": "Furniture" },
+  "Wallpaper store": { "l1": "Shopping", "l2": "Furniture" },
+  "Blinds shop": { "l1": "Shopping", "l2": "Furniture" },
+  "Home audio store": { "l1": "Shopping", "l2": "Electronics" },
+  "Camera store": { "l1": "Shopping", "l2": "Electronics" },
+  "Drone shop": { "l1": "Shopping", "l2": "Electronics" },
+  "Swimwear store": { "l1": "Shopping", "l2": "Clothing" },
+  "Dress store": { "l1": "Shopping", "l2": "Clothing" },
+  "Bridal shop": { "l1": "Shopping", "l2": "Clothing", "l3": "Bridal" },
+  "Lingerie store": { "l1": "Shopping", "l2": "Clothing" },
+  "Uniform store": { "l1": "Shopping", "l2": "Clothing" },
+  "Fabric store": { "l1": "Shopping", "l2": "Clothing", "l3": "Fabric" },
+  "Antique store": { "l1": "Shopping", "l2": "Gifts" },
+  "Dry fruit store": { "l1": "Shopping", "l2": "Grocery Stores" },
+  "Tea store": { "l1": "Shopping", "l2": "Grocery Stores" },
+  "Drinking water": { "l1": "Shopping", "l2": "Grocery Stores" },
+  "Bubble tea store": { "l1": "Food & Drink", "l2": "Cafes" },
+  "Food and drink": { "l1": "Food & Drink", "l2": "Restaurants" },
+
+  "Store": { "l1": "Shopping", "l2": "General Retail" },
+  "General store": { "l1": "Shopping", "l2": "General Retail" },
+  "Stores and shopping": { "l1": "Shopping", "l2": "General Retail" },
+
+  "Music store": { "l1": "Shopping", "l2": "Musical Instruments" },
+  "Musical instrument store": { "l1": "Shopping", "l2": "Musical Instruments" },
+  "Drum store": { "l1": "Shopping", "l2": "Musical Instruments" },
+
+  "Upholstery shop": { "l1": "Home & Construction", "l2": "Trades" },
+  "Bathroom remodeler": { "l1": "Home & Construction", "l2": "Contractors" },
+  "Air conditioning repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Air conditioning store": { "l1": "Shopping", "l2": "Electronics" },
+  "Acoustical consultant": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
+  "Energy equipment and solutions": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+
+  "Driver's license office": { "l1": "Community", "l2": "Government" }
+}

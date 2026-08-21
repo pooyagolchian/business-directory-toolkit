@@ -687,6 +687,24 @@ const mapPath = fileURLToPath(new URL("data/taxonomy-map.json", root));
 const recordsPath = fileURLToPath(new URL("data/out/raw-records.json", root));
 
 const existing = JSON.parse(readFileSync(mapPath, "utf8")) as TaxonomyMap;
+
+/**
+ * The hand-classified tail.
+ *
+ * Rules handle the head; these are the strings no keyword rule could place
+ * without guessing. Merged here so one command reproduces the whole map.
+ */
+const tailPath = fileURLToPath(new URL("data/taxonomy-tail.json", root));
+const tailRaw = JSON.parse(readFileSync(tailPath, "utf8")) as Record<
+  string,
+  unknown
+>;
+const tail: TaxonomyMap = Object.fromEntries(
+  Object.entries(tailRaw).filter(
+    ([key, value]) =>
+      !key.startsWith("_") && typeof value === "object" && value !== null,
+  ),
+) as TaxonomyMap;
 const records = JSON.parse(
   readFileSync(recordsPath, "utf8"),
 ) as RawLocalResult[];
@@ -702,8 +720,9 @@ for (const category of distinct) {
   matched++;
 }
 
-// Existing entries win — a committed human correction is never overwritten.
-const merged: TaxonomyMap = { ...seeded, ...existing };
+// Precedence, lowest to highest: rules, hand-classified tail, existing map.
+// A committed human correction is never overwritten by either.
+const merged: TaxonomyMap = { ...seeded, ...tail, ...existing };
 
 const covered = records.filter((r) => {
   const cats = [r.type, ...(r.types ?? [])].filter(Boolean) as string[];

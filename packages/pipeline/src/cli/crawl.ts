@@ -13,7 +13,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runCrawl } from "../fetch.js";
-import { buildCrawlPlan, loadCategories, loadTiles } from "../plan.js";
+import { buildCrawlPlan, loadCity } from "../plan.js";
 import { createSearchApiClient } from "../searchapi.js";
 
 const argv = process.argv.slice(2);
@@ -32,17 +32,33 @@ const root = new URL("../../../../", import.meta.url);
 const outDir = fileURLToPath(new URL("data/out/", root));
 const rawDir = fileURLToPath(new URL("data/raw/", root));
 
-let tiles = loadTiles();
+/**
+ * Adding a city is the toolkit's main extension point, so a wrong id must
+ * teach rather than dump a stack trace.
+ */
+function loadCityOrExit(id: string) {
+  try {
+    return loadCity(id);
+  } catch (error) {
+    console.error(
+      `\n${error instanceof Error ? error.message : String(error)}\n`,
+    );
+    process.exit(1);
+  }
+}
+
+const city = loadCityOrExit(value("--city") ?? "dubai");
+let tiles = city.tiles;
 if (only) tiles = tiles.filter((t) => t.id === only);
 if (tiles.length === 0) {
   console.error(`No tile matched --only ${only}`);
   process.exit(1);
 }
 
-const plan = buildCrawlPlan(tiles, loadCategories());
+const plan = buildCrawlPlan(tiles, city.categories);
 
 console.log(`
-Crawl
+Crawl — ${city.name}
 =====
 Tiles              ${tiles.length}${only ? ` (--only ${only})` : ""}
 Jobs (page 1)      ${plan.estimate.initialRequests.toLocaleString()}

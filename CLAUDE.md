@@ -1,9 +1,19 @@
 # Directory from Scratch — agent instructions
 
-An MIT-licensed Dubai business search engine built on SearchApi's Google Maps
-engine, developed in public as part of the SearchApi Developer Ambassador
-Program. Three milestones: **v0.1** pipeline → **v0.2** search → **v1.0**
-programmatic SEO.
+An MIT-licensed **open-source toolkit for building a local business directory
+for any city**, built on SearchApi's Google Maps engine and developed in public
+as part of the SearchApi Developer Ambassador Program.
+`directory.pooyagolchian.com` is its reference deployment, not the product —
+see `docs/adr/0005-toolkit-not-directory.md`.
+
+Three milestones: **v0.1** pipeline → **v0.2** search → **v1.0** programmatic SEO.
+
+**A city is data, not code.** `data/cities/<id>.json` carries tiles, categories,
+bounding boxes, country code and phone region. Nothing downstream hard-codes a
+city. Users bring their own SearchApi key and crawl their own city — which is
+also why ADR 0002 (never ship the dataset) _drives_ the programme's lead metric
+rather than suppressing it: the proposal states that clicks and signups lead
+every monthly report, with stars and forks explicitly behind them.
 
 ---
 
@@ -21,7 +31,7 @@ was asked.
 3. **Never spend API credits in tests or CI.** Tests read recorded fixtures from
    `fixtures/`. A test that makes a network call is a broken test.
 4. **Never widen a crawl without saying what it costs.** Any change to
-   `data/tiles.json` or `data/categories.json` must state the new request count.
+   `data/cities/<id>.json` must state the new request count.
 5. **Business listings only.** No residential numbers, no personal data. Decline
    changes that would collect either.
 6. **TDD is mandatory** for `packages/core`. Write the test, watch it fail, then
@@ -60,16 +70,18 @@ seems obvious. Present it, wait for a yes.
 Probed live on 2026-08-20. These cost credits to learn; treat them as settled
 and do not spend more re-deriving them.
 
-| Fact                             | Value                                                          |
-| -------------------------------- | -------------------------------------------------------------- |
-| Result ceiling per query         | **~200** — `page=11` returns zero. Tiling is mandatory.        |
-| Results per page                 | 20                                                             |
-| Unique yield per request         | **~17.5** (~12% in-query duplicate rate)                       |
-| Cross-tile overlap               | **0** measured between Downtown and Deira — tiles are disjoint |
-| Phone format returned            | Local, never E.164 — `04 577 6680`, `052 253 3290`             |
-| Free geo filters on every result | `country_code`, `city`, `timezone`                             |
-| Category mess                    | Up to 9 `types[]` strings on a single business                 |
-| Titles                           | Often bilingual — `Shamiat Restaurant مطعم شاميات - Dubai`     |
+| Fact                             | Value                                                                                    |
+| -------------------------------- | ---------------------------------------------------------------------------------------- |
+| Result ceiling per query         | **~200** — `page=11` returns zero. Tiling is mandatory.                                  |
+| Results per page                 | 20                                                                                       |
+| Unique yield per request         | **~17.5** (~12% in-query duplicate rate)                                                 |
+| Cross-tile overlap               | **0** measured between Downtown and Deira — tiles are disjoint                           |
+| Phone format returned            | Local, never E.164 — `04 577 6680`, `052 253 3290`                                       |
+| Free geo filters on every result | `country_code`, `city`, `timezone`                                                       |
+| Category mess                    | Up to 9 `types[]` strings on a single business                                           |
+| `types[]` ordering               | **Alphabetical, not ranked** — 85% of tails sorted. Carries no relevance signal          |
+| Category saturation              | 2,816 businesses → 983 distinct. Marginal fell 76 → 4.8 per 100 businesses. See ADR 0006 |
+| Titles                           | Often bilingual — `Shamiat Restaurant مطعم شاميات - Dubai`                               |
 
 Credit budget: 100k total, ~2,000 planned for the v0.1 crawl.
 
@@ -118,9 +130,10 @@ exception, because per-keystroke requests must not hit an SSR Lambda.
 ```bash
 pnpm test           # offline, fixtures only, costs nothing
 pnpm typecheck
-pnpm plan           # build crawl plan, no API calls
-pnpm crawl --dry-run  # print request count and credit cost BEFORE spending
-pnpm crawl          # spends credits
+pnpm plan --list             # every city config in the repo
+pnpm plan --city dubai       # build crawl plan, no API calls
+pnpm crawl --city dubai --dry-run   # request count + credit cost BEFORE spending
+pnpm crawl --city dubai --yes       # spends credits (--yes is required)
 npx sst deploy --stage dev
 ```
 

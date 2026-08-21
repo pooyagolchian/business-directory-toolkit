@@ -1,6 +1,9 @@
 // `/max` metadata is required: the default (`min`) build does not carry the
 // number-type ranges needed to tell a UAE landline from a mobile.
-import { parsePhoneNumberFromString } from "libphonenumber-js/max";
+import {
+  parsePhoneNumberFromString,
+  type CountryCode,
+} from "libphonenumber-js/max";
 
 export type PhoneType = "landline" | "mobile" | "unknown";
 
@@ -13,7 +16,7 @@ export interface NormalizedPhone {
 }
 
 /**
- * The Google Maps engine returns UAE phone numbers in local format
+ * The Google Maps engine returns phone numbers in local format
  * ("04 577 6680", "052 253 3290"), never E.164. Everything downstream — the
  * phone-lookup index especially — needs a single canonical form.
  *
@@ -22,14 +25,17 @@ export interface NormalizedPhone {
  */
 export function normalizePhone(
   raw: string | null | undefined,
+  region: CountryCode,
 ): NormalizedPhone | null {
   if (!raw || raw.trim() === "") return null;
 
-  const parsed = parsePhoneNumberFromString(raw, "AE");
+  const parsed = parsePhoneNumberFromString(raw, region);
 
-  // `country !== "AE"` matters: a +44 number parses as valid GB, and coercing
-  // it into +971 would silently corrupt the index.
-  if (!parsed || !parsed.isValid() || parsed.country !== "AE") return null;
+  // The country check matters: a +44 number parses as valid GB, and coercing
+  // it into the crawled region would silently corrupt the phone index. The
+  // region is required rather than defaulted for the same reason — a silent
+  // "AE" default would quietly mangle every number in a Manchester crawl.
+  if (!parsed || !parsed.isValid() || parsed.country !== region) return null;
 
   const kind = parsed.getType();
   const type: PhoneType =

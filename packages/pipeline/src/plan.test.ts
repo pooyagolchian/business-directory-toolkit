@@ -1,8 +1,9 @@
 import { describe, expect, test } from "vitest";
-import { buildCrawlPlan, loadCategories, loadTiles } from "./plan.js";
+import { availableCities, buildCrawlPlan, loadCity } from "./plan.js";
 
-const tiles = loadTiles();
-const categories = loadCategories();
+const dubai = loadCity("dubai");
+const tiles = dubai.tiles;
+const categories = dubai.categories;
 
 describe("buildCrawlPlan", () => {
   test("plans only first pages, because depth is decided adaptively at crawl time", () => {
@@ -92,9 +93,21 @@ describe("buildCrawlPlan", () => {
   });
 });
 
-describe("loadTiles", () => {
+describe("loadCity", () => {
   test("loads the committed Dubai tile set", () => {
     expect(tiles.length).toBeGreaterThan(20);
     expect(tiles.every((t) => t.lat > 24 && t.lat < 26)).toBe(true);
+  });
+});
+
+describe("availableCities", () => {
+  test("lists the city configs shipped in the repo", () => {
+    // A city is data, so this grows without any code change.
+    expect(availableCities()).toContain("dubai");
+  });
+
+  test("names the alternatives when a city config is missing", () => {
+    // The error has to teach, since adding a city is the main extension point.
+    expect(() => loadCity("atlantis")).toThrow(/Available:.*dubai/s);
   });
 });

@@ -28,7 +28,7 @@ from the repository.
 What _is_ committed:
 
 - The complete pipeline source
-- `data/tiles.json` and `data/categories.json` — the crawl plan
+- `data/cities/*.json` — the crawl plan for each city (see ADR 0005)
 - `data/taxonomy-map.json` — the category mapping (our own derived work)
 - `fixtures/` — a small number of recorded API responses for offline tests
 - `data/suppression-list.json` — opaque `place_id` values only

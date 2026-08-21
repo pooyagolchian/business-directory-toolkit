@@ -1,0 +1,79 @@
+{
+  "_readme": [
+    "Copy this file to data/cities/<your-city>.json and fill it in.",
+    "Then: pnpm plan --city <your-city>   (free, no API calls)",
+    "      pnpm crawl --city <your-city> --dry-run   (shows the credit cost)",
+    "",
+    "Only tiles and categories need real thought. Everything else is lookup.",
+    "",
+    "TILES are the single most important part. The Google Maps engine caps a",
+    "query at ~200 results (page 11 returns zero), so no single query can cover",
+    "a city — you must tile it geographically. Measured overlap between two",
+    "Dubai tiles was ZERO, so tiles partition cleanly and are worth getting",
+    "right. Use real neighbourhood centres, not an even grid: business density",
+    "follows neighbourhoods, and an even grid wastes requests on water,",
+    "desert, and airports.",
+    "",
+    "density controls pagination depth, so it is a direct cost lever:",
+    "  dense   broad=5 pages, standard=3, niche=1   (city centre, commercial strips)",
+    "  medium  broad=3, standard=2, niche=0         (residential with retail)",
+    "  sparse  broad=1, standard=0, niche=0         (outskirts, industrial)",
+    "",
+    "zoom: 15 for dense areas, 14 for medium, 13 for sparse. Higher = smaller area.",
+    "",
+    "cityNames must match what the engine returns in the `city` field. Check a",
+    "single live result before crawling. City name is the primary filter and",
+    "bounding boxes are only a sanity check, because adjacent cities often form",
+    "one continuous urban area with a non-rectangular border.",
+    "",
+    "Use several boundingBoxes if the city has detached territory."
+  ],
+
+  "id": "example",
+  "name": "Example City",
+
+  "countryCode": "GB",
+  "phoneRegion": "GB",
+
+  "cityNames": ["example city", "example"],
+
+  "boundingBoxes": [
+    { "minLat": 53.35, "maxLat": 53.55, "minLng": -2.35, "maxLng": -2.15 }
+  ],
+
+  "tiles": [
+    {
+      "id": "city-centre",
+      "name": "City Centre",
+      "lat": 53.4808,
+      "lng": -2.2426,
+      "zoom": 15,
+      "density": "dense"
+    },
+    {
+      "id": "northern-quarter",
+      "name": "Northern Quarter",
+      "lat": 53.4839,
+      "lng": -2.2364,
+      "zoom": 15,
+      "density": "medium"
+    },
+    {
+      "id": "outskirts",
+      "name": "Outskirts",
+      "lat": 53.42,
+      "lng": -2.29,
+      "zoom": 13,
+      "density": "sparse"
+    }
+  ],
+
+  "categories": [
+    { "q": "restaurants", "tier": "broad" },
+    { "q": "cafes", "tier": "broad" },
+    { "q": "pharmacies", "tier": "broad" },
+    { "q": "hotels", "tier": "standard" },
+    { "q": "dentists", "tier": "standard" },
+    { "q": "law firms", "tier": "niche" }
+  ]
+}

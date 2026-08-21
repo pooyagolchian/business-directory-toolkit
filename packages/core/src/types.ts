@@ -1,3 +1,5 @@
+import type { CountryCode } from "libphonenumber-js";
+
 /**
  * A single entry from the SearchApi Google Maps engine `local_results` array.
  *
@@ -43,5 +45,88 @@ export interface TaxonomyNode {
   l3?: string;
 }
 
+/**
+ * A normalised business — the shape everything downstream reads.
+ *
+ * Lives in core rather than in the pipeline because the web app consumes it
+ * too, and the web package deliberately depends only on core.
+ */
+export interface Business {
+  placeId: string;
+  slug: string;
+  title: string;
+  /** The tile that surfaced this listing; becomes the neighbourhood. */
+  area: string;
+  address?: string;
+  lat?: number;
+  lng?: number;
+  /** Exactly as the engine returned it, e.g. "04 577 6680". */
+  phoneRaw?: string;
+  /** Canonical form, e.g. "+97145776680". */
+  phoneE164?: string;
+  phoneType?: "landline" | "mobile" | "unknown";
+  website?: string;
+  domain?: string;
+  rating?: number;
+  reviews?: number;
+  l1?: string;
+  l2?: string;
+  l3?: string;
+  types: string[];
+  thumbnail?: string;
+  openHours?: Record<string, string>;
+  dataId?: string;
+}
+
 /** `data/taxonomy-map.json`: one Google category string → one taxonomy node. */
 export type TaxonomyMap = Record<string, TaxonomyNode>;
+
+/** A rectangle in WGS84 degrees. Cities may need several. */
+export interface BoundingBox {
+  minLat: number;
+  maxLat: number;
+  minLng: number;
+  maxLng: number;
+}
+
+export type Density = "dense" | "medium" | "sparse";
+export type Tier = "broad" | "standard" | "niche";
+
+export interface CityTile {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  zoom: number;
+  density: Density;
+}
+
+export interface CityCategory {
+  q: string;
+  tier: Tier;
+}
+
+/**
+ * Everything the toolkit needs to crawl one city.
+ *
+ * This is the file a user writes to point the pipeline somewhere new. Nothing
+ * downstream hard-codes a city, so adding Riyadh or Manchester is config, not
+ * code — see docs/adr/0005-toolkit-not-directory.md.
+ */
+export interface CityConfig {
+  id: string;
+  name: string;
+  /** ISO 3166-1 alpha-2, matched against the engine's `country_code`. */
+  countryCode: string;
+  /** Region passed to libphonenumber for E.164 normalisation. */
+  phoneRegion: CountryCode;
+  /**
+   * City strings to accept, lowercased. More than one when a city has
+   * administratively separate areas (Dubai includes Hatta).
+   */
+  cityNames: string[];
+  /** Sanity check only; `cityNames` is the primary filter. */
+  boundingBoxes: BoundingBox[];
+  tiles: CityTile[];
+  categories: CityCategory[];
+}

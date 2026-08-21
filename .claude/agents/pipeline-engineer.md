@@ -35,8 +35,8 @@ Budget: 100k credits total, ~2,000 planned for the v0.1 crawl.
 3. **Raw responses go to S3 before parsing.** This is the single biggest cost
    lever in the project: it makes every downstream stage re-runnable without
    re-spending credits. Never parse-then-discard.
-4. **Any crawl-scope change states its cost.** Touching `data/tiles.json` or
-   `data/categories.json` means reporting the new request count and credit
+4. **Any crawl-scope change states its cost.** Touching a city config in
+   `data/cities/` means reporting the new request count and credit
    estimate in the same message. Never widen a crawl silently.
 5. **`packages/core` stays pure.** No AWS SDK, no `fetch`, no filesystem. I/O
    lives in `packages/pipeline`. This is what keeps the domain logic testable

@@ -1,37 +1,15 @@
 import {
   applyTaxonomy,
-  isDubaiListing,
+  isInCity,
   normalizePhone,
   toSlug,
-  type PhoneType,
+  type Business,
+  type CityConfig,
   type RawLocalResult,
   type TaxonomyMap,
 } from "@directory/core";
 
-/** A business ready to load into DynamoDB and render as a page. */
-export interface Business {
-  placeId: string;
-  slug: string;
-  title: string;
-  area: string;
-  address?: string;
-  lat?: number;
-  lng?: number;
-  phoneRaw?: string;
-  phoneE164?: string;
-  phoneType?: PhoneType;
-  website?: string;
-  domain?: string;
-  rating?: number;
-  reviews?: number;
-  l1?: string;
-  l2?: string;
-  l3?: string;
-  types: string[];
-  thumbnail?: string;
-  openHours?: Record<string, string>;
-  dataId?: string;
-}
+export type { Business };
 
 export interface NormalizeReport {
   businesses: Business[];
@@ -45,20 +23,21 @@ export interface NormalizeReport {
  * Stage 2 — turn one raw engine result into a business record.
  *
  * Returns null only for records that genuinely cannot be used: no `place_id`
- * (nothing to key on) or not in Dubai. A missing phone or an unmapped category
+ * (nothing to key on) or not in the configured city. A missing phone or an unmapped category
  * is a gap to report, never a reason to discard a listing.
  */
 export function normalizeBusiness(
   record: RawLocalResult,
   map: TaxonomyMap,
   area: string,
+  city: CityConfig,
 ): Business | null {
   const placeId = record.place_id;
   if (!placeId) return null;
-  if (!isDubaiListing(record)) return null;
+  if (!isInCity(record, city)) return null;
 
   const title = record.title ?? "";
-  const phone = normalizePhone(record.phone);
+  const phone = normalizePhone(record.phone, city.phoneRegion);
   const taxonomy = applyTaxonomy(record, map);
 
   const business: Business = {
@@ -108,6 +87,7 @@ export function normalizeAll(
   records: RawLocalResult[],
   map: TaxonomyMap,
   area: string,
+  city: CityConfig,
 ): NormalizeReport {
   const businesses: Business[] = [];
   let rejectedNotDubai = 0;
@@ -119,11 +99,11 @@ export function normalizeAll(
       rejectedNoPlaceId++;
       continue;
     }
-    if (!isDubaiListing(record)) {
+    if (!isInCity(record, city)) {
       rejectedNotDubai++;
       continue;
     }
-    const business = normalizeBusiness(record, map, area);
+    const business = normalizeBusiness(record, map, area, city);
     if (!business) continue;
     if (!business.l2) unmappedTaxonomy++;
     businesses.push(business);

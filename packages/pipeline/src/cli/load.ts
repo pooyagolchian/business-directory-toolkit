@@ -12,13 +12,14 @@ import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 import { marshall } from "@aws-sdk/util-dynamodb";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
   dedupeByPlaceId,
   type RawLocalResult,
   type TaxonomyMap,
 } from "@directory/core";
+import { loadCity } from "../plan.js";
 import { toItems } from "../items.js";
 import { normalizeAll } from "../normalize.js";
 
@@ -26,6 +27,25 @@ const argv = process.argv.slice(2);
 const dryRun = argv.includes("--dry-run");
 const confirmed = argv.includes("--yes");
 const tableName = process.env.DIRECTORY_TABLE;
+const cityFlagIndex = argv.indexOf("--city");
+/**
+ * Adding a city is the toolkit's main extension point, so a wrong id must
+ * teach rather than dump a stack trace.
+ */
+function loadCityOrExit(id: string) {
+  try {
+    return loadCity(id);
+  } catch (error) {
+    console.error(
+      `\n${error instanceof Error ? error.message : String(error)}\n`,
+    );
+    process.exit(1);
+  }
+}
+
+const city = loadCityOrExit(
+  cityFlagIndex === -1 ? "dubai" : (argv[cityFlagIndex + 1] ?? "dubai"),
+);
 
 const root = new URL("../../../../", import.meta.url);
 const mapPath = fileURLToPath(new URL("data/taxonomy-map.json", root));
@@ -61,12 +81,21 @@ let rejectedNoPlaceId = 0;
 let unmappedTaxonomy = 0;
 
 for (const [area, group] of byArea) {
-  const report = normalizeAll(group, map, area);
+  const report = normalizeAll(group, map, area, city);
   businesses.push(...report.businesses);
   rejectedNotDubai += report.rejectedNotDubai;
   rejectedNoPlaceId += report.rejectedNoPlaceId;
   unmappedTaxonomy += report.unmappedTaxonomy;
 }
+
+// Always write the normalised set, including on a dry run: this is what the
+// web app reads in local development, standing in for DynamoDB. It lands in
+// data/out/, which is git-ignored — the dataset is never committed (ADR 0002).
+businesses.sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0));
+writeFileSync(
+  fileURLToPath(new URL("data/out/businesses.json", root)),
+  JSON.stringify(businesses),
+);
 
 const items = businesses.flatMap(toItems);
 const withPhone = businesses.filter((b) => b.phoneE164).length;
@@ -76,7 +105,7 @@ const pct = (n: number) =>
 const gate = (ok: boolean) => (ok ? "PASS" : "FAIL");
 
 console.log(`
-Load
+Load — ${city.name}
 ====
 Raw records         ${records.length.toLocaleString()}
 After dedupe        ${deduped.unique.length.toLocaleString()}  (-${deduped.duplicatesRemoved} duplicates, -${deduped.skippedNoPlaceId} without place_id)

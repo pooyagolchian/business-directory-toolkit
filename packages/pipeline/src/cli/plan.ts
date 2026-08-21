@@ -1,28 +1,64 @@
 /**
  * Stage 0 — build the crawl plan. Makes no API calls and spends nothing.
  *
- *   pnpm plan            print the budget report
- *   pnpm plan --json     write the plan to data/out/crawl-plan.json
+ *   pnpm plan                    plan the default city
+ *   pnpm plan --city dubai       plan a specific city
+ *   pnpm plan --list             show every city config in the repo
+ *   pnpm plan --json             write the plan to data/out/crawl-plan.json
  */
 import { mkdirSync, writeFileSync } from "node:fs";
-import { buildCrawlPlan, loadCategories, loadTiles } from "../plan.js";
+import { availableCities, buildCrawlPlan, loadCity } from "../plan.js";
 
-const tiles = loadTiles();
-const categories = loadCategories();
-const plan = buildCrawlPlan(tiles, categories);
+const argv = process.argv.slice(2);
+const flag = (name: string) => {
+  const i = argv.indexOf(name);
+  return i === -1 ? undefined : argv[i + 1];
+};
 
-const byDensity = (d: string) => tiles.filter((t) => t.density === d).length;
-const byTier = (t: string) => categories.filter((c) => c.tier === t).length;
+/**
+ * Adding a city is the toolkit's main extension point, so a wrong id must
+ * teach rather than dump a stack trace.
+ */
+function loadCityOrExit(id: string) {
+  try {
+    return loadCity(id);
+  } catch (error) {
+    console.error(
+      `\n${error instanceof Error ? error.message : String(error)}\n`,
+    );
+    process.exit(1);
+  }
+}
+
+if (argv.includes("--list")) {
+  console.log(`\nCity configs in this repo:\n`);
+  for (const id of availableCities()) {
+    const entry = loadCity(id);
+    console.log(
+      `  ${id.padEnd(14)} ${entry.name} — ${entry.tiles.length} tiles, ${entry.categories.length} categories`,
+    );
+  }
+  console.log(`\nAdd data/cities/<id>.json to crawl somewhere new.\n`);
+  process.exit(0);
+}
+
+const cityConfig = loadCityOrExit(flag("--city") ?? "dubai");
+const plan = buildCrawlPlan(cityConfig.tiles, cityConfig.categories);
+
+const byDensity = (d: string) =>
+  cityConfig.tiles.filter((t) => t.density === d).length;
+const byTier = (t: string) =>
+  cityConfig.categories.filter((c) => c.tier === t).length;
 
 const CREDIT_PER_REQUEST = 1;
 const BUDGET_TARGET = 2_000;
 
 console.log(`
-Crawl plan — Directory from Scratch
-===================================
+Crawl plan — ${cityConfig.name}
+${"=".repeat(13 + cityConfig.name.length)}
 
-Tiles       ${tiles.length}  (dense ${byDensity("dense")}, medium ${byDensity("medium")}, sparse ${byDensity("sparse")})
-Categories  ${categories.length}  (broad ${byTier("broad")}, standard ${byTier("standard")}, niche ${byTier("niche")})
+Tiles       ${cityConfig.tiles.length}  (dense ${byDensity("dense")}, medium ${byDensity("medium")}, sparse ${byDensity("sparse")})
+Categories  ${cityConfig.categories.length}  (broad ${byTier("broad")}, standard ${byTier("standard")}, niche ${byTier("niche")})
 
 Requests
   up front (page 1 only)     ${plan.estimate.initialRequests.toLocaleString()}
@@ -49,7 +85,7 @@ if (plan.estimate.maxRequests > BUDGET_TARGET) {
   );
 }
 
-if (process.argv.includes("--json")) {
+if (argv.includes("--json")) {
   mkdirSync(new URL("../../../../data/out/", import.meta.url), {
     recursive: true,
   });

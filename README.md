@@ -3,6 +3,13 @@
 **An open-source toolkit for building a local business directory for any city,
 on [SearchApi](https://www.searchapi.io/)'s Google Maps engine.**
 
+<a href="https://www.searchapi.io/">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="./logo/search-api-dark.svg">
+<img alt="Built on SearchApi" src="./logo/search-api-light.svg" width="196">
+</picture>
+</a>
+
 [![CI](https://github.com/pooyagolchian/directory-from-scratch/actions/workflows/ci.yml/badge.svg)](https://github.com/pooyagolchian/directory-from-scratch/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node 24](https://img.shields.io/badge/node-24-black.svg)](./.nvmrc)
@@ -943,6 +950,12 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) and
 [MIT](./LICENSE) for the code. The data scope is set by
 [ADR 0002](./docs/adr/0002-do-not-redistribute-the-dataset.md) and
 [TAKEDOWN.md](./TAKEDOWN.md), not by the licence.
+
+The SearchApi wordmark in [`logo/`](./logo) is **not** covered by that MIT
+grant. It is SearchApi's trademark, reproduced here to credit the engine this
+runs on, and forking the code does not carry a licence to use it — see
+[`logo/README.md`](./logo/README.md). Everything else about the design is
+typographic on purpose ([ADR 0004](./docs/adr/0004-design-system.md)).
 
 ---
 

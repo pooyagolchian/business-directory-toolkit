@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Keyframes for the shadcn popup's open/close transition. The reduced-motion
+   block at the foot of this file already neutralises them. */
+@import "tw-animate-css";
 
 /*
  * Monochrome by design — see docs/adr/0004-design-system.md.
@@ -236,6 +239,45 @@
      neighbouring steps are close, and in forced-colors mode where the fills
      are replaced outright. */
   --chart-cell-edge: rgb(27 31 35 / 0.08);
+}
+
+/*
+ * shadcn/ui token bridge.
+ *
+ * Vendored shadcn components ship with their own semantic class names —
+ * `bg-popover`, `border-input`, `text-muted-foreground`. Rather than paste
+ * shadcn's neutral palette in beside ours and maintain two systems, those
+ * names are pointed at the tokens above. A component dropped in by
+ * `npx shadcn add` then inherits this design system with no edit to its
+ * colours, and there is still exactly one place where a colour is decided.
+ *
+ * READ THIS BEFORE ADDING TO THE LIST. `--muted` means opposite things in the
+ * two systems, and the collision is silent:
+ *
+ *   here     --muted = ink-600, the colour of SECONDARY TEXT
+ *   shadcn   --muted = a near-white BACKGROUND, with --muted-foreground as its text
+ *
+ * `shadcn init` writes its own `--muted: oklch(0.97 0 0)` straight into the
+ * block above, which turns every piece of secondary text on the site
+ * white-on-white. Only `--muted-foreground` is mapped below, and `--muted`
+ * itself is deliberately left alone. If a future component needs a muted
+ * *surface*, give it `--surface-hover`; do not define `--muted`.
+ *
+ * `--radius` is absent for the same reason: nothing in this design has a
+ * corner radius, so vendored components get `rounded-none` at the call site
+ * rather than a radius token that invites one.
+ */
+@theme inline {
+  --color-input: var(--field-border);
+  --color-border: var(--rule);
+  --color-ring: var(--color-focus);
+  --color-foreground: var(--fg);
+  --color-muted-foreground: var(--muted);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--fg);
+  --color-accent: var(--surface-hover);
+  --color-accent-foreground: var(--fg);
+  --color-destructive: var(--color-danger);
 }
 
 body {

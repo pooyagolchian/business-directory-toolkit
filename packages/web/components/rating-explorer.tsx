@@ -2,9 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { scaleQuantile } from "d3-scale";
+import { X } from "lucide-react";
 import type { ChartDataset, ChartFilter, ChartSlice } from "@directory/core";
 import { REVIEW_BUCKETS, sliceDataset } from "@directory/core";
 import { ChartFrame, Histogram, MedianReviews } from "./rating-distribution";
+import {
+  Combobox,
+  ComboboxCollection,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxSearch,
+  ComboboxTrigger,
+  ComboboxValue,
+} from "./ui/combobox";
 
 /**
  * The interactive half of the statistics section.
@@ -256,8 +268,94 @@ function Heatmap({ slice, columns }: { slice: ChartSlice; columns: number[] }) {
 
 // ---------------------------------------------------------------- filters
 
-const SELECT_CLASS =
-  "mt-2 w-full appearance-none rounded-none border border-[var(--field-border)] bg-[var(--field-bg)] px-3 py-2 text-sm hover:border-[var(--field-border-hover)] focus-visible:border-[var(--field-border-active)] sm:w-56";
+/** One value in a filter dropdown. `null` is the unfiltered option. */
+interface FilterOption {
+  label: string;
+  value: number | null;
+}
+
+/**
+ * One filter control: a shadcn Combobox with the search box inside the popup.
+ *
+ * Eighty-one categories is past the point where a plain list is usable — the
+ * native control's type-ahead only matched from the first letter, so finding
+ * "Perfume & Cosmetics" meant either knowing it starts with P or scrolling.
+ * Base UI's Combobox filters on any substring and keeps arrow-key navigation
+ * over the filtered results.
+ *
+ * The trigger stays a button rather than becoming the input, which is the
+ * arrangement upstream ships. A visible text cursor in a field that already
+ * holds a value invites people to edit it, and there is nothing to edit here:
+ * the value is a choice from a fixed list, not free text.
+ *
+ * Values stay whole option objects. Base UI compares with Object.is and reads
+ * the label off any `{ value, label }` shape, so the memoised options array is
+ * both the item list and the filter source with no mapping in between.
+ */
+function SelectField({
+  id,
+  label,
+  noun,
+  options,
+  value,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  noun: string;
+  options: FilterOption[];
+  value: number | null;
+  onChange: (value: number | null) => void;
+}) {
+  const selected = options.find((option) => option.value === value) ?? null;
+
+  return (
+    <div className="min-w-0">
+      <label htmlFor={id} className="label block text-[var(--muted)]">
+        {label}
+      </label>
+
+      <Combobox
+        items={options}
+        value={selected}
+        // Enter picks the top match, so a search can be finished without
+        // reaching for the arrow keys.
+        autoHighlight
+        onValueChange={(next) =>
+          onChange((next as FilterOption | null)?.value ?? null)
+        }
+      >
+        {/*
+          `data-active` drives the border and the chevron together, so an
+          applied filter is visible without reading the option text.
+        */}
+        <ComboboxTrigger
+          id={id}
+          data-active={value !== null}
+          className="mt-2 w-full data-[active=true]:border-[var(--field-border-active)] data-[active=true]:[&_svg]:text-[var(--fg)]"
+        >
+          <ComboboxValue />
+        </ComboboxTrigger>
+
+        <ComboboxContent>
+          <ComboboxSearch
+            placeholder={`Search ${options.length - 1} ${noun}`}
+          />
+          <ComboboxEmpty>No {noun} match that search.</ComboboxEmpty>
+          <ComboboxList>
+            <ComboboxCollection>
+              {(option: FilterOption) => (
+                <ComboboxItem key={String(option.value)} value={option}>
+                  {option.label}
+                </ComboboxItem>
+              )}
+            </ComboboxCollection>
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
+    </div>
+  );
+}
 
 function FilterRow({
   dataset,
@@ -278,81 +376,72 @@ function FilterRow({
   onReset: () => void;
   matched: number;
 }) {
+  const categoryOptions = useMemo<FilterOption[]>(
+    () => [
+      { label: `All ${dataset.categories.length} categories`, value: null },
+      ...dataset.categories.map((label, index) => ({ label, value: index })),
+    ],
+    [dataset.categories],
+  );
+
   // Sorted by the label a reader sees, not by the slug the data is keyed on.
-  const areaOptions = useMemo(
-    () =>
-      areaLabels
-        .map((label, index) => ({ label, index }))
+  const areaOptions = useMemo<FilterOption[]>(
+    () => [
+      { label: `All ${areaLabels.length} neighbourhoods`, value: null },
+      ...areaLabels
+        .map((label, index) => ({ label, value: index }))
         .sort((a, b) => a.label.localeCompare(b.label)),
+    ],
     [areaLabels],
   );
+
   const filtered = category !== null || area !== null;
 
   return (
     <div className="mt-8 border-y border-[var(--rule)] py-5">
-      <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
-        <div>
-          <label
-            className="label block text-[var(--muted)]"
-            htmlFor="chart-category"
-          >
-            Category
-          </label>
-          <select
-            id="chart-category"
-            className={SELECT_CLASS}
-            value={category ?? ""}
-            onChange={(e) =>
-              onCategory(e.target.value === "" ? null : Number(e.target.value))
-            }
-          >
-            <option value="">All {dataset.categories.length} categories</option>
-            {dataset.categories.map((label, index) => (
-              <option key={label} value={index}>
-                {label}
-              </option>
-            ))}
-          </select>
+      {/*
+        Grid rather than flex-wrap: the two fields have to stay the same width
+        as each other whatever their longest option is, and `minmax(0, …)` is
+        what stops a long category name blowing the track out past the row.
+        The third track absorbs the remainder and parks the readout at the end.
+      */}
+      <div className="grid gap-x-5 gap-y-4 sm:grid-cols-[minmax(0,15rem)_minmax(0,15rem)_minmax(0,1fr)] sm:items-end">
+        <SelectField
+          id="chart-category"
+          label="Category"
+          noun="categories"
+          options={categoryOptions}
+          value={category}
+          onChange={onCategory}
+        />
+
+        <SelectField
+          id="chart-area"
+          label="Neighbourhood"
+          noun="neighbourhoods"
+          options={areaOptions}
+          value={area}
+          onChange={onArea}
+        />
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:justify-end">
+          {filtered && (
+            <button
+              type="button"
+              onClick={onReset}
+              className="label inline-flex shrink-0 items-center gap-1.5 text-[var(--muted)] underline-offset-4 transition-colors hover:text-[var(--fg)] hover:underline"
+            >
+              <X aria-hidden="true" strokeWidth={1.5} className="h-3.5 w-3.5" />
+              Reset
+            </button>
+          )}
+          {/* Announced, because a filter change rewrites three charts a screen
+              reader user cannot see move. */}
+          <p aria-live="polite" className="tabular text-sm text-[var(--muted)]">
+            <span className="text-[var(--fg)]">{matched.toLocaleString()}</span>{" "}
+            rated {matched === 1 ? "business" : "businesses"} in view
+          </p>
         </div>
-
-        <div>
-          <label
-            className="label block text-[var(--muted)]"
-            htmlFor="chart-area"
-          >
-            Neighbourhood
-          </label>
-          <select
-            id="chart-area"
-            className={SELECT_CLASS}
-            value={area ?? ""}
-            onChange={(e) =>
-              onArea(e.target.value === "" ? null : Number(e.target.value))
-            }
-          >
-            <option value="">All {areaLabels.length} neighbourhoods</option>
-            {areaOptions.map((option) => (
-              <option key={option.index} value={option.index}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {filtered && (
-          <button
-            type="button"
-            onClick={onReset}
-            className="label border border-[var(--field-border)] px-3 py-2.5 text-[var(--muted)] hover:border-[var(--field-border-active)] hover:text-[var(--fg)]"
-          >
-            Reset
-          </button>
-        )}
-
-        <p className="tabular w-full text-sm text-[var(--muted)] sm:ml-auto sm:w-auto">
-          <span className="text-[var(--fg)]">{matched.toLocaleString()}</span>{" "}
-          rated {matched === 1 ? "business" : "businesses"} in view
-        </p>
       </div>
     </div>
   );

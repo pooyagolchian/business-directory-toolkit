@@ -31,6 +31,7 @@ that only contains decisions that worked is a marketing page.
 | [0009](./0009-bundle-the-dataset-into-the-lambda.md)    | Bundle the dataset into the Lambda for v0.1, and say plainly that it is a stopgap | Accepted                             | 2026-08-21 | The crawl output is copied into `packages/web/.data` at build time and traced into the server function; a missing file exits 1 rather than deploying an empty site.         |
 | [0010](./0010-credibility-weighted-ranking.md)          | Rank by a credibility-weighted mean, not a raw star average                       | Accepted                             | 2026-08-22 | Listings default to `rankScore()`, with both parameters measured from the corpus — mean 4.49, median weight 76 on the Dubai crawl.                                          |
 | [0011](./0011-area-from-coordinates-not-provenance.md)  | Assign a business to an area by its coordinates, not by the query that found it   | Accepted                             | 2026-08-21 | Area comes from the nearest tile centre; crawl provenance is a fallback, because it disagreed with geography for 52% of businesses.                                         |
+| [0013](./0013-lead-health-is-establishment.md)          | Score a lead's health by establishment, not by a rating                           | Accepted                             | 2026-08-22 | `rankScore` is a shrunk rating, so it fell as a business grew: `corr(score, reviews)` was −0.28 on 641 leads. Now `reviews/(reviews+m)`, and +0.08.                         |
 
 ### Notes on the numbering
 
@@ -43,11 +44,14 @@ that only contains decisions that worked is a marketing page.
 - **There is no 0000, and nothing has been superseded.** ADR 0003 supersedes the
   original `me-central-1` region choice, which was never itself an ADR, so no
   file in this directory is retired.
-- **0012 is spoken for before it exists.** ADR 0008 cites "ADR 0012" for the
-  reviews stage's deliberate refusal to archive raw responses. That document has
-  not been written, so the citation currently points at nothing — it is a
-  commitment, not a link, and it should be honoured before the number is used for
-  anything else.
+- **0012 is spoken for before it exists, and the sequence now has a gap because
+  of it.** ADR 0008 cites "ADR 0012" for the reviews stage's deliberate refusal
+  to archive raw responses. That document has not been written, so the citation
+  currently points at nothing — it is a commitment, not a link, and it should be
+  honoured before the number is used for anything else. Lead-generation scoring
+  was drafted as 0012 and renumbered to **0013** on discovering this note, which
+  is precisely the job this note exists to do. The gap stays until 0012 is
+  written; it is not available for reassignment.
 
 ## How the decisions depend on each other
 
@@ -67,6 +71,7 @@ flowchart TD
     A9["0009<br/>Bundle the dataset for v0.1"]
     A10["0010<br/>Credibility-weighted ranking"]
     A11["0011<br/>Area from coordinates"]
+    A13["0013<br/>Lead health is establishment"]
 
     A1 -->|"tiling is data, so a city is data"| A5
     A1 -->|"the raw archive was already on disk"| A6
@@ -81,6 +86,8 @@ flowchart TD
     A5 -->|"nearestTile carries no Dubai in it"| A11
     A6 -->|"no per-business model call"| A8
     A9 -->|"a corpus-wide prior is free only while bundled"| A10
+    A10 -->|"a shrunk rating inverts once the rating is the gap"| A13
+    A7 -->|"a call sheet is the worst place to break it"| A13
 ```
 
 Two relationships that look like edges are deliberately not drawn, because they

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BusinessList } from "@/components/business-card";
+import { FilterableBusinessList } from "@/components/filterable";
+import { toRow } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import {
   areaLabel,
@@ -127,7 +128,14 @@ export default async function AreaCategoryPage({
         .
       </p>
 
-      <BusinessList businesses={businesses} />
+      <div className="mt-8">
+        <FilterableBusinessList
+          rows={businesses.map(toRow)}
+          noun="shown"
+          placeholder={`Filter ${facet.label.toLowerCase()} in ${areaLabel(area)}`}
+          searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}
+        />
+      </div>
 
       {alsoIn.length > 0 && (
         <section className="mt-16">

@@ -23,7 +23,7 @@ export default async function SearchPage({
   return (
     <Page>
       <div className="max-w-2xl">
-        <SearchBox initialQuery={q} autoFocus />
+        <SearchBox initialQuery={q} />
       </div>
 
       {q.trim() && (

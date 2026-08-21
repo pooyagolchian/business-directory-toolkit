@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BusinessList } from "@/components/business-card";
+import { FilterableBusinessList } from "@/components/filterable";
+import { toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
 import { areaLabel, areas, byArea, categoriesInArea } from "@/lib/data";
 
@@ -73,7 +74,16 @@ export default async function AreaPage({
         <h2 className="font-[family-name:var(--font-display)] text-xl">
           Most reviewed
         </h2>
-        <BusinessList businesses={businesses.slice(0, 50)} />
+        <p className="mt-1 mb-4 text-xs text-[var(--muted)]">
+          Showing the {Math.min(businesses.length, 120)} most reviewed of{" "}
+          {facet.count.toLocaleString()}.
+        </p>
+        <FilterableBusinessList
+          rows={businesses.slice(0, 120).map(toRow)}
+          noun="shown"
+          placeholder={`Filter businesses in ${areaLabel(area)}`}
+          searchAllHref={`/search?q=${encodeURIComponent(areaLabel(area))}`}
+        />
       </section>
     </Page>
   );

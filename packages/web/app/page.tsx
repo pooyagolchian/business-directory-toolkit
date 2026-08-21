@@ -26,7 +26,7 @@ export default function Home() {
         </h1>
 
         <div className="mt-10 max-w-2xl">
-          <SearchBox autoFocus />
+          <SearchBox />
           <p className="mt-3 text-xs text-[var(--muted)]">
             Search by name, category, neighbourhood — or paste a{" "}
             <span className="tabular">+971</span> number to find who it belongs

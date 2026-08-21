@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BusinessList } from "@/components/business-card";
+import { FilterableBusinessList } from "@/components/filterable";
+import { toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
 import { areasInCategory, byCategory, categories } from "@/lib/data";
 
 export async function generateStaticParams() {
   return categories().map((c) => ({ l2: c.slug }));
 }
+
+/**
+ * How many rows to hand the client filter.
+ *
+ * The filter narrows what is on the page, so the page has to hold enough to be
+ * worth narrowing — but shipping 1,172 restaurants as JSON to filter in the
+ * browser is a payload, not a feature. Beyond this, the real search is offered.
+ */
+const PAGE_SIZE = 120;
 
 export const dynamicParams = true;
 export const revalidate = 86_400;
@@ -75,7 +85,17 @@ export default async function CategoryPage({
         <h2 className="font-[family-name:var(--font-display)] text-xl">
           Most reviewed
         </h2>
-        <BusinessList businesses={businesses.slice(0, 50)} />
+        <p className="mt-1 mb-4 text-xs text-[var(--muted)]">
+          Showing the {Math.min(businesses.length, PAGE_SIZE)} most reviewed of{" "}
+          {facet.count.toLocaleString()}. Narrow by neighbourhood above, or
+          filter this list.
+        </p>
+        <FilterableBusinessList
+          rows={businesses.slice(0, PAGE_SIZE).map(toRow)}
+          noun="shown"
+          placeholder={`Filter ${facet.label.toLowerCase()} by name, area, or phone`}
+          searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}
+        />
       </section>
     </Page>
   );

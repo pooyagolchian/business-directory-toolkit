@@ -18,9 +18,11 @@
   --color-ink-100: oklch(95% 0 0);
   --color-paper: oklch(100% 0 0);
 
-  /* The only non-neutral values, and both are accessibility requirements
-     rather than decoration. */
-  --color-focus: oklch(62% 0.19 255);
+  /* Focus is monochrome like everything else: a solid ink ring reads as
+     deliberate and clears WCAG contrast against paper without introducing a
+     hue the design does not otherwise use. Only destructive states get a hue,
+     because "this will delete something" must not rely on weight alone. */
+  --color-focus: var(--color-ink-1000);
   --color-danger: oklch(55% 0.21 27);
 
   --font-display:
@@ -30,28 +32,33 @@
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
+/*
+ * SEMANTIC tokens. Components must use these, never the palette above.
+ *
+ * The palette is fixed lightness values; only this layer flips with theme.
+ * A component reaching past it — `bg-[var(--color-ink-100)]` for a hover state
+ * — renders a 95%-lightness block in dark mode, which is how the typeahead
+ * hover became white-on-white. Adding the layer fixes the whole class of bug,
+ * not the one instance.
+ */
 :root {
+  color-scheme: light;
+
   --bg: var(--color-paper);
   --fg: var(--color-ink-1000);
   --muted: var(--color-ink-500);
   --rule: var(--color-ink-200);
-}
 
-/* Dark mode is a token swap, not a second design. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: var(--color-ink-1000);
-    --fg: var(--color-paper);
-    --muted: var(--color-ink-300);
-    --rule: var(--color-ink-900);
-  }
-}
+  /* raised surfaces: dropdowns, popovers */
+  --surface: var(--color-paper);
+  --surface-hover: var(--color-ink-100);
+  --surface-shadow: 0 8px 24px -8px oklch(0% 0 0 / 0.18);
 
-:root[data-theme="dark"] {
-  --bg: var(--color-ink-1000);
-  --fg: var(--color-paper);
-  --muted: var(--color-ink-300);
-  --rule: var(--color-ink-900);
+  /* form fields */
+  --field-bg: var(--color-paper);
+  --field-border: var(--color-ink-300);
+  --field-border-hover: var(--color-ink-500);
+  --field-border-active: var(--color-ink-1000);
 }
 
 body {
@@ -84,4 +91,36 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+/* The search field draws its own focus state on the wrapper, so the inner
+   input must not also draw one. Two rings on one control is noise. */
+input:focus-visible {
+  outline: none;
+}
+
+/*
+ * The browser's own search affordances are unstyleable and off-system: WebKit
+ * draws a grey pill for the clear button and Chrome adds a results dropdown.
+ * Remove them and provide our own, so the control matches the rest of the page
+ * in both themes.
+ */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Respect a reduced-motion preference for every transition on the page. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

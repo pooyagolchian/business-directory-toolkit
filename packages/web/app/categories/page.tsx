@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { FacetGrid, Breadcrumbs, Page } from "@/components/chrome";
+import { Breadcrumbs, Page } from "@/components/chrome";
+import { FilterableFacetGrid } from "@/components/filterable";
 import { categories } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -19,7 +20,12 @@ export default function CategoriesPage() {
         {all.length} categories
       </h1>
       <div className="mt-8">
-        <FacetGrid items={all} hrefFor={(slug) => `/category/${slug}`} />
+        <FilterableFacetGrid
+          items={all}
+          hrefPrefix="/category"
+          noun="categories"
+          placeholder="Filter categories — try spa, pharmacy, laundry"
+        />
       </div>
     </Page>
   );

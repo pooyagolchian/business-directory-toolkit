@@ -1,0 +1,73 @@
+name: Deploy
+
+# Manual only, and only from main.
+#
+# Deploys are not run on every push on purpose: this stack creates billable AWS
+# resources and a public site, and an accidental deploy from a feature branch
+# is not a mistake worth leaving available.
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "SST stage to deploy"
+        required: true
+        default: "dev"
+        type: choice
+        options: [dev, production]
+
+concurrency:
+  # Two deploys to one stage will fight over SST state and can leave it locked.
+  group: deploy-${{ inputs.stage }}
+  cancel-in-progress: false
+
+permissions:
+  # `id-token: write` is what makes OIDC work — it lets the job mint a
+  # short-lived token AWS will trust. Without it the action cannot assume a
+  # role, and the only alternative is long-lived access keys in secrets.
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.stage }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Never deploy something that does not build and pass.
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+
+      # No AWS credentials are stored anywhere. The job proves its identity to
+      # AWS with a GitHub-signed token, and AWS hands back credentials that
+      # expire in an hour. A leaked workflow log is therefore not a leaked key.
+      #
+      # SETUP (once, per AWS account):
+      #   1. Create an IAM OIDC provider for token.actions.githubusercontent.com
+      #   2. Create a role whose trust policy allows only this repository, and
+      #      ideally only this ref:
+      #        "token.actions.githubusercontent.com:sub":
+      #          "repo:pooyagolchian/directory-from-scratch:ref:refs/heads/main"
+      #   3. Put the role ARN in the repository variable AWS_DEPLOY_ROLE_ARN
+      #
+      # Scoping `sub` to the repo matters: without it, any repository on GitHub
+      # could assume the role.
+      - name: Assume AWS role via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: deploy-${{ inputs.stage }}-${{ github.run_id }}
+
+      - name: Deploy
+        run: npx sst deploy --stage ${{ inputs.stage }}

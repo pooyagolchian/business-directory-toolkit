@@ -29,7 +29,11 @@ const files = [
   ["data/out/businesses.json", "businesses.json", true],
   ["data/out/review-signals.json", "review-signals.json", false],
   ["data/demand.json", "demand.json", false],
-  [`data/cities/${process.env.DIRECTORY_CITY ?? "dubai"}.json`, "city.json", true],
+  [
+    `data/cities/${process.env.DIRECTORY_CITY ?? "dubai"}.json`,
+    "city.json",
+    true,
+  ],
 ];
 
 let total = 0;
@@ -53,4 +57,6 @@ for (const [from, to, required] of files) {
   console.log(`  ${to.padEnd(22)} ${(size / 1024 / 1024).toFixed(1)}MB`);
 }
 
-console.log(`  bundled ${(total / 1024 / 1024).toFixed(1)}MB into packages/web/.data\n`);
+console.log(
+  `  bundled ${(total / 1024 / 1024).toFixed(1)}MB into packages/web/.data\n`,
+);

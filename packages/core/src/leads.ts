@@ -1,4 +1,5 @@
 import { rankScore, type RankPrior } from "./rank";
+import { dropSuppressed } from "./suppression";
 import type { Business } from "./types";
 
 /**
@@ -142,4 +143,112 @@ export function leadScore(
 ): number {
   const health = rankScore(business.rating, business.reviews, prior);
   return signalStrength(business, signal) * health;
+}
+
+export interface Lead {
+  business: Business;
+  signal: LeadSignal;
+  score: number;
+  /** Why it scored as it did, so the list can be audited rather than trusted. */
+  reason: string;
+}
+
+export interface LeadOptions {
+  /** Exactly one. Scores are not comparable across signals — see module docs. */
+  signal: LeadSignal;
+  /**
+   * Built once from the whole corpus, never from the filtered subset that
+   * `findLeads` returns. A prior recomputed per query would rescale with
+   * every filter, so `--category Restaurants` and `--category Salons` would
+   * produce scores nobody could compare.
+   */
+  prior: RankPrior;
+  /** place_ids that must never appear — takedown requests. */
+  suppressed?: Set<string> | undefined;
+  category?: string | undefined;
+  area?: string | undefined;
+  minReviews?: number | undefined;
+  minRating?: number | undefined;
+  limit?: number | undefined;
+}
+
+export interface LeadResult {
+  leads: Lead[];
+  /** How many were withheld by the suppression list, so the filter is visible. */
+  suppressed: number;
+  /** How many were examined after filters, before signal matching. */
+  considered: number;
+}
+
+/** A one-line explanation of the gap, so a lead reads as a claim rather than a number. */
+function reasonFor(business: Business, signal: LeadSignal): string {
+  const reviews = business.reviews ?? 0;
+  switch (signal) {
+    case "no-website":
+      return `No website listed; ${reviews.toLocaleString()} reviews suggest an established business`;
+    case "weak-reputation":
+      return `Rated ${(business.rating ?? 0).toFixed(1)} across ${reviews.toLocaleString()} reviews`;
+    case "low-visibility":
+      return `Only ${reviews.toLocaleString()} reviews`;
+    case "no-hours":
+      return `No opening hours listed`;
+  }
+}
+
+/**
+ * The whole corpus in, a ranked call list out.
+ *
+ * Order of operations is the point of this function, not an implementation
+ * detail: suppression runs before anything else, so a business that asked to
+ * be removed is gone before it can be scored, filtered on, or counted toward
+ * `considered` — it never has a chance to reappear on a cold-outreach list.
+ * The withheld count is returned rather than swallowed so the takedown
+ * promise is visibly enforced instead of silently trusted.
+ */
+export function findLeads(
+  businesses: Business[],
+  options: LeadOptions,
+): LeadResult {
+  const { kept, removed } = dropSuppressed(
+    businesses,
+    options.suppressed ?? new Set<string>(),
+  );
+
+  const filtered = kept.filter((b) => {
+    // Not contactable is a disqualifier, same as in isContactable's own
+    // doc comment: no amount of business health earns an unreachable
+    // prospect a place on a call list.
+    if (!isContactable(b)) return false;
+    if (
+      options.category &&
+      b.l2 !== options.category &&
+      b.l3 !== options.category
+    )
+      return false;
+    if (options.area && b.area !== options.area) return false;
+    if (
+      options.minReviews !== undefined &&
+      (b.reviews ?? 0) < options.minReviews
+    )
+      return false;
+    if (options.minRating !== undefined && (b.rating ?? 0) < options.minRating)
+      return false;
+    return true;
+  });
+
+  const leads: Lead[] = filtered
+    .filter((b) => detectSignals(b).includes(options.signal))
+    .map((business) => ({
+      business,
+      signal: options.signal,
+      score: leadScore(business, options.signal, options.prior),
+      reason: reasonFor(business, options.signal),
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  return {
+    leads: options.limit ? leads.slice(0, options.limit) : leads,
+    suppressed: removed,
+    considered: filtered.length,
+  };
 }

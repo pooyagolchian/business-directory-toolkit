@@ -52,6 +52,16 @@ export type { DedupeResult } from "./dedupe";
 
 export { applyTaxonomy, distinctCategories } from "./taxonomy";
 
+export {
+  detectSignals,
+  findLeads,
+  isContactable,
+  leadScore,
+  LEAD_SIGNALS,
+  signalStrength,
+} from "./leads";
+export type { Lead, LeadOptions, LeadResult, LeadSignal } from "./leads";
+
 export type {
   BoundingBox,
   Business,

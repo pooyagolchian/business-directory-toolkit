@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
   detectSignals,
+  findLeads,
   isContactable,
   LEAD_SIGNALS,
   leadScore,
@@ -75,6 +76,26 @@ describe("detectSignals", () => {
     for (const signal of detectSignals(noSite as Business)) {
       expect(LEAD_SIGNALS).toContain(signal);
     }
+  });
+
+  test("does not flag weak reputation when rating is genuinely absent", () => {
+    // Unknown quality is not bad quality. The prior tests only ever set
+    // `rating` to an explicit low number, so this branch — rating truly
+    // missing, as the engine returns for listings it has no score for —
+    // was never directly exercised.
+    const { rating, ...noRating } = base;
+    void rating;
+    expect(detectSignals(noRating as Business)).not.toContain(
+      "weak-reputation",
+    );
+  });
+
+  test("flags low visibility when reviews is genuinely absent", () => {
+    // An absent review count plausibly means zero reviews — the strongest
+    // visibility gap there is — not "unknown, so leave it unflagged".
+    const { reviews, ...noReviews } = base;
+    void reviews;
+    expect(detectSignals(noReviews as Business)).toContain("low-visibility");
   });
 });
 
@@ -158,5 +179,114 @@ describe("leadScore", () => {
     for (const signal of LEAD_SIGNALS) {
       expect(Number.isFinite(leadScore(sparse, signal, prior))).toBe(true);
     }
+  });
+});
+
+describe("findLeads", () => {
+  const prior: RankPrior = { mean: 4.5, weight: 76 };
+  const opts = { signal: "no-website" as const, prior };
+
+  const corpus: Business[] = [
+    {
+      ...base,
+      placeId: "A",
+      title: "A",
+      website: undefined,
+      rating: 4.8,
+      reviews: 500,
+    },
+    {
+      ...base,
+      placeId: "B",
+      title: "B",
+      website: undefined,
+      rating: 3.1,
+      reviews: 30,
+    },
+    { ...base, placeId: "C", title: "C" },
+    {
+      ...base,
+      placeId: "D",
+      title: "D",
+      website: undefined,
+      phoneE164: undefined,
+    },
+  ] as Business[];
+
+  test("returns only businesses carrying the requested signal", () => {
+    const { leads } = findLeads(corpus, opts);
+    expect(leads.map((l) => l.business.placeId)).not.toContain("C");
+  });
+
+  test("excludes businesses with no phone, however good the signal", () => {
+    const { leads } = findLeads(corpus, opts);
+    expect(leads.map((l) => l.business.placeId)).not.toContain("D");
+  });
+
+  test("ranks the healthier prospect first", () => {
+    const { leads } = findLeads(corpus, opts);
+    expect(leads[0]?.business.placeId).toBe("A");
+  });
+
+  test("never returns a suppressed business", () => {
+    // A business that asked to be removed must not resurface on a call list.
+    const { leads, suppressed } = findLeads(corpus, {
+      ...opts,
+      suppressed: new Set(["A"]),
+    });
+    expect(leads.map((l) => l.business.placeId)).not.toContain("A");
+    expect(suppressed).toBe(1);
+  });
+
+  test("reports zero suppressed when the list is empty", () => {
+    expect(findLeads(corpus, opts).suppressed).toBe(0);
+  });
+
+  test("filters by category", () => {
+    const { leads } = findLeads(
+      [
+        { ...corpus[0], l2: "Restaurants" },
+        { ...corpus[1], l2: "Salons" },
+      ] as Business[],
+      { ...opts, category: "Restaurants" },
+    );
+    expect(leads).toHaveLength(1);
+    expect(leads[0]?.business.l2).toBe("Restaurants");
+  });
+
+  test("filters by area", () => {
+    const { leads } = findLeads(
+      [
+        { ...corpus[0], area: "marina" },
+        { ...corpus[1], area: "deira" },
+      ] as Business[],
+      { ...opts, area: "marina" },
+    );
+    expect(leads).toHaveLength(1);
+  });
+
+  test("filters by minimum review count", () => {
+    const { leads } = findLeads(corpus, { ...opts, minReviews: 100 });
+    expect(leads.every((l) => (l.business.reviews ?? 0) >= 100)).toBe(true);
+  });
+
+  test("respects the limit", () => {
+    expect(findLeads(corpus, { ...opts, limit: 1 }).leads).toHaveLength(1);
+  });
+
+  test("attaches a human-readable reason to every lead", () => {
+    // The list has to be auditable — a score with no explanation is a number
+    // someone will either trust blindly or ignore.
+    for (const lead of findLeads(corpus, opts).leads) {
+      expect(lead.reason.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("returns an empty result rather than throwing on an empty corpus", () => {
+    expect(findLeads([], opts)).toEqual({
+      leads: [],
+      suppressed: 0,
+      considered: 0,
+    });
   });
 });

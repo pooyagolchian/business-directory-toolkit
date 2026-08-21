@@ -7,6 +7,8 @@ export { isInCity } from "./city.js";
 
 export { nearestTile } from "./nearest.js";
 
+export { serializeJsonLd } from "./jsonld.js";
+
 export {
   buildCorpusFrequency,
   deriveReviewSignals,

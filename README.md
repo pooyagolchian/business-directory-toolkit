@@ -300,14 +300,16 @@ that bar, and only those are ever considered.
 
 ### One signal per run, always
 
-`--signal` takes exactly one value, and the CLI refuses anything else. Scores
-are comparable only _within_ a signal: a `no-website` score and a
-`weak-reputation` score both happen to be plain numbers, but they describe
-different products sold to different buyers — a web designer and a
-reputation-management firm are not competing for the same call list, so
-ranking the two together would produce an order that means nothing. Run the
-command again with a different `--signal` rather than expecting one combined
-list.
+`--signal` takes exactly one value. Omit it and the CLI exits before touching
+any data; pass it twice and the CLI rejects that too, rather than quietly
+scoring against whichever came first — discarding a flag someone typed is
+worse than failing loudly. Scores are comparable only _within_ a signal: a
+`no-website` score and a `weak-reputation` score both happen to be plain
+numbers, but they describe different products sold to different buyers — a
+web designer and a reputation-management firm are not competing for the same
+call list, so ranking the two together would produce an order that means
+nothing. Run the command again with a different `--signal` rather than
+expecting one combined list.
 
 ### Scoring: successful businesses first
 
@@ -339,6 +341,14 @@ CLI prints how many were withheld on every run, including "0 withheld": the
 point of reporting the number is that the filter stays visibly working, not
 that it only speaks up when it has something to hide.
 
+A malformed suppression list — invalid JSON, or an entry that is not a
+string — stops the run with a non-zero exit rather than being treated as
+empty. Only a _missing_ file reads as "no takedowns yet"; a broken one does
+not, because silently swallowing the error would print a clean "0 withheld"
+while the business it was meant to suppress quietly reappears at the top of
+the call list — the one failure mode this feature cannot afford, because the
+output would look correct.
+
 Matching is an exact string comparison against `place_id`, so it is
 case- and whitespace-sensitive: `place_id` is an opaque token Google assigns,
 not something a person types from memory. Hand-adding an entry with the wrong
@@ -348,17 +358,17 @@ was meant to suppress keeps showing up anyway.
 
 ### Flags
 
-| Flag                        | Meaning                                                                                                                                                                                |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--signal <name>`           | Required. One of `no-website`, `weak-reputation`, `low-visibility`, `no-hours`.                                                                                                        |
-| `--category <name>`         | Restrict to one `l2`/`l3` category, e.g. `Restaurants`.                                                                                                                                |
-| `--area <slug>`             | Restrict to one area, e.g. `dubai-marina`.                                                                                                                                             |
-| `--min-reviews <n>`         | Drop businesses under this review count.                                                                                                                                               |
-| `--min-rating <n>`          | Drop businesses under this rating.                                                                                                                                                     |
-| `--limit <n>`               | Cap the ranked list.                                                                                                                                                                   |
-| `--format table\|csv\|json` | `table` (default) prints the top 40 to the terminal. `csv` reuses the export CLI's writer — RFC 4180 quoting, UTF-8 BOM — so it opens correctly in Excel. `json` is the full `Lead[]`. |
-| `--out <path>`              | Write leads to a file instead of stdout. Counts and the consent notice always go to stderr, so `pnpm leads --format csv > file.csv` still gets a clean file.                           |
-| `--list-signals`            | Print what each signal means and exit 0. Does not need a crawl on disk.                                                                                                                |
+| Flag                        | Meaning                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--signal <name>`           | Required. One of `no-website`, `weak-reputation`, `low-visibility`, `no-hours`.                                                                                                                                                                                                                                                                                                             |
+| `--category <name>`         | Restrict to one `l2`/`l3` category, e.g. `Restaurants`.                                                                                                                                                                                                                                                                                                                                     |
+| `--area <slug>`             | Restrict to one area, e.g. `dubai-marina`.                                                                                                                                                                                                                                                                                                                                                  |
+| `--min-reviews <n>`         | Drop businesses under this review count.                                                                                                                                                                                                                                                                                                                                                    |
+| `--min-rating <n>`          | Drop businesses under this rating.                                                                                                                                                                                                                                                                                                                                                          |
+| `--limit <n>`               | Cap the ranked list.                                                                                                                                                                                                                                                                                                                                                                        |
+| `--format table\|csv\|json` | `table` (default) prints the top 40 to the terminal. `csv` reuses the export CLI's writer — RFC 4180 quoting, UTF-8 BOM — so it opens correctly in Excel. `json` is the full `Lead[]`.                                                                                                                                                                                                      |
+| `--out <path>`              | Write leads straight to a file. This is the only reliable way to get a clean one — `pnpm`'s own banner (the `WARN Unsupported engine`/`> directory-from-scratch@... leads ...` lines) writes to stdout ahead of the CLI's own output on every invocation, so `pnpm leads --format csv > file.csv` puts that banner inside the file too. `--out` bypasses stdout entirely and never sees it. |
+| `--list-signals`            | Print what each signal means and exit 0. Does not need a crawl on disk.                                                                                                                                                                                                                                                                                                                     |
 
 Filters compose: `--signal no-website --category Restaurants --min-reviews 20`
 narrows the 13,811 contactable businesses to 1,019 Restaurants with 20+
@@ -366,7 +376,8 @@ reviews, of which 321 have no website.
 
 ### The consent notice
 
-`pnpm leads` prints this on every run:
+`pnpm leads` prints this on every run that produces a list — `--list-signals`
+exits before reaching this point:
 
 > These are business listings, not permission to contact. Unsolicited
 > commercial messaging is regulated in the UAE — check the rules that apply

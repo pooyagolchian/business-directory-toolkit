@@ -1,3 +1,4 @@
+import { rankScore, type RankPrior } from "./rank";
 import type { Business } from "./types";
 
 /**
@@ -76,4 +77,69 @@ export function detectSignals(business: Business): LeadSignal[] {
   }
 
   return signals;
+}
+
+/**
+ * How badly this business has the problem, normalised to 0–1.
+ *
+ * `no-website` and `no-hours` are binary — a business either has one or it
+ * doesn't, so a gap is always full strength. `weak-reputation` and
+ * `low-visibility` are continuous: how far below their threshold a business
+ * sits. Normalising keeps a signal's own scores comparable to each other;
+ * they are never compared ACROSS signals — see `leadScore`.
+ */
+export function signalStrength(business: Business, signal: LeadSignal): number {
+  switch (signal) {
+    case "no-website":
+    case "no-hours":
+      return 1;
+
+    // Distance below the reputation cutoff, scaled against the full range
+    // down to the bottom of the scale (1.0), so a 2.0 reads as a near-maximum
+    // signal and a 3.7 — just under the cutoff — reads as barely one at all.
+    // A missing rating means no reputation problem was ever raised, so it
+    // scores as no gap rather than the worst one.
+    case "weak-reputation": {
+      if (business.rating === undefined || !Number.isFinite(business.rating)) {
+        return 0;
+      }
+      const below = Math.max(0, WEAK_RATING - business.rating);
+      return Math.min(1, below / (WEAK_RATING - 1));
+    }
+
+    // Distance below the visibility floor, scaled against that same floor —
+    // zero reviews is the strongest possible signal, and anything at or
+    // above the floor is none at all.
+    case "low-visibility": {
+      const reviews = Math.max(0, business.reviews ?? 0);
+      const below = Math.max(0, LOW_VISIBILITY_REVIEWS - reviews);
+      return Math.min(1, below / LOW_VISIBILITY_REVIEWS);
+    }
+  }
+}
+
+/**
+ * The best lead is a successful business with a fixable gap.
+ *
+ * Multiplying signal strength by business health is what separates a
+ * 4.8-rated restaurant with 500 reviews and no website from a 3.1-rated one
+ * with 20. Both match the filter; only the score says which is worth calling
+ * first.
+ *
+ * `businessHealth` comes from `rankScore` rather than the raw star average,
+ * so a lone 5-star review can't float a barely-reviewed prospect to the top
+ * of a call list — the same credibility weighting that keeps the directory's
+ * own rankings honest applies here too.
+ *
+ * A score is only ever compared within its own signal: a `no-website` score
+ * and a `weak-reputation` score describe different sales conversations, not
+ * points on a shared scale.
+ */
+export function leadScore(
+  business: Business,
+  signal: LeadSignal,
+  prior: RankPrior,
+): number {
+  const health = rankScore(business.rating, business.reviews, prior);
+  return signalStrength(business, signal) * health;
 }

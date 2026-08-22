@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Business } from "@directory/core";
+import { toCategorySlug } from "@directory/core";
 
 /**
  * Data access for the site.
@@ -90,12 +91,14 @@ function titleCase(slug: string): string {
     .join(" ");
 }
 
-export function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+/**
+ * Category slug.
+ *
+ * One definition, in core, because the search facets have to produce byte-identical
+ * slugs to the ones already in /category/ URLs — two implementations would
+ * drift and take every category link with them.
+ */
+export const slugify = toCategorySlug;
 
 // ---------------------------------------------------------------- lookups
 
@@ -211,7 +214,16 @@ export interface SearchResult {
   total: number;
 }
 
-export function search(query: string, limit = 50): SearchResult {
+/**
+ * Every business matching a query, in relevance order.
+ *
+ * Deliberately uncapped. The page shows 50 at a time, but the filters and their
+ * counts run over the whole match set — "restaurant" matches 1,496 businesses,
+ * and a filter that saw only the rendered 50 would be narrowing 3% of the
+ * answer while looking like it narrowed all of it. Truncation is the caller's
+ * decision, taken after filtering, by paginate().
+ */
+export function search(query: string): SearchResult {
   const trimmed = query.trim();
   if (!trimmed) return { businesses: [], matchedByPhone: false, total: 0 };
 
@@ -248,7 +260,7 @@ export function search(query: string, limit = 50): SearchResult {
 
   scored.sort((a, b) => b.score - a.score);
   return {
-    businesses: scored.slice(0, limit).map((s) => s.business),
+    businesses: scored.map((s) => s.business),
     matchedByPhone: false,
     total: scored.length,
   };

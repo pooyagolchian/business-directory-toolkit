@@ -38,6 +38,16 @@ export function SearchBox({
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const latest = useRef(0);
+  /**
+   * Whether the reader has typed here yet.
+   *
+   * /search renders this box with the query already in it, so the effect below
+   * fires on mount and used to open the suggestion list over the top of the
+   * page — covering the filter controls before anyone had asked for a
+   * suggestion. Suggestions are still fetched on mount, so focusing the field
+   * shows them instantly; they just no longer volunteer themselves.
+   */
+  const interacted = useRef(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +72,7 @@ export function SearchBox({
         // Discard a stale reply that lost the race to a newer keystroke.
         if (requestId !== latest.current) return;
         setSuggestions(data.suggestions);
-        setOpen(data.suggestions.length > 0);
+        setOpen(interacted.current && data.suggestions.length > 0);
         setActive(-1);
       } catch {
         // Aborted or offline — leaving the previous suggestions up is kinder
@@ -180,7 +190,10 @@ export function SearchBox({
           autoComplete="off"
           value={query}
           placeholder={placeholder}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            interacted.current = true;
+            setQuery(e.target.value);
+          }}
           onKeyDown={onKeyDown}
           onFocus={() => suggestions.length > 0 && setOpen(true)}
           // The field itself carries no ring; the wrapper's border is the focus

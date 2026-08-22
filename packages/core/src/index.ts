@@ -53,6 +53,41 @@ export { serializeJsonLd } from "./jsonld";
 
 export { corpusPrior, rankScore } from "./rank";
 
+export {
+  ACCESSIBILITY_LABELS,
+  ACCESSIBILITY_VALUES,
+  PRESENCE_KEYS,
+  PRESENCE_LABELS,
+  RATING_STEPS,
+  REVIEW_STEPS,
+  SEARCH_PARAMS,
+  SORT_KEYS,
+  SORT_LABELS,
+  canonicalAmenity,
+  facetSearch,
+  filterToQuery,
+  hasActiveFilter,
+  paginate,
+  parseFilter,
+  parsePage,
+  parseSortKey,
+  sortBusinesses,
+  toCategorySlug,
+  toggleFilter,
+} from "./facets";
+export type {
+  BusinessFilter,
+  FacetGroup,
+  FacetGroups,
+  FacetValue,
+  FacetedResult,
+  PageSlice,
+  PresenceKey,
+  QueryValue,
+  SearchQuery,
+  SortKey,
+} from "./facets";
+
 export { buildFaq, faqJsonLd } from "./faq";
 export type { FaqEntry, FaqInput } from "./faq";
 

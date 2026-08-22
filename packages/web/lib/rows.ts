@@ -11,7 +11,7 @@ import type { ListRow } from "@/components/filterable";
  * businesses, and every page would rank on a different scale.
  */
 let prior: ReturnType<typeof corpusPrior> | null = null;
-function getPrior() {
+export function rankPrior() {
   prior ??= corpusPrior(allBusinesses());
   return prior;
 }
@@ -32,7 +32,7 @@ export function toRow(b: Business): ListRow {
     href: `/business/${b.slug}`,
     title: b.title,
     meta: [b.l3, b.l2, areaLabel(b.area)].filter(Boolean).join(" · "),
-    rank: rankScore(b.rating, b.reviews, getPrior()),
+    rank: rankScore(b.rating, b.reviews, rankPrior()),
   };
   if (b.address) row.detail = b.address;
   if (b.rating !== undefined) {
@@ -49,7 +49,7 @@ export function toRow(b: Business): ListRow {
 
 /** Order a set of businesses by rank before they become rows. */
 export function byRank(businesses: Business[]): Business[] {
-  const p = corpusPrior(allBusinesses());
+  const p = rankPrior();
   return [...businesses].sort(
     (a, b) =>
       rankScore(b.rating, b.reviews, p) - rankScore(a.rating, a.reviews, p),

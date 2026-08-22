@@ -102,6 +102,7 @@ describe("runCrawl", () => {
     const { client, calls } = fixtureClient([PAGE1, EMPTY]);
     const outcome = await runCrawl([job({ maxPages: 1 })], client, {
       budget: 100,
+      gl: "ae",
     });
     expect(calls).toHaveLength(1);
     expect(outcome.requestsIssued).toBe(1);
@@ -109,14 +110,14 @@ describe("runCrawl", () => {
 
   test("follows pagination while a page is still productive", async () => {
     const { client, calls } = fixtureClient([PAGE1, PAGE2, EMPTY]);
-    await runCrawl([job()], client, { budget: 100 });
+    await runCrawl([job()], client, { budget: 100, gl: "ae" });
     // page1 full and all-new -> fetch page2; page2 is partial (10) -> stop.
     expect(calls.map((c) => c.page)).toEqual([1, 2]);
   });
 
   test("deduplicates businesses repeated across pages", async () => {
     const { client } = fixtureClient([PAGE1, PAGE2, EMPTY]);
-    const outcome = await runCrawl([job()], client, { budget: 100 });
+    const outcome = await runCrawl([job()], client, { budget: 100, gl: "ae" });
     const ids = outcome.records.map((r) => r.place_id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(outcome.duplicatesSkipped).toBe(4);
@@ -131,7 +132,7 @@ describe("runCrawl", () => {
       PAGE1,
     ]);
     const jobs = [job(), job({ q: "cafes" }), job({ q: "gyms" })];
-    const outcome = await runCrawl(jobs, client, { budget: 2 });
+    const outcome = await runCrawl(jobs, client, { budget: 2, gl: "ae" });
     expect(calls.length).toBeLessThanOrEqual(2);
     expect(outcome.stoppedOnBudget).toBe(true);
   });
@@ -142,6 +143,7 @@ describe("runCrawl", () => {
     const archived: SearchParams[] = [];
     await runCrawl([job({ maxPages: 1 })], client, {
       budget: 10,
+      gl: "ae",
       onRaw: (params) => {
         archived.push(params);
       },
@@ -163,6 +165,7 @@ describe("runCrawl", () => {
       client,
       {
         budget: 10,
+        gl: "ae",
       },
     );
     expect(outcome.errors).toHaveLength(1);
@@ -170,10 +173,21 @@ describe("runCrawl", () => {
     expect(outcome.records.length).toBeGreaterThan(0);
   });
 
+  test("sends the city's country of search on every request", async () => {
+    // The reason gl is a required option rather than a defaulted one: for the
+    // whole of v0.1 it was the literal "ae" inside buildSearchUrl, so a
+    // Portuguese crawl asked Google from the UAE and paid for the answer.
+    const { client, calls } = fixtureClient([PAGE1, PAGE2, EMPTY]);
+    await runCrawl([job()], client, { budget: 100, gl: "pt" });
+    expect(calls.length).toBeGreaterThan(1);
+    expect(calls.every((c) => c.gl === "pt")).toBe(true);
+  });
+
   test("tags each record with the query that found it, for provenance", async () => {
     const { client } = fixtureClient([PAGE1, EMPTY]);
     const outcome = await runCrawl([job({ maxPages: 1 })], client, {
       budget: 10,
+      gl: "ae",
     });
     expect(outcome.records[0]?._source).toEqual({
       tileId: "downtown",

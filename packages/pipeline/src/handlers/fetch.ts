@@ -10,6 +10,13 @@ const sqs = new SQSClient({});
 
 interface CrawlMessage extends CrawlJob {
   runId: string;
+  /**
+   * Country of search, carried on the message rather than read from a config.
+   * The consumer has no city loaded, and the pagination message below spreads
+   * `job`, so a followed page inherits the country of the page that produced
+   * it instead of silently reverting to a default.
+   */
+  gl: string;
   /** place_ids already seen for this (tile, category) pair, for the yield check. */
   seen?: string[];
 }
@@ -38,6 +45,7 @@ export async function handler(event: SqsEvent): Promise<void> {
       zoom: job.zoom,
       page: job.page,
       tileId: job.tileId,
+      gl: job.gl,
     };
 
     // A throw here returns the message to the queue; after `retry` attempts SST

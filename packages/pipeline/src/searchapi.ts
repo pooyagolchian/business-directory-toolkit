@@ -14,8 +14,12 @@ export function buildSearchUrl(params: SearchParams): URL {
   url.searchParams.set("q", params.q);
   // Google's own location format: @lat,lng,zoomz
   url.searchParams.set("ll", `@${params.lat},${params.lng},${params.zoom}z`);
+  // hl stays English because the category queries themselves are English
+  // (data/category-map.json); gl is the city's own country, because asking
+  // Google from the wrong country returns the wrong local businesses and
+  // charges a credit for them either way.
   url.searchParams.set("hl", "en");
-  url.searchParams.set("gl", "ae");
+  url.searchParams.set("gl", params.gl);
   if (params.page > 1) url.searchParams.set("page", String(params.page));
   return url;
 }

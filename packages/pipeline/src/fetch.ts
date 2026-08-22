@@ -8,6 +8,17 @@ export interface SearchParams {
   zoom: number;
   page: number;
   tileId: string;
+  /**
+   * Google's country-of-search, lowercase ISO-3166 alpha-2, taken from the
+   * city config's `countryCode`.
+   *
+   * Required rather than defaulted, deliberately. This value spent the whole
+   * of v0.1 hard-coded to "ae" inside `buildSearchUrl`, which meant every
+   * crawl in every city asked Google as if it were searching from the UAE. A
+   * default is what made that invisible; a required field makes the compiler
+   * name every request path that forgot to say where it is searching.
+   */
+  gl: string;
 }
 
 export interface SearchResponse {
@@ -32,6 +43,8 @@ export type SourcedResult = RawLocalResult & { _source?: SourceRef };
 export interface CrawlOptions {
   /** Hard ceiling on requests. The crawl stops here regardless of remaining jobs. */
   budget: number;
+  /** Lowercase ISO-3166 alpha-2 for `SearchParams.gl`, from the city config. */
+  gl: string;
   /** Below this share of new businesses, a further page is not worth a credit. */
   minNewUniqueRatio?: number;
   /** Called with the untouched response before parsing — the S3 archive hook. */
@@ -93,6 +106,7 @@ export async function runCrawl(
 ): Promise<CrawlOutcome> {
   const {
     budget,
+    gl,
     minNewUniqueRatio = DEFAULT_MIN_NEW_RATIO,
     onRaw,
     onProgress,
@@ -127,6 +141,7 @@ export async function runCrawl(
         zoom: job.zoom,
         page,
         tileId: job.tileId,
+        gl,
       };
 
       let response: SearchResponse;

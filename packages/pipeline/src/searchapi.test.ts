@@ -9,6 +9,7 @@ describe("buildSearchUrl", () => {
     zoom: 15,
     page: 1,
     tileId: "downtown",
+    gl: "ae",
   };
 
   test("targets the google_maps engine", () => {
@@ -23,10 +24,26 @@ describe("buildSearchUrl", () => {
     );
   });
 
-  test("pins results to the UAE so the engine returns local listings", () => {
-    const url = buildSearchUrl(params);
-    expect(url.searchParams.get("gl")).toBe("ae");
-    expect(url.searchParams.get("hl")).toBe("en");
+  test("pins results to the city's own country, not a hard-coded one", () => {
+    // The defect this replaces: gl was the literal "ae" for every city in
+    // every crawl, so a Lisbon crawl asked Google for UAE-localised results
+    // and spent real credits on them. cli/demand.ts already derived it from
+    // city.countryCode, so the repository held the bug and its fix at once.
+    expect(buildSearchUrl({ ...params, gl: "pt" }).searchParams.get("gl")).toBe(
+      "pt",
+    );
+    expect(buildSearchUrl({ ...params, gl: "ae" }).searchParams.get("gl")).toBe(
+      "ae",
+    );
+  });
+
+  test("asks in English regardless of country, because the queries are English", () => {
+    // hl stays fixed: data/category-map.json holds English search terms, so
+    // changing the interface language would not change what is being asked
+    // for. Recorded as a known limitation in ADR 0014 rather than half-fixed.
+    expect(buildSearchUrl({ ...params, gl: "pt" }).searchParams.get("hl")).toBe(
+      "en",
+    );
   });
 
   test("omits page 1, which the engine treats as the default", () => {

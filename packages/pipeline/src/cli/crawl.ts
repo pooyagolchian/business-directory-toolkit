@@ -93,6 +93,9 @@ console.log(`Run ${runId} starting…\n`);
 
 const outcome = await runCrawl(plan.jobs, client, {
   budget,
+  // ADR 0005: nothing downstream hard-codes a city, and that includes the
+  // country the engine searches from.
+  gl: city.countryCode.toLowerCase(),
   onProgress: (issued, cap) => {
     if (issued % 25 === 0) {
       process.stdout.write(`  ${issued}/${cap} requests\r`);

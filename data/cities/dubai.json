@@ -1,6 +1,13 @@
 {
   "id": "dubai",
   "name": "Dubai",
+  "verification": {
+    "status": "verified",
+    "crawledAt": "2026-08-20",
+    "requests": 1400,
+    "uniqueBusinesses": 15246,
+    "inCity": 14981
+  },
   "countryCode": "AE",
   "phoneRegion": "AE",
   "cityNames": ["dubai", "hatta"],

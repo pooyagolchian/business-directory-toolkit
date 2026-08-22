@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { availableCities, buildCrawlPlan, loadCity } from "./plan";
+import { spaceOut } from "@directory/core";
+import { availableCities, buildCrawlPlan, fitToBudget, loadCity } from "./plan";
 
 const dubai = loadCity("dubai");
 const tiles = dubai.tiles;
@@ -109,5 +110,150 @@ describe("availableCities", () => {
   test("names the alternatives when a city config is missing", () => {
     // The error has to teach, since adding a city is the main extension point.
     expect(() => loadCity("atlantis")).toThrow(/Available:.*dubai/s);
+  });
+});
+
+describe("the committed city registry", () => {
+  // The registry is about to grow from one hand-written config to many
+  // generated ones. These two are the guard that a bad config fails CI rather
+  // than someone's crawl.
+
+  test("every committed config validates", () => {
+    // loadCity validates now, so loading each one IS the assertion.
+    for (const id of availableCities()) {
+      expect(() => loadCity(id), `data/cities/${id}.json`).not.toThrow();
+    }
+  });
+
+  test("every committed config plans at least one job", () => {
+    // A config can be structurally valid and still plan nothing: PAGE_CAP gives
+    // sparse tiles zero pages for standard and niche categories, so an all-sparse
+    // city with no broad categories yields zero jobs. That spends no credits and
+    // finds no businesses, and it looks exactly like a working config until the
+    // crawl finishes empty. Structure alone cannot catch it.
+    for (const id of availableCities()) {
+      const city = loadCity(id);
+      const plan = buildCrawlPlan(city.tiles, city.categories);
+      expect(
+        plan.jobs.length,
+        `data/cities/${id}.json plans no jobs`,
+      ).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe("spaceOut against the hand-placed Dubai tiles", () => {
+  // The only ground truth available: 44 tiles a human placed deliberately. A
+  // spacing rule that cannot survive them is wrong, and this is free to check.
+  const POI_BY_DENSITY = { dense: 500, medium: 200, sparse: 50 } as const;
+
+  const candidates = dubai.tiles.map((t) => ({
+    id: t.id,
+    name: t.name,
+    lat: t.lat,
+    lng: t.lng,
+    density: t.density,
+    // Synthetic: this test is about spacing, not classification. Real POI
+    // counts need an Overpass pass that has not been run.
+    poiCount: POI_BY_DENSITY[t.density],
+  }));
+
+  test("keeps every hand-placed tile", () => {
+    // If this ever fails, the default floors have been tuned past the point
+    // where this repository's own reference city is reproducible.
+    const kept = spaceOut(candidates);
+    expect(kept).toHaveLength(dubai.tiles.length);
+  });
+
+  test("still collapses a genuine duplicate", () => {
+    // Guard against the floors being so permissive they do nothing at all.
+    const withDuplicate = [
+      ...candidates,
+      { ...candidates[0]!, id: "duplicate-of-first", poiCount: 1 },
+    ];
+    expect(spaceOut(withDuplicate)).toHaveLength(dubai.tiles.length);
+  });
+});
+
+describe("fitToBudget", () => {
+  test("keeps everything when the budget is ample", () => {
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 100_000);
+    expect(fit.tiles).toHaveLength(dubai.tiles.length);
+    expect(fit.dropped).toHaveLength(0);
+  });
+
+  test("never exceeds the budget it was given", () => {
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 2_000);
+    expect(fit.maxRequests).toBeLessThanOrEqual(2_000);
+  });
+
+  test("chooses what to drop instead of letting the fetcher truncate", () => {
+    // Dubai's own config plans 3,170 worst-case against a 2,000 budget. Today
+    // the fetcher absorbs that with a hard cap, which means iteration order
+    // decides which tiles lose coverage and nobody chose it. This is that
+    // decision, made deliberately and reported.
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 2_000);
+    expect(fit.dropped.length).toBeGreaterThan(0);
+    expect(fit.tiles.length + fit.dropped.length).toBe(dubai.tiles.length);
+  });
+
+  test("agrees with buildCrawlPlan about what the kept tiles cost", () => {
+    // The fit is worthless if it disagrees with the planner it is fitting to.
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 2_000);
+    const plan = buildCrawlPlan(fit.tiles, dubai.categories);
+    expect(plan.estimate.maxRequests).toBe(fit.maxRequests);
+  });
+
+  test("preserves the order it was given, which is the caller's priority", () => {
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 2_000);
+    const keptIds = fit.tiles.map((t) => t.id);
+    const expected = dubai.tiles
+      .map((t) => t.id)
+      .filter((id) => keptIds.includes(id));
+    expect(keptIds).toEqual(expected);
+  });
+
+  test("keeps nothing costly on a zero budget", () => {
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 0);
+    expect(fit.maxRequests).toBe(0);
+  });
+
+  test("handles an empty tile list", () => {
+    const fit = fitToBudget([], dubai.categories, 2_000);
+    expect(fit.tiles).toEqual([]);
+    expect(fit.maxRequests).toBe(0);
+  });
+});
+
+describe("fitToBudget prefers density over file order", () => {
+  test("keeps every dense tile even when the config lists them last", () => {
+    // The discriminating case. Admitting in file order lets whatever appears
+    // first eat the budget; reversing Dubai's config puts the sparse desert
+    // tiles at the front, and a correct fit must still spend the budget on the
+    // dense ones.
+    const reversed = [...dubai.tiles].reverse();
+    const fit = fitToBudget(reversed, dubai.categories, 2_000);
+    const denseTotal = dubai.tiles.filter((t) => t.density === "dense").length;
+    const denseKept = fit.tiles.filter((t) => t.density === "dense").length;
+    expect(denseKept).toBe(denseTotal);
+  });
+
+  test("keeps every dense tile once the budget can afford them all", () => {
+    // A dense tile costs 120 worst-case against Dubai's 40 categories
+    // (10 broad x 5 pages + 20 standard x 3 + 10 niche x 1), so 15 of them
+    // need exactly 1,800.
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 1_800);
+    expect(fit.dropped.filter((t) => t.density === "dense")).toHaveLength(0);
+  });
+
+  test("funds no medium tile while dense tiles are still going unfunded", () => {
+    // At 1,250 the budget cannot hold all fifteen dense tiles, so five are
+    // dropped. What must NOT happen is a medium tile being funded ahead of
+    // them — that would be the file-order bug wearing a different hat.
+    const fit = fitToBudget(dubai.tiles, dubai.categories, 1_250);
+    expect(
+      fit.dropped.filter((t) => t.density === "dense").length,
+    ).toBeGreaterThan(0);
+    expect(fit.tiles.filter((t) => t.density === "medium")).toHaveLength(0);
   });
 });

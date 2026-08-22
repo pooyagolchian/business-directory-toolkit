@@ -135,4 +135,51 @@ export interface CityConfig {
   boundingBoxes: BoundingBox[];
   tiles: CityTile[];
   categories: CityCategory[];
+  /**
+   * Where this config came from.
+   *
+   * Optional, because a fork must still be able to drop in a minimal JSON file
+   * — that is ADR 0005's core promise, and it outranks compile-time provenance.
+   * But its ABSENCE means unverified, never verified: see `verificationState`.
+   */
+  verification?: CityVerification;
 }
+
+/**
+ * A config the generator produced from open data, which nobody has crawled yet.
+ *
+ * `generator` is a version rather than a name so a bad batch is traceable back
+ * to the code that emitted it.
+ */
+export interface GeneratedProvenance {
+  status: "generated";
+  /** e.g. "openstreetmap". */
+  source: string;
+  /** ISO yyyy-mm-dd. */
+  generatedAt: string;
+  /** Version of the generator that emitted this config. */
+  generator: string;
+}
+
+/**
+ * A config someone actually crawled, carrying what they measured.
+ *
+ * Evidence rather than a boolean: a bare `verified: true` invites a flip, while
+ * these numbers are checkable by re-running the crawl and cost a real crawl to
+ * produce. Nothing verifies them cryptographically, and that limit is the
+ * honest boundary of the claim.
+ */
+export interface VerifiedProvenance {
+  status: "verified";
+  /** ISO yyyy-mm-dd. */
+  crawledAt: string;
+  requests: number;
+  uniqueBusinesses: number;
+  /** The subset of `uniqueBusinesses` that passed `isInCity`. */
+  inCity: number;
+}
+
+export type CityVerification = GeneratedProvenance | VerifiedProvenance;
+
+/** Absence is deliberately its own state, and it is not "verified". */
+export type VerificationState = "verified" | "generated" | "unknown";

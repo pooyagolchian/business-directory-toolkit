@@ -3,9 +3,23 @@ export type { NormalizedPhone, PhoneType } from "./phone";
 
 export { toSlug } from "./slug";
 
-export { isInCity } from "./city";
+export { isInCity, parseCityConfig, verificationState } from "./city";
 
 export { nearestTile } from "./nearest";
+
+export {
+  PROVISIONAL_DENSITY_THRESHOLDS,
+  SPACING_FLOORS,
+  classifyDensity,
+  distanceKm,
+  spaceOut,
+} from "./tiles";
+export type {
+  DensityThresholds,
+  GeoPoint,
+  SpacingFloors,
+  TileCandidate,
+} from "./tiles";
 
 export { serializeJsonLd } from "./jsonld";
 
@@ -69,9 +83,13 @@ export type {
   CityCategory,
   CityConfig,
   CityTile,
+  CityVerification,
   Density,
+  GeneratedProvenance,
   RawLocalResult,
   TaxonomyMap,
   TaxonomyNode,
   Tier,
+  VerificationState,
+  VerifiedProvenance,
 } from "./types";

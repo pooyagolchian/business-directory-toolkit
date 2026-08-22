@@ -93,8 +93,17 @@ pnpm load --dry-run                            # quality gates, 0 credits
 ```
 
 Deployed environments never read `.env` — credentials come from SSM via
-`npx sst secret set SearchApiKey <value>` and
-`npx sst secret set AnthropicApiKey <value>`.
+`npx sst secret set SearchApiKey <value> --stage <stage>` and
+`npx sst secret set AnthropicApiKey <value> --stage <stage>`.
+
+**`--stage` is not optional in practice.** Without it SST writes to your
+personal stage, so a secret you believe you set on `production` is sitting on
+`pooya`. Check with `npx sst secret list --stage production`.
+
+Neither secret is needed to serve the site. `SearchApiKey` is linked only to
+the SQS crawl fetcher and `AnthropicApiKey` only to the classifier — both
+offline batch Lambdas — and nothing under `packages/web` reads either one. A
+deploy with both unset succeeds and every page renders.
 
 > **The site cannot be run on a fresh clone.** `pnpm --filter @directory/web dev`
 > runs `scripts/bundle-data.mjs` first, and it exits 1 with
@@ -814,19 +823,32 @@ publish, and `us-east-1` already spends ~250 ms of distance on a Dubai audience
 ([ADR 0003](./docs/adr/0003-deploy-region.md)).
 
 ```bash
-npx sst secret set SearchApiKey   <value>
-npx sst secret set AnthropicApiKey <value>
+npx sst secret set SearchApiKey    <value> --stage dev   # only for cloud crawls
+npx sst secret set AnthropicApiKey <value> --stage dev   # only for cloud classify
 npx sst deploy --stage dev
 ```
 
 `production` is protected and retains its data on removal; every other stage is
 `removal: "remove"`. The GitHub deploy workflow is `workflow_dispatch`-only,
 runs typecheck + lint + test first, and assumes its AWS role via OIDC, so no
-long-lived key exists anywhere. Main-only is enforced by **IAM rather than by
-the workflow**: the trust policy scopes `sub` to `refs/heads/main`, and
-[`deploy.yml`](./.github/workflows/deploy.yml) itself has no ref guard, so a
-`workflow_dispatch` from another branch fails at role assumption rather than at
-the job.
+long-lived key exists anywhere.
+
+**Main-only is enforced by the GitHub environment, not by the trust policy.**
+An earlier version of this file said the opposite — that IAM scoped `sub` to
+`refs/heads/main` and `deploy.yml` needed no ref guard. That is wrong, and
+wrong in a way that would have failed the first real deploy: the job declares
+`environment: ${{ inputs.stage }}`, and GitHub swaps the OIDC subject to
+`repo:OWNER/REPO:environment:NAME` whenever a job uses an environment. A trust
+policy matching only the `ref:` form would never match at all.
+
+So the control lives in two places, and both are load-bearing:
+
+- **IAM** scopes the role to this repository — `environment:production`,
+  `environment:dev`, and `ref:refs/heads/main`. No other repository can assume
+  it, which is the property that matters most.
+- **The `production` and `dev` environments** each carry a deployment-branch
+  policy allowing only `main`, plus a required reviewer on `production`. That
+  is what makes it main-only, and what puts a human in front of a live deploy.
 
 #### Getting the dataset to CI
 
@@ -866,10 +888,11 @@ assume it:
 }
 ```
 
-Until that role exists, the "main-only is enforced by IAM" sentence above
-describes an intent rather than a control — the same shape of aspirational claim
-ADR 0009 was written about. Deploys fall back to a shell, which is exactly what
-the workflow exists to avoid.
+Both variables are set for this repository, and
+`github-actions-directory-from-scratch` is the role they point at. If you are
+forking, the sentence above is the whole setup — until that role exists, deploys
+fall back to somebody's shell, which is exactly what the workflow exists to
+avoid.
 
 ### SEO surface
 
@@ -901,10 +924,13 @@ npx sst deploy --stage dev                                       # the stack
 implement. It is pure domain logic with no I/O and no AWS, which is exactly what
 makes that affordable.
 
-**No test may make a network call.** The whole suite runs offline — 224 tests
-across 20 files — and every engine response comes from the four recorded
+**No test may make a network call.** The whole suite runs offline — 567 tests
+across 30 files — and every engine response comes from the four recorded
 fixtures in [`fixtures/searchapi/`](./fixtures/searchapi), injected as a
-`SearchClient`. A test that opens a socket is a broken test.
+`SearchClient`. The seven recordings in [`fixtures/osm/`](./fixtures/osm) do the
+same job for the city generator: Nominatim and Overpass cost no credits, but a
+test that depends on a remote service is not deterministic, and determinism is
+the rule rather than the saving. A test that opens a socket is a broken test.
 
 CI runs typecheck, lint, test and format check, plus two guard steps that fail
 the build outright:
@@ -928,7 +954,7 @@ pins so they cannot silently rot. No AWS or SearchApi credentials are in scope i
 | `No city config "berlin". Available: dubai.`                                       | `loadCity()` could not read `data/cities/berlin.json`. `plan`, `crawl` and `load` wrap it so the message teaches.                       | `pnpm plan --list`, or copy `_template.json`. Note `pnpm demand --city <bad-id>` skips the wrapper and dumps a raw stack trace instead.                 |
 | `Refusing to spend credits without --yes.`                                         | Working as designed. A crawl is the only irreversible spend in the project.                                                             | Run the `--dry-run` form, read the printed cost, then re-run with `--yes`. For a first crawl, `--yes --budget 200 --only downtown`.                     |
 | `SEARCH_API_KEY is not set. Copy .env.example to .env.`                            | The key is read only **after** the `--yes` gate, so this appears at the last possible moment before spending.                           | `cp .env.example .env`. In AWS the key comes from SSM instead — `.env` is never read there.                                                             |
-| `DIRECTORY_TABLE is not set.`                                                      | `pnpm load --yes` needs the table name, and it is not in `.env.example`.                                                                | Take the `table` output from `npx sst deploy`, or prefix: `DIRECTORY_TABLE=<name> pnpm load --yes`. A dry run does not need it.                         |
+| `DIRECTORY_TABLE is not set.`                                                      | `pnpm load --yes` needs the table name. It is commented out in `.env.example` because it does not exist until the stack is deployed.    | Take the `table` output from `npx sst deploy`, or prefix: `DIRECTORY_TABLE=<name> pnpm load --yes`. A dry run does not need it.                         |
 | `No crawl output at data/out/raw-records.json.`                                    | Stage 3 needs stage 1's output, and `data/out/` is git-ignored so a fresh clone never has it.                                           | Run the crawl — or `pnpm load --from-archive` to rebuild from responses already fetched, for free.                                                      |
 | `No data/out/businesses.json.` from `demand` or `reviews`                          | `demand` and `reviews` read the normalised set, not the raw one.                                                                        | `pnpm load --dry-run` writes `businesses.json` even on a dry run, deliberately — a full `--yes` load is not needed to unblock them.                     |
 | Uncaught `ENOENT` from `pnpm seed-taxonomy`, no message                            | Unlike `classify` and `load`, it reads `raw-records.json` with a bare `readFileSync` and no `try`/`catch`.                              | Run `pnpm crawl` first. This is a rough edge, not a broken install.                                                                                     |

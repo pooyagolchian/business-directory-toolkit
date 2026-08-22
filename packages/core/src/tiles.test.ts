@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
-  PROVISIONAL_DENSITY_THRESHOLDS,
+  MEASURED_DENSITY_THRESHOLDS,
+  assignDensityByRank,
   SPACING_FLOORS,
   classifyDensity,
   distanceKm,
@@ -50,7 +51,7 @@ describe("distanceKm", () => {
 });
 
 describe("classifyDensity", () => {
-  const t = PROVISIONAL_DENSITY_THRESHOLDS;
+  const t = MEASURED_DENSITY_THRESHOLDS;
 
   test("calls a busy centre dense", () => {
     expect(classifyDensity(t.dense + 50)).toBe("dense");
@@ -178,5 +179,63 @@ describe("spaceOut", () => {
 
   test("returns an empty list for no candidates", () => {
     expect(spaceOut([])).toEqual([]);
+  });
+});
+
+describe("assignDensityByRank", () => {
+  const make = (counts: number[]) =>
+    counts.map((poiCount, i) => ({ id: `t${i}`, poiCount }));
+
+  test("reproduces Dubai's 15/18/11 shape on 44 centres", () => {
+    const assigned = assignDensityByRank(
+      make(Array.from({ length: 44 }, (_, i) => (44 - i) * 100)),
+    );
+    const tally = (d: string) =>
+      [...assigned.values()].filter((v) => v === d).length;
+    expect(tally("dense")).toBe(15);
+    expect(tally("medium")).toBe(18);
+    expect(tally("sparse")).toBe(11);
+  });
+
+  test("normalises to the city rather than to Dubai", () => {
+    // The defect this replaces: Dubai-fitted absolute thresholds called 43 of
+    // Lisbon's 50 centres dense, because Lisbon is compact and superbly mapped.
+    // The same counts must not all land in one class.
+    const busy = assignDensityByRank(
+      make(Array.from({ length: 50 }, (_, i) => 900 - i)),
+    );
+    expect(new Set(busy.values()).size).toBeGreaterThan(1);
+    expect([...busy.values()].filter((d) => d === "dense").length).toBeLessThan(
+      25,
+    );
+  });
+
+  test("never calls near-empty ground dense, whatever its rank", () => {
+    // A hamlet's busiest street is still a hamlet's busiest street, and dense
+    // buys five pages of every broad category.
+    const village = assignDensityByRank(make([9, 5, 3, 2, 1]));
+    expect(village.get("t0")).not.toBe("dense");
+  });
+
+  test("always leaves at least one dense centre in a real city", () => {
+    // PAGE_CAP gives a sparse tile zero pages for standard and niche alike, so
+    // a city with nothing dense plans almost nothing at all.
+    const assigned = assignDensityByRank(make([900, 800, 700]));
+    expect([...assigned.values()]).toContain("dense");
+  });
+
+  test("ranks by count, so the busiest centre is the densest", () => {
+    const assigned = assignDensityByRank(make([10, 5000, 20, 30]));
+    expect(assigned.get("t1")).toBe("dense");
+  });
+
+  test("is deterministic when counts tie", () => {
+    const a = assignDensityByRank(make([100, 100, 100, 100]));
+    const b = assignDensityByRank(make([100, 100, 100, 100]));
+    expect([...a.entries()]).toEqual([...b.entries()]);
+  });
+
+  test("handles an empty city without throwing", () => {
+    expect(assignDensityByRank([]).size).toBe(0);
   });
 });

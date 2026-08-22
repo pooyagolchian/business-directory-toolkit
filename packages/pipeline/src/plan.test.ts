@@ -1,6 +1,12 @@
 import { describe, expect, test } from "vitest";
 import { spaceOut } from "@directory/core";
-import { availableCities, buildCrawlPlan, fitToBudget, loadCity } from "./plan";
+import {
+  availableCities,
+  buildCrawlPlan,
+  fitToBudget,
+  loadCity,
+  tilesAffordable,
+} from "./plan";
 
 const dubai = loadCity("dubai");
 const tiles = dubai.tiles;
@@ -255,5 +261,49 @@ describe("fitToBudget prefers density over file order", () => {
       fit.dropped.filter((t) => t.density === "dense").length,
     ).toBeGreaterThan(0);
     expect(fit.tiles.filter((t) => t.density === "medium")).toHaveLength(0);
+  });
+});
+
+describe("tilesAffordable", () => {
+  const dubai = loadCity("dubai");
+
+  test("returns Dubai's own tile count at Dubai's own budget, by construction", () => {
+    // Not a validation, and the test name says so. DENSITY_SHARES is Dubai's
+    // 15/18/11 and PAGE_CAP is what priced that config, so the weighted
+    // average cost is exactly 3,170/44 and this division has no freedom to
+    // return anything else. It is asserted to pin the arithmetic, not to claim
+    // the generator rediscovered a human's judgement.
+    expect(dubai.tiles).toHaveLength(44);
+    expect(tilesAffordable(3170, dubai.categories)).toBe(44);
+  });
+
+  test("scales down with the budget", () => {
+    expect(tilesAffordable(2000, dubai.categories)).toBe(27);
+    expect(tilesAffordable(1250, dubai.categories)).toBe(17);
+    expect(tilesAffordable(800, dubai.categories)).toBe(11);
+  });
+
+  test("a longer category list buys fewer tiles for the same money", () => {
+    // The trade-off MAX_CATEGORIES exists to bound: cost is tiles times
+    // categories, so categories and neighbourhoods compete for one budget.
+    const doubled = [
+      ...dubai.categories,
+      ...dubai.categories.map((c) => ({ ...c, q: `${c.q} near me` })),
+    ];
+    expect(tilesAffordable(2000, doubled)).toBeLessThan(
+      tilesAffordable(2000, dubai.categories),
+    );
+  });
+
+  test("never returns zero, so the failure is a tile count and not an empty config", () => {
+    expect(tilesAffordable(1, dubai.categories)).toBe(1);
+  });
+
+  test("a category list that plans nothing is free, and says so", () => {
+    // PAGE_CAP gives sparse tiles zero pages for niche categories, so a
+    // niche-only list against sparse tiles genuinely costs nothing.
+    expect(tilesAffordable(100, [], { dense: 0, medium: 0, sparse: 1 })).toBe(
+      Number.MAX_SAFE_INTEGER,
+    );
   });
 });

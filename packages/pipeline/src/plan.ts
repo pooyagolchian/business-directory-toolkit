@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { parseCityConfig } from "@directory/core";
+import { DENSITY_SHARES, parseCityConfig } from "@directory/core";
 import type {
   CityCategory,
   CityConfig,
@@ -217,6 +217,61 @@ export function fitToBudget(
   });
 
   return { tiles: kept, dropped, maxRequests };
+}
+
+/**
+ * How many tiles a budget can afford, given a category list.
+ *
+ * The generator needs this *before* it picks tiles, not after. Spacing alone
+ * has no opinion about money: Dubai has 321 mapped neighbourhood nodes and 276
+ * of them survive the spacing floors, against the 44 a human chose. Ranking
+ * 276 centres puts ~94 of them in the `dense` class at 120 requests each, so
+ * `fitToBudget` then throws away 258 tiles — and the config ships with worse
+ * coverage than the human's for the same money, because the money went on
+ * depth in a handful of places instead of breadth across the city.
+ *
+ * Deciding the count first inverts that: take the busiest N centres, rank
+ * those, and the density split lands on a set the budget can actually hold.
+ *
+ * **At Dubai's own budget this returns exactly Dubai's 44 tiles — and that is
+ * an identity, not a validation.** `DENSITY_SHARES` is Dubai's 15/18/11 and
+ * `PAGE_CAP` is what priced that config, so the weighted average is precisely
+ * 3,170/44 and the division cannot return anything else. It is worth stating
+ * plainly because it looks like a confirmation and is not one: nothing here
+ * has been checked against a city the constants did not come from.
+ *
+ * What the formula actually buys is the *scaling*. The one configuration
+ * anybody has crawled fixes the ratio of budget to tiles, and this carries
+ * that ratio to other budgets and other category lists rather than leaving the
+ * tile count to whatever OpenStreetMap happened to have mapped. Whether the
+ * ratio generalises is unmeasured and needs a second crawled city to settle.
+ */
+export function tilesAffordable(
+  budget: number,
+  categories: readonly CityCategory[],
+  shares: Record<Density, number> = DENSITY_SHARES,
+): number {
+  const costOf = (density: Density): number => {
+    let cost = 0;
+    for (const category of categories) {
+      cost += PAGE_CAP[density]?.[category.tier] ?? 0;
+    }
+    return cost;
+  };
+
+  // Expected cost of one tile, weighted by how often each density occurs.
+  const average =
+    costOf("dense") * shares.dense +
+    costOf("medium") * shares.medium +
+    costOf("sparse") * shares.sparse;
+
+  // A category list where every tier resolves to zero pages costs nothing, so
+  // no number of tiles is unaffordable. Callers still cap by what OSM offered.
+  if (average <= 0) return Number.MAX_SAFE_INTEGER;
+
+  // At least one tile: a city that cannot afford a single tile should fail
+  // loudly downstream on its tile count, not silently return an empty config.
+  return Math.max(1, Math.floor(budget / average));
 }
 
 /** Convenience: plan a whole city in one call. */

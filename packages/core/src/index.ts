@@ -8,7 +8,11 @@ export { isInCity, parseCityConfig, verificationState } from "./city";
 export { nearestTile } from "./nearest";
 
 export {
-  PROVISIONAL_DENSITY_THRESHOLDS,
+  DENSITY_MEASUREMENT_RADIUS_KM,
+  DENSITY_SHARES,
+  MEASURED_DENSITY_THRESHOLDS,
+  MIN_POIS_FOR_DENSE,
+  assignDensityByRank,
   SPACING_FLOORS,
   classifyDensity,
   distanceKm,

@@ -36,6 +36,15 @@ export {
 } from "./osm";
 export type { OsmPlaceNode, OsmPoi, ResolvedPlace } from "./osm";
 
+export {
+  MAX_CATEGORIES,
+  MIN_CATEGORY_COUNT,
+  TIER_SHARES,
+  deriveCategories,
+  parseCategoryMap,
+} from "./categories";
+export type { CategoryMap } from "./categories";
+
 export { serializeJsonLd } from "./jsonld";
 
 export { corpusPrior, rankScore } from "./rank";

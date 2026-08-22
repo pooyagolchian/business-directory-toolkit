@@ -60,6 +60,33 @@ describe("parseNominatimPlace", () => {
     expect(parseNominatimPlace(DUBAI, "Dubai").names).toContain("دبي");
   });
 
+  test("keeps OpenStreetMap's own capitalisation for the display name", () => {
+    // An earlier version lowercased every candidate and title-cased one back
+    // for display, which rewrote "Rio de Janeiro" as "Rio De Janeiro",
+    // "Washington, D.C." as "Washington, D.c." and "DIFC" as "Difc" — mangling
+    // data that arrived correct, in the one field a reader actually sees.
+    const rio = [
+      {
+        osm_type: "relation",
+        osm_id: 1,
+        category: "boundary",
+        type: "administrative",
+        name: "Rio de Janeiro",
+        namedetails: { "name:en": "Rio de Janeiro" },
+        boundingbox: ["-23.1", "-22.7", "-43.8", "-43.1"],
+        address: { country_code: "br" },
+      },
+    ];
+    expect(parseNominatimPlace(rio, "Rio").name).toBe("Rio de Janeiro");
+  });
+
+  test("lowercases only the match list, where case never mattered", () => {
+    // isInCity lowercases both sides, so cityNames is where flattening is free.
+    const place = parseNominatimPlace(DUBAI, "Dubai");
+    expect(place.name).toBe("Dubai");
+    expect(place.names.every((n) => n === n.toLowerCase())).toBe(true);
+  });
+
   test("refuses a place with no Latin name at all", () => {
     const noLatin = [
       {

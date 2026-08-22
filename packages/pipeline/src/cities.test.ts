@@ -163,6 +163,42 @@ describe("generateCityConfig", () => {
     expect(result.city.tiles.length).toBeGreaterThan(0);
   });
 
+  test("reports the centres the budget trimmed, not just the fit's leftovers", async () => {
+    // Previously invisible and usually the largest number in the run: Dubai's
+    // 276 spaced centres became 27 tiles while the CLI printed "dropped 0",
+    // because `dropped` only counts what fitToBudget turned away and the trim
+    // had already happened. A run that discards 249 candidates in silence is
+    // what hard rule 4 exists to prevent.
+    const r = await generateCityConfig(options("dubai", { budget: 2000 }));
+    expect(r.trimmedToBudget).toBeGreaterThan(0);
+    // The arithmetic has to close: everything that survived spacing either
+    // became a tile, was trimmed, or was dropped by the exact fit.
+    expect(r.survivors).toBe(
+      r.city.tiles.length + r.trimmedToBudget + r.dropped.length,
+    );
+  });
+
+  test("a bigger budget trims fewer centres", async () => {
+    const tight = await generateCityConfig(options("dubai", { budget: 800 }));
+    const loose = await generateCityConfig(options("dubai", { budget: 3170 }));
+    expect(loose.trimmedToBudget).toBeLessThan(tight.trimmedToBudget);
+  });
+
+  test("says the budget is too small, rather than complaining about JSON", async () => {
+    // The old failure was parseCityConfig reporting "tiles must be a non-empty
+    // array" — true about the shape, silent about the cause.
+    await expect(
+      generateCityConfig(options("lisbon", { budget: 50 })),
+    ).rejects.toThrow(/budget of 50 .*buys no tiles/s);
+  });
+
+  test("the too-small-budget error names a budget that would work", async () => {
+    const err = await generateCityConfig(
+      options("lisbon", { budget: 50 }),
+    ).catch((e: Error) => e);
+    expect((err as Error).message).toMatch(/Raise --budget to at least \d+/);
+  });
+
   test("fails loudly when OSM has too few neighbourhoods to tile", async () => {
     // ADR 0014: a generated grid would be invented data wearing a generator's
     // credibility, and an even grid also wastes requests on water and desert.

@@ -134,7 +134,14 @@ try {
   die(error instanceof Error ? error.message : String(error));
 }
 
-const { city, dropped, candidatesConsidered, survivors, skipped } = result;
+const {
+  city,
+  dropped,
+  candidatesConsidered,
+  survivors,
+  skipped,
+  trimmedToBudget,
+} = result;
 const plan = buildCrawlPlan(city.tiles, city.categories);
 const file = `data/cities/${city.id}.json`;
 
@@ -143,8 +150,9 @@ ${city.name} (${city.countryCode}) — generated from OpenStreetMap
 ${"=".repeat(42 + city.name.length + city.countryCode.length)}
 
   candidates    ${candidatesConsidered} place nodes → ${survivors} after spacing${skipped ? ` (${skipped} skipped: no Latin name)` : ""}
+  trimmed       ${trimmedToBudget} centres the ${budget.toLocaleString()} budget could not fund
 ${tally(city)}
-  dropped       ${dropped.length} tiles the ${budget.toLocaleString()} budget could not afford
+  dropped       ${dropped.length} more dropped when the fit was checked exactly
   boxes         ${count(city.boundingBoxes.length, "bounding box", "bounding boxes")}
   names         ${city.cityNames.join(", ")}
 

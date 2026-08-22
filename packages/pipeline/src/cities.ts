@@ -92,6 +92,17 @@ export interface GenerateResult {
   candidatesConsidered: number;
   /** Centres that survived spacing. */
   survivors: number;
+  /**
+   * Centres the budget could not fund, discarded before density was assigned.
+   *
+   * Reported because it is usually the largest number in the whole run and was
+   * previously invisible: Dubai's 276 spaced centres became 27 tiles while the
+   * CLI printed "dropped 0", because `dropped` only counts what `fitToBudget`
+   * turned away — and by then the trim had already happened. A run that
+   * discards 249 candidates and says nothing is exactly what hard rule 4
+   * exists to prevent.
+   */
+  trimmedToBudget: number;
   /** Centres skipped for having no Latin name. */
   skipped: number;
 }
@@ -122,6 +133,23 @@ function boxAround(
     minLng: Math.min(...lngs) - padLng,
     maxLng: Math.max(...lngs) + padLng,
   };
+}
+
+/**
+ * Worst-case requests one tile costs, matching `buildCrawlPlan`'s arithmetic.
+ * Duplicated from `fitToBudget` rather than exported from it, because the only
+ * use here is to explain a failure rather than to make a decision.
+ */
+function tileCost(
+  tile: CityTile,
+  categories: readonly { tier: "broad" | "standard" | "niche" }[],
+): number {
+  const caps = {
+    dense: { broad: 5, standard: 3, niche: 1 },
+    medium: { broad: 3, standard: 2, niche: 0 },
+    sparse: { broad: 1, standard: 0, niche: 0 },
+  } as const;
+  return categories.reduce((sum, c) => sum + caps[tile.density][c.tier], 0);
 }
 
 function idFrom(name: string): string {
@@ -249,7 +277,7 @@ export async function generateCityConfig(
   //    tiles. The config shipped with 18 tiles where a human had placed 44 for
   //    a comparable budget — the money had gone on depth in a few places
   //    instead of breadth across the city.
-  const affordable = tilesAffordable(budget, categories);
+  const affordable = tilesAffordable(budget, categories, shares);
   const chosen = [...spaced]
     .sort((a, b) => b.poiCount - a.poiCount || a.id.localeCompare(b.id))
     .slice(0, affordable);
@@ -267,6 +295,21 @@ export async function generateCityConfig(
   // from an expected cost, so a city whose density split lands above average
   // can still overshoot; this is the guarantee, not the estimate.
   const fit = fitToBudget(tiles, categories, budget);
+
+  if (fit.tiles.length === 0) {
+    // Without this the failure surfaces as parseCityConfig complaining that
+    // "tiles must be a non-empty array" — a true statement about JSON shape
+    // that says nothing about the actual problem, which is the budget.
+    const cheapest = Math.min(...tiles.map((t) => tileCost(t, categories)));
+    throw new Error(
+      `A budget of ${budget.toLocaleString()} requests buys no tiles in ` +
+        `${JSON.stringify(name)}. The cheapest tile the generator placed costs ` +
+        `${cheapest.toLocaleString()} requests across ${categories.length} categories.\n\n` +
+        `Raise --budget to at least ${cheapest.toLocaleString()}, or shorten ` +
+        `data/category-map.json — cost is tiles times categories, so the two ` +
+        `compete for the same money.`,
+    );
+  }
 
   const city: CityConfig = {
     id: options.id ?? idFrom(place.name),
@@ -294,6 +337,7 @@ export async function generateCityConfig(
     dropped: fit.dropped,
     candidatesConsidered: nodes.length,
     survivors: spaced.length,
+    trimmedToBudget: Math.max(0, spaced.length - chosen.length),
     skipped,
   };
 }

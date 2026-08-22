@@ -229,18 +229,21 @@ export function parseNominatimPlace(
     address.city,
     address.town,
     address.municipality,
-  ];
-  const names = [
-    ...new Set(
-      candidates
-        .filter((n): n is string => typeof n === "string")
-        .map((n) => n.trim().toLowerCase())
-        .filter((n) => n !== ""),
-    ),
-  ];
+  ]
+    .filter((n): n is string => typeof n === "string")
+    .map((n) => n.trim())
+    .filter((n) => n !== "");
 
-  const latin = names.find(hasLatin);
-  if (!latin) {
+  // The display name keeps OpenStreetMap's own capitalisation. An earlier
+  // version lowercased everything and title-cased it back for display, which
+  // silently rewrote "Rio de Janeiro" as "Rio De Janeiro", "Washington, D.C."
+  // as "Washington, D.c." and "DIFC" as "Difc" — mangling data that arrived
+  // correct, in the one field a reader sees. Casing is only flattened for
+  // `names`, where isInCity lowercases both sides anyway.
+  const display = candidates.find(hasLatin);
+  const names = [...new Set(candidates.map((n) => n.toLowerCase()))];
+
+  if (!display) {
     throw new Error(
       `${JSON.stringify(query)} has no Latin name in OpenStreetMap (found ` +
         `${names.map((n) => JSON.stringify(n)).join(", ") || "nothing"}). The ` +
@@ -258,11 +261,7 @@ export function parseNominatimPlace(
   }
 
   return {
-    // Title-case the Latin form for display; the raw list keeps the rest.
-    name: latin.replace(
-      /(^|[\s-])(\p{Ll})/gu,
-      (_, sep, ch: string) => sep + ch.toUpperCase(),
-    ),
+    name: display,
     countryCode,
     phoneRegion: countryCode as CountryCode,
     osmType: best.osm_type as "relation" | "way",

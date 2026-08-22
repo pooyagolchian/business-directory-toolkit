@@ -100,8 +100,21 @@ export function poisQuery(boxes: readonly BoundingBox[]): string {
 const TAG_PATTERN = /^[a-z_]+=[a-z0-9_:]+$/;
 
 /**
- * One `out count` per tag, every one of them summed across all of the city's
- * boxes. Order is the contract: `parseOverpassCounts` matches results back to
+ * One `out count` per tag, summed across all of the city's boxes.
+ *
+ * **The union brackets are load-bearing.** In Overpass QL a bare statement
+ * replaces the default result set, so `node(A)[...]; node(B)[...]; out count;`
+ * counts only B. Measured against the live API on 2026-08-22 with
+ * `amenity=pharmacy`: box A alone 156, box B alone 1, the two as consecutive
+ * statements **1**, the two inside a union **157**.
+ *
+ * The bug was invisible from the outside. The generator currently passes a
+ * single box, so nothing misbehaved, and the test asserting that this "counts a
+ * tag across all of the city's boxes" only checked how many `node(` and
+ * `out count;` fragments the string contained — it never checked what Overpass
+ * would do with them, and it passed throughout.
+ *
+ * Order is the other contract: `parseOverpassCounts` matches results back to
  * tags by position and by nothing else.
  */
 export function categoryCountsQuery(
@@ -117,10 +130,11 @@ export function categoryCountsQuery(
       );
     }
     const [key, value] = tag.split("=", 2);
+    lines.push(`(`);
     for (const box of boxes) {
-      lines.push(`node(${bbox(box)})["${key}"="${value}"];`);
+      lines.push(`  node(${bbox(box)})["${key}"="${value}"];`);
     }
-    lines.push(`out count;`);
+    lines.push(`);`, `out count;`);
   }
   return lines.join("\n");
 }
@@ -187,12 +201,22 @@ export function createOsmClient(options: OsmClientOptions = {}): OsmClient {
   // parallelism here would be a policy violation, not an optimisation.
   let queue: Promise<unknown> = Promise.resolve();
 
-  function readCache(key: string): string | null {
-    if (!cacheDir) return null;
+  function readCache(key: string): unknown | undefined {
+    if (!cacheDir) return undefined;
+    let raw: string;
     try {
-      return readFileSync(new URL(`${key}.json`, cacheDir), "utf8");
+      raw = readFileSync(new URL(`${key}.json`, cacheDir), "utf8");
     } catch {
-      return null;
+      return undefined;
+    }
+    try {
+      return JSON.parse(raw);
+    } catch {
+      // Writes are not atomic, so an interrupted run leaves a truncated file.
+      // Treating that as a miss costs one free request; treating it as data
+      // threw a SyntaxError on every subsequent run, with nothing pointing at
+      // the cache and no way out but deleting the directory by hand.
+      return undefined;
     }
   }
 
@@ -221,9 +245,9 @@ export function createOsmClient(options: OsmClientOptions = {}): OsmClient {
   ): Promise<unknown> {
     const key = cacheKey(kind, cacheBody);
     const cached = readCache(key);
-    if (cached !== null) {
+    if (cached !== undefined) {
       onRequest?.(kind, true);
-      return JSON.parse(cached);
+      return cached;
     }
 
     const run = async (): Promise<unknown> => {

@@ -1,4 +1,7 @@
-import { describe, expect, test } from "vitest";
+import { mkdirSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { pathToFileURL } from "node:url";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import {
   OVERPASS_AREA_OFFSET,
   cacheKey,
@@ -87,10 +90,37 @@ describe("categoryCountsQuery", () => {
     expect(q.indexOf("pharmacy")).toBeLessThan(q.indexOf("laundry"));
   });
 
-  test("counts a tag across all of the city's boxes at once", () => {
-    const q = categoryCountsQuery([BOX, HATTA], ["amenity=bank"]);
-    expect(q.match(/out count;/g)).toHaveLength(1);
-    expect(q.match(/node\(/g)).toHaveLength(2);
+  test("unions the boxes, because consecutive statements count only the last", () => {
+    // This replaces a test that asserted the same two counts of `node(` and
+    // `out count;` and passed while the behaviour was wrong. In Overpass QL a
+    // bare statement REPLACES the default result set, so
+    // `node(A); node(B); out count;` reports B alone.
+    //
+    // Measured live on 2026-08-22 with amenity=pharmacy over these two boxes:
+    //   box A alone .................. 156
+    //   box B alone (Hatta) .......... 1
+    //   consecutive statements ....... 1     <- what shipped
+    //   wrapped in a union ........... 157   <- correct
+    //
+    // So this asserts the bracket, which is the thing that carries the meaning.
+    const lines = categoryCountsQuery([BOX, HATTA], ["amenity=bank"])
+      .split("\n")
+      .map((l) => l.trim());
+    expect(lines.filter((l) => l === "out count;")).toHaveLength(1);
+    expect(lines.filter((l) => l.startsWith("node("))).toHaveLength(2);
+    // The two node statements sit inside a union, and the union closes
+    // immediately before the count.
+    expect(lines[1]).toBe("(");
+    expect(lines[lines.indexOf("out count;") - 1]).toBe(");");
+  });
+
+  test("unions even a single box, so one box and many behave identically", () => {
+    const lines = categoryCountsQuery([BOX], ["amenity=bank"])
+      .split("\n")
+      .map((l) => l.trim());
+    expect(lines[1]).toBe("(");
+    expect(lines[3]).toBe(");");
+    expect(lines[4]).toBe("out count;");
   });
 
   test("refuses a tag that is not tag=value rather than building bad syntax", () => {
@@ -159,6 +189,70 @@ describe("createOsmClient", () => {
       () => new Response("<html>Error: too busy</html>", { status: 200 }),
     );
     await expect(client.pois([BOX])).rejects.toThrow(/busy|HTML|not JSON/i);
+  });
+});
+
+describe("the disk cache", () => {
+  const dir = new URL(
+    `./osm-cache-test-${process.pid}/`,
+    pathToFileURL(`${tmpdir()}/`),
+  );
+  beforeEach(() => {
+    mkdirSync(dir, { recursive: true });
+  });
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  test("serves a hit without touching the network", async () => {
+    const key = cacheKey("places", placesQuery(DUBAI));
+    writeFileSync(
+      new URL(`${key}.json`, dir),
+      '{"elements":[{"cached":true}]}',
+    );
+    let calls = 0;
+    const client = createOsmClient({
+      cacheDir: dir,
+      sleep: async () => {},
+      fetchImpl: (async () => {
+        calls++;
+        return new Response("{}", { status: 200 });
+      }) as never,
+    });
+    expect(await client.places(DUBAI)).toEqual({
+      elements: [{ cached: true }],
+    });
+    expect(calls).toBe(0);
+  });
+
+  test("treats a truncated cache file as a miss, not as a fatal error", async () => {
+    // Writes are not atomic, so an interrupted run leaves a half-written file.
+    // Parsing it threw a SyntaxError on every subsequent run, with nothing
+    // naming the cache and no way out but deleting the directory by hand.
+    const key = cacheKey("places", placesQuery(DUBAI));
+    writeFileSync(new URL(`${key}.json`, dir), '{"elements":[{"id":1');
+    const client = createOsmClient({
+      cacheDir: dir,
+      sleep: async () => {},
+      fetchImpl: (async () =>
+        new Response('{"elements":[{"fresh":true}]}', {
+          status: 200,
+        })) as never,
+    });
+    expect(await client.places(DUBAI)).toEqual({ elements: [{ fresh: true }] });
+  });
+
+  test("never caches a body it refused to accept", async () => {
+    // Overpass serves "too busy" as HTML with a 200. Caching that would make a
+    // transient outage permanent for every later run.
+    const client = createOsmClient({
+      cacheDir: dir,
+      sleep: async () => {},
+      fetchImpl: (async () =>
+        new Response("<html>Error: too busy</html>", { status: 200 })) as never,
+    });
+    await expect(client.pois([BOX])).rejects.toThrow();
+    expect(readdirSync(dir)).toHaveLength(0);
   });
 });
 

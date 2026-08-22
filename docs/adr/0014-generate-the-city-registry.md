@@ -324,6 +324,81 @@ mechanism, and saying "Accepted" would claim more than the code delivers.
   and recorded in Bad above rather than left as an open option, because it is the
   tempting mistake this decision creates.
 
+## Amendment, 2026-08-22 — the validation gate ran
+
+The design note promised three numbers before the generator went wider, and
+that they would be published whether or not they flattered it. They do not.
+
+`pnpm cities generate --name "Dubai" --budget 3170`, against the 44 hand-placed
+tiles in `data/cities/dubai.json`:
+
+|                     | generated                             | hand-tuned        |
+| ------------------- | ------------------------------------- | ----------------- |
+| tiles               | 44 — 15 dense / 18 medium / 11 sparse | 44 — 15 / 18 / 11 |
+| worst-case requests | 3,170                                 | 3,170             |
+| up-front requests   | 1,250                                 | 1,250             |
+| categories          | 40                                    | 40                |
+
+**Cost delta: zero, and that is not a finding.** `DENSITY_SHARES` and
+`tilesAffordable` are both derived from this config, so the arithmetic cannot
+produce anything else. The row is here to be dismissed, not quoted.
+
+**Density agreement: 35/44 = 80%** for the fitted absolute thresholds, **34/44 =
+77%** for the rank rule that actually ships, against an unmeasured guess's
+**30/44 = 68%**. Every disagreement is exactly one class wide — 2 dense read as
+medium, 4 medium as dense, 3 sparse as medium — so the failure mode is a modest
+cost error and never a neighbourhood crawled one page deep that deserved five.
+
+**Tile recall: 21 of 44 = 48%**, at a generous 2km radius. 43% at 1km, 20% at
+500m. Precision runs the other way at **89%** within 2km.
+
+That asymmetry is the whole result, and it is worth stating without softening:
+**the generator reproduces a human's cost structure exactly and its coverage
+about half as well.** Nearly every tile it places is near one a human placed,
+and it fails to place a tile anywhere near twenty-three of theirs. The misses
+are not random. They are Jebel Ali, Dubai South, Dubai Investment Park, Hatta,
+Mirdif, JVC, Discovery Gardens, Motor City, Sports City, Academic City, Al Awir
+— the entire outer ring.
+
+The cause is a difference in objective that no amount of tuning removes. The
+generator ranks candidate centres by POI count and takes the busiest that the
+budget affords, which maximises businesses found per credit. A person placing
+tiles by hand was buying something else: **coverage of the city**, including
+suburbs they knew were there and knew would return little. Under ADR 0011 a
+tile is also a browse facet, so those thin outer tiles are what makes
+`/area/jebel-ali` exist at all. Optimising yield deletes them, and nothing in
+the pipeline notices.
+
+This is not presented as a defect to be fixed before shipping. It is the honest
+boundary of what a generated config is: **a good first crawl of a city's
+commercial core, and a worse map of a city than a resident would draw.** The
+`verification` block says "generated" for exactly this kind of reason, and the
+contribution loop — crawl it, then correct it — is where the outer ring gets
+added back by somebody who lives there.
+
+**Category agreement: 22 of 40 shared** with the hand-written list. The
+generator misses dentists, gyms, hospitals, accountants, barbers and florists,
+and adds car parts stores, department stores and cosmetics stores. OSM tag
+density and Google search demand are not the same distribution, and this
+document does not claim they are. `data/demand.json` already holds real search
+demand for Dubai and is not consulted here; joining the two is the obvious next
+measurement and is not in this decision.
+
+### What changed in the code as a result
+
+- `PROVISIONAL_DENSITY_THRESHOLDS` became `MEASURED_DENSITY_THRESHOLDS`
+  (radius 1.5km, dense ≥ 440, medium ≥ 52), fitted over 24,541 OSM POI nodes.
+- Those thresholds were then **rejected as the shipping rule**. Applied to
+  Lisbon they called 43 of 50 centres `dense`, because an absolute POI count
+  measures how busy a place is _compared to Dubai_. `assignDensityByRank` ranks
+  a city against itself; the thresholds survive as the sparse floor.
+- `tilesAffordable` decides the tile count from the budget before density is
+  assigned, because doing it afterwards shipped 18 tiles where a human placed 44.
+- Category counts are sampled over the ten busiest tiles rather than the whole
+  boundary — 98 tags across Dubai's emirate-wide box returns **HTTP 504**.
+- Overpass answers "server too busy" with **HTTP 200 and an HTML body**, so the
+  client sniffs the body before parsing rather than trusting the status.
+
 ## A note on the number
 
 This document was drafted as **ADR 0012** in

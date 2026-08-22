@@ -62,9 +62,39 @@ describe("buildCrawlPlan", () => {
     );
   });
 
-  test("estimates unique businesses from the measured 17.5 per request", () => {
+  test("reports gross results at the in-query rate, before cross-category dedup", () => {
+    // 17.5 is real but it is not a count of businesses: it counts a listing
+    // once per category whose query returned it.
     const plan = buildCrawlPlan(tiles, categories);
-    expect(plan.estimate.estimatedUniqueBusinesses).toBeGreaterThan(0);
+    expect(plan.estimate.estimatedGrossResults).toBe(
+      Math.round(plan.jobs.length * 17.5),
+    );
+  });
+
+  test("reports unique businesses at the rate a whole crawl actually measured", () => {
+    const plan = buildCrawlPlan(tiles, categories);
+    expect(plan.estimate.estimatedUniqueBusinesses).toBe(
+      Math.round(plan.jobs.length * 10.9),
+    );
+  });
+
+  test("the unique estimate is the smaller one, because ~45% of results repeat across categories", () => {
+    // The bug this replaced printed only the gross figure, so `pnpm plan`
+    // promised ~60% more businesses than a crawl has ever delivered.
+    const plan = buildCrawlPlan(tiles, categories);
+    expect(plan.estimate.estimatedUniqueBusinesses).toBeLessThan(
+      plan.estimate.estimatedGrossResults,
+    );
+  });
+
+  test("the net rate reproduces the v0.1 crawl, which is where it came from", () => {
+    // 1,400 requests returned 15,246 unique businesses. A rate that cannot
+    // rebuild its own source measurement is not a measurement.
+    const plan = buildCrawlPlan(tiles, categories);
+    const perRequest =
+      plan.estimate.estimatedUniqueBusinesses / plan.jobs.length;
+    expect(Math.round(1400 * perRequest)).toBeGreaterThan(15000);
+    expect(Math.round(1400 * perRequest)).toBeLessThan(15500);
   });
 
   test("is deterministic, so a published crawl can be reproduced exactly", () => {

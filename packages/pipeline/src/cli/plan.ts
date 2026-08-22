@@ -148,7 +148,12 @@ Credits
   worst case                 ${(plan.estimate.maxRequests * CREDIT_PER_REQUEST).toLocaleString()}
 
 Yield estimate
-  at 17.5 unique/request     ~${plan.estimate.estimatedUniqueBusinesses.toLocaleString()} before cross-category dedup
+  gross, in-query            ~${plan.estimate.estimatedGrossResults.toLocaleString()}  at 17.5/req before cross-category dedup
+  net, measured              ~${plan.estimate.estimatedUniqueBusinesses.toLocaleString()}  at 10.9/req  (v0.1 actual: 15,246 from 1,400)
+
+Cross-category overlap removes ~38%: a business tagged with several categories
+is returned by each one's query and is still one business. Plan against the net
+line — the gross one is shown only to say where the difference goes.
 
 Note: worst case assumes every pair paginates to its cap. Adaptive pagination
 stops early on thin or duplicate-heavy pages, so the real figure lands between

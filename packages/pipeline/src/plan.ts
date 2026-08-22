@@ -28,13 +28,37 @@ export interface CrawlPlan {
     initialRequests: number;
     /** If every job paginated all the way to its cap. Adaptive stopping means the real number lands well below this. */
     maxRequests: number;
-    /** At the measured ~17.5 unique results per request, before cross-category dedup. */
+    /**
+     * Results the engine hands back, at the in-query rate, before anything is
+     * deduplicated across categories. Deliberately not called "unique": a
+     * listing tagged with several categories is counted once per category
+     * whose query returned it.
+     */
+    estimatedGrossResults: number;
+    /** Distinct businesses expected to survive dedup, at the rate a full crawl measured. */
     estimatedUniqueBusinesses: number;
   };
 }
 
-/** Measured: 20 results per page, ~12% duplicated within a query stream. */
-const UNIQUE_PER_REQUEST = 17.5;
+/**
+ * In-query yield: 20 results per page, ~12% of them repeated within a single
+ * query stream. This is a real measurement and it is the wrong one to quote as
+ * a corpus size, because it counts across categories rather than across
+ * businesses. It survives only to show where the loss below comes from.
+ */
+const GROSS_RESULTS_PER_REQUEST = 17.5;
+
+/**
+ * End-to-end yield, measured over the whole v0.1 crawl: 1,400 requests produced
+ * 15,246 unique businesses, so 10.9 each.
+ *
+ * The gap between this and the 17.5 above is not noise, it is the ~45%
+ * cross-category duplicate rate — a business tagged "restaurant", "cafe" and
+ * "bakery" is returned by all three queries and is one business. Planning
+ * against the in-query figure overstated the result by 38%, which this file
+ * printed as the only yield number until it was corrected.
+ */
+const NET_UNIQUE_PER_REQUEST = 10.9;
 
 /**
  * How deep to paginate a (tile, category) pair.
@@ -126,7 +150,12 @@ export function buildCrawlPlan(
     estimate: {
       initialRequests: jobs.length,
       maxRequests,
-      estimatedUniqueBusinesses: Math.round(jobs.length * UNIQUE_PER_REQUEST),
+      estimatedGrossResults: Math.round(
+        jobs.length * GROSS_RESULTS_PER_REQUEST,
+      ),
+      estimatedUniqueBusinesses: Math.round(
+        jobs.length * NET_UNIQUE_PER_REQUEST,
+      ),
     },
   };
 }

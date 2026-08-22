@@ -64,7 +64,7 @@ Tiles              ${tiles.length}${only ? ` (--only ${only})` : ""}
 Jobs (page 1)      ${plan.estimate.initialRequests.toLocaleString()}
 Worst case         ${plan.estimate.maxRequests.toLocaleString()} requests
 Budget cap         ${budget.toLocaleString()} requests
-Estimated yield    ~${plan.estimate.estimatedUniqueBusinesses.toLocaleString()} raw results
+Estimated yield    ~${plan.estimate.estimatedGrossResults.toLocaleString()} raw results, ~${plan.estimate.estimatedUniqueBusinesses.toLocaleString()} unique after dedup
 `);
 
 if (dryRun) {
@@ -127,7 +127,7 @@ Done
 Requests issued    ${outcome.requestsIssued.toLocaleString()}  (= credits spent)
 Unique businesses  ${outcome.records.length.toLocaleString()}
 Duplicates skipped ${outcome.duplicatesSkipped.toLocaleString()}
-Unique per request ${uniqueYield}   (probe predicted ~17.5)
+Unique per request ${uniqueYield}   (planned for 10.9; 17.5 is the in-query rate, before cross-category dedup)
 Errors             ${outcome.errors.length}
 Stopped on budget  ${outcome.stoppedOnBudget ? "YES — widen --budget for full depth" : "no"}
 

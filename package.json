@@ -32,7 +32,9 @@
     "reviews": "tsx packages/pipeline/src/cli/reviews.ts",
     "export": "tsx packages/pipeline/src/cli/export.ts",
     "leads": "tsx packages/pipeline/src/cli/leads.ts",
-    "cities": "tsx packages/pipeline/src/cli/cities.ts"
+    "cities": "tsx packages/pipeline/src/cli/cities.ts",
+    "dataset:push": "node scripts/dataset.mjs push",
+    "dataset:pull": "node scripts/dataset.mjs pull"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

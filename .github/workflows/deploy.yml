@@ -36,6 +36,33 @@ jobs:
       # matters more here than there: this job holds an OIDC token that can
       # assume a role in the AWS account, so a hijacked action tag would be
       # running with deploy credentials rather than against fixtures.
+      # Fail before anything billable happens, and say exactly what is missing.
+      # An unset variable expands to an empty string, so without this the OIDC
+      # step fails with "Could not assume role" and the dataset step fails with
+      # a bare aws-cli error — neither of which names the actual cause.
+      - name: Check deploy configuration
+        env:
+          ROLE: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          DATASET: ${{ vars.DATASET_S3_URI }}
+        run: |
+          missing=0
+          if [ -z "$ROLE" ]; then
+            echo "::error::Repository variable AWS_DEPLOY_ROLE_ARN is not set."
+            echo "  Create an IAM role whose trust policy allows ONLY this repo:"
+            echo "    token.actions.githubusercontent.com:sub ="
+            echo "      repo:${{ github.repository }}:ref:refs/heads/main"
+            echo "  then: gh variable set AWS_DEPLOY_ROLE_ARN --body <role-arn>"
+            missing=1
+          fi
+          if [ -z "$DATASET" ]; then
+            echo "::error::Repository variable DATASET_S3_URI is not set."
+            echo "  data/out/ is git-ignored (ADR 0002) but required at build"
+            echo "  time (ADR 0009), so the dataset travels through private S3."
+            echo "  See docs/adr/0015-ship-the-dataset-to-ci-through-private-s3.md"
+            missing=1
+          fi
+          exit $missing
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
@@ -72,6 +99,16 @@ jobs:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-1
           role-session-name: deploy-${{ inputs.stage }}-${{ github.run_id }}
+
+      # The crawl output is never committed (ADR 0002) but is bundled into the
+      # server function at build time (ADR 0009), so a fresh checkout has the
+      # requirement and not the file. Fetched here, with the same short-lived
+      # credentials the deploy uses, and verified before the build can consume
+      # it — `pnpm build` would otherwise exit 1 deep inside `sst deploy`.
+      - name: Fetch the dataset
+        env:
+          DATASET_S3_URI: ${{ vars.DATASET_S3_URI }}
+        run: pnpm dataset:pull
 
       - name: Deploy
         run: npx sst deploy --stage ${{ inputs.stage }}

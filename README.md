@@ -828,6 +828,49 @@ the workflow**: the trust policy scopes `sub` to `refs/heads/main`, and
 `workflow_dispatch` from another branch fails at role assumption rather than at
 the job.
 
+#### Getting the dataset to CI
+
+`data/out/` is git-ignored ([ADR 0002](./docs/adr/0002-do-not-redistribute-the-dataset.md))
+and required at build time ([ADR 0009](./docs/adr/0009-bundle-the-dataset-into-the-lambda.md)),
+so a fresh checkout has the requirement and not the file. It travels through a
+private, versioned S3 bucket instead —
+[ADR 0015](./docs/adr/0015-ship-the-dataset-to-ci-through-private-s3.md):
+
+```bash
+pnpm dataset:push   # after pnpm load, from a machine that has the data
+pnpm dataset:pull   # what deploy.yml runs, with its OIDC session
+```
+
+Both read `DATASET_S3_URI`. Nothing links `pnpm load` to `pnpm dataset:push`, so
+**CI will happily deploy a stale dataset forever and every run will look green**
+— that cost is in ADR 0015's Bad list rather than hidden here.
+
+#### One-time setup per AWS account
+
+Deploying through the workflow needs two repository variables. The
+configuration check at the top of the job fails naming whichever is missing,
+before anything billable runs.
+
+```bash
+gh variable set DATASET_S3_URI      --body "s3://<bucket>/<city>"
+gh variable set AWS_DEPLOY_ROLE_ARN --body "arn:aws:iam::<account>:role/<role>"
+```
+
+The role must trust **only this repository**, or any repository on GitHub can
+assume it:
+
+```jsonc
+"StringLike": {
+  "token.actions.githubusercontent.com:sub":
+    "repo:pooyagolchian/directory-from-scratch:ref:refs/heads/main"
+}
+```
+
+Until that role exists, the "main-only is enforced by IAM" sentence above
+describes an intent rather than a control — the same shape of aspirational claim
+ADR 0009 was written about. Deploys fall back to a shell, which is exactly what
+the workflow exists to avoid.
+
 ### SEO surface
 
 | Route                                   | What it is                                                                                                                                                      |

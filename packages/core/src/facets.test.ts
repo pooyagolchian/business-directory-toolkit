@@ -476,6 +476,42 @@ describe("paginate", () => {
     expect(paginate(items, -4, 50).page).toBe(1);
   });
 
+  test("cumulative mode returns everything up to the requested page", () => {
+    // What infinite scroll needs on a reload: ?page=3 means "the 150 rows the
+    // reader had already scrolled past", not "rows 101-150". Rendering only the
+    // last batch would drop everything above the restored scroll position.
+    const slice = paginate(items, 3, 50, { cumulative: true });
+    expect(slice.items).toHaveLength(125);
+    expect(slice.items[0]).toBe(0);
+    expect(slice).toMatchObject({ page: 3, pages: 3, from: 1, to: 125 });
+  });
+
+  test("cumulative mode still reports the batch it stopped at", () => {
+    // `page` has to keep meaning the batch, because the client resumes counting
+    // from it — reporting 1 here would re-request pages already on screen.
+    const slice = paginate(items, 2, 50, { cumulative: true });
+    expect(slice.items).toHaveLength(100);
+    expect(slice).toMatchObject({ page: 2, pages: 3, from: 1, to: 100 });
+  });
+
+  test("cumulative mode clamps like the paged mode", () => {
+    expect(paginate(items, 999, 50, { cumulative: true })).toMatchObject({
+      page: 3,
+      to: 125,
+    });
+    expect(paginate(items, 0, 50, { cumulative: true })).toMatchObject({
+      page: 1,
+      to: 50,
+    });
+    expect(paginate([], 4, 50, { cumulative: true })).toMatchObject({
+      page: 1,
+      pages: 1,
+      from: 0,
+      to: 0,
+      total: 0,
+    });
+  });
+
   test("describes an empty result set without inventing a row", () => {
     expect(paginate([], 1, 50)).toMatchObject({
       page: 1,

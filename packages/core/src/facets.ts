@@ -541,6 +541,18 @@ export function paginate<T>(
   items: readonly T[],
   page: number,
   perPage: number,
+  options?: {
+    /**
+     * Return every row up to the requested page rather than just that page.
+     *
+     * This is what a reload of an infinitely-scrolled list needs: ?page=3 means
+     * "the 150 rows the reader had already scrolled past", so restoring their
+     * position has something to restore it into. Rendering only the last batch
+     * would drop everything above the scroll offset the browser is about to
+     * jump to.
+     */
+    cumulative?: boolean;
+  },
 ): PageSlice<T> {
   const total = items.length;
   const size = Math.max(1, Math.floor(perPage));
@@ -551,8 +563,11 @@ export function paginate<T>(
   const requested = Number.isFinite(page) ? Math.floor(page) : 1;
   const current = Math.min(Math.max(requested, 1), pages);
 
-  const start = (current - 1) * size;
-  const slice = items.slice(start, start + size);
+  // `page` keeps meaning the batch in both modes, because the client resumes
+  // counting from it — reporting 1 here would re-request rows already on screen.
+  const start = options?.cumulative ? 0 : (current - 1) * size;
+  const end = current * size;
+  const slice = items.slice(start, end);
 
   return {
     items: slice,

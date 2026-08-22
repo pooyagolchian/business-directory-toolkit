@@ -51,7 +51,20 @@ export interface SearchView {
  * page out of it. Truncating any earlier would make the counts describe a set
  * the reader cannot see.
  */
-export function searchView(params: SearchQuery): SearchView {
+export function searchView(
+  params: SearchQuery,
+  options?: {
+    /**
+     * Return every row up to `page` rather than just that page's batch.
+     *
+     * The page renders cumulatively, because ?page=3 now means "the 150 rows
+     * the reader had scrolled past" — reloading a shared link has to restore
+     * all of them. The append endpoint renders a single batch, because that is
+     * exactly what it is adding to the bottom of a list already on screen.
+     */
+    cumulative?: boolean;
+  },
+): SearchView {
   const raw = params[SEARCH_PARAMS.query];
   const query = (Array.isArray(raw) ? raw[0] : raw) ?? "";
 
@@ -70,6 +83,9 @@ export function searchView(params: SearchQuery): SearchView {
     sorted,
     parsePage(params[SEARCH_PARAMS.page]),
     PAGE_SIZE,
+    {
+      cumulative: options?.cumulative ?? false,
+    },
   );
 
   return {

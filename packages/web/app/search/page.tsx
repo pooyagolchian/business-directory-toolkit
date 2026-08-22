@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BusinessList } from "@/components/business-card";
+import { toCardRow } from "@/components/business-card";
 import { Page } from "@/components/chrome";
-import { Pagination } from "@/components/pagination";
 import { SearchBox } from "@/components/search-box";
 import { SearchFilters } from "@/components/search-filters";
+import { SearchResults } from "@/components/search-results";
 import { searchHref } from "@/lib/search-url";
-import { searchView } from "@/lib/search-view";
+import { PAGE_SIZE, searchView } from "@/lib/search-view";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -21,8 +21,15 @@ export const metadata: Metadata = {
 };
 
 export default async function SearchPage(props: PageProps<"/search">) {
-  const view = searchView(await props.searchParams);
+  // Cumulative: ?page=3 means "the 150 rows the reader had scrolled past", so a
+  // reload or a shared link restores all of them rather than dropping the
+  // reader into a disconnected batch. See paginate() in packages/core.
+  const view = searchView(await props.searchParams, { cumulative: true });
   const { query, filter, sort, slice } = view;
+
+  const hrefForPage = Array.from({ length: slice.pages }, (_, i) =>
+    searchHref({ query, filter, sort, page: i + 1 }),
+  );
 
   return (
     <Page>
@@ -52,17 +59,6 @@ export default async function SearchPage(props: PageProps<"/search">) {
 
       {query.trim() && (
         <>
-          <p className="mt-6 label text-[var(--muted)]">
-            <ResultCount view={view} />
-          </p>
-
-          {view.matchedByPhone && (
-            <p className="mt-5 max-w-xl text-[var(--muted)]">
-              That number belongs to a business listing. Phone numbers are
-              stored in E.164 so a search matches however you type it.
-            </p>
-          )}
-
           {/* Filters are dropped for a phone lookup — see searchView() for why
               an exact-match answer is not something to offer facets on. */}
           {!view.matchedByPhone && view.matches > 0 && (
@@ -76,50 +72,47 @@ export default async function SearchPage(props: PageProps<"/search">) {
           )}
 
           {slice.items.length > 0 ? (
-            <>
-              {/* Sibling of the filter panel's heading, so the business titles
-                  below nest under "Results" rather than under "Access". */}
-              <h2 className="sr-only">Results</h2>
-              <BusinessList businesses={slice.items} />
-              <Pagination
-                page={slice.page}
-                pages={slice.pages}
-                hrefFor={(page) => searchHref({ query, filter, sort, page })}
-              />
-            </>
+            <SearchResults
+              /*
+                Remount whenever the query, filters or sort change. The appended
+                rows are client state, and without a key React would keep them
+                across a navigation — leaving the previous filter's results
+                stacked under the new one's.
+
+                Page 1's href is the natural identity: it is exactly the search
+                minus which batch you are on.
+              */
+              key={hrefForPage[0]}
+              initialRows={slice.items.map(toCardRow)}
+              initialPage={slice.page}
+              pages={slice.pages}
+              total={view.filtered}
+              matches={view.matches}
+              hasFilters={view.hasFilters}
+              matchedByPhone={view.matchedByPhone}
+              perPage={PAGE_SIZE}
+              hrefForPage={hrefForPage}
+            />
           ) : (
-            <EmptyState view={view} />
+            <>
+              <p className="mt-6 label text-[var(--muted)]">
+                {view.matches === 0
+                  ? "No matches"
+                  : `0 of ${view.matches.toLocaleString()} matches`}
+              </p>
+              <EmptyState view={view} />
+            </>
+          )}
+
+          {view.matchedByPhone && (
+            <p className="mt-8 max-w-xl text-[var(--muted)]">
+              That number belongs to a business listing. Phone numbers are
+              stored in E.164 so a search matches however you type it.
+            </p>
           )}
         </>
       )}
     </Page>
-  );
-}
-
-/**
- * The count line.
- *
- * It states the filtered total against the unfiltered one whenever they differ,
- * because "312 matches" alone reads as the whole answer when it is a tenth of
- * it. The page range is spelled out for the same reason: the previous version
- * said "showing first 50" and there was no way to reach the other 1,446.
- */
-function ResultCount({ view }: { view: ReturnType<typeof searchView> }) {
-  const { matches, filtered, slice, matchedByPhone, hasFilters } = view;
-
-  if (matches === 0) return <>No matches</>;
-
-  const total = hasFilters
-    ? `${filtered.toLocaleString()} of ${matches.toLocaleString()} ${matches === 1 ? "match" : "matches"}`
-    : `${matches.toLocaleString()} ${matches === 1 ? "match" : "matches"}`;
-
-  return (
-    <>
-      {total}
-      {matchedByPhone && " · matched by phone number"}
-      {slice.pages > 1 &&
-        ` · showing ${slice.from.toLocaleString()}–${slice.to.toLocaleString()}`}
-    </>
   );
 }
 

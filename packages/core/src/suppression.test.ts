@@ -71,3 +71,35 @@ describe("parseSuppressionList", () => {
     expect(() => parseSuppressionList("not json")).toThrow();
   });
 });
+
+test("accepts the normalised camelCase shape as well as the raw one", () => {
+  // Raw engine records carry place_id; normalised Business records carry
+  // placeId. Suppression has to work on both, or it silently protects only
+  // half the pipeline.
+  const ids = new Set(["SUPPRESSED"]);
+  const result = dropSuppressed(
+    [{ placeId: "SUPPRESSED" }, { placeId: "KEPT" }],
+    ids,
+  );
+  expect(result.removed).toBe(1);
+  expect(result.kept).toEqual([{ placeId: "KEPT" }]);
+});
+
+test("prefers place_id over placeId when both are present", () => {
+  // A record carrying both keys with different values is matched on place_id,
+  // not placeId. place_id is the raw engine key, closest to source of truth,
+  // so it takes precedence — ensuring suppression works even in pathological
+  // cases where a future change spreads raw data onto normalised records.
+  const ids = new Set(["SUPPRESSED_RAW"]);
+  const result = dropSuppressed(
+    [
+      { place_id: "SUPPRESSED_RAW", placeId: "NOT_SUPPRESSED_NORMALISED" },
+      { place_id: "KEPT_RAW", placeId: "ALSO_KEPT_NORMALISED" },
+    ],
+    ids,
+  );
+  expect(result.removed).toBe(1);
+  expect(result.kept).toEqual([
+    { place_id: "KEPT_RAW", placeId: "ALSO_KEPT_NORMALISED" },
+  ]);
+});

@@ -4,9 +4,13 @@
  *   pnpm plan                    plan the default city
  *   pnpm plan --city dubai       plan a specific city
  *   pnpm plan --list             show every city config in the repo
+ *   pnpm plan --list --all       list generated configs individually too
+ *   pnpm plan --list --verified  only cities someone has actually crawled
  *   pnpm plan --json             write the plan to data/out/crawl-plan.json
  */
 import { mkdirSync, writeFileSync } from "node:fs";
+import { verificationState } from "@directory/core";
+import type { CityConfig } from "@directory/core";
 import { availableCities, buildCrawlPlan, loadCity } from "../plan";
 
 const argv = process.argv.slice(2);
@@ -30,15 +34,89 @@ function loadCityOrExit(id: string) {
   }
 }
 
-if (argv.includes("--list")) {
-  console.log(`\nCity configs in this repo:\n`);
-  for (const id of availableCities()) {
-    const entry = loadCity(id);
-    console.log(
-      `  ${id.padEnd(14)} ${entry.name} — ${entry.tiles.length} tiles, ${entry.categories.length} categories`,
-    );
+/**
+ * How a config is described in --list.
+ *
+ * A verified city shows what the crawl actually cost and found, because those
+ * numbers are the reason to trust its tiles. A generated one shows where it
+ * came from and when, because that is all anyone can honestly say about it.
+ */
+function count(n: number, one: string, many: string): string {
+  return `${n} ${n === 1 ? one : many}`;
+}
+
+function describe(id: string, city: CityConfig): string {
+  const base = `  ${id.padEnd(14)} ${city.name} — ${count(city.tiles.length, "tile", "tiles")}, ${count(city.categories.length, "category", "categories")}`;
+  const v = city.verification;
+  if (v?.status === "verified") {
+    return `${base}\n${" ".repeat(17)}${v.requests.toLocaleString()} requests → ${v.uniqueBusinesses.toLocaleString()} found, ${v.inCity.toLocaleString()} in city (${v.crawledAt})`;
   }
-  console.log(`\nAdd data/cities/<id>.json to crawl somewhere new.\n`);
+  if (v?.status === "generated") {
+    return `${base}\n${" ".repeat(17)}${v.source}, generated ${v.generatedAt}`;
+  }
+  return base;
+}
+
+/** Above this, a group collapses to a count unless --all is passed. */
+const COLLAPSE_ABOVE = 10;
+
+if (argv.includes("--list")) {
+  const verifiedOnly = argv.includes("--verified");
+  const listAll = argv.includes("--all");
+
+  const entries = availableCities().map((id) => ({ id, city: loadCity(id) }));
+  const groups = [
+    {
+      state: "verified" as const,
+      head: "verified — crawled, with measured numbers",
+    },
+    {
+      state: "generated" as const,
+      head: "generated — from open data, never crawled",
+    },
+    {
+      state: "unknown" as const,
+      head: "unverified — no provenance recorded",
+    },
+  ]
+    .map((g) => ({
+      ...g,
+      cities: entries.filter((e) => verificationState(e.city) === g.state),
+    }))
+    .filter((g) => g.cities.length > 0)
+    .filter((g) => !verifiedOnly || g.state === "verified");
+
+  console.log(`\nCity configs in this repo:\n`);
+
+  // Headings only earn their space once there is more than one kind of config.
+  // A repository with a single hand-tuned city should read exactly as it did
+  // before provenance existed.
+  const showHeadings = groups.length > 1;
+
+  for (const group of groups) {
+    if (showHeadings) console.log(`  ${group.head}`);
+    // Verified configs always list in full: they are the ones carrying
+    // evidence, and there will never be many. Generated ones collapse, because
+    // a registry of a thousand would otherwise bury them.
+    const expand =
+      group.state === "verified" ||
+      listAll ||
+      group.cities.length <= COLLAPSE_ABOVE;
+    if (expand) {
+      for (const { id, city } of group.cities) console.log(describe(id, city));
+    } else {
+      console.log(
+        `  ${count(group.cities.length, "config", "configs")} — pass --all to list them.`,
+      );
+    }
+    console.log("");
+  }
+
+  if (groups.length === 0) {
+    console.log(`  none\n`);
+  }
+
+  console.log(`Add data/cities/<id>.json to crawl somewhere new.\n`);
   process.exit(0);
 }
 

@@ -30,7 +30,8 @@
     "seed-taxonomy": "tsx packages/pipeline/src/cli/seed-taxonomy.ts",
     "demand": "tsx packages/pipeline/src/cli/demand.ts",
     "reviews": "tsx packages/pipeline/src/cli/reviews.ts",
-    "export": "tsx packages/pipeline/src/cli/export.ts"
+    "export": "tsx packages/pipeline/src/cli/export.ts",
+    "leads": "tsx packages/pipeline/src/cli/leads.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

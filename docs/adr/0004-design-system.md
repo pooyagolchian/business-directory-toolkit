@@ -1,6 +1,6 @@
 # ADR 0004 — Monochrome design system on Tailwind v4 + shadcn/ui
 
-- **Status:** Accepted · revised 2026-08-21
+- **Status:** Accepted · revised 2026-08-21 · amended 2026-08-22
 - **Date:** 2026-08-20
 
 ## Context
@@ -191,3 +191,55 @@ Two consequences accepted knowingly:
   dark counterpart (`#161b22`, `#0e4429`, `#006d32`, `#26a641`, `#39d353`) is
   the intended set when dark mode lands, and the tokens are already layered so
   that it is a swap rather than a rewrite.
+
+## Amendment, 2026-08-22 — one borrowed mark
+
+The site header and the README now carry SearchApi's wordmark, and
+`chrome.tsx` said in as many words that there is no mark. Both are true,
+because they are about different things.
+
+What this ADR rejected is a mark as **identity** — a logo standing in for the
+project, competing with a masthead that was given a full type step precisely so
+it could be the one fixed thing on every page. That reasoning is unchanged and
+still binding: this project's own mark is still the word "Directory" in
+Instrument Serif, and the favicon is still the typographic "D". What the header
+now carries is a mark as **attribution**: a statement about which engine the
+data came from, which is a claim only SearchApi's own mark can make, and which
+the design has no typographic way to say. The argument that killed a logo for
+this project does not reach a credit to someone else's.
+
+The scope is narrow and worth writing down, because "we added a logo" is
+exactly the kind of decision that spreads:
+
+- **Attribution only.** Beside the masthead behind a rule, and in the footer
+  where the word "SearchApi" already was. Not a favicon, not an OG image, not
+  an app icon, not a hero. `packages/web/app/icon.svg` stays the "D".
+- It always links to `https://www.searchapi.io/` and always sits next to the
+  words that name the relationship — "Built on", "Data via" — so it reads as a
+  credit rather than as ownership.
+- Inlined as `fill="currentColor"` in one component, so it takes its ink from
+  whichever chrome it sits in rather than carrying a colour prop or a second
+  asset. Both sites are `--muted` today — that is what keeps the credit
+  subordinate to a masthead set in full ink — and the mark follows the token
+  swap when dark mode lands.
+- The mark is a trademark and the MIT grant does not cover it. `logo/README.md`
+  says so, the Licence section of `README.md` says so, and a fork pointed at
+  another provider is expected to delete `logo/`.
+
+Three consequences accepted knowingly:
+
+- The design is no longer purely typographic. That was a real property and it
+  is now qualified rather than true, which is why this is an amendment and not
+  a footnote.
+- The credit is hidden below the `sm` breakpoint. At 375px the masthead and nav
+  already use the full column, and the footer credit — which wraps — is what
+  carries the attribution on a phone. A credit nobody can read is worse than
+  one that appears at a width that fits it.
+- The geometry ships inline in the HTML of every page, twice, rather than as
+  one cached request. That is deliberate — `next.config.ts` treats an extra
+  origin hit on a normal pageview as a bug when the origin is ~250ms away — and
+  it turned out to be cheaper than the argument for it needed: measured on
+  `/areas`, the two copies are 11,036 bytes of markup raw (2 × 5,518), but they
+  add **417 bytes** to the gzipped response, because the second copy is a
+  byte-identical duplicate and path data compresses well. Rounding coordinates
+  to two decimals in `derive.mjs` is what keeps the raw figure that low.

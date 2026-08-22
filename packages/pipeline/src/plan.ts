@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync } from "node:fs";
+import { parseCityConfig } from "@directory/core";
 import type {
   CityCategory,
   CityConfig,
@@ -77,7 +78,10 @@ export function loadCity(id: string): CityConfig {
         `Add data/cities/${id}.json to crawl somewhere new.`,
     );
   }
-  return JSON.parse(raw) as CityConfig;
+  // Validated rather than cast: a density typo would otherwise drop a tile in
+  // silence, and a wrong countryCode would yield an empty directory that looks
+  // like an honest empty result. See parseCityConfig.
+  return parseCityConfig(raw, id);
 }
 
 /**
@@ -125,6 +129,94 @@ export function buildCrawlPlan(
       estimatedUniqueBusinesses: Math.round(jobs.length * UNIQUE_PER_REQUEST),
     },
   };
+}
+
+/** Dense first: when a budget cannot hold the whole city, keep the tiles with the businesses in them. */
+const DENSITY_RANK: Record<Density, number> = {
+  dense: 0,
+  medium: 1,
+  sparse: 2,
+};
+
+export interface BudgetFit {
+  /** The tiles that fit, in the order they were given. */
+  tiles: CityTile[];
+  /** The tiles the budget could not afford, so the choice stays visible. */
+  dropped: CityTile[];
+  /** Worst-case requests for the kept tiles. Agrees with `buildCrawlPlan`. */
+  maxRequests: number;
+}
+
+/**
+ * Choose which tiles fit a credit budget, instead of letting the fetcher
+ * truncate an oversized plan at run time.
+ *
+ * Dubai's own hand-tuned config plans 3,170 worst-case requests against a 2,000
+ * budget. Today the fetcher absorbs that with a hard cap, which means *which*
+ * tiles lose their coverage is decided by iteration order while the crawl is
+ * running — nobody chose it, and nothing reports it. Deciding here instead
+ * makes it a choice with a record, and turns the fourth hard rule (never widen
+ * a crawl without saying what it costs) into a property of the code rather than
+ * a discipline someone has to remember.
+ *
+ * Tiles are admitted in the order given, because that order is the caller's
+ * priority: `spaceOut` already returns candidates busiest-first, and density —
+ * the thing that drives cost through `PAGE_CAP` — is derived from the same
+ * count. Re-sorting here would quietly overrule a caller who knew better.
+ *
+ * A tile whose categories all resolve to zero pages costs nothing and is
+ * therefore always kept. Dropping it would make the budget a second, silent
+ * reason for a tile to vanish, which is the failure mode ADR 0007 exists to
+ * argue against.
+ */
+export function fitToBudget(
+  tiles: CityTile[],
+  categories: CityCategory[],
+  budget: number,
+): BudgetFit {
+  const costOf = (tile: CityTile): number => {
+    let cost = 0;
+    for (const category of categories) {
+      cost += PAGE_CAP[tile.density]?.[category.tier] ?? 0;
+    }
+    return cost;
+  };
+
+  // Selection runs density-descending, not in file order. Measured against
+  // Dubai, admitting in file order at a 1,250 budget dropped five DENSE tiles
+  // while keeping medium ones that happened to be listed earlier — which is
+  // the opposite of what a budget should buy. Ties keep the caller's order,
+  // which for a generated config is already busiest-first from `spaceOut`.
+  const byDensity = tiles
+    .map((tile, index) => ({ tile, index }))
+    .sort(
+      (a, b) =>
+        DENSITY_RANK[a.tile.density] - DENSITY_RANK[b.tile.density] ||
+        a.index - b.index,
+    );
+
+  const keptIndices = new Set<number>();
+  let maxRequests = 0;
+  for (const { tile, index } of byDensity) {
+    const cost = costOf(tile);
+    // No early exit: a cheap sparse tile can still fit in the remainder after
+    // an expensive dense one has been turned away.
+    if (maxRequests + cost <= budget) {
+      keptIndices.add(index);
+      maxRequests += cost;
+    }
+  }
+
+  // Output returns to the caller's original order. Selection is a cost
+  // decision; the result is a config file a human has to read.
+  const kept: CityTile[] = [];
+  const dropped: CityTile[] = [];
+  tiles.forEach((tile, index) => {
+    if (keptIndices.has(index)) kept.push(tile);
+    else dropped.push(tile);
+  });
+
+  return { tiles: kept, dropped, maxRequests };
 }
 
 /** Convenience: plan a whole city in one call. */

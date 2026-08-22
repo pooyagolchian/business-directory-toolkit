@@ -20,7 +20,12 @@
  */
 import { createWriteStream, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import type { Business } from "@directory/core";
+import {
+  dropSuppressed,
+  parseSuppressionList,
+  type Business,
+} from "@directory/core";
+import { BUSINESS_COLUMNS, CSV_BOM, csvRow } from "../csv";
 
 const argv = process.argv.slice(2);
 const flag = (name: string) => {
@@ -48,6 +53,48 @@ try {
   process.exit(1);
 }
 
+/**
+ * Re-filter suppressed businesses at read time, the same way leads.ts does.
+ *
+ * TAKEDOWN.md promises a place_id is removed the same day as a takedown
+ * request, but `data/out/businesses.json` is only re-filtered the next time
+ * `pnpm load` runs — so between a takedown and the next load, that business
+ * is still sitting in the file on disk. `pnpm leads` already re-filters at
+ * read time to close exactly this window; `pnpm export` did not, so it could
+ * write a removed business's name, phone, and address into a CSV an operator
+ * shares, even though the load step had already dropped it from every other
+ * output. A missing or malformed list fails the run rather than silently
+ * exporting unfiltered — the same reasoning as leads.ts: continuing without
+ * suppression is exactly the moment it would go unnoticed.
+ */
+const suppressionPath = fileURLToPath(
+  new URL("data/suppression-list.json", root),
+);
+let suppressed: Set<string>;
+try {
+  suppressed = parseSuppressionList(readFileSync(suppressionPath, "utf8"));
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+    console.error(
+      "\ndata/suppression-list.json is missing. This file IS tracked in git\n" +
+        "(`git ls-files data/` confirms every clone and fork has it), so its\n" +
+        "absence means something is wrong with this checkout — not that no\n" +
+        "takedowns exist yet. Exporting without it risks writing a removed\n" +
+        "business into a CSV an operator shares. Restore the file — an empty\n" +
+        "`[]` is the correct state when there are no takedowns — before running\n" +
+        "this again.\n",
+    );
+  } else {
+    console.error(
+      `\ndata/suppression-list.json could not be loaded: ${(error as Error).message}\n` +
+        "A malformed takedown list is a hard stop rather than an empty one.\n",
+    );
+  }
+  process.exit(1);
+}
+const withheld = dropSuppressed(businesses, suppressed);
+businesses = withheld.kept;
+
 if (category) {
   const needle = category.toLowerCase();
   businesses = businesses.filter(
@@ -59,42 +106,6 @@ if (area) {
   businesses = businesses.filter((b) => b.area.toLowerCase() === needle);
 }
 
-const COLUMNS = [
-  "placeId",
-  "title",
-  "l1",
-  "l2",
-  "l3",
-  "area",
-  "address",
-  "phoneE164",
-  "phoneRaw",
-  "phoneType",
-  "website",
-  "domain",
-  "rating",
-  "reviews",
-  "lat",
-  "lng",
-  "accessibility",
-  "payments",
-  "services",
-] as const;
-
-/**
- * RFC 4180 quoting.
- *
- * Not optional here: Dubai addresses are full of commas, business names contain
- * quotes, and a title can hold a newline. Anything less and the file opens
- * misaligned in Excel — which is the one place most people will open it.
- */
-function csvCell(value: unknown): string {
-  if (value === undefined || value === null) return "";
-  const text = Array.isArray(value) ? value.join("; ") : String(value);
-  if (/[",\r\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
-  return text;
-}
-
 const stream = out ? createWriteStream(out) : process.stdout;
 
 function write(line: string) {
@@ -102,12 +113,10 @@ function write(line: string) {
 }
 
 if (format === "csv") {
-  // BOM so Excel reads it as UTF-8. Without it, every Arabic business name in
-  // the file renders as mojibake on a default Windows install.
-  write("﻿");
-  write(COLUMNS.join(",") + "\n");
+  write(CSV_BOM);
+  write(csvRow(BUSINESS_COLUMNS));
   for (const b of businesses) {
-    write(COLUMNS.map((c) => csvCell(b[c as keyof Business])).join(",") + "\n");
+    write(csvRow(BUSINESS_COLUMNS.map((c) => b[c as keyof Business])));
   }
 } else if (format === "ndjson") {
   for (const b of businesses) write(JSON.stringify(b) + "\n");
@@ -118,14 +127,19 @@ if (format === "csv") {
   process.exit(1);
 }
 
+// The withheld count prints unconditionally, including "0 withheld" — same
+// reasoning as leads.ts: a line that only appears when there is something to
+// hide would read as the filter mattering only when it bites.
+const withheldLine = `${withheld.removed.toLocaleString()} withheld by the suppression list (takedown requests).`;
+
 if (out) {
   stream.end();
   console.error(
-    `Exported ${businesses.length.toLocaleString()} businesses as ${format} to ${out}\n`,
+    `Exported ${businesses.length.toLocaleString()} businesses as ${format} to ${out}\n${withheldLine}\n`,
   );
 } else {
   // Progress goes to stderr so `pnpm export > file.csv` stays clean.
   console.error(
-    `\nExported ${businesses.length.toLocaleString()} businesses as ${format}.\n`,
+    `\nExported ${businesses.length.toLocaleString()} businesses as ${format}.\n${withheldLine}\n`,
   );
 }

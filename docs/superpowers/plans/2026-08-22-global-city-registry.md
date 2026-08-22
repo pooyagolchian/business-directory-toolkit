@@ -8,6 +8,8 @@
 
 **Tech Stack:** TypeScript strict + ESM, Node 24 global `fetch`, Vitest, `libphonenumber-js/max`. **No new dependency.**
 
+**Status:** Tasks 1–9 implemented and green as of 2026-08-22 — 549 tests, typecheck, lint, prettier. Tasks were reordered and three of the plan's own designs were overturned by measurement; see **What the plan got wrong** at the end.
+
 **Spec:** [docs/superpowers/specs/2026-08-22-global-city-registry-design.md](../specs/2026-08-22-global-city-registry-design.md)
 **ADR:** [docs/adr/0014-generate-the-city-registry.md](../../adr/0014-generate-the-city-registry.md)
 
@@ -1317,3 +1319,53 @@ Deliberately out of scope, each with the reason:
 - **Additions the spec did not have.** Task 1 (`gl`) — a live defect found while planning, and a blocker for any non-UAE crawl.
 - **Type consistency.** `OsmPlaceNode` / `OsmPoi` / `ResolvedPlace` / `CategoryMap` / `OsmClient` / `Calibration` are each defined once, in the task that creates them, and referenced by those exact names afterwards. `countNearby(centre, pois, radiusKm)`, `tileIdFrom(name, taken)`, `deriveCategories(counts, map)` keep their argument order everywhere.
 - **Placeholder scan.** No TBDs. Every constant carries its value and the reason it has that value; the three that are guesses (`MAX_BOUNDING_BOXES`, `MIN_CATEGORY_COUNT`, `DENSITY_RADIUS_KM`) say so in the comment the plan specifies, so none of them can be quoted as measured.
+
+---
+
+## What the plan got wrong
+
+Written down rather than edited out, on the rule this repository already
+follows for ADRs. Everything below was decided by measurement after the plan
+was written.
+
+**Task 6 ran second, not sixth.** Recording the fixtures before writing the
+parser meant the parser was written against real responses instead of against
+assumptions about them. Three assumptions in Tasks 2 and 3 were wrong and would
+have shipped: the Nominatim field is `category`, not `class`; Dubai's OSM `name`
+is `دبي`, so `cityNames` has to come from `namedetails["name:en"]` or the config
+matches nothing the engine ever returns; and Nominatim's Lisbon district really
+is a 39-polygon MultiPolygon, 38 pieces of it four-point slivers.
+
+**Density is assigned by rank, not by threshold.** The plan's Task 9 assumed the
+sweep would produce better absolute thresholds and that this would be the
+answer. It produced them — 80% against Dubai's hand labels versus a guess's 68%
+— and they were still wrong, because applied to Lisbon they called 43 of 50
+centres `dense`. An absolute POI count measures how busy a place is compared to
+_Dubai_. `assignDensityByRank` scores one tile worse on Dubai and works
+anywhere.
+
+**The tile count comes from the budget, not from OpenStreetMap.** The plan had
+`fitToBudget` as the last stage, which is where it was. Dubai's 276 spaced
+centres then put ~94 tiles in the expensive `dense` class and 258 were
+discarded, shipping 18 tiles where a human had placed 44. `tilesAffordable`
+decides the count first.
+
+**Categories are counted over the ten busiest tiles, not the city boundary.**
+Not a refinement — 98 tags across Dubai's emirate-wide bounding box returns
+HTTP 504 from the public Overpass instance.
+
+**Overpass returns HTTP 200 with an HTML body when it is busy.** Nothing in the
+plan anticipated this. The client sniffs the body before parsing, because
+`JSON.parse` on an HTML error page throws a `SyntaxError` a long way from its
+cause.
+
+**The POI corpus is not a fixture.** At 2 MB against a 1.3 MB repository, the
+full 23,829-node sweep lives in the git-ignored `data/osm-cache/`; a verbatim
+1,140-element slice is committed for the parser tests. Commit the finding, not
+the corpus — ADR 0002's instinct, applied to open data.
+
+**One claim was nearly shipped false.** `tilesAffordable(3170)` returning
+Dubai's exact 44 tiles reads as the generator rediscovering a human's judgement.
+It is an identity: `DENSITY_SHARES` and `PAGE_CAP` both come from that config,
+so the weighted average is 3,170/44 and the division has no freedom. The comment
+and the test name now say so.

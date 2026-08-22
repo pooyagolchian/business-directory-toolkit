@@ -1,0 +1,992 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-22T10:27:20Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "2550",
+    "ways": "0",
+    "relations": "0",
+    "total": "2550"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "791",
+    "ways": "0",
+    "relations": "0",
+    "total": "791"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "589",
+    "ways": "0",
+    "relations": "0",
+    "total": "589"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "131",
+    "ways": "0",
+    "relations": "0",
+    "total": "131"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "25",
+    "ways": "0",
+    "relations": "0",
+    "total": "25"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "73",
+    "ways": "0",
+    "relations": "0",
+    "total": "73"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "161",
+    "ways": "0",
+    "relations": "0",
+    "total": "161"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "52",
+    "ways": "0",
+    "relations": "0",
+    "total": "52"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "70",
+    "ways": "0",
+    "relations": "0",
+    "total": "70"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "48",
+    "ways": "0",
+    "relations": "0",
+    "total": "48"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "12",
+    "ways": "0",
+    "relations": "0",
+    "total": "12"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "2",
+    "ways": "0",
+    "relations": "0",
+    "total": "2"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "1310",
+    "ways": "0",
+    "relations": "0",
+    "total": "1310"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "444",
+    "ways": "0",
+    "relations": "0",
+    "total": "444"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "67",
+    "ways": "0",
+    "relations": "0",
+    "total": "67"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "16",
+    "ways": "0",
+    "relations": "0",
+    "total": "16"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "571",
+    "ways": "0",
+    "relations": "0",
+    "total": "571"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "106",
+    "ways": "0",
+    "relations": "0",
+    "total": "106"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "187",
+    "ways": "0",
+    "relations": "0",
+    "total": "187"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "9",
+    "ways": "0",
+    "relations": "0",
+    "total": "9"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "3",
+    "ways": "0",
+    "relations": "0",
+    "total": "3"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "128",
+    "ways": "0",
+    "relations": "0",
+    "total": "128"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "222",
+    "ways": "0",
+    "relations": "0",
+    "total": "222"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "291",
+    "ways": "0",
+    "relations": "0",
+    "total": "291"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "119",
+    "ways": "0",
+    "relations": "0",
+    "total": "119"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "305",
+    "ways": "0",
+    "relations": "0",
+    "total": "305"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "105",
+    "ways": "0",
+    "relations": "0",
+    "total": "105"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "10",
+    "ways": "0",
+    "relations": "0",
+    "total": "10"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "69",
+    "ways": "0",
+    "relations": "0",
+    "total": "69"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "13",
+    "ways": "0",
+    "relations": "0",
+    "total": "13"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "13",
+    "ways": "0",
+    "relations": "0",
+    "total": "13"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "83",
+    "ways": "0",
+    "relations": "0",
+    "total": "83"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "33",
+    "ways": "0",
+    "relations": "0",
+    "total": "33"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "63",
+    "ways": "0",
+    "relations": "0",
+    "total": "63"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "25",
+    "ways": "0",
+    "relations": "0",
+    "total": "25"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "177",
+    "ways": "0",
+    "relations": "0",
+    "total": "177"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "27",
+    "ways": "0",
+    "relations": "0",
+    "total": "27"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "45",
+    "ways": "0",
+    "relations": "0",
+    "total": "45"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "6",
+    "ways": "0",
+    "relations": "0",
+    "total": "6"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "8",
+    "ways": "0",
+    "relations": "0",
+    "total": "8"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "34",
+    "ways": "0",
+    "relations": "0",
+    "total": "34"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "11",
+    "ways": "0",
+    "relations": "0",
+    "total": "11"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "69",
+    "ways": "0",
+    "relations": "0",
+    "total": "69"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "79",
+    "ways": "0",
+    "relations": "0",
+    "total": "79"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "5",
+    "ways": "0",
+    "relations": "0",
+    "total": "5"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "12",
+    "ways": "0",
+    "relations": "0",
+    "total": "12"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "0",
+    "ways": "0",
+    "relations": "0",
+    "total": "0"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "585",
+    "ways": "0",
+    "relations": "0",
+    "total": "585"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "417",
+    "ways": "0",
+    "relations": "0",
+    "total": "417"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "42",
+    "ways": "0",
+    "relations": "0",
+    "total": "42"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "311",
+    "ways": "0",
+    "relations": "0",
+    "total": "311"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "34",
+    "ways": "0",
+    "relations": "0",
+    "total": "34"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "241",
+    "ways": "0",
+    "relations": "0",
+    "total": "241"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "0",
+    "ways": "0",
+    "relations": "0",
+    "total": "0"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "10",
+    "ways": "0",
+    "relations": "0",
+    "total": "10"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "105",
+    "ways": "0",
+    "relations": "0",
+    "total": "105"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "32",
+    "ways": "0",
+    "relations": "0",
+    "total": "32"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "0",
+    "ways": "0",
+    "relations": "0",
+    "total": "0"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "197",
+    "ways": "0",
+    "relations": "0",
+    "total": "197"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "14",
+    "ways": "0",
+    "relations": "0",
+    "total": "14"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "151",
+    "ways": "0",
+    "relations": "0",
+    "total": "151"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "235",
+    "ways": "0",
+    "relations": "0",
+    "total": "235"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "316",
+    "ways": "0",
+    "relations": "0",
+    "total": "316"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "87",
+    "ways": "0",
+    "relations": "0",
+    "total": "87"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "37",
+    "ways": "0",
+    "relations": "0",
+    "total": "37"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "215",
+    "ways": "0",
+    "relations": "0",
+    "total": "215"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "56",
+    "ways": "0",
+    "relations": "0",
+    "total": "56"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "68",
+    "ways": "0",
+    "relations": "0",
+    "total": "68"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "474",
+    "ways": "0",
+    "relations": "0",
+    "total": "474"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "72",
+    "ways": "0",
+    "relations": "0",
+    "total": "72"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "22",
+    "ways": "0",
+    "relations": "0",
+    "total": "22"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "232",
+    "ways": "0",
+    "relations": "0",
+    "total": "232"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "55",
+    "ways": "0",
+    "relations": "0",
+    "total": "55"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "22",
+    "ways": "0",
+    "relations": "0",
+    "total": "22"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "220",
+    "ways": "0",
+    "relations": "0",
+    "total": "220"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "180",
+    "ways": "0",
+    "relations": "0",
+    "total": "180"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "6",
+    "ways": "0",
+    "relations": "0",
+    "total": "6"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "332",
+    "ways": "0",
+    "relations": "0",
+    "total": "332"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "28",
+    "ways": "0",
+    "relations": "0",
+    "total": "28"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "43",
+    "ways": "0",
+    "relations": "0",
+    "total": "43"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "98",
+    "ways": "0",
+    "relations": "0",
+    "total": "98"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "33",
+    "ways": "0",
+    "relations": "0",
+    "total": "33"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "60",
+    "ways": "0",
+    "relations": "0",
+    "total": "60"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "16",
+    "ways": "0",
+    "relations": "0",
+    "total": "16"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "2",
+    "ways": "0",
+    "relations": "0",
+    "total": "2"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "18",
+    "ways": "0",
+    "relations": "0",
+    "total": "18"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "67",
+    "ways": "0",
+    "relations": "0",
+    "total": "67"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "17",
+    "ways": "0",
+    "relations": "0",
+    "total": "17"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "27",
+    "ways": "0",
+    "relations": "0",
+    "total": "27"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "0",
+    "ways": "0",
+    "relations": "0",
+    "total": "0"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "4",
+    "ways": "0",
+    "relations": "0",
+    "total": "4"
+  }
+},
+{
+  "type": "count",
+  "id": 0,
+  "tags": {
+    "nodes": "22",
+    "ways": "0",
+    "relations": "0",
+    "total": "22"
+  }
+}
+
+  ]
+}

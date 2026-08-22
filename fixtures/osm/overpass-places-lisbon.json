@@ -1,0 +1,866 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-22T10:23:16Z",
+    "timestamp_areas_base": "2026-08-21T18:21:35Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 1468348689,
+  "lat": 38.6956483,
+  "lon": -9.2209818,
+  "tags": {
+    "name": "Pedrouços",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 206169707,
+  "lat": 38.7019484,
+  "lon": -9.2130979,
+  "tags": {
+    "name": "Restelo",
+    "place": "neighbourhood",
+    "wikidata": "Q10359913",
+    "wikipedia": "pt:Restelo"
+  }
+},
+{
+  "type": "node",
+  "id": 1468348687,
+  "lat": 38.6980934,
+  "lon": -9.1878083,
+  "tags": {
+    "name": "Junqueira",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841777,
+  "lat": 38.7024520,
+  "lon": -9.1829626,
+  "tags": {
+    "name": "Santo Amaro",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242988,
+  "lat": 38.7063190,
+  "lon": -9.1684493,
+  "tags": {
+    "name": "Prazeres",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3304314985,
+  "lat": 38.7073226,
+  "lon": -9.1573797,
+  "tags": {
+    "name": "Santos-o-Velho",
+    "place": "neighbourhood",
+    "wikidata": "Q1890230",
+    "wikimedia_commons": "Category:Santos-o-Velho (Lisbon)",
+    "wikipedia": "en:Santos-o-Velho, Lisbon"
+  }
+},
+{
+  "type": "node",
+  "id": 3104836730,
+  "lat": 38.7056810,
+  "lon": -9.1435482,
+  "tags": {
+    "name": "Cais do Sodré",
+    "place": "neighbourhood",
+    "wikidata": "Q122688193"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243208,
+  "lat": 38.7068687,
+  "lon": -9.1467526,
+  "tags": {
+    "name": "São Paulo",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243207,
+  "lat": 38.7066714,
+  "lon": -9.1388444,
+  "tags": {
+    "name": "São Nicolau",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243200,
+  "lat": 38.7105032,
+  "lon": -9.2138076,
+  "tags": {
+    "name": "São Francisco Xavier",
+    "place": "suburb",
+    "wikidata": "Q972747",
+    "wikimedia_commons": "Category:São Francisco Xavier (Lisbon)",
+    "wikipedia": "en:São Francisco Xavier, Lisbon"
+  }
+},
+{
+  "type": "node",
+  "id": 11225165725,
+  "lat": 38.7098100,
+  "lon": -9.2022929,
+  "tags": {
+    "alt_name": "Bairro Açucenas",
+    "name": "Bairro das Açucenas",
+    "place": "city_block"
+  }
+},
+{
+  "type": "node",
+  "id": 12248905769,
+  "lat": 38.7340945,
+  "lon": -9.2048502,
+  "tags": {
+    "alt_name": "Bairro da Boavista",
+    "name": "Alto da Boavista",
+    "place": "neighbourhood",
+    "population": "20000",
+    "wikidata": "Q9659865",
+    "wikipedia": "pt:Boavista (Benfica)"
+  }
+},
+{
+  "type": "node",
+  "id": 7780221090,
+  "lat": 38.7118343,
+  "lon": -9.1754815,
+  "tags": {
+    "name": "Quinta do Cabrinha",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 7780221089,
+  "lat": 38.7155449,
+  "lon": -9.1752186,
+  "tags": {
+    "name": "Quinta do Loureiro",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1493246250,
+  "lat": 38.7481712,
+  "lon": -9.1994775,
+  "tags": {
+    "capital": "8",
+    "name": "Benfica",
+    "place": "suburb",
+    "wikidata": "Q534230",
+    "wikimedia_commons": "Category:Benfica (Lisbon)",
+    "wikipedia": "pt:Benfica (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 1564076788,
+  "lat": 38.7598932,
+  "lon": -9.1896195,
+  "tags": {
+    "capital": "8",
+    "name": "Carnide",
+    "place": "suburb",
+    "wikidata": "Q1044020",
+    "wikimedia_commons": "Category:Carnide (Lisbon)",
+    "wikipedia": "pt:Carnide (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 7780221091,
+  "lat": 38.7117645,
+  "lon": -9.1745979,
+  "tags": {
+    "name": "Ceuta Sul",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243195,
+  "lat": 38.7188013,
+  "lon": -9.1697809,
+  "tags": {
+    "name": "Santo Condestável",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 7780781963,
+  "lat": 38.7181876,
+  "lon": -9.1726667,
+  "tags": {
+    "name": "Casal Ventoso",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841838,
+  "lat": 38.7130713,
+  "lon": -9.1601181,
+  "tags": {
+    "name": "Lapa",
+    "place": "neighbourhood",
+    "wikidata": "Q137402454"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841800,
+  "lat": 38.7110328,
+  "lon": -9.1531551,
+  "tags": {
+    "name": "São Bento",
+    "name:de": "São Bento",
+    "name:pt": "São Bento",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242983,
+  "lat": 38.7133972,
+  "lon": -9.1507940,
+  "tags": {
+    "name": "Mercês",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243192,
+  "lat": 38.7191866,
+  "lon": -9.1610381,
+  "tags": {
+    "name": "Santa Isabel",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3552548669,
+  "lat": 38.7200850,
+  "lon": -9.1548367,
+  "tags": {
+    "name": "Rato",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243205,
+  "lat": 38.7205496,
+  "lon": -9.1523423,
+  "tags": {
+    "name": "São Mamede",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841905,
+  "lat": 38.7278950,
+  "lon": -9.1646135,
+  "tags": {
+    "capital": "8",
+    "name": "Campolide",
+    "place": "suburb",
+    "wikidata": "Q1031527",
+    "wikimedia_commons": "Category:Campolide",
+    "wikipedia": "en:Campolide"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841736,
+  "lat": 38.7221497,
+  "lon": -9.1609443,
+  "tags": {
+    "name": "Amoreiras",
+    "place": "neighbourhood",
+    "wikidata": "Q139770223"
+  }
+},
+{
+  "type": "node",
+  "id": 9297574852,
+  "lat": 38.7220648,
+  "lon": -9.1514289,
+  "tags": {
+    "capital": "8",
+    "name": "Santo António",
+    "place": "suburb",
+    "wikidata": "Q10368164",
+    "wikimedia_commons": "Category:Santo António (Lisbon)",
+    "wikipedia": "pt:Santo António (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243209,
+  "lat": 38.7301501,
+  "lon": -9.1521379,
+  "tags": {
+    "name": "São Sebastião da Pedreira",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242980,
+  "lat": 38.7105843,
+  "lon": -9.1436553,
+  "tags": {
+    "name": "Encarnação",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243190,
+  "lat": 38.7117370,
+  "lon": -9.1475948,
+  "tags": {
+    "name": "Santa Catarina",
+    "place": "neighbourhood",
+    "wikidata": "Q1817021",
+    "wikimedia_commons": "Category:Santa Catarina (Lisbon)",
+    "wikipedia": "en:Santa Catarina, Lisbon"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841793,
+  "lat": 38.7103298,
+  "lon": -9.1405186,
+  "tags": {
+    "name": "Chiado",
+    "place": "neighbourhood",
+    "wikidata": "Q601430",
+    "wikimedia_commons": "Category:Chiado",
+    "wikipedia": "en:Chiado"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242984,
+  "lat": 38.7089536,
+  "lon": -9.1400736,
+  "tags": {
+    "name": "Mártires",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243189,
+  "lat": 38.7118503,
+  "lon": -9.1407850,
+  "tags": {
+    "name": "Sacramento",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243193,
+  "lat": 38.7147202,
+  "lon": -9.1402861,
+  "tags": {
+    "name": "Santa Justa",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 9297574853,
+  "lat": 38.7122372,
+  "lon": -9.1357380,
+  "tags": {
+    "capital": "8",
+    "name": "Santa Maria Maior",
+    "place": "suburb",
+    "wikidata": "Q10367953",
+    "wikimedia_commons": "Category:Santa Maria Maior (Lisbon)",
+    "wikipedia": "pt:Santa Maria Maior (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243201,
+  "lat": 38.7186337,
+  "lon": -9.1430981,
+  "tags": {
+    "name": "São José",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242986,
+  "lat": 38.7217834,
+  "lon": -9.1399509,
+  "tags": {
+    "name": "Pena",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841899,
+  "lat": 38.7149910,
+  "lon": -9.1348415,
+  "tags": {
+    "name": "Mouraria",
+    "place": "neighbourhood",
+    "wikidata": "Q987548",
+    "wikimedia_commons": "Category:Mouraria",
+    "wikipedia": "pt:Mouraria"
+  }
+},
+{
+  "type": "node",
+  "id": 2063474381,
+  "lat": 38.7134033,
+  "lon": -9.1336315,
+  "tags": {
+    "name": "Castelo",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243194,
+  "lat": 38.7121360,
+  "lon": -9.1315401,
+  "tags": {
+    "name": "Santiago",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243198,
+  "lat": 38.7133957,
+  "lon": -9.1354360,
+  "tags": {
+    "name": "São Cristóvão e São Lourenço",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243206,
+  "lat": 38.7115644,
+  "lon": -9.1293112,
+  "tags": {
+    "name": "São Miguel",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243211,
+  "lat": 38.7095436,
+  "lon": -9.1328624,
+  "tags": {
+    "name": "Sé",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 207597971,
+  "lat": 38.7117704,
+  "lon": -9.1283800,
+  "tags": {
+    "name": "Alfama",
+    "place": "neighbourhood",
+    "wikidata": "Q985517",
+    "wikimedia_commons": "Category:Alfama (Lisbon)",
+    "wikipedia": "pt:Alfama"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841919,
+  "lat": 38.7182732,
+  "lon": -9.1294874,
+  "tags": {
+    "capital": "8",
+    "name": "Graça",
+    "place": "suburb",
+    "wikidata": "Q1520260",
+    "wikimedia_commons": "Category:Graça (Lisbon)",
+    "wikipedia": "pt:Graça (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243197,
+  "lat": 38.7168797,
+  "lon": -9.1339655,
+  "tags": {
+    "name": "Socorro",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243210,
+  "lat": 38.7161716,
+  "lon": -9.1260238,
+  "tags": {
+    "name": "São Vicente de Fora",
+    "place": "neighbourhood",
+    "wikidata": "Q1026664",
+    "wikimedia_commons": "Category:São Vicente de Fora (Lisbon)",
+    "wikipedia": "en:São Vicente de Fora, Lisbon"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242979,
+  "lat": 38.7235766,
+  "lon": -9.1462148,
+  "tags": {
+    "name": "Coração de Jesus",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 3542132227,
+  "lat": 38.7339161,
+  "lon": -9.1448374,
+  "tags": {
+    "name": "Saldanha",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242975,
+  "lat": 38.7245059,
+  "lon": -9.1349219,
+  "tags": {
+    "name": "Anjos",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 3884872354,
+  "lat": 38.7415964,
+  "lon": -9.1685139,
+  "tags": {
+    "name": "Sete Rios",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 9297460214,
+  "lat": 38.7532710,
+  "lon": -9.1568870,
+  "tags": {
+    "name": "Campo Grande",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 9297574857,
+  "lat": 38.7408542,
+  "lon": -9.1471696,
+  "tags": {
+    "capital": "8",
+    "name": "Campo Pequeno",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 9297465269,
+  "lat": 38.7413849,
+  "lon": -9.1321846,
+  "tags": {
+    "capital": "8",
+    "name": "Areeiro",
+    "place": "suburb",
+    "wikidata": "Q501847",
+    "wikipedia": "pt:Areeiro (Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243202,
+  "lat": 38.7556360,
+  "lon": -9.1385349,
+  "tags": {
+    "name": "São João de Brito",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 9212104948,
+  "lat": 38.7753339,
+  "lon": -9.1781391,
+  "tags": {
+    "name": "Quinta do Olival",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10198142166,
+  "lat": 38.7702298,
+  "lon": -9.1713280,
+  "tags": {
+    "name": "Quinta do Pisany",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10198142167,
+  "lat": 38.7732243,
+  "lon": -9.1723450,
+  "tags": {
+    "name": "Paço do Lumiar",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242981,
+  "lat": 38.7685509,
+  "lon": -9.1624841,
+  "tags": {
+    "capital": "8",
+    "name": "Lumiar",
+    "place": "suburb",
+    "wikidata": "Q924723",
+    "wikimedia_commons": "Category:Lumiar (Lisbon)",
+    "wikipedia": "pt:Lumiar"
+  }
+},
+{
+  "type": "node",
+  "id": 10198142165,
+  "lat": 38.7682885,
+  "lon": -9.1681573,
+  "tags": {
+    "name": "Alto da Faia",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 7114383463,
+  "lat": 38.7632449,
+  "lon": -9.1526060,
+  "tags": {
+    "name": "Quinta do Lambert",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 5064517447,
+  "lat": 38.7800168,
+  "lon": -9.1720812,
+  "tags": {
+    "name": "Quinta dos Alcoutins",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 7645325150,
+  "lat": 38.7811280,
+  "lon": -9.1635430,
+  "tags": {
+    "name": "Carriche",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 5063393069,
+  "lat": 38.7769179,
+  "lon": -9.1540129,
+  "tags": {
+    "name": "Bairro da Cruz Vermelha",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360242977,
+  "lat": 38.7819735,
+  "lon": -9.1447708,
+  "tags": {
+    "name": "Charneca",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13144010472,
+  "lat": 38.7875437,
+  "lon": -9.1631455,
+  "tags": {
+    "name": "Alto do Chapeleiro",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243191,
+  "lat": 38.7199479,
+  "lon": -9.1208700,
+  "tags": {
+    "name": "Santa Engrácia",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4360243204,
+  "lat": 38.7275911,
+  "lon": -9.1176899,
+  "tags": {
+    "name": "São João",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11699141784,
+  "lat": 38.7408374,
+  "lon": -9.1099929,
+  "tags": {
+    "name": "Bairro dos Alfinetes",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 9119612007,
+  "lat": 38.7423783,
+  "lon": -9.1022809,
+  "tags": {
+    "name": "Poço do Bispo",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10138186938,
+  "lat": 38.7728588,
+  "lon": -9.1186330,
+  "tags": {
+    "name": "Bairro da Encarnação",
+    "place": "neighbourhood",
+    "wikidata": "Q10272685",
+    "wikimedia_commons": "Category:Bairro da Encarnação",
+    "wikipedia": "pt:Encarnação (bairro de Lisboa)"
+  }
+},
+{
+  "type": "node",
+  "id": 9686975651,
+  "lat": 38.7703025,
+  "lon": -9.1032591,
+  "tags": {
+    "name": "Bairro Oriente",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10109138455,
+  "lat": 38.7721950,
+  "lon": -9.1039324,
+  "tags": {
+    "name": "Casal dos Machados",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 9687061097,
+  "lat": 38.7722954,
+  "lon": -9.1004294,
+  "tags": {
+    "name": "Quinta das Laranjeiras",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10148577214,
+  "lat": 38.7798483,
+  "lon": -9.1202617,
+  "tags": {
+    "name": "Quinta do Morgado",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 10138186937,
+  "lat": 38.7746338,
+  "lon": -9.1134784,
+  "tags": {
+    "name": "Olivais Norte",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1148841927,
+  "lat": 38.7638712,
+  "lon": -9.0953729,
+  "tags": {
+    "capital": "8",
+    "name": "Parque das Nações",
+    "name:de": "Park der Nationen",
+    "place": "suburb",
+    "wikidata": "Q1428475",
+    "wikimedia_commons": "Category:Parque das Nações",
+    "wikipedia": "pt:Parque das Nações"
+  }
+}
+
+  ]
+}

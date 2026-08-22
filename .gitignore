@@ -30,6 +30,12 @@ coverage/
 # See docs/adr/0002-do-not-redistribute-the-dataset.md
 data/raw/
 data/out/
+
+# Cached OpenStreetMap responses. Free to re-fetch and never worth committing:
+# one city's POI skeletons run to ~2MB against a repository of ~1.3MB. The
+# calibration pass reads from here; what gets committed is its three numbers,
+# not its corpus — the same instinct as ADR 0002.
+data/osm-cache/
 *.ndjson
 !fixtures/**/*.ndjson
 

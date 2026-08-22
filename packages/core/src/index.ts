@@ -21,6 +21,21 @@ export type {
   TileCandidate,
 } from "./tiles";
 
+export {
+  BOX_PADDING_DEG,
+  MAX_BOUNDING_BOXES,
+  POLYGON_SIMPLIFY_DEG,
+  ZOOM_FOR_DENSITY,
+  boundingBoxesFrom,
+  countNearby,
+  parseNominatimPlace,
+  parseOverpassCounts,
+  parseOverpassPlaces,
+  parseOverpassPois,
+  tileIdFrom,
+} from "./osm";
+export type { OsmPlaceNode, OsmPoi, ResolvedPlace } from "./osm";
+
 export { serializeJsonLd } from "./jsonld";
 
 export { corpusPrior, rankScore } from "./rank";

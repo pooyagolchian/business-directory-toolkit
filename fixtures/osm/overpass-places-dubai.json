@@ -1,0 +1,4190 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-22T10:23:16Z",
+    "timestamp_areas_base": "2026-08-21T13:11:56Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 11799922415,
+  "lat": 24.6932659,
+  "lon": 55.2491693,
+  "tags": {
+    "name": "حفير",
+    "name:ar": "حفير",
+    "name:en": "Hefair",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922414,
+  "lat": 24.7502374,
+  "lon": 55.1562057,
+  "tags": {
+    "name": "الليان 2",
+    "name:ar": "الليان 2",
+    "name:en": "Al Layan 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922410,
+  "lat": 24.6775647,
+  "lon": 55.3505943,
+  "tags": {
+    "name": "العشوش",
+    "name:ar": "العشوش",
+    "name:en": "Al O'shoosh",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922411,
+  "lat": 24.6604812,
+  "lon": 55.4214047,
+  "tags": {
+    "name": "سيح شعيلة",
+    "name:ar": "سيح شعيلة",
+    "name:en": "Saih Shua'alah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 14086631319,
+  "lat": 24.7461498,
+  "lon": 55.4258568,
+  "tags": {
+    "name": "سيح الدحل",
+    "name:ar": "سيح الدحل",
+    "name:en": "Saih Al Dahal",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799906834,
+  "lat": 24.7344243,
+  "lon": 55.5522767,
+  "tags": {
+    "name": "الفقع",
+    "name:ar": "الفقع",
+    "name:en": "Al Fagaa",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799509628,
+  "lat": 24.9898144,
+  "lon": 54.9045084,
+  "tags": {
+    "name": "الواجهة البحرية",
+    "name:ar": "الواجهة البحرية",
+    "name:en": "Al Wajeha Al Bahriya",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922413,
+  "lat": 24.7933759,
+  "lon": 55.1218501,
+  "tags": {
+    "name": "الليان 1",
+    "name:ar": "الليان 1",
+    "name:en": "Al Layan 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4916824174,
+  "lat": 24.8399006,
+  "lon": 55.0662934,
+  "tags": {
+    "name": "مدينة دبي الصناعية",
+    "name:ar": "مدينة دبي الصناعية",
+    "name:en": "Dubai Industrial City",
+    "place": "suburb",
+    "website": "https://dubaiindustrialcity.ae/ar"
+  }
+},
+{
+  "type": "node",
+  "id": 11799692348,
+  "lat": 24.8237065,
+  "lon": 55.0961057,
+  "tags": {
+    "name": "سيح شعيب 4",
+    "name:ar": "سيح شعيب 4",
+    "name:en": "Saih Shuaib 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799692346,
+  "lat": 24.8675976,
+  "lon": 55.0545162,
+  "tags": {
+    "name": "سيح شعيب 2",
+    "name:ar": "سيح شعيب 2",
+    "name:en": "Saih Shuaib 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799692347,
+  "lat": 24.8461171,
+  "lon": 55.0779296,
+  "tags": {
+    "name": "سيح شعيب 3",
+    "name:ar": "سيح شعيب 3",
+    "name:en": "Saih Shuaib 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8843417850,
+  "lat": 24.8603675,
+  "lon": 55.1388683,
+  "tags": {
+    "name": "جلف لنكس",
+    "name:ar": "جلف لنكس",
+    "name:de": "Golf Links",
+    "name:en": "Golf Links",
+    "name:es": "Golf Links",
+    "name:ur": "گالف لنکس",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8843374927,
+  "lat": 24.8669910,
+  "lon": 55.1398960,
+  "tags": {
+    "name": "أُربانا 2",
+    "name:ar": "أُربانا 2",
+    "name:de": "Urbana II",
+    "name:en": "Urbana II",
+    "name:es": "Urbana II",
+    "name:ur": "اربانا 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8843374926,
+  "lat": 24.8627961,
+  "lon": 55.1473233,
+  "tags": {
+    "name": "أُربانا 3",
+    "name:ar": "أُربانا 3",
+    "name:de": "Urbana III",
+    "name:en": "Urbana III",
+    "name:es": "Urbana III",
+    "name:ur": "اربانا 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4898024258,
+  "lat": 24.9030459,
+  "lon": 54.9695285,
+  "tags": {
+    "name": "تلال جبل علي",
+    "name:ar": "تلال جبل علي",
+    "name:en": "Jebel Ali Hills",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799525495,
+  "lat": 24.8947657,
+  "lon": 55.0013979,
+  "tags": {
+    "name": "سيح شعيب 1",
+    "name:ar": "سيح شعيب 1",
+    "name:en": "Saih Shuaib 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4580218094,
+  "lat": 24.9198548,
+  "lon": 55.0086800,
+  "tags": {
+    "name": "دبي باركس",
+    "name:ar": "دبي باركس",
+    "name:en": "Dubai Parks and Resorts",
+    "phone": "800 2629464",
+    "place": "suburb",
+    "tourism": "attraction",
+    "website": "https://www.dubaiparksandresorts.com/",
+    "wheelchair": "yes",
+    "wikidata": "Q27890232",
+    "wikimedia_commons": "Category:Dubai Parks and Resorts",
+    "wikipedia": "en:Dubai Parks and Resorts"
+  }
+},
+{
+  "type": "node",
+  "id": 11799525494,
+  "lat": 24.9322051,
+  "lon": 54.9483551,
+  "tags": {
+    "name": "حصيان 2",
+    "name:ar": "حصيان 2",
+    "name:en": "Hessyan 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204864,
+  "lat": 24.9216249,
+  "lon": 55.0473400,
+  "tags": {
+    "name": "مجمع التقنية بدبي",
+    "name:ar": "مجمع التقنية بدبي",
+    "name:en": "Dubai Techno Park",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799525493,
+  "lat": 24.9565719,
+  "lon": 55.0213917,
+  "tags": {
+    "name": "حصيان 1",
+    "name:ar": "حصيان 1",
+    "name:en": "Hessyan 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693369,
+  "lat": 24.9046204,
+  "lon": 55.1509855,
+  "tags": {
+    "name": "مدينة المطار",
+    "name:ar": "مدينة المطار",
+    "name:en": "Madinat Al Mataar",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799525496,
+  "lat": 24.9208721,
+  "lon": 55.0574451,
+  "tags": {
+    "name": "جبل علي الصناعية 3",
+    "name:ar": "جبل علي الصناعية 3",
+    "name:en": "Jabal Ali Industrial 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4916824173,
+  "lat": 24.9515010,
+  "lon": 55.0505055,
+  "tags": {
+    "name": "بدرة",
+    "name:ar": "بدرة",
+    "name:en": "Badrah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799525497,
+  "lat": 24.9546887,
+  "lon": 55.1050758,
+  "tags": {
+    "name": "جبل علي الصناعية 2",
+    "name:ar": "جبل علي الصناعية 2",
+    "name:en": "Jabal Ali Industrial 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922412,
+  "lat": 24.7969537,
+  "lon": 55.2139083,
+  "tags": {
+    "name": "مقطرة",
+    "name:ar": "مقطرة",
+    "name:en": "Mugatrah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922408,
+  "lat": 24.8061035,
+  "lon": 55.3235797,
+  "tags": {
+    "name": "غدير براشي",
+    "name:ar": "غدير براشي",
+    "name:en": "Ghadeer Barashy",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795445497,
+  "lat": 24.9144391,
+  "lon": 55.1615128,
+  "tags": {
+    "name": "دبي جنوب",
+    "name:ar": "دبي جنوب",
+    "name:en": "Dubai South",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922407,
+  "lat": 24.8910512,
+  "lon": 55.2757454,
+  "tags": {
+    "name": "مدينة لطيفة",
+    "name:ar": "مدينة لطيفة",
+    "name:en": "Madinat Latifa",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922498,
+  "lat": 24.9721946,
+  "lon": 55.2660543,
+  "tags": {
+    "name": "اليلايس 5",
+    "name:ar": "اليلايس 5",
+    "name:en": "Al Yalayis 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922497,
+  "lat": 24.9658447,
+  "lon": 55.3200818,
+  "tags": {
+    "name": "اليلايس 4",
+    "name:ar": "اليلايس 4",
+    "name:en": "Al Yalayis 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204861,
+  "lat": 25.0088651,
+  "lon": 54.9877410,
+  "tags": {
+    "name": "نخلة جبل علي",
+    "name:ar": "نخلة جبل علي",
+    "name:en": "Nakhlat Jabal Ali",
+    "name:fa": "نخل جبل علی",
+    "name:ml": "പാം ജബൽ അലി",
+    "place": "suburb",
+    "wikidata": "Q2658546",
+    "wikimedia_commons": "Category:Palm Jebel Ali",
+    "wikipedia": "ar:نخلة جبل علي",
+    "wikipedia:ar": "نخلة جبل علي"
+  }
+},
+{
+  "type": "node",
+  "id": 4938992181,
+  "lat": 25.0172234,
+  "lon": 54.9907432,
+  "tags": {
+    "name": "Jebel Ali Show Village",
+    "name:en": "Jebel Ali Show Village",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4922055946,
+  "lat": 24.9848141,
+  "lon": 55.0057904,
+  "tags": {
+    "name": "The Palm Jebel Ali Waterhomes - Show Village",
+    "name:en": "The Palm Jebel Ali Waterhomes - Show Village",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4545361722,
+  "lat": 24.9804578,
+  "lon": 55.0598883,
+  "tags": {
+    "name": "ميناء جبل علي",
+    "name:ar": "ميناء جبل علي",
+    "name:en": "Jebel Ali Port",
+    "name:he": "נמל ג'בל עלי",
+    "name:ml": "ജബൽ അലി തുറമുഖം",
+    "place": "suburb",
+    "website": "https://directorsdirectory.com/jebel-ali-port/"
+  }
+},
+{
+  "type": "node",
+  "id": 11799707015,
+  "lat": 24.9985748,
+  "lon": 55.1215037,
+  "tags": {
+    "name": "جبل علي الصناعية 1",
+    "name:ar": "جبل علي الصناعية 1",
+    "name:en": "Jabal Ali Industrial 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204860,
+  "lat": 24.9992831,
+  "lon": 55.1232146,
+  "tags": {
+    "name": "جبل علي الصناعية",
+    "name:ar": "جبل علي الصناعية",
+    "name:en": "Jebel Ali Industrial Area",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 7468794418,
+  "lat": 25.0243140,
+  "lon": 55.1125905,
+  "tags": {
+    "addr:city": "دبي",
+    "addr:city:ar": "دبي",
+    "addr:place": "غاردينيا تاون هومز",
+    "addr:place:ar": "غاردينيا تاون هومز",
+    "addr:place:en": "Gardenia Townhomes",
+    "name": "غاردينيا تاون هومز",
+    "name:ar": "غاردينيا تاون هومز",
+    "name:en": "Gardenia Townhomes",
+    "place": "neighbourhood",
+    "website": "https://gardeniacommunity.com"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693370,
+  "lat": 25.0202567,
+  "lon": 55.1368310,
+  "tags": {
+    "name": "جبل علي 1",
+    "name:ar": "جبل علي 1",
+    "name:en": "Jabal Ali 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799707011,
+  "lat": 25.0314044,
+  "lon": 55.0954900,
+  "tags": {
+    "name": "جبل علي 3",
+    "name:ar": "جبل علي 3",
+    "name:en": "Jabal Ali 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 2377115150,
+  "lat": 25.0418288,
+  "lon": 55.1270906,
+  "tags": {
+    "name": "الحدائق",
+    "name:ar": "الحدائق",
+    "name:en": "The Gardens",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204857,
+  "lat": 25.0338168,
+  "lon": 55.1366041,
+  "tags": {
+    "alt_name": "Jebel Ali",
+    "name": "جبل علي",
+    "name:ar": "جبل علي",
+    "name:en": "Jabal Ali",
+    "name:fa": "جبل علی",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4545336170,
+  "lat": 25.0267099,
+  "lon": 55.1469903,
+  "tags": {
+    "name": "الفرجان",
+    "name:en": "Al Furjan",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799707010,
+  "lat": 25.0543617,
+  "lon": 55.1176287,
+  "tags": {
+    "name": "جبل علي 2",
+    "name:ar": "جبل علي 2",
+    "name:en": "Jabal Ali 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799526282,
+  "lat": 25.0636542,
+  "lon": 55.1411116,
+  "tags": {
+    "name": "الثنية 5",
+    "name:ar": "الثنية 5",
+    "name:en": "Al Thanyah 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4874143021,
+  "lat": 25.0765516,
+  "lon": 55.1457719,
+  "tags": {
+    "name": "JLT cluster Q",
+    "name:en": "JLT cluster Q",
+    "place": "neighbourhood",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204856,
+  "lat": 25.0786415,
+  "lon": 55.1352524,
+  "tags": {
+    "name": "مرسى دبي",
+    "name:ar": "مرسى دبي",
+    "name:en": "Dubai Marina",
+    "name:fa": "دبی مارینا",
+    "name:he": "מרינה דובאי",
+    "name:ml": "ദുബായ് മറീന",
+    "name:ur": "دبئی لنگر گاہ",
+    "place": "suburb",
+    "wikidata": "Q1135647",
+    "wikipedia": "ar:مرسى دبي"
+  }
+},
+{
+  "type": "node",
+  "id": 1257564184,
+  "lat": 25.0935245,
+  "lon": 55.1515716,
+  "tags": {
+    "name": "مدينة دبي للإعلام",
+    "name:ar": "مدينة دبي للإعلام",
+    "name:en": "Dubai Media City",
+    "name:fa": "شهر رسانه‌ای دبی",
+    "name:he": "עיר התקשורת בדובאי",
+    "place": "neighbourhood",
+    "wikidata": "Q740893",
+    "wikimedia_commons": "Category:Dubai Media City",
+    "wikipedia": "ar:مدينة دبي للإعلام"
+  }
+},
+{
+  "type": "node",
+  "id": 13706973538,
+  "lat": 25.1173273,
+  "lon": 55.1350965,
+  "tags": {
+    "name": "نخلة جميرا",
+    "name:ar": "نخلة جميرا",
+    "name:en": "Nakhlat Jumeira",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693372,
+  "lat": 25.1183026,
+  "lon": 55.1338322,
+  "tags": {
+    "name": "نخلة جميرا",
+    "name:ar": "نخلة جميرا",
+    "name:en": "Nakhlat Jumeira",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693375,
+  "lat": 24.9877706,
+  "lon": 55.1651608,
+  "tags": {
+    "name": "مجمع دبي للاستثمار 1",
+    "name:ar": "مجمع دبي للاستثمار 1",
+    "name:en": "Dubai Investment Park 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204859,
+  "lat": 24.9779669,
+  "lon": 55.1911925,
+  "tags": {
+    "name": "مجمع دبي للاستثمار",
+    "name:ar": "مجمع دبي للاستثمار",
+    "name:en": "Dubai Investments Park",
+    "name:fa": "پارک سرمایه‌گذاری دبی",
+    "place": "suburb",
+    "wikidata": "Q5310569",
+    "wikipedia": "en:Dubai Investments Park"
+  }
+},
+{
+  "type": "node",
+  "id": 11799777228,
+  "lat": 25.0160001,
+  "lon": 55.1859115,
+  "tags": {
+    "name": "معيصم 1",
+    "name:ar": "معيصم 1",
+    "name:en": "Me'aisem 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 6494686786,
+  "lat": 25.0199891,
+  "lon": 55.2004893,
+  "tags": {
+    "admin_level": "8",
+    "landuse": "residential",
+    "name": "تحسينات جودة البيانات",
+    "name:ar": "تحسينات جودة البيانات",
+    "name:en": "Jumeirah Golf Estates",
+    "name:fa": "املاک گلف جمیرا",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693374,
+  "lat": 24.9739345,
+  "lon": 55.2108330,
+  "tags": {
+    "name": "مجمع دبي للاستثمار 2",
+    "name:ar": "مجمع دبي للاستثمار 2",
+    "name:en": "Dubai Investment Park 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799777229,
+  "lat": 24.9969732,
+  "lon": 55.2167403,
+  "tags": {
+    "name": "معيصم 2",
+    "name:ar": "معيصم 2",
+    "name:en": "Me'aisem 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799777226,
+  "lat": 25.0062843,
+  "lon": 55.2425394,
+  "tags": {
+    "name": "الحبية 5",
+    "name:ar": "الحبية 5",
+    "name:en": "Al Hebiah 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799788230,
+  "lat": 25.0171721,
+  "lon": 55.2553972,
+  "tags": {
+    "name": "الحبية 3",
+    "name:ar": "الحبية 3",
+    "name:en": "Al Hebiah 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799777227,
+  "lat": 25.0463175,
+  "lon": 55.1898328,
+  "tags": {
+    "name": "البرشاء جنوب 5",
+    "name:ar": "البرشاء جنوب 5",
+    "name:en": "Al Barsha South 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11800596710,
+  "lat": 25.0498433,
+  "lon": 55.1907008,
+  "tags": {
+    "name": "قرية جميرا المثلث",
+    "name:ar": "قرية جميرا المثلث",
+    "name:en": "Jumeirah Village Triangle",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204855,
+  "lat": 25.0639869,
+  "lon": 55.1645849,
+  "tags": {
+    "name": "تلال الإمارات",
+    "name:ar": "تلال الإمارات",
+    "name:en": "Emirates Hills",
+    "name:fa": "تپه‌های امارات",
+    "name:ur": "امارات پہاڑیاں",
+    "place": "suburb",
+    "wikidata": "Q845996",
+    "wikimedia_commons": "Category:Emirates Hills",
+    "wikipedia": "ar:تلال الإمارات",
+    "wikipedia:ar": "تلال الإمارات"
+  }
+},
+{
+  "type": "node",
+  "id": 3646937309,
+  "lat": 25.0585985,
+  "lon": 55.1786967,
+  "tags": {
+    "boundary": "administrative",
+    "is_in:city": "Dubai",
+    "name": "الينابيع",
+    "name:ar": "الينابيع",
+    "name:en": "The Springs",
+    "name:fa": "چشمه‌ها",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799526283,
+  "lat": 25.0643727,
+  "lon": 55.1751883,
+  "tags": {
+    "name": "الثنية 4",
+    "name:ar": "الثنية 4",
+    "name:en": "Al Thanyah 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3647768898,
+  "lat": 25.0379263,
+  "lon": 55.2106788,
+  "tags": {
+    "name": "Victory Heights Villages",
+    "name:en": "Victory Heights Villages",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799777225,
+  "lat": 25.0334367,
+  "lon": 55.2205444,
+  "tags": {
+    "name": "الحبية 4",
+    "name:ar": "الحبية 4",
+    "name:en": "Al Hebiah 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11800596708,
+  "lat": 25.0321379,
+  "lon": 55.2193530,
+  "tags": {
+    "name": "مدينة دبي الرياضية",
+    "name:ar": "مدينة دبي الرياضية",
+    "name:en": "Dubai Sports City",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 1627999656,
+  "lat": 25.0350897,
+  "lon": 55.2373781,
+  "tags": {
+    "name": "مدينة دبي للاستوديوهات 1",
+    "name:ar": "مدينة دبي للاستوديوهات 1",
+    "name:en": "Dubai Studio City 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799788229,
+  "lat": 25.0357683,
+  "lon": 55.2458412,
+  "tags": {
+    "name": "الحبية 2",
+    "name:ar": "الحبية 2",
+    "name:en": "Al Hebiah 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795397123,
+  "lat": 25.0264384,
+  "lon": 55.2512280,
+  "tags": {
+    "name": "داماك هيلز",
+    "name:ar": "داماك هيلز",
+    "name:en": "Damac Hills",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204852,
+  "lat": 25.0423709,
+  "lon": 55.2416609,
+  "tags": {
+    "name": "موتور سيتي",
+    "name:ar": "موتور سيتي",
+    "name:en": "Motor City",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799788228,
+  "lat": 25.0486208,
+  "lon": 55.2403706,
+  "tags": {
+    "name": "الحبية 1",
+    "name:ar": "الحبية 1",
+    "name:en": "Al Hebiah 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1627989278,
+  "lat": 25.0415641,
+  "lon": 55.2522587,
+  "tags": {
+    "name": "مدينة دبي للاستوديوهات",
+    "name:ar": "مدينة دبي للاستوديوهات",
+    "name:en": "Dubai Studio City",
+    "name:fa": "شهر استودیوی دبی",
+    "place": "neighbourhood",
+    "wikidata": "Q3781293",
+    "wikipedia": "ar:مدينة دبي للاستوديوهات",
+    "wikipedia:ar": "مدينة دبي للاستوديوهات"
+  }
+},
+{
+  "type": "node",
+  "id": 11800596709,
+  "lat": 25.0565882,
+  "lon": 55.2079869,
+  "tags": {
+    "name": "قرية جميرا الدائرية",
+    "name:ar": "قرية جميرا الدائرية",
+    "name:en": "Jumeirah Village Circle",
+    "name:fa": "دایره روستای جمیرا",
+    "name:ml": "ജുമൈറ വില്ലേജ് സർക്കിൾ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202007,
+  "lat": 25.0571859,
+  "lon": 55.2083161,
+  "tags": {
+    "name": "البرشاء جنوب 4",
+    "name:ar": "البرشاء جنوب 4",
+    "name:en": "Al Barsha South 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202005,
+  "lat": 25.0697267,
+  "lon": 55.2261173,
+  "tags": {
+    "name": "البرشاء جنوب 2",
+    "name:ar": "البرشاء جنوب 2",
+    "name:en": "Al Barsha South 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204851,
+  "lat": 25.0747157,
+  "lon": 55.2320479,
+  "tags": {
+    "name": "البرشاء جنوب",
+    "name:ar": "البرشاء جنوب",
+    "name:en": "Al Barsha South",
+    "name:fa": "برشا جنوبی",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202006,
+  "lat": 25.0610805,
+  "lon": 55.2417407,
+  "tags": {
+    "name": "البرشاء جنوب 3",
+    "name:ar": "البرشاء جنوب 3",
+    "name:en": "Al Barsha South 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922495,
+  "lat": 24.9971296,
+  "lon": 55.2901391,
+  "tags": {
+    "name": "اليلايس 2",
+    "name:ar": "اليلايس 2",
+    "name:en": "Al Yalayis 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795395058,
+  "lat": 25.0204108,
+  "lon": 55.2679936,
+  "tags": {
+    "name": "مدن",
+    "name:ar": "مدن",
+    "name:en": "Mudon",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799788231,
+  "lat": 25.0202874,
+  "lon": 55.2697761,
+  "tags": {
+    "name": "الحبية 6",
+    "name:ar": "الحبية 6",
+    "name:en": "Al Hebiah 6",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922494,
+  "lat": 25.0178791,
+  "lon": 55.3098345,
+  "tags": {
+    "name": "اليلايس 1",
+    "name:ar": "اليلايس 1",
+    "name:en": "Al Yalayis 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922496,
+  "lat": 24.9734203,
+  "lon": 55.3457292,
+  "tags": {
+    "name": "اليلايس 3",
+    "name:ar": "اليلايس 3",
+    "name:en": "Al Yalayis 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799761541,
+  "lat": 25.0352976,
+  "lon": 55.2826859,
+  "tags": {
+    "name": "وادي الصفا 7",
+    "name:ar": "وادي الصفا 7",
+    "name:en": "Wadi Al Safa 7",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202003,
+  "lat": 25.0337325,
+  "lon": 55.2826835,
+  "tags": {
+    "name": "وادي الصفا 7",
+    "name:ar": "وادي الصفا 7",
+    "name:en": "Wadi Al Safa 7",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799761540,
+  "lat": 25.0492848,
+  "lon": 55.2657205,
+  "tags": {
+    "name": "وادي الصفا 6",
+    "name:ar": "وادي الصفا 6",
+    "name:en": "Wadi Al Safa 6",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204841,
+  "lat": 25.0535681,
+  "lon": 55.2754782,
+  "tags": {
+    "name": "المرابع العربية",
+    "name:ar": "المرابع العربية",
+    "name:en": "Arabian Ranches",
+    "name:ur": "المرابع العربیہ",
+    "place": "neighbourhood",
+    "wikidata": "Q2610894"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914688,
+  "lat": 25.0560468,
+  "lon": 55.3381613,
+  "tags": {
+    "name": "مدينة هند 2",
+    "name:ar": "مدينة هند 2",
+    "name:en": "Madinat Hind 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202001,
+  "lat": 25.0769255,
+  "lon": 55.3184210,
+  "tags": {
+    "name": "وادي الصفا 4",
+    "name:ar": "وادي الصفا 4",
+    "name:en": "Wadi Al Safa 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799526281,
+  "lat": 25.0859166,
+  "lon": 55.1649380,
+  "tags": {
+    "name": "الثنية 3",
+    "name:ar": "الثنية 3",
+    "name:en": "Al Thanyah 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1261639076,
+  "lat": 25.0952352,
+  "lon": 55.1597571,
+  "tags": {
+    "name": "مدينة دبي للإنترنت",
+    "name:ar": "مدينة دبي للإنترنت",
+    "name:en": "Dubai Internet City",
+    "name:fa": "شهر اینترنتی دبی",
+    "name:he": "עיר אינטרנט דובאי",
+    "name:ml": "ദുബായ് ഇന്റർനെറ്റ് സിറ്റി",
+    "place": "neighbourhood",
+    "wikidata": "Q1262899",
+    "wikimedia_commons": "Category:Dubai Internet City",
+    "wikipedia": "ar:مدينة دبي للإنترنت"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489906,
+  "lat": 25.0983566,
+  "lon": 55.1611169,
+  "tags": {
+    "name": "الصفوح 2",
+    "name:ar": "الصفوح 2",
+    "name:en": "Al Sufouh 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13264966064,
+  "lat": 25.1031335,
+  "lon": 55.1636217,
+  "tags": {
+    "name": "قرية المعرفة",
+    "name:ar": "قرية المعرفة",
+    "name:en": "Dubai Knowledge Park",
+    "name:fa": "پارک دانش دبی",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 3087418334,
+  "lat": 25.0982842,
+  "lon": 55.1757823,
+  "tags": {
+    "name": "برشا هايتس",
+    "name:ar": "برشا هايتس",
+    "name:en": "Barsha Heights",
+    "old_name": "تيكوم",
+    "old_name:ar": "تيكوم",
+    "old_name:en": "Tecom",
+    "phone": "800-4-826",
+    "place": "neighbourhood",
+    "website": "http://barshaheights.ae/"
+  }
+},
+{
+  "type": "node",
+  "id": 13706973539,
+  "lat": 25.0981417,
+  "lon": 55.1765049,
+  "tags": {
+    "name": "الثنية 1",
+    "name:ar": "الثنية 1",
+    "name:en": "Al Thanyah 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706973540,
+  "lat": 25.0802992,
+  "lon": 55.1902170,
+  "tags": {
+    "name": "الثنية 2",
+    "name:ar": "الثنية 2",
+    "name:en": "Al Thanyah 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799488201,
+  "lat": 25.0926120,
+  "lon": 55.1967007,
+  "tags": {
+    "name": "البرشاء 3",
+    "name:ar": "البرشاء 3",
+    "name:en": "Al Barsha 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204850,
+  "lat": 25.0994892,
+  "lon": 55.2017252,
+  "tags": {
+    "name": "البرشاء",
+    "name:ar": "البرشاء",
+    "name:en": "Al Barsha",
+    "name:fa": "برشا",
+    "name:fr": "Al-Barcha",
+    "name:ur": "البرشا",
+    "place": "suburb",
+    "wikidata": "Q3545254",
+    "wikimedia_commons": "Category:Al Barsha",
+    "wikipedia": "en:Al Barsha"
+  }
+},
+{
+  "type": "node",
+  "id": 4322719446,
+  "lat": 25.1101377,
+  "lon": 55.1785377,
+  "tags": {
+    "alt_name": "صفوح جاردنز",
+    "alt_name:ar": "صفوح جاردنز",
+    "name": "حدائق الصفوح",
+    "name:ar": "حدائق الصفوح",
+    "name:en": "Sufouh Gardens",
+    "phone": "800-4-826",
+    "place": "neighbourhood",
+    "website": "http://sufouhgardens.ae/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 11799488200,
+  "lat": 25.1091340,
+  "lon": 55.1955266,
+  "tags": {
+    "name": "البرشاء 1",
+    "name:ar": "البرشاء 1",
+    "name:en": "Al Barsha 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799488199,
+  "lat": 25.1195886,
+  "lon": 55.1824832,
+  "tags": {
+    "name": "الصفوح 1",
+    "name:ar": "الصفوح 1",
+    "name:en": "Al Sufouh 1",
+    "name:ml": "അൽ-സുഫൂഹ് 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799488202,
+  "lat": 25.1023751,
+  "lon": 55.2160653,
+  "tags": {
+    "name": "البرشاء 2",
+    "name:ar": "البرشاء 2",
+    "name:en": "Al Barsha 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202004,
+  "lat": 25.0901531,
+  "lon": 55.2352191,
+  "tags": {
+    "name": "البرشاء جنوب 1",
+    "name:ar": "البرشاء جنوب 1",
+    "name:en": "Al Barsha South 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 6763697436,
+  "lat": 25.0936661,
+  "lon": 55.2482298,
+  "tags": {
+    "name": "Sidra 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4958436341,
+  "lat": 25.0930706,
+  "lon": 55.2539032,
+  "tags": {
+    "name": "ميبل 1",
+    "name:ar": "ميبل 1",
+    "name:en": "Maple 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 6763697437,
+  "lat": 25.1004706,
+  "lon": 55.2479226,
+  "tags": {
+    "name": "Sidra 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4958436342,
+  "lat": 25.0987079,
+  "lon": 55.2534783,
+  "tags": {
+    "name": "ميبل 2",
+    "name:ar": "ميبل 2",
+    "name:en": "Maple 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489433,
+  "lat": 25.1160888,
+  "lon": 55.2331822,
+  "tags": {
+    "name": "القوز الصناعية 4",
+    "name:ar": "القوز الصناعية 4",
+    "name:en": "Al Quoz Industrial 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489432,
+  "lat": 25.1250630,
+  "lon": 55.2183603,
+  "tags": {
+    "name": "القوز الصناعية 3",
+    "name:ar": "القوز الصناعية 3",
+    "name:en": "Al Quoz Industrial 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 6763697438,
+  "lat": 25.1071241,
+  "lon": 55.2531836,
+  "tags": {
+    "name": "Sidra 3",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 7207420077,
+  "lat": 25.1055082,
+  "lon": 55.2559980,
+  "tags": {
+    "name": "ميبل 3",
+    "name:ar": "ميبل 3",
+    "name:en": "Maple 3",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204846,
+  "lat": 25.1319978,
+  "lon": 55.2046680,
+  "tags": {
+    "name": "أم الشيف",
+    "name:ar": "أم الشيف",
+    "name:en": "Umm Al Sheif",
+    "name:fa": "ام الشیف",
+    "name:ml": "ഉമ്മുൽ ഷെയ്ഫ്",
+    "name:ur": "ام الشیف",
+    "place": "suburb",
+    "wikidata": "Q4117054",
+    "wikipedia": "ar:أم الشيف",
+    "wikipedia:ar": "أم الشيف"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489431,
+  "lat": 25.1375268,
+  "lon": 55.1957658,
+  "tags": {
+    "name": "أم سقيم 3",
+    "name:ar": "أم سقيم 3",
+    "name:en": "Umm Suqeim 3",
+    "name:ml": "ഉം സുഖീം 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204847,
+  "lat": 25.1539087,
+  "lon": 55.2075004,
+  "tags": {
+    "name": "أم سقيم",
+    "name:ar": "أم سقيم",
+    "name:en": "Umm Suqeim",
+    "name:fa": "ام سقیم",
+    "name:ml": "ഉം സുഖീം",
+    "name:ur": "ام سقیم",
+    "place": "suburb",
+    "wikidata": "Q4117490",
+    "wikimedia_commons": "Category:Umm Suqeim",
+    "wikipedia": "ar:أم سقيم",
+    "wikipedia:ar": "أم سقيم"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489428,
+  "lat": 25.1500937,
+  "lon": 55.2057455,
+  "tags": {
+    "name": "أم سقيم 2",
+    "name:ar": "أم سقيم 2",
+    "name:en": "Umm Suqeim 2",
+    "name:ml": "ഉം സുഖീം 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204843,
+  "lat": 25.1316870,
+  "lon": 55.2335071,
+  "tags": {
+    "name": "القوز الصناعية",
+    "name:ar": "القوز الصناعية",
+    "name:en": "Al Quoz Industrial Area",
+    "name:fa": "منطقه صنعتی قوز",
+    "name:ml": "അൽ ഖൂസ് വ്യവസായ മേഖല",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204845,
+  "lat": 25.1448185,
+  "lon": 55.2144527,
+  "tags": {
+    "name": "المنارة",
+    "name:ar": "المنارة",
+    "name:en": "Al Manara",
+    "name:fa": "مناره",
+    "name:ml": "അൽ മനാര",
+    "name:ur": "المنارہ",
+    "place": "suburb",
+    "wikidata": "Q4117120",
+    "wikipedia": "ar:المنارة (دبي)",
+    "wikipedia:ar": "المنارة (دبي)"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489429,
+  "lat": 25.1437141,
+  "lon": 55.2329810,
+  "tags": {
+    "name": "القوز الصناعية 1",
+    "name:ar": "القوز الصناعية 1",
+    "name:en": "Al Quoz Industrial 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799489430,
+  "lat": 25.1339771,
+  "lon": 55.2479280,
+  "tags": {
+    "name": "القوز الصناعية 2",
+    "name:ar": "القوز الصناعية 2",
+    "name:en": "Al Quoz Industrial 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454208,
+  "lat": 25.1508742,
+  "lon": 55.2540843,
+  "tags": {
+    "name": "القوز 4",
+    "name:ar": "القوز 4",
+    "name:en": "Al Quoz 4",
+    "name:ml": "അൽ ഖൂസ് 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454205,
+  "lat": 25.1647586,
+  "lon": 55.2187285,
+  "tags": {
+    "name": "أم سقيم 1",
+    "name:ar": "أم سقيم 1",
+    "name:en": "Umm Suqeim 1",
+    "name:ml": "ഉം സുഖീം 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454206,
+  "lat": 25.1597638,
+  "lon": 55.2263876,
+  "tags": {
+    "name": "الصفا 2",
+    "name:ar": "الصفا 2",
+    "name:en": "Al Safa 2",
+    "name:ml": "അൽ സഫ 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204844,
+  "lat": 25.1677370,
+  "lon": 55.2310180,
+  "tags": {
+    "name": "الصفا",
+    "name:ar": "الصفا",
+    "name:en": "Al Safa",
+    "name:fa": "صفا",
+    "name:ml": "അൽ സഫ",
+    "place": "suburb",
+    "wikidata": "Q4117136",
+    "wikipedia": "en:Al Safa"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454201,
+  "lat": 25.1806855,
+  "lon": 55.2282258,
+  "tags": {
+    "name": "جميرا 3",
+    "name:ar": "جميرا 3",
+    "name:en": "Jumeirah 3",
+    "name:ml": "ജുമൈറ 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454207,
+  "lat": 25.1587525,
+  "lon": 55.2428174,
+  "tags": {
+    "name": "القوز 3",
+    "name:ar": "القوز 3",
+    "name:en": "Al Quoz 3",
+    "name:ml": "അൽ ഖൂസ് 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204838,
+  "lat": 25.1595803,
+  "lon": 55.2540203,
+  "tags": {
+    "name": "القوز",
+    "name:ar": "القوز",
+    "name:en": "Al Quoz",
+    "name:fa": "قوز",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454203,
+  "lat": 25.1681196,
+  "lon": 55.2543081,
+  "tags": {
+    "name": "القوز 1",
+    "name:ar": "القوز 1",
+    "name:en": "Al Quoz 1",
+    "name:ml": "അൽ-ഖൂസ് 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454202,
+  "lat": 25.1774533,
+  "lon": 55.2389124,
+  "tags": {
+    "name": "الصفا 1",
+    "name:ar": "الصفا 1",
+    "name:en": "Al Safa 1",
+    "name:ml": "അൽ സഫ 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204842,
+  "lat": 25.0974142,
+  "lon": 55.2684401,
+  "tags": {
+    "name": "دبي هيلز",
+    "name:ar": "دبي هيلز",
+    "name:en": "Dubai Hills",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799761533,
+  "lat": 25.0997729,
+  "lon": 55.2691819,
+  "tags": {
+    "name": "حدائق الشيخ محمد بن راشد",
+    "name:ar": "حدائق الشيخ محمد بن راشد",
+    "name:en": "Hadaeq Sheikh Mohammed Bin Rashid",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1623893740,
+  "lat": 25.0850789,
+  "lon": 55.2981217,
+  "tags": {
+    "name": "لفن لجندز",
+    "name:ar": "لفن لجندز",
+    "name:en": "Living Legends",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4958436338,
+  "lat": 25.1154808,
+  "lon": 55.2609696,
+  "tags": {
+    "name": "Fairways 1",
+    "name:en": "Fairways 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4958436337,
+  "lat": 25.1165452,
+  "lon": 55.2675644,
+  "tags": {
+    "name": "منظر التلال",
+    "name:ar": "منظر التلال",
+    "name:en": "Hills View",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 4958436339,
+  "lat": 25.1114141,
+  "lon": 55.2683905,
+  "tags": {
+    "name": "Fairways 2",
+    "name:en": "Fairways 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 6763697376,
+  "lat": 25.1211775,
+  "lon": 55.2681671,
+  "tags": {
+    "name": "Hills Grove",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185500,
+  "lat": 25.1040563,
+  "lon": 55.3114257,
+  "tags": {
+    "name": "وادي الصفا 3",
+    "name:ar": "وادي الصفا 3",
+    "name:en": "Wadi Al Safa 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1623893077,
+  "lat": 25.0929388,
+  "lon": 55.3184835,
+  "tags": {
+    "name": "ماجان",
+    "name:ar": "ماجان",
+    "name:en": "Majan",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889496,
+  "lat": 25.0825377,
+  "lon": 55.3408463,
+  "tags": {
+    "name": "وادي الصفا",
+    "name:ar": "وادي الصفا",
+    "name:en": "Wadi Al Safa",
+    "name:fa": "وادی الصفا",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1621630937,
+  "lat": 25.0843891,
+  "lon": 55.3611964,
+  "tags": {
+    "name": "الفيلا",
+    "name:ar": "الفيلا",
+    "name:en": "The Villa",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1623891204,
+  "lat": 25.0955281,
+  "lon": 55.3393384,
+  "tags": {
+    "name": "فالكون سيتي أوف وندرز",
+    "name:ar": "فالكون سيتي أوف وندرز",
+    "name:en": "Falcon City of Wonders",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185499,
+  "lat": 25.0998539,
+  "lon": 55.3520497,
+  "tags": {
+    "name": "وادي الصفا 2",
+    "name:ar": "وادي الصفا 2",
+    "name:en": "Wadi Al Safa 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799454204,
+  "lat": 25.1509135,
+  "lon": 55.2720063,
+  "tags": {
+    "name": "غدير الطير",
+    "name:ar": "غدير الطير",
+    "name:en": "Ghadeer Al Tair",
+    "name:fa": "غدير الطير",
+    "name:ml": "ഗദീർ അൽ-തൈർ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799459161,
+  "lat": 25.1794564,
+  "lon": 55.2683707,
+  "tags": {
+    "name": "الخليج التجاري",
+    "name:ar": "الخليج التجاري",
+    "name:en": "Business Bay",
+    "name:fa": "خلیج تجاری",
+    "name:ml": "ബിസിനസ് ബേ",
+    "place": "suburb",
+    "wikidata": "Q774250",
+    "wikipedia": "ar:الخليج التجاري"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204829,
+  "lat": 25.1692130,
+  "lon": 55.2924727,
+  "tags": {
+    "name": "المركاض",
+    "name:ar": "المركاض",
+    "name:en": "MBR- Al Merkad",
+    "name:fa": "مركاض",
+    "name:ml": "അൽ-മെർക്കാദ്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732268,
+  "lat": 25.1421242,
+  "lon": 55.3194751,
+  "tags": {
+    "name": "ند الشبا 1",
+    "name:ar": "ند الشبا 1",
+    "name:en": "Nadd Al Sheba 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732267,
+  "lat": 25.1358653,
+  "lon": 55.3633923,
+  "tags": {
+    "name": "ند الشبا 4",
+    "name:ar": "ند الشبا 4",
+    "name:en": "Nadd Al Sheba 4",
+    "name:ml": "നദ് അൽ-ഷീബ 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3943632950,
+  "lat": 25.1560150,
+  "lon": 55.3324945,
+  "tags": {
+    "name": "Nad Al Sheba Club Staff Accomodation",
+    "name:en": "Nad Al Sheba Club Staff Accomodation",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204819,
+  "lat": 25.1768604,
+  "lon": 55.3261997,
+  "tags": {
+    "name": "بو كدرة",
+    "name:ar": "بو كدرة",
+    "name:en": "Bukadra",
+    "name:fa": "بو کدره",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732265,
+  "lat": 25.1565887,
+  "lon": 55.3500747,
+  "tags": {
+    "name": "ند الشبا 2",
+    "name:ar": "ند الشبا 2",
+    "name:en": "Nadd Al Sheba 2",
+    "name:ml": "നദ് അൽ-ഷീബ 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732262,
+  "lat": 25.1768013,
+  "lon": 55.3392998,
+  "tags": {
+    "name": "رأس الخور الصناعية 1",
+    "name:ar": "رأس الخور الصناعية 1",
+    "name:en": "Ras Al Khor Industrial 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204818,
+  "lat": 25.1762818,
+  "lon": 55.3630256,
+  "tags": {
+    "name": "رأس الخور الصناعية",
+    "name:ar": "رأس الخور الصناعية",
+    "name:en": "Ras Al Khor Industrial Area",
+    "name:fa": "منطقه صنعتی راس الخور",
+    "name:ml": "റാസ് അൽ ഖോർ വ്യവസായ മേഖല",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185495,
+  "lat": 25.1777569,
+  "lon": 55.3585239,
+  "tags": {
+    "name": "رأس الخور الصناعية 2",
+    "name:ar": "رأس الخور الصناعية 2",
+    "name:en": "Ras Al Khor Ind 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799361792,
+  "lat": 25.2110472,
+  "lon": 55.1693538,
+  "tags": {
+    "name": "جزر العالم",
+    "name:ar": "جزر العالم",
+    "name:en": "World Islands",
+    "name:fa": "جزایر جهانی",
+    "name:ko": "세계지도 섬",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799361794,
+  "lat": 25.1976240,
+  "lon": 55.2258239,
+  "tags": {
+    "name": "جزيرة جميرا 2",
+    "name:ar": "جزيرة جميرا 2",
+    "name:en": "Jumeirah Island 2",
+    "name:ml": "ജുമൈറ ദ്വീപ് 2",
+    "place": "suburb",
+    "wikidata": "Q116457896"
+  }
+},
+{
+  "type": "node",
+  "id": 11799459159,
+  "lat": 25.2008309,
+  "lon": 55.2452019,
+  "tags": {
+    "name": "جميرا 2",
+    "name:ar": "جميرا 2",
+    "name:en": "Jumeirah 2",
+    "name:ml": "ജുമൈറ 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204827,
+  "lat": 25.1959326,
+  "lon": 55.2557371,
+  "tags": {
+    "name": "الوصل",
+    "name:ar": "الوصل",
+    "name:en": "Al Wasl",
+    "name:fa": "وصل",
+    "name:ml": "അൽ-വസൽ",
+    "place": "suburb",
+    "wikidata": "Q4115316",
+    "wikimedia_commons": "Category:Al Wasl, Dubai",
+    "wikipedia": "en:Al Wasl, Dubai"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204826,
+  "lat": 25.2069604,
+  "lon": 55.2474974,
+  "tags": {
+    "name": "جميرا",
+    "name:ar": "جميرا",
+    "name:en": "Jumeirah",
+    "name:fa": "جميرا",
+    "name:ml": "ജുമൈറ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799361791,
+  "lat": 25.2136677,
+  "lon": 55.2365845,
+  "tags": {
+    "name": "شاطئ جميرا",
+    "name:ar": "شاطئ جميرا",
+    "name:en": "Jumeirah Bay",
+    "name:fa": "خلیج جمیرا",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799418068,
+  "lat": 25.2193430,
+  "lon": 55.2578183,
+  "tags": {
+    "name": "جميرا 1",
+    "name:ar": "جميرا 1",
+    "name:en": "Jumeirah 1",
+    "name:ml": "ജുമൈറ 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693371,
+  "lat": 25.1918214,
+  "lon": 55.2723380,
+  "tags": {
+    "name": "برج خليفة",
+    "name:ar": "برج خليفة",
+    "name:en": "Burj Khalifa",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799464870,
+  "lat": 25.2049558,
+  "lon": 55.2972924,
+  "tags": {
+    "name": "زعبيل 2",
+    "name:ar": "زعبيل 2",
+    "name:en": "Za'abeel 2",
+    "name:ml": "സബീൽ 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204824,
+  "lat": 25.2208602,
+  "lon": 55.2737617,
+  "tags": {
+    "name": "السطوة",
+    "name:ar": "السطوة",
+    "name:en": "Al Satwa",
+    "name:fa": "ستوه",
+    "name:ml": "അൽ സത്വ",
+    "place": "suburb",
+    "wikidata": "Q4119914",
+    "wikipedia": "en:Al Satwa"
+  }
+},
+{
+  "type": "node",
+  "id": 11799460869,
+  "lat": 25.2195789,
+  "lon": 55.2781467,
+  "tags": {
+    "name": "مركز التجاري 1",
+    "name:ar": "مركز التجاري 1",
+    "name:en": "Trade Centre 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204823,
+  "lat": 25.2191519,
+  "lon": 55.2805423,
+  "tags": {
+    "name": "المركز التجاري",
+    "name:ar": "المركز التجاري",
+    "name:en": "Trade Centre",
+    "name:fa": "مرکز تجارت",
+    "name:ml": "വ്യാപാര കേന്ദ്രം",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204825,
+  "lat": 25.2246261,
+  "lon": 55.2684831,
+  "tags": {
+    "name": "البدع",
+    "name:ar": "البدع",
+    "name:en": "Al Bada'a",
+    "name:fa": "بدع",
+    "name:ml": "അൽ-ബദാ",
+    "name:ur": "البدع",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204822,
+  "lat": 25.2098336,
+  "lon": 55.2979659,
+  "tags": {
+    "name": "زعبيل",
+    "name:ar": "زعبيل",
+    "name:en": "Zabeel",
+    "name:fa": "زعبيل",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799464869,
+  "lat": 25.2191460,
+  "lon": 55.2863451,
+  "tags": {
+    "name": "مركز التجاري 2",
+    "name:ar": "مركز التجاري 2",
+    "name:en": "Trade Centre 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799398884,
+  "lat": 25.2186570,
+  "lon": 55.3083872,
+  "tags": {
+    "name": "زعبيل 1",
+    "name:ar": "زعبيل 1",
+    "name:en": "Za’abeel 1",
+    "name:ml": "സബീൽ 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799398883,
+  "lat": 25.2345845,
+  "lon": 55.2971134,
+  "tags": {
+    "name": "الكفاف",
+    "name:ar": "الكفاف",
+    "name:en": "Al Kifaf",
+    "name:fa": "كفاف",
+    "name:ml": "അൽ കിഫാഫ്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204820,
+  "lat": 25.1939625,
+  "lon": 55.3392449,
+  "tags": {
+    "name": "رأس الخور",
+    "name:ar": "رأس الخور",
+    "name:en": "Ras Al Khor",
+    "name:fa": "راس الخور",
+    "name:fr": "Ras al-Khor",
+    "name:ml": "റാസ് അൽ ഖോർ",
+    "name:ur": "راس الخور",
+    "place": "suburb",
+    "wikidata": "Q3595657",
+    "wikipedia": "ar:محمية رأس الخور للحياة الفطرية"
+  }
+},
+{
+  "type": "node",
+  "id": 4982364289,
+  "lat": 25.2060858,
+  "lon": 55.3463442,
+  "tags": {
+    "name": "منطقة الجزيرة",
+    "name:ar": "منطقة الجزيرة",
+    "name:en": "The Island District",
+    "name:fa": "منطقه جزیره",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799523275,
+  "lat": 25.1979153,
+  "lon": 55.3593019,
+  "tags": {
+    "name": "الخيران 1",
+    "name:ar": "الخيران 1",
+    "name:en": "Al Kheeran 1",
+    "name:ml": "അൽ-ഖീറാൻ 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 5240753150,
+  "lat": 25.2142622,
+  "lon": 55.3245395,
+  "tags": {
+    "name": "الجداف",
+    "name:ar": "الجداف",
+    "name:en": "Al Jadaf",
+    "name:fa": "جداف",
+    "name:ml": "അൽ ജദ്ദാഫ്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799523274,
+  "lat": 25.2152399,
+  "lon": 55.3639198,
+  "tags": {
+    "name": "الخيران",
+    "name:ar": "الخيران",
+    "name:en": "Al Kheeran",
+    "name:fa": "خیران",
+    "name:ml": "അൽ-ഖീറാൻ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204805,
+  "lat": 25.2428328,
+  "lon": 55.2792120,
+  "tags": {
+    "name": "الحضيبة",
+    "name:ar": "الحضيبة",
+    "name:en": "Al Hudaiba",
+    "name:fa": "حضیبه",
+    "name:ml": "അൽ ഹുദൈബ",
+    "name:ur": "الحضیبہ",
+    "place": "suburb",
+    "wikidata": "Q4117061",
+    "wikimedia_commons": "Category:Al Hudaiba",
+    "wikipedia": "ar:الحضيبة",
+    "wikipedia:ar": "الحضيبة"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204804,
+  "lat": 25.2496256,
+  "lon": 55.2761650,
+  "tags": {
+    "name": "مدينة دبي الملاحية",
+    "name:ar": "مدينة دبي الملاحية",
+    "name:en": "Dubai Maritime City",
+    "name:fa": "شهر دریایی دبی",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204806,
+  "lat": 25.2376311,
+  "lon": 55.2869367,
+  "tags": {
+    "name": "الجافلية",
+    "name:ar": "الجافلية",
+    "name:en": "Al Jaffiliya",
+    "name:fa": "جافلیه",
+    "name:ml": "അൽ ജാഫിലിയ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799343463,
+  "lat": 25.2361516,
+  "lon": 55.3115605,
+  "tags": {
+    "name": "عود ميثاء",
+    "name:ar": "عود ميثاء",
+    "name:en": "Oud Metha",
+    "name:fa": "عود ميثا",
+    "name:ml": "ഊദ് മേസ",
+    "place": "suburb",
+    "wikidata": "Q4117129",
+    "wikipedia": "ar:عود ميثاء"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204803,
+  "lat": 25.2542057,
+  "lon": 55.2879667,
+  "tags": {
+    "name": "الرفاعة",
+    "name:ar": "الرفاعة",
+    "name:en": "Al Raffa",
+    "name:fa": "رفاعه",
+    "name:ml": "അൽ റഫാ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204802,
+  "lat": 25.2495092,
+  "lon": 55.2954769,
+  "tags": {
+    "name": "المنخول",
+    "name:ar": "المنخول",
+    "name:en": "Al Mankhool",
+    "name:fa": "منخول",
+    "name:he": "אל מנקול",
+    "name:ml": "അൽ-മൻഖൂൽ",
+    "name:ur": "المنخول",
+    "place": "suburb",
+    "wikidata": "Q4117469",
+    "wikimedia_commons": "Category:Al Mankhool",
+    "wikipedia": "ar:المنخول",
+    "wikipedia:ar": "المنخول"
+  }
+},
+{
+  "type": "node",
+  "id": 11799343462,
+  "lat": 25.2482136,
+  "lon": 55.3050609,
+  "tags": {
+    "name": "الكرامة",
+    "name:ar": "الكرامة",
+    "name:en": "Karama",
+    "name:fa": "کرامه",
+    "name:ml": "അൽ കറാമ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 7826894573,
+  "lat": 25.2599297,
+  "lon": 55.3031938,
+  "tags": {
+    "name": "الحمرية",
+    "name:ar": "الحمرية",
+    "name:en": "Al Hamriya",
+    "name:fa": "حمریه",
+    "name:ml": "അൽ ഹംറിയ",
+    "place": "suburb",
+    "wikidata": "Q4117465",
+    "wikimedia_commons": "Category:Al Hamriya",
+    "wikipedia": "ar:الحمرية (دبي)",
+    "wikipedia:ar": "الحمرية (دبي)"
+  }
+},
+{
+  "type": "node",
+  "id": 4477048989,
+  "lat": 25.2559475,
+  "lon": 55.3086012,
+  "tags": {
+    "alt_name": "حي السفارات",
+    "alt_name:ar": "حي السفارات",
+    "alt_name:en": "Diplomatic Quarter",
+    "name": "أم هرير 1",
+    "name:ar": "أم هرير 1",
+    "name:en": "Umm Hurair 1",
+    "name:fa": "ام هریر ۱",
+    "name:ml": "ഉം ഹുറൈർ 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 7826894571,
+  "lat": 25.2641373,
+  "lon": 55.2889513,
+  "tags": {
+    "name": "الفهيدي",
+    "name:ar": "الفهيدي",
+    "name:en": "Al Fahidi",
+    "name:fa": "فهیدی",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204801,
+  "lat": 25.2661597,
+  "lon": 55.2888679,
+  "tags": {
+    "name": "الشندغة",
+    "name:ar": "الشندغة",
+    "name:en": "Al Shindagha",
+    "name:es": "Al Shindagha",
+    "name:fa": "شندغه",
+    "name:ml": "അൽ ഷിന്ദഗ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 281204517,
+  "lat": 25.2623727,
+  "lon": 55.2963265,
+  "tags": {
+    "name": "بر دبي",
+    "name:ar": "بر دبي",
+    "name:cs": "Búr Dubaj",
+    "name:de": "Bur Dubai",
+    "name:en": "Bur Dubai",
+    "name:es": "Bur Dubái",
+    "name:fa": "بر دبی",
+    "name:fr": "Bur Doubaï",
+    "name:he": "בור דובאי",
+    "name:ml": "ബർ ദുബായ്",
+    "name:ur": "بر دبئی",
+    "place": "neighbourhood",
+    "wikidata": "Q140673",
+    "wikimedia_commons": "Category:Bur Dubai",
+    "wikipedia": "ar:بر دبي",
+    "wikipedia:ar": "بر دبي"
+  }
+},
+{
+  "type": "node",
+  "id": 5240802883,
+  "lat": 25.2615315,
+  "lon": 55.2941090,
+  "tags": {
+    "name": "بزار الميناء",
+    "name:ar": "بزار الميناء",
+    "name:en": "Mina Bazaar",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204799,
+  "lat": 25.2620458,
+  "lon": 55.2936315,
+  "tags": {
+    "name": "السوق الكبير",
+    "name:ar": "السوق الكبير",
+    "name:en": "Al Souq Al Kabeer",
+    "name:fa": "بازار بزرگ",
+    "name:ml": "അൽ സൂക്ക് അൽ കബീർ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920539,
+  "lat": 25.2691524,
+  "lon": 55.2965792,
+  "tags": {
+    "name": "الرأس",
+    "name:ar": "الرأس",
+    "name:en": "Al Ras",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920544,
+  "lat": 25.2672384,
+  "lon": 55.3121860,
+  "tags": {
+    "name": "الرقة",
+    "name:ar": "الرقة",
+    "name:en": "Al Rigga",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920540,
+  "lat": 25.2725277,
+  "lon": 55.3001158,
+  "tags": {
+    "name": "الضغاية",
+    "name:ar": "الضغاية",
+    "name:en": "Al Daghaya",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920541,
+  "lat": 25.2693607,
+  "lon": 55.2998713,
+  "tags": {
+    "name": "البطين",
+    "name:ar": "البطين",
+    "name:en": "Al Buteen",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920542,
+  "lat": 25.2700269,
+  "lon": 55.3023610,
+  "tags": {
+    "name": "السبخة",
+    "name:ar": "السبخة",
+    "name:en": "Al Sabkha",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889493,
+  "lat": 25.2717632,
+  "lon": 55.3103167,
+  "tags": {
+    "name": "نایف",
+    "name:ar": "نایف",
+    "name:en": "Naif",
+    "name:fa": "نایف",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799185909,
+  "lat": 25.2775726,
+  "lon": 55.3031922,
+  "tags": {
+    "name": "الكورنيش",
+    "name:ar": "الكورنيش",
+    "name:en": "Al Corniche",
+    "name:fa": "كورنيش",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920543,
+  "lat": 25.2745019,
+  "lon": 55.3041125,
+  "tags": {
+    "name": "عيال ناصر",
+    "name:ar": "عيال ناصر",
+    "name:en": "Ayal Nasir",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889494,
+  "lat": 25.2765621,
+  "lon": 55.3088749,
+  "tags": {
+    "name": "المرر",
+    "name:ar": "المرر",
+    "name:en": "Al Murar",
+    "name:fa": "مرر",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799345110,
+  "lat": 25.2374067,
+  "lon": 55.3213344,
+  "tags": {
+    "name": "أم هرير 2",
+    "name:ar": "أم هرير 2",
+    "name:en": "Umm Hurair 2",
+    "name:ml": "ഉം ഹുറൈർ 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204809,
+  "lat": 25.2422117,
+  "lon": 55.3217840,
+  "tags": {
+    "name": "أم هرير",
+    "name:ar": "أم هرير",
+    "name:en": "Umm Hurair",
+    "name:fa": "ام هریر",
+    "name:fr": "Oum Houreir",
+    "name:ml": "ഉം ഹുറൈർ",
+    "name:ur": "ام ہریرہ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920546,
+  "lat": 25.2598498,
+  "lon": 55.3198993,
+  "tags": {
+    "name": "رقة البطين",
+    "name:ar": "رقة البطين",
+    "name:en": "Riggat Al Buteen",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889492,
+  "lat": 25.2533081,
+  "lon": 55.3318918,
+  "tags": {
+    "name": "بور سعيد",
+    "name:ar": "بور سعيد",
+    "name:en": "Port Saeed",
+    "name:fa": "پورت سعید",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889491,
+  "lat": 25.2406551,
+  "lon": 55.3519978,
+  "tags": {
+    "name": "القرهود",
+    "name:ar": "القرهود",
+    "name:en": "Al Garhoud",
+    "name:fa": "قرهود",
+    "place": "suburb",
+    "wikidata": "Q3501086",
+    "wikipedia": "ar:القرهود"
+  }
+},
+{
+  "type": "node",
+  "id": 13705920545,
+  "lat": 25.2653508,
+  "lon": 55.3226201,
+  "tags": {
+    "name": "المرقبات",
+    "name:ar": "المرقبات",
+    "name:en": "Al Muraqqabat",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204785,
+  "lat": 25.2680638,
+  "lon": 55.3359972,
+  "tags": {
+    "name": "الخبيصي",
+    "name:ar": "الخبيصي",
+    "name:en": "Al Khabisi",
+    "name:fa": "خبیصی",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204773,
+  "lat": 25.2741549,
+  "lon": 55.3225565,
+  "tags": {
+    "name": "المطينة",
+    "name:ar": "المطينة",
+    "name:en": "Al Muteena",
+    "name:fa": "مطینه",
+    "name:ml": "അൽ മത്തീന",
+    "name:ur": "المطینہ",
+    "place": "suburb",
+    "wikidata": "Q4117487",
+    "wikimedia_commons": "Category:Al Muteena",
+    "wikipedia": "ar:المطينة",
+    "wikipedia:ar": "المطينة"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889495,
+  "lat": 25.2836607,
+  "lon": 55.3130282,
+  "tags": {
+    "name": "كورنيش ديرة",
+    "name:ar": "كورنيش ديرة",
+    "name:en": "Corniche Deira",
+    "name:fa": "کورنیش دیره",
+    "place": "suburb",
+    "wikidata": "Q5428575",
+    "wikipedia": "ar:كورنيش ديرة"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204774,
+  "lat": 25.2809884,
+  "lon": 55.3195255,
+  "tags": {
+    "name": "البراحة",
+    "name:ar": "البراحة",
+    "name:en": "Al Baraha",
+    "name:fa": "براحه",
+    "name:ml": "അൽ ബറാഹ",
+    "name:ur": "البراحہ",
+    "place": "suburb",
+    "wikidata": "Q4117494",
+    "wikipedia": "ar:البراحة",
+    "wikipedia:ar": "البراحة"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204772,
+  "lat": 25.2860287,
+  "lon": 55.3288650,
+  "tags": {
+    "name": "أبو هيل",
+    "name:ar": "أبو هيل",
+    "name:en": "Abu Hail",
+    "name:fa": "ابو هیل",
+    "name:ml": "അബു ഹെയ്ൽ",
+    "name:ur": "ابو ہیل",
+    "place": "suburb",
+    "wikidata": "Q4117480",
+    "wikipedia": "ar:أبو هيل",
+    "wikipedia:ar": "أبو هيل"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298522,
+  "lat": 25.2714640,
+  "lon": 55.3627031,
+  "tags": {
+    "name": "الطوار 1",
+    "name:ar": "الطوار 1",
+    "name:en": "Al Twar 1",
+    "name:ml": "അൽ-ത്വാർ 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209519,
+  "lat": 25.2724896,
+  "lon": 55.3590294,
+  "tags": {
+    "name": "الطوار 1",
+    "name:ar": "الطوار 1",
+    "name:en": "Al Twar 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204787,
+  "lat": 25.2782987,
+  "lon": 55.3395005,
+  "tags": {
+    "name": "هور العنز",
+    "name:ar": "هور العنز",
+    "name:en": "Hor Al Anz",
+    "name:fa": "هور العنز",
+    "name:ml": "ഹോർ അൽ അൻസ്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799185910,
+  "lat": 25.2822545,
+  "lon": 55.3484840,
+  "tags": {
+    "name": "هور العنز شراق",
+    "name:ar": "هور العنز شراق",
+    "name:en": "Hor Al Anz East",
+    "name:fa": "هور العنز شراق",
+    "name:ml": "ഹോർ അൽ-അൻസ് കിഴക്ക്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204786,
+  "lat": 25.2915387,
+  "lon": 55.3373622,
+  "tags": {
+    "name": "الوحيدة",
+    "name:ar": "الوحيدة",
+    "name:en": "Al Waheda",
+    "name:fa": "وحیده",
+    "name:ml": "അൽ-വഹീദ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204770,
+  "lat": 25.2995316,
+  "lon": 55.3349590,
+  "tags": {
+    "name": "ميناء الحمرية",
+    "name:ar": "ميناء الحمرية",
+    "name:en": "Al Hamriya Port",
+    "name:fa": "بندر حمریه",
+    "name:ml": "അൽ-ഹമറിയ തുറമുഖം",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204800,
+  "lat": 25.3050799,
+  "lon": 55.3156470,
+  "tags": {
+    "name": "نخلة ديرة",
+    "name:ar": "نخلة ديرة",
+    "name:en": "Palm Deira",
+    "name:fa": "نخل دیرا",
+    "name:ml": "പാം ദെയ്‌റ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209522,
+  "lat": 25.2902880,
+  "lon": 55.3641471,
+  "tags": {
+    "name": "النهدة 1",
+    "name:ar": "النهدة 1",
+    "name:en": "Al Nahda 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204788,
+  "lat": 25.3005332,
+  "lon": 55.3596332,
+  "tags": {
+    "name": "الممزر",
+    "name:ar": "الممزر",
+    "name:azb": "الممزر",
+    "name:en": "Al Mamzar",
+    "name:fr": "Al Mamzar",
+    "name:ml": "അൽ മംസർ",
+    "name:ur": "الممزر",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922406,
+  "lat": 24.8040881,
+  "lon": 55.4495394,
+  "tags": {
+    "name": "الحثمة",
+    "name:ar": "الحثمة",
+    "name:en": "Al Hathmah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799906833,
+  "lat": 24.8553502,
+  "lon": 55.5149662,
+  "tags": {
+    "name": "قريطيسة",
+    "name:ar": "قريطيسة",
+    "name:en": "Grayteesah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799922405,
+  "lat": 24.8730625,
+  "lon": 55.3786460,
+  "tags": {
+    "name": "سيح السلم",
+    "name:ar": "سيح السلم",
+    "name:en": "Saih Al Salam",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799906832,
+  "lat": 24.9185792,
+  "lon": 55.4447180,
+  "tags": {
+    "name": "الليسيلي",
+    "name:ar": "الليسيلي",
+    "name:en": "Al Lesaily",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914693,
+  "lat": 24.9664358,
+  "lon": 55.3897669,
+  "tags": {
+    "name": "اليفرة 2",
+    "name:ar": "اليفرة 2",
+    "name:en": "Al Yufrah 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799790901,
+  "lat": 24.8092412,
+  "lon": 55.6093873,
+  "tags": {
+    "name": "مرقب",
+    "name:ar": "مرقب",
+    "name:en": "Margab",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799790902,
+  "lat": 24.7644560,
+  "lon": 55.6711408,
+  "tags": {
+    "name": "يراح",
+    "name:ar": "يراح",
+    "name:en": "Yaraah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795193098,
+  "lat": 24.8593837,
+  "lon": 55.6202668,
+  "tags": {
+    "name": "أم السلي",
+    "name:ar": "أم السلي",
+    "name:en": "Umm Eselay",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799790900,
+  "lat": 24.8315516,
+  "lon": 55.6972233,
+  "tags": {
+    "name": "رماح",
+    "name:ar": "رماح",
+    "name:en": "Remah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795157806,
+  "lat": 24.9191584,
+  "lon": 55.6596992,
+  "tags": {
+    "name": "المها",
+    "name:ar": "المها",
+    "name:en": "Al Maha",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11795209571,
+  "lat": 24.9456286,
+  "lon": 55.5883327,
+  "tags": {
+    "name": "مرغم",
+    "name:ar": "مرغم",
+    "name:en": "Margham",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914690,
+  "lat": 25.0077718,
+  "lon": 55.3681454,
+  "tags": {
+    "name": "مدينة هند 4",
+    "name:ar": "مدينة هند 4",
+    "name:en": "Madinat Hind 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914692,
+  "lat": 24.9756162,
+  "lon": 55.4517933,
+  "tags": {
+    "name": "المرموم",
+    "name:ar": "المرموم",
+    "name:en": "Al Marmoom",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914691,
+  "lat": 25.0024131,
+  "lon": 55.4326760,
+  "tags": {
+    "name": "اليفرة 1",
+    "name:ar": "اليفرة 1",
+    "name:en": "Al Yufrah 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914687,
+  "lat": 25.0652220,
+  "lon": 55.3854879,
+  "tags": {
+    "name": "مدينة هند 1",
+    "name:ar": "مدينة هند 1",
+    "name:en": "Madinat Hind 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799914689,
+  "lat": 25.0325537,
+  "lon": 55.4220384,
+  "tags": {
+    "name": "مدينة هند 3",
+    "name:ar": "مدينة هند 3",
+    "name:en": "Madinat Hind 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11794836256,
+  "lat": 25.0602069,
+  "lon": 55.4574646,
+  "tags": {
+    "name": "أم الدمن",
+    "name:ar": "أم الدمن",
+    "name:en": "Umm Al Daman",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799809580,
+  "lat": 24.9911356,
+  "lon": 55.5122785,
+  "tags": {
+    "name": "أم المؤمنين",
+    "name:ar": "أم المؤمنين",
+    "name:en": "Umm Al Mo'meneen",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11794469472,
+  "lat": 25.0326776,
+  "lon": 55.4844774,
+  "tags": {
+    "name": "الحميرا",
+    "name:ar": "الحميرا",
+    "name:en": "Le Hemaira",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799809579,
+  "lat": 25.0294035,
+  "lon": 55.5547987,
+  "tags": {
+    "name": "لهباب 2",
+    "name:ar": "لهباب 2",
+    "name:en": "Lehbab 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708202002,
+  "lat": 25.0833637,
+  "lon": 55.3730124,
+  "tags": {
+    "name": "وادي الصفا 5",
+    "name:ar": "وادي الصفا 5",
+    "name:en": "Wadi Al Safa 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708385923,
+  "lat": 25.1034910,
+  "lon": 55.4003986,
+  "tags": {
+    "name": "الروية 2",
+    "name:ar": "الروية 2",
+    "name:en": "Al Rowaiyah 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1625626655,
+  "lat": 25.1101209,
+  "lon": 55.3676993,
+  "tags": {
+    "name": "ليوان",
+    "name:ar": "ليوان",
+    "name:de": "Liwan",
+    "name:en": "Liwan",
+    "name:es": "Liwan",
+    "name:ur": "لیوان",
+    "place": "neighbourhood",
+    "wikidata": "Q70364405"
+  }
+},
+{
+  "type": "node",
+  "id": 3684910564,
+  "lat": 25.1124530,
+  "lon": 55.3797441,
+  "tags": {
+    "name": "Semmer Villas A & C",
+    "name:en": "Semmer Villas A & C",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 3684910565,
+  "lat": 25.1154477,
+  "lon": 55.3838744,
+  "tags": {
+    "name": "Semmer Villas B & D",
+    "name:en": "Semmer Villas B & D",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799755194,
+  "lat": 25.1219309,
+  "lon": 55.3850506,
+  "tags": {
+    "name": "ند حصة",
+    "name:ar": "ند حصة",
+    "name:en": "Nadd Hessa",
+    "name:fa": "ند حصه",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889497,
+  "lat": 25.1144146,
+  "lon": 55.4198526,
+  "tags": {
+    "name": "الروية",
+    "name:ar": "الروية",
+    "name:en": "Al Ruwayya",
+    "name:fa": "رویه",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708385922,
+  "lat": 25.1257628,
+  "lon": 55.4331735,
+  "tags": {
+    "name": "الروية 1",
+    "name:ar": "الروية 1",
+    "name:en": "Al Rowaiyah 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732266,
+  "lat": 25.1514240,
+  "lon": 55.3753271,
+  "tags": {
+    "name": "ند الشبا 3",
+    "name:ar": "ند الشبا 3",
+    "name:en": "Nadd Al Sheba 3",
+    "name:ml": "നദ് അൽ-ഷീബ 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185498,
+  "lat": 25.1404144,
+  "lon": 55.4113967,
+  "tags": {
+    "name": "ورسان 4",
+    "name:ar": "ورسان 4",
+    "name:en": "Warsan 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204832,
+  "lat": 25.1539236,
+  "lon": 55.4082859,
+  "tags": {
+    "name": "ورسان",
+    "name:ar": "ورسان",
+    "name:en": "Warsan",
+    "name:fa": "ورسان",
+    "name:fr": "Warsan",
+    "name:ur": "ورسان",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799732264,
+  "lat": 25.1737427,
+  "lon": 55.3813574,
+  "tags": {
+    "name": "رأس الخور الصناعية 3",
+    "name:ar": "رأس الخور الصناعية 3",
+    "name:en": "Ras Al Khor Industrial 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185496,
+  "lat": 25.1654854,
+  "lon": 55.4083966,
+  "tags": {
+    "name": "ورسان 1",
+    "name:ar": "ورسان 1",
+    "name:en": "Warsan 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204834,
+  "lat": 25.1325418,
+  "lon": 55.4354666,
+  "tags": {
+    "name": "المدينة الأكاديمية",
+    "name:ar": "المدينة الأكاديمية",
+    "name:en": "Academic City",
+    "name:fa": "شهر دانشگاهی",
+    "name:ml": "ദുബായ് അക്കാദമിക് സിറ്റി",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708385921,
+  "lat": 25.1514084,
+  "lon": 55.4657417,
+  "tags": {
+    "name": "ورسان 3",
+    "name:ar": "ورسان 3",
+    "name:en": "Warsan 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708185497,
+  "lat": 25.1604359,
+  "lon": 55.4391413,
+  "tags": {
+    "name": "ورسان 2",
+    "name:ar": "ورسان 2",
+    "name:en": "Warsan 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707364570,
+  "lat": 25.1800720,
+  "lon": 55.4538154,
+  "tags": {
+    "name": "الورقاء 5",
+    "name:ar": "الورقاء 5",
+    "name:en": "Al Warqa'a 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799807467,
+  "lat": 25.0952206,
+  "lon": 55.5129280,
+  "tags": {
+    "name": "مرييل",
+    "name:ar": "مرييل",
+    "name:en": "Mereiyeel",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13708385924,
+  "lat": 25.1142777,
+  "lon": 55.4778109,
+  "tags": {
+    "name": "الروية 3",
+    "name:ar": "الروية 3",
+    "name:en": "Al Rowaiyah 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11794881384,
+  "lat": 25.1120152,
+  "lon": 55.5715927,
+  "tags": {
+    "name": "نخلي",
+    "name:ar": "نخلي",
+    "name:en": "Enkhali",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799523281,
+  "lat": 25.1759740,
+  "lon": 55.4784778,
+  "tags": {
+    "name": "العذبة",
+    "name:ar": "العذبة",
+    "name:en": "Al Athbah",
+    "name:ml": "വാദി അൽ ഷബക്ക്",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204837,
+  "lat": 25.1774470,
+  "lon": 55.5695341,
+  "tags": {
+    "name": "العوير",
+    "name:ar": "العوير",
+    "name:en": "Al Awir",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803586,
+  "lat": 25.0214074,
+  "lon": 55.6474830,
+  "tags": {
+    "name": "نزوة",
+    "name:ar": "نزوة",
+    "name:en": "Nazwah",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803584,
+  "lat": 25.0445193,
+  "lon": 55.6072767,
+  "tags": {
+    "name": "لهباب 1",
+    "name:ar": "لهباب 1",
+    "name:en": "Lehbab 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803585,
+  "lat": 25.0636617,
+  "lon": 55.6521227,
+  "tags": {
+    "name": "المريال",
+    "name:ar": "المريال",
+    "name:en": "Al Meryal",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803583,
+  "lat": 25.1219175,
+  "lon": 55.6267780,
+  "tags": {
+    "name": "الوحوش",
+    "name:ar": "الوحوش",
+    "name:en": "Al Wohoosh",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803582,
+  "lat": 25.1652565,
+  "lon": 55.5835410,
+  "tags": {
+    "name": "العوير 2",
+    "name:ar": "العوير 2",
+    "name:en": "Al Awir 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 12373079466,
+  "lat": 24.7893029,
+  "lon": 56.1139426,
+  "tags": {
+    "GNS:id": "-783133",
+    "alt_name": "Ḩayl",
+    "name": "Hayl",
+    "name:en": "Hayl",
+    "name:es": "Hayl",
+    "name:fr": "Hayl",
+    "place": "suburb",
+    "source": "https://www.agda.ae/en/catalogue/tna/fco/18/1796/n/1"
+  }
+},
+{
+  "type": "node",
+  "id": 12153460994,
+  "lat": 24.8116493,
+  "lon": 56.1262135,
+  "tags": {
+    "GNS:id": "-784367",
+    "alt_name": "Şufayrī",
+    "name": "Sufayri",
+    "name:en": "Sufayri",
+    "name:es": "Sufayri",
+    "name:fr": "Sufayri",
+    "place": "suburb",
+    "source": "https://www.mindat.org/feature-290729.html;https://www.agda.ae/en/catalogue/tna/fco/18/1796/n/1",
+    "wikidata": "Q7634460"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204817,
+  "lat": 25.1988837,
+  "lon": 55.3857707,
+  "tags": {
+    "name": "ند الحمر",
+    "name:ar": "ند الحمر",
+    "name:en": "Nadd Al Hamar",
+    "name:fa": "ند الحمر",
+    "name:fr": "Nadd al-Hamar",
+    "name:ml": "നദ് അൽ-ഹമർ",
+    "name:ur": "ند الحمر",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707364566,
+  "lat": 25.1883826,
+  "lon": 55.4034390,
+  "tags": {
+    "name": "الورقاء 1",
+    "name:ar": "الورقاء 1",
+    "name:en": "Al Warqa'a 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707364567,
+  "lat": 25.2016181,
+  "lon": 55.4096895,
+  "tags": {
+    "name": "الورقاء 2",
+    "name:ar": "الورقاء 2",
+    "name:en": "Al Warqa'a 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209516,
+  "lat": 25.2159562,
+  "lon": 55.3856891,
+  "tags": {
+    "name": "ند شما",
+    "name:ar": "ند شما",
+    "name:en": "Nadd Shamma",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209517,
+  "lat": 25.2311645,
+  "lon": 55.3685667,
+  "tags": {
+    "name": "أم رمول",
+    "name:ar": "أم رمول",
+    "name:en": "Umm Ramool",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209518,
+  "lat": 25.2227966,
+  "lon": 55.3942477,
+  "tags": {
+    "name": "الراشدية",
+    "name:ar": "الراشدية",
+    "name:en": "Al Rashidiya",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707364568,
+  "lat": 25.1883544,
+  "lon": 55.4182293,
+  "tags": {
+    "name": "الورقاء 3",
+    "name:ar": "الورقاء 3",
+    "name:en": "Al Warqa'a 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707364569,
+  "lat": 25.1874542,
+  "lon": 55.4376597,
+  "tags": {
+    "name": "الورقاء 4",
+    "name:ar": "الورقاء 4",
+    "name:en": "Al Warqa'a 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204816,
+  "lat": 25.1890201,
+  "lon": 55.4308318,
+  "tags": {
+    "name": "الورقاء",
+    "name:ar": "الورقاء",
+    "name:en": "Al Warqa",
+    "name:fa": "ورقا",
+    "name:ml": "അൽ വർഖ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209534,
+  "lat": 25.2218433,
+  "lon": 55.4231473,
+  "tags": {
+    "name": "مردف",
+    "name:ar": "مردف",
+    "name:en": "Mirdif",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13264966065,
+  "lat": 25.2139744,
+  "lon": 55.4501470,
+  "tags": {
+    "name": "مشرف",
+    "name:ar": "مشرف",
+    "name:en": "Mushrif",
+    "name:fa": "مشرف",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13707693373,
+  "lat": 25.2600447,
+  "lon": 55.3687472,
+  "tags": {
+    "name": "مطار دبي الدولي",
+    "name:ar": "مطار دبي الدولي",
+    "name:en": "Dubai Int'l Airport",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298524,
+  "lat": 25.2486566,
+  "lon": 55.3950050,
+  "tags": {
+    "name": "الطوار 3",
+    "name:ar": "الطوار 3",
+    "name:en": "Al Twar 3",
+    "name:ml": "അൽ-ത്വാർ 3",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209521,
+  "lat": 25.2495966,
+  "lon": 55.3954599,
+  "tags": {
+    "name": "الطوار 3",
+    "name:ar": "الطوار 3",
+    "name:en": "Al Twar 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298528,
+  "lat": 25.2592789,
+  "lon": 55.3992330,
+  "tags": {
+    "name": "الطوار 4",
+    "name:ar": "الطوار 4",
+    "name:en": "Al Twar 4",
+    "name:ml": "അൽ-ത്വാർ 4",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13258039755,
+  "lat": 25.2610452,
+  "lon": 55.3729259,
+  "tags": {
+    "name": "المنطقة الحرة بمطار دبي",
+    "name:ar": "المنطقة الحرة بمطار دبي",
+    "name:en": "Dubai Airport Free Zone",
+    "name:fa": "منطقه آزاد فرودگاه دبی",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298523,
+  "lat": 25.2615949,
+  "lon": 55.3818201,
+  "tags": {
+    "name": "الطوار 2",
+    "name:ar": "الطوار 2",
+    "name:en": "Al Twar 2",
+    "name:ml": "അൽ-ത്വാർ 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889489,
+  "lat": 25.2624350,
+  "lon": 55.3794855,
+  "tags": {
+    "name": "الطوار",
+    "name:ar": "الطوار",
+    "name:en": "Al Twar",
+    "name:fa": "طوار",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209520,
+  "lat": 25.2626320,
+  "lon": 55.3816411,
+  "tags": {
+    "name": "الطوار 2",
+    "name:ar": "الطوار 2",
+    "name:en": "Al Twar 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209524,
+  "lat": 25.2694033,
+  "lon": 55.3876996,
+  "tags": {
+    "name": "الطوار 5",
+    "name:ar": "الطوار 5",
+    "name:en": "Al Twar 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298529,
+  "lat": 25.2855310,
+  "lon": 55.3860582,
+  "tags": {
+    "name": "القصيص الصناعية 1",
+    "name:ar": "القصيص الصناعية 1",
+    "name:en": "Al Qusais Industrial 1",
+    "name:ml": "അൽ ഖുസൈസ് വ്യവസായ മേഖല 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209527,
+  "lat": 25.2868953,
+  "lon": 55.3871074,
+  "tags": {
+    "name": "القصيص الصناعية 1",
+    "name:ar": "القصيص الصناعية 1",
+    "name:en": "Al Qusais Ind 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209525,
+  "lat": 25.2620614,
+  "lon": 55.4008187,
+  "tags": {
+    "name": "الطوار 4",
+    "name:ar": "الطوار 4",
+    "name:en": "Al Twar 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209529,
+  "lat": 25.2710559,
+  "lon": 55.4048764,
+  "tags": {
+    "name": "محيصنة 3",
+    "name:ar": "محيصنة 3",
+    "name:en": "Muhaisanah 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298530,
+  "lat": 25.2818870,
+  "lon": 55.3930667,
+  "tags": {
+    "name": "القصيص الصناعية 2",
+    "name:ar": "القصيص الصناعية 2",
+    "name:en": "Al Qusais Industrial 2",
+    "name:ml": "അൽ ഖുസൈസ് വ്യവസായ മേഖല 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209528,
+  "lat": 25.2828123,
+  "lon": 55.3944590,
+  "tags": {
+    "name": "القصيص الصناعية 2",
+    "name:ar": "القصيص الصناعية 2",
+    "name:en": "Al Qusais Ind 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209530,
+  "lat": 25.2790475,
+  "lon": 55.4079106,
+  "tags": {
+    "name": "محيصنة 4",
+    "name:ar": "محيصنة 4",
+    "name:en": "Muhaisanah 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298535,
+  "lat": 25.2870378,
+  "lon": 55.4136842,
+  "tags": {
+    "name": "القصيص الصناعية 5",
+    "name:ar": "القصيص الصناعية 5",
+    "name:en": "Al Qusais Industrial 5",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209533,
+  "lat": 25.2869265,
+  "lon": 55.4141247,
+  "tags": {
+    "name": "القصيص الصناعية 5",
+    "name:ar": "القصيص الصناعية 5",
+    "name:en": "Al Qusais Ind 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209535,
+  "lat": 25.2445037,
+  "lon": 55.4181049,
+  "tags": {
+    "name": "محيصنة 1",
+    "name:ar": "محيصنة 1",
+    "name:en": "Muhaisanah 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298537,
+  "lat": 25.2453456,
+  "lon": 55.4401969,
+  "tags": {
+    "name": "المزهر 1",
+    "name:ar": "المزهر 1",
+    "name:en": "Al Mizhar 1",
+    "name:ml": "അൽ മിസ്ഹർ 1",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209536,
+  "lat": 25.2452074,
+  "lon": 55.4416415,
+  "tags": {
+    "name": "المزهر 1",
+    "name:ar": "المزهر 1",
+    "name:en": "Al Mizhar 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298538,
+  "lat": 25.2431351,
+  "lon": 55.4607968,
+  "tags": {
+    "name": "المزهر 2",
+    "name:ar": "المزهر 2",
+    "name:en": "Al Mizhar 2",
+    "name:ml": "അൽ മിസ്ഹർ 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209537,
+  "lat": 25.2427018,
+  "lon": 55.4610797,
+  "tags": {
+    "name": "المزهر 2",
+    "name:ar": "المزهر 2",
+    "name:en": "Al Mizhar 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209538,
+  "lat": 25.2640660,
+  "lon": 55.4223532,
+  "tags": {
+    "name": "محيصنة 2",
+    "name:ar": "محيصنة 2",
+    "name:en": "Muhaisanah 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298542,
+  "lat": 25.2773868,
+  "lon": 55.4367164,
+  "tags": {
+    "name": "محيصنة 5",
+    "name:ar": "محيصنة 5",
+    "name:en": "Muhaisnah 5",
+    "name:ml": "മുഹൈസിന 5",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209541,
+  "lat": 25.2793791,
+  "lon": 55.4340618,
+  "tags": {
+    "name": "محيصنة 5",
+    "name:ar": "محيصنة 5",
+    "name:en": "Muhaisanah 5",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298540,
+  "lat": 25.2639056,
+  "lon": 55.4477997,
+  "tags": {
+    "name": "المزهر 4",
+    "name:ar": "المزهر 4",
+    "name:en": "Al Mizhar 4",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209539,
+  "lat": 25.2638264,
+  "lon": 55.4480002,
+  "tags": {
+    "name": "المزهر 4",
+    "name:ar": "المزهر 4",
+    "name:en": "Al Mizhar 4",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298541,
+  "lat": 25.2635292,
+  "lon": 55.4648198,
+  "tags": {
+    "name": "المزهر 3",
+    "name:ar": "المزهر 3",
+    "name:en": "Al Mizhar 3",
+    "name:ml": "അൽ മിസ്ഹർ 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209540,
+  "lat": 25.2623973,
+  "lon": 55.4652112,
+  "tags": {
+    "name": "المزهر 3",
+    "name:ar": "المزهر 3",
+    "name:en": "Al Mizhar 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298544,
+  "lat": 25.2748230,
+  "lon": 55.4453362,
+  "tags": {
+    "name": "عود المطينة",
+    "name:ar": "عود المطينة",
+    "name:en": "Oud Al Muteena",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 5244076791,
+  "lat": 25.2092900,
+  "lon": 55.4879092,
+  "tags": {
+    "name": "وادي العمردي",
+    "name:ar": "وادي العمردي",
+    "name:en": "Wadi Al Amardi",
+    "name:ml": "വാദി അൽ-അമർദി",
+    "name:ur": "وادي العمردي",
+    "place": "suburb",
+    "wikidata": "Q22948338",
+    "wikimedia_commons": "Category:Al Amardhi"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298546,
+  "lat": 25.2269753,
+  "lon": 55.5215613,
+  "tags": {
+    "name": "الخوانيج 2",
+    "name:ar": "الخوانيج 2",
+    "name:en": "Al Khawaneej 2",
+    "name:ml": "അൽ-ഖവാനീജ് 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799803581,
+  "lat": 25.1992772,
+  "lon": 55.5716401,
+  "tags": {
+    "name": "العوير 1",
+    "name:ar": "العوير 1",
+    "name:en": "Al Awir 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209542,
+  "lat": 25.2131328,
+  "lon": 55.5419402,
+  "tags": {
+    "name": "العياص",
+    "name:ar": "العياص",
+    "name:en": "Aleyas",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298547,
+  "lat": 25.2321563,
+  "lon": 55.5563174,
+  "tags": {
+    "name": "الطي",
+    "name:ar": "الطي",
+    "name:en": "Al Ttay",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298545,
+  "lat": 25.2407108,
+  "lon": 55.4890201,
+  "tags": {
+    "name": "الخوانيج 1",
+    "name:ar": "الخوانيج 1",
+    "name:en": "Al Khawaneej 1",
+    "name:ml": "അൽ-ഖവാനീജ് 1",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204797,
+  "lat": 25.2382523,
+  "lon": 55.5097961,
+  "tags": {
+    "name": "الخوانج",
+    "name:ar": "الخوانج",
+    "name:en": "Al-Khawaneej",
+    "name:fr": "Al-Khawaneej",
+    "name:ml": "അൽ ഖവാനീജ്",
+    "name:ur": "الخوانیج",
+    "place": "suburb",
+    "wikidata": "Q12187125",
+    "wikimedia_commons": "Category:Al Khawaneej",
+    "wikipedia": "ar:الخوانيج"
+  }
+},
+{
+  "type": "node",
+  "id": 8143204789,
+  "lat": 25.2913041,
+  "lon": 55.3744578,
+  "tags": {
+    "name": "النهدة 2",
+    "name:ar": "النهدة 2",
+    "name:en": "Al Nahda 2",
+    "name:fr": "An-Nahda 2",
+    "name:ml": "അൽ-നഹ്ദ 2",
+    "name:ur": "النہدہ 2",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209526,
+  "lat": 25.2915335,
+  "lon": 55.3782384,
+  "tags": {
+    "name": "النهدة 2",
+    "name:ar": "النهدة 2",
+    "name:en": "Al Nahda 2",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298533,
+  "lat": 25.2973305,
+  "lon": 55.3902334,
+  "tags": {
+    "name": "القصيص الصناعية 3",
+    "name:ar": "القصيص الصناعية 3",
+    "name:en": "Al Qusais Industrial 3",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209531,
+  "lat": 25.2980997,
+  "lon": 55.3901323,
+  "tags": {
+    "name": "القصيص الصناعية 3",
+    "name:ar": "القصيص الصناعية 3",
+    "name:en": "Al Qusais Ind 3",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13263889490,
+  "lat": 25.2898469,
+  "lon": 55.3953841,
+  "tags": {
+    "name": "القصيص الصناعية",
+    "name:ar": "القصيص الصناعية",
+    "name:en": "Al Qusais Industrial Area",
+    "name:fa": "منطقه صنعتی قصیص",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11799298534,
+  "lat": 25.2923312,
+  "lon": 55.3993786,
+  "tags": {
+    "name": "القصيص الصناعية 4",
+    "name:ar": "القصيص الصناعية 4",
+    "name:en": "Al Qusais Industrial 4",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13706209532,
+  "lat": 25.2933992,
+  "lon": 55.4005417,
+  "tags": {
+    "name": "القصيص الصناعية 4",
+    "name:ar": "القصيص الصناعية 4",
+    "name:en": "Al Qusais Ind 4",
+    "place": "suburb"
+  }
+}
+
+  ]
+}

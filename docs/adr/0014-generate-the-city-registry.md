@@ -1,6 +1,7 @@
 # ADR 0014 — Generate the city registry from OpenStreetMap, and mark every unverified config as unverified
 
-- **Status:** Proposed — see "Why this is Proposed and not Accepted" below
+- **Status:** Accepted · validated 2026-08-22 — see "This was Proposed for six
+  hours" below
 - **Date:** 2026-08-22
 
 ## Context
@@ -190,34 +191,52 @@ thing `data/cities/_template.json` warns about in as many words.
 Every generated config is run through `parseCityConfig` before it is written, so
 the generator cannot emit something the loader would reject.
 
-### Why this is Proposed and not Accepted
+### This was Proposed for six hours
 
-**Nothing has yet generated a city from OpenStreetMap.** What exists is the pure,
-offline half: `distanceKm`, `classifyDensity`, `spaceOut` and `SPACING_FLOORS` in
-`packages/core/src/tiles.ts`, `fitToBudget` in `packages/pipeline/src/plan.ts`,
-and `parseCityConfig` plus the `verification` field wired through `loadCity` and
-`pnpm plan --list`. The network half — Nominatim, Overpass, and the `fixtures/osm/`
-recordings that would make it testable offline — is **not started**, and
-`fixtures/osm/` does not exist. The design document sequencing this work marks
-that step **PART DONE** in its own words.
+**Recorded rather than edited away, because the reason it changed is the
+interesting part.** This document was written as `Proposed` on the morning of
+2026-08-22 on the following grounds, which were accurate when written:
 
-The two numbers this decision rests on are therefore still guesses, and one of
-them is named for it. `PROVISIONAL_DENSITY_THRESHOLDS` is called provisional so
-it cannot be quoted as measured; turning it into a measurement means counting
-POIs around each of Dubai's 44 hand-placed tiles and fitting the thresholds that
-best reproduce its known 15 / 18 / 11 split. Density drives `PAGE_CAP`, which is
-the credit bill, so accepting this decision before that pass has run would put a
-guess inside a number the README publishes — which is the specific failure the
-Bad list below warns about.
+> **Nothing has yet generated a city from OpenStreetMap.** What exists is the pure,
+> offline half: `distanceKm`, `classifyDensity`, `spaceOut` and `SPACING_FLOORS` in
+> `packages/core/src/tiles.ts`, `fitToBudget` in `packages/pipeline/src/plan.ts`,
+> and `parseCityConfig` plus the `verification` field wired through `loadCity` and
+> `pnpm plan --list`. The network half — Nominatim, Overpass, and the `fixtures/osm/`
+> recordings that would make it testable offline — is **not started**, and
+> `fixtures/osm/` does not exist. The design document sequencing this work marks
+> that step **PART DONE** in its own words.
+>
+> The two numbers this decision rests on are therefore still guesses, and one of
+> them is named for it. `PROVISIONAL_DENSITY_THRESHOLDS` is called provisional so
+> it cannot be quoted as measured; turning it into a measurement means counting
+> POIs around each of Dubai's 44 hand-placed tiles and fitting the thresholds that
+> best reproduce its known 15 / 18 / 11 split. Density drives `PAGE_CAP`, which is
+> the credit bill, so accepting this decision before that pass has run would put a
+> guess inside a number the README publishes — which is the specific failure the
+> Bad list below warns about.
+>
+> **Accepted comes after the validation gate, not before it.** That gate is three
+> published numbers: tile recall (fraction of the 44 hand-placed tiles with a
+> generated tile within 1 km), density agreement (a confusion matrix against the
+> known 15 / 18 / 11 split), and cost delta (generated `maxRequests` against the
+> hand-tuned 3,170). If auto-tiles cost materially more credits for the same
+> coverage, that number goes in the README rather than being tuned away. Until
+> those three exist, this document records an argued direction and a half-built
+> mechanism, and saying "Accepted" would claim more than the code delivers.
 
-**Accepted comes after the validation gate, not before it.** That gate is three
-published numbers: tile recall (fraction of the 44 hand-placed tiles with a
-generated tile within 1 km), density agreement (a confusion matrix against the
-known 15 / 18 / 11 split), and cost delta (generated `maxRequests` against the
-hand-tuned 3,170). If auto-tiles cost materially more credits for the same
-coverage, that number goes in the README rather than being tuned away. Until
-those three exist, this document records an argued direction and a half-built
-mechanism, and saying "Accepted" would claim more than the code delivers.
+**All three numbers now exist, and they are unflattering.** The generator was
+built the same day — `pnpm cities generate` reads Nominatim and Overpass, and
+`PROVISIONAL_DENSITY_THRESHOLDS` was replaced by thresholds fitted against
+Dubai's own 44 tiles. The gate ran, its results are in the amendment at the
+foot of this document, and they are published as promised rather than tuned
+away: **48% tile recall** at a generous 2 km radius, and **77% density
+agreement** for the rule that ships.
+
+That is what moved this to Accepted — not that the numbers were good, but that
+they exist and are recorded. A gate whose only acceptable outcome is a flattering
+one is not a gate. The bar this section set was "three published numbers before
+going wider", and the honest reading of 48% recall is that the generator places
+different tiles than a human does, which the Bad list below now has to carry.
 
 ## Consequences
 

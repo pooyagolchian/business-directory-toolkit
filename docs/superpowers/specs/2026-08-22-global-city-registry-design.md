@@ -7,7 +7,7 @@
   the network half: fetching candidates from Nominatim and Overpass, and the
   `fixtures/osm/` recordings that make it testable offline.
 - **Milestone:** Its own. Not v0.1, not v0.2.
-- **Needs an ADR:** yes — see "What this contradicts" at the end
+- **Needs an ADR:** written — [ADR 0014](../../adr/0014-generate-the-city-registry.md), 2026-08-22
 
 ## The question this answers
 
@@ -424,5 +424,11 @@ and the `verification` field says so on every record. But it is **unverified**,
 and that is a genuine softening of the position ADR 0005 took. It needs its own
 ADR saying so out loud rather than being quietly reinterpreted.
 
-**Proposed: ADR 0012 — Generate the city registry from OpenStreetMap, and mark
-every unverified config as unverified.**
+**Written as [ADR 0014](../../adr/0014-generate-the-city-registry.md) — Generate
+the city registry from OpenStreetMap, and mark every unverified config as
+unverified.**
+
+Drafted here as "ADR 0012" and renumbered on discovering that 0012 carries a
+standing claim from ADR 0008 — see the numbering note in
+[docs/adr/README.md](../../adr/README.md). Lead-generation scoring had been
+renumbered 0012 → 0013 for the same reason two days earlier.

@@ -18,20 +18,22 @@ that only contains decisions that worked is a marketing page.
 
 ## The records
 
-| #                                                       | Title                                                                             | Status                               | Date       | Decides                                                                                                                                                                     |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [0001](./0001-tile-the-crawl.md)                        | Tile the crawl geographically, because one query is capped at ~200 results        | Accepted                             | 2026-08-20 | A city is crawled as named geographic tiles, one query per tile-and-category pair, with pagination depth decided at run time — the ~200 ceiling is per query, not per page. |
-| [0002](./0002-do-not-redistribute-the-dataset.md)       | Ship the pipeline, not the dataset                                                | Accepted                             | 2026-08-20 | The crawled dataset is never committed. The repository ships the pipeline, the city configs, the taxonomy map, the suppression list and a handful of fixtures.              |
-| [0003](./0003-deploy-region.md)                         | Deploy to `us-east-1`, and design around the distance                             | Accepted · supersedes `me-central-1` | 2026-08-20 | Everything runs in `us-east-1` on `nodejs24.x`, and the ~250 ms origin distance to Dubai is engineered around rather than apologised for.                                   |
-| [0004](./0004-design-system.md)                         | Monochrome design system on Tailwind v4 + shadcn/ui                               | Accepted · amended 2026-08-22        | 2026-08-20 | Strict black-and-white, typography carrying the whole hierarchy, four families including a real Arabic face for bilingual titles.                                           |
-| [0005](./0005-toolkit-not-directory.md)                 | Ship a toolkit for any city, not a Dubai directory                                | Accepted                             | 2026-08-21 | The deliverable is an open-source toolkit; `directory.pooyagolchian.com` is a reference deployment. A city becomes `data/cities/<id>.json`, not code.                       |
-| [0006](./0006-category-saturation.md)                   | Category saturation is real, and it is now measured                               | Accepted · verified 2026-08-21       | 2026-08-21 | Classify distinct category strings rather than businesses — 15,246 businesses yielded 1,788 distinct categories, a final marginal rate of 4.3 per 100.                      |
-| [0007](./0007-enforce-the-takedown-promise.md)          | Enforce the takedown promise with a committed suppression list                    | Accepted                             | 2026-08-22 | Takedowns are enforced by a committed list of opaque `place_id` values applied on the load path, so `--from-archive` cannot bring a removed business back.                  |
-| [0008](./0008-themes-must-generalise-and-be-topical.md) | Review themes must generalise, and must be topical                                | Accepted · amended 2026-08-22        | 2026-08-21 | A theme publishes only if it recurs across ≥5 businesses **and** is either a word the business uses about itself or ≥0.75 concentrated in one `l1`.                         |
-| [0009](./0009-bundle-the-dataset-into-the-lambda.md)    | Bundle the dataset into the Lambda for v0.1, and say plainly that it is a stopgap | Accepted                             | 2026-08-21 | The crawl output is copied into `packages/web/.data` at build time and traced into the server function; a missing file exits 1 rather than deploying an empty site.         |
-| [0010](./0010-credibility-weighted-ranking.md)          | Rank by a credibility-weighted mean, not a raw star average                       | Accepted                             | 2026-08-22 | Listings default to `rankScore()`, with both parameters measured from the corpus — mean 4.49, median weight 76 on the Dubai crawl.                                          |
-| [0011](./0011-area-from-coordinates-not-provenance.md)  | Assign a business to an area by its coordinates, not by the query that found it   | Accepted                             | 2026-08-21 | Area comes from the nearest tile centre; crawl provenance is a fallback, because it disagreed with geography for 52% of businesses.                                         |
-| [0013](./0013-lead-health-is-establishment.md)          | Score a lead's health by establishment, not by a rating                           | Accepted                             | 2026-08-22 | `rankScore` is a shrunk rating, so it fell as a business grew: `corr(score, reviews)` was −0.28 on 641 leads. Now `reviews/(reviews+m)`, and +0.08.                         |
+| #                                                       | Title                                                                                         | Status                               | Date       | Decides                                                                                                                                                                     |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [0001](./0001-tile-the-crawl.md)                        | Tile the crawl geographically, because one query is capped at ~200 results                    | Accepted                             | 2026-08-20 | A city is crawled as named geographic tiles, one query per tile-and-category pair, with pagination depth decided at run time — the ~200 ceiling is per query, not per page. |
+| [0002](./0002-do-not-redistribute-the-dataset.md)       | Ship the pipeline, not the dataset                                                            | Accepted                             | 2026-08-20 | The crawled dataset is never committed. The repository ships the pipeline, the city configs, the taxonomy map, the suppression list and a handful of fixtures.              |
+| [0003](./0003-deploy-region.md)                         | Deploy to `us-east-1`, and design around the distance                                         | Accepted · supersedes `me-central-1` | 2026-08-20 | Everything runs in `us-east-1` on `nodejs24.x`, and the ~250 ms origin distance to Dubai is engineered around rather than apologised for.                                   |
+| [0004](./0004-design-system.md)                         | Monochrome design system on Tailwind v4 + shadcn/ui                                           | Accepted · amended 2026-08-22        | 2026-08-20 | Strict black-and-white, typography carrying the whole hierarchy, four families including a real Arabic face for bilingual titles.                                           |
+| [0005](./0005-toolkit-not-directory.md)                 | Ship a toolkit for any city, not a Dubai directory                                            | Accepted                             | 2026-08-21 | The deliverable is an open-source toolkit; `directory.pooyagolchian.com` is a reference deployment. A city becomes `data/cities/<id>.json`, not code.                       |
+| [0006](./0006-category-saturation.md)                   | Category saturation is real, and it is now measured                                           | Accepted · verified 2026-08-21       | 2026-08-21 | Classify distinct category strings rather than businesses — 15,246 businesses yielded 1,788 distinct categories, a final marginal rate of 4.3 per 100.                      |
+| [0007](./0007-enforce-the-takedown-promise.md)          | Enforce the takedown promise with a committed suppression list                                | Accepted                             | 2026-08-22 | Takedowns are enforced by a committed list of opaque `place_id` values applied on the load path, so `--from-archive` cannot bring a removed business back.                  |
+| [0008](./0008-themes-must-generalise-and-be-topical.md) | Review themes must generalise, and must be topical                                            | Accepted · amended 2026-08-22        | 2026-08-21 | A theme publishes only if it recurs across ≥5 businesses **and** is either a word the business uses about itself or ≥0.75 concentrated in one `l1`.                         |
+| [0009](./0009-bundle-the-dataset-into-the-lambda.md)    | Bundle the dataset into the Lambda for v0.1, and say plainly that it is a stopgap             | Accepted                             | 2026-08-21 | The crawl output is copied into `packages/web/.data` at build time and traced into the server function; a missing file exits 1 rather than deploying an empty site.         |
+| [0010](./0010-credibility-weighted-ranking.md)          | Rank by a credibility-weighted mean, not a raw star average                                   | Accepted                             | 2026-08-22 | Listings default to `rankScore()`, with both parameters measured from the corpus — mean 4.49, median weight 76 on the Dubai crawl.                                          |
+| [0011](./0011-area-from-coordinates-not-provenance.md)  | Assign a business to an area by its coordinates, not by the query that found it               | Accepted                             | 2026-08-21 | Area comes from the nearest tile centre; crawl provenance is a fallback, because it disagreed with geography for 52% of businesses.                                         |
+| [0012](./0012-do-not-archive-raw-review-responses.md)   | Do not archive raw review responses, unlike every other stage                                 | Accepted                             | 2026-08-21 | Stage 5 analyses reviews in memory and persists only derived signals. Archiving them would write reviewer name, contributor id and photograph to disk and to S3.            |
+| [0013](./0013-lead-health-is-establishment.md)          | Score a lead's health by establishment, not by a rating                                       | Accepted                             | 2026-08-22 | `rankScore` is a shrunk rating, so it fell as a business grew: `corr(score, reviews)` was −0.28 on 641 leads. Now `reviews/(reviews+m)`, and +0.08.                         |
+| [0014](./0014-generate-the-city-registry.md)            | Generate the city registry from OpenStreetMap, and mark every unverified config as unverified | **Proposed**                         | 2026-08-22 | Coverage is a generator, not a directory listing. A config is not the dataset, so it costs no credits; `verification` carries evidence, and its absence means unverified.   |
 
 ### Notes on the numbering
 
@@ -44,14 +46,24 @@ that only contains decisions that worked is a marketing page.
 - **There is no 0000, and nothing has been superseded.** ADR 0003 supersedes the
   original `me-central-1` region choice, which was never itself an ADR, so no
   file in this directory is retired.
-- **0012 is spoken for before it exists, and the sequence now has a gap because
-  of it.** ADR 0008 cites "ADR 0012" for the reviews stage's deliberate refusal
-  to archive raw responses. That document has not been written, so the citation
-  currently points at nothing — it is a commitment, not a link, and it should be
-  honoured before the number is used for anything else. Lead-generation scoring
-  was drafted as 0012 and renumbered to **0013** on discovering this note, which
-  is precisely the job this note exists to do. The gap stays until 0012 is
-  written; it is not available for reassignment.
+- **0012 was spoken for before it existed, and the gap has now been closed.**
+  ADR 0008 cited "ADR 0012" for the reviews stage's deliberate refusal to
+  archive raw responses while that document did not exist, so for two days the
+  citation pointed at nothing — a commitment rather than a link. It was
+  honoured on 2026-08-22 by
+  [0012](./0012-do-not-archive-raw-review-responses.md), dated 2026-08-21
+  because that is when the decision was taken, the same way 0001 is. The
+  reservation held in the meantime, and that was the whole point of writing it
+  down: the number was never available for reassignment, and twice it was
+  nearly reassigned anyway.
+- **It nearly happened twice, which is why the note above stays.**
+  Lead-generation scoring was drafted as 0012 and renumbered to **0013**; the
+  city-registry decision was then _also_ drafted as 0012 — in
+  `docs/superpowers/specs/2026-08-22-global-city-registry-design.md`, which said
+  "Proposed: ADR 0012" — and was renumbered to **0014** on the same discovery. A
+  note that catches the same mistake twice in three days is load-bearing, so it
+  stays at the top of this section rather than being folded into the table now
+  that the underlying gap is filled.
 
 ## How the decisions depend on each other
 
@@ -71,7 +83,9 @@ flowchart TD
     A9["0009<br/>Bundle the dataset for v0.1"]
     A10["0010<br/>Credibility-weighted ranking"]
     A11["0011<br/>Area from coordinates"]
+    A12["0012<br/>Do not archive raw reviews"]
     A13["0013<br/>Lead health is establishment"]
+    A14["0014<br/>Generate the city registry"]
 
     A1 -->|"tiling is data, so a city is data"| A5
     A1 -->|"the raw archive was already on disk"| A6
@@ -79,6 +93,7 @@ flowchart TD
     A2 -->|"export is legal only if the user crawled it"| A5
     A2 -->|"made removal possible, never enforced it"| A7
     A2 -->|"reviews are a source, never content"| A8
+    A2 -->|"review text is Google's users' content"| A12
     A2 -->|"committing the dataset was never an option"| A9
     A3 -->|"no API service, no second cold start"| A9
     A5 -->|"a fork must inherit the promise"| A7
@@ -88,15 +103,21 @@ flowchart TD
     A9 -->|"a corpus-wide prior is free only while bundled"| A10
     A10 -->|"a shrunk rating inverts once the rating is the gap"| A13
     A7 -->|"a call sheet is the worst place to break it"| A13
+    A5 -->|"a city is data, and only one city existed"| A14
+    A2 -->|"coverage can never be the dataset, so it must be config"| A14
+    A1 -->|"a ~200-result ceiling forces a city-scale unit, not a country"| A14
 ```
 
-Two relationships that look like edges are deliberately not drawn, because they
+Three relationships that look like edges are deliberately not drawn, because they
 do not survive reading the arrow as "forces". **0001 → 0004** was an edge
 labelled "titles arrive bilingual": the corpus forces the Arabic face, and it
 would be bilingual under any crawl strategy, so tiling has nothing to do with
 it. **0009 → 0011** was labelled "a correction is a rebuild, not a patch": that
 is 0011 _inheriting a cost_ from 0009 — it appears in 0011's Bad list as exactly
 that — and the two are dated the same day, so neither forced the other.
+**0011 → 0014** fails the same test: a generated tile set rewrites the `/area/`
+URLs 0011 established, and that sits in 0014's Bad list as an inherited cost, but
+0011 did nothing to force the registry into existence.
 
 Three of those edges are worth reading in full, because they are the ones where a
 decision would be unenforceable or unmeasurable on its own:
@@ -118,8 +139,10 @@ decision would be unenforceable or unmeasurable on its own:
 
 ## How to add one
 
-The next free number is **0012**, and see the note above — it already has a claim
-on it from ADR 0008.
+The next free number is **0015**, and for the first time since 0008 nothing has
+a standing claim on anything. ADR 0008's reservation on 0012 was discharged on
+2026-08-22; see the note above for how twice the number was nearly reassigned
+before that happened.
 
 Filename is `NNNN-kebab-case-title.md`, and the `# ADR NNNN — Title` heading
 inside must match it. Sections, in order:

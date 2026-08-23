@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { applyTaxonomy, distinctCategories } from "./taxonomy";
+import { applyTaxonomy, distinctCategories, matchesCategory } from "./taxonomy";
 import type { RawLocalResult, TaxonomyMap } from "./types";
 
 const MAP: TaxonomyMap = {
@@ -128,5 +128,43 @@ describe("distinctCategories", () => {
       types: ["Restaurant"],
     }));
     expect(distinctCategories(records)).toEqual(["Restaurant"]);
+  });
+});
+
+describe("matchesCategory", () => {
+  const clinic = { l1: "Health & Medical", l2: "Clinics", l3: "Dermatology" };
+
+  test("matches the top level, which the export filter used to ignore", () => {
+    // `pnpm export --category "Health & Medical"` printed "Exported 0
+    // businesses" against a corpus holding 2,068 of them, because the filter
+    // compared only l2 and l3. An empty export is indistinguishable from a
+    // category nobody crawled, which is the failure mode ADR 0007 argues
+    // against: a filter that quietly matches nothing implies there is nothing.
+    expect(matchesCategory(clinic, "Health & Medical")).toBe(true);
+  });
+
+  test("still matches the middle and leaf levels", () => {
+    expect(matchesCategory(clinic, "Clinics")).toBe(true);
+    expect(matchesCategory(clinic, "Dermatology")).toBe(true);
+  });
+
+  test("ignores case, because a CLI argument is typed by a human", () => {
+    expect(matchesCategory(clinic, "health & medical")).toBe(true);
+    expect(matchesCategory(clinic, "  CLINICS  ")).toBe(true);
+  });
+
+  test("does not match a different category", () => {
+    expect(matchesCategory(clinic, "Pharmacies")).toBe(false);
+  });
+
+  test("does not substring-match, which would silently widen an export", () => {
+    // "Health" must not pull in "Health & Medical": an operator asking for one
+    // category and receiving a broader set has no way to notice.
+    expect(matchesCategory(clinic, "Health")).toBe(false);
+    expect(matchesCategory(clinic, "Clinic")).toBe(false);
+  });
+
+  test("handles a business with no taxonomy at all", () => {
+    expect(matchesCategory({}, "Clinics")).toBe(false);
   });
 });

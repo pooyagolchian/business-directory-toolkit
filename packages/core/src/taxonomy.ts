@@ -91,3 +91,30 @@ export function applyTaxonomy(
   // arbitrary — a stable choice at least reproduces across runs.
   return described ?? first;
 }
+
+/**
+ * Does a business sit under the given category, at any level of the taxonomy?
+ *
+ * All three levels are checked, and that is the whole point. The export CLI
+ * compared only `l2` and `l3`, so `pnpm export --category "Health & Medical"`
+ * reported "Exported 0 businesses" against a corpus containing 2,068 of them.
+ * Nothing failed — an empty export reads exactly like a category nobody
+ * crawled, which is the shape of quiet wrongness ADR 0007 exists to argue
+ * against.
+ *
+ * Matching is exact after trimming and lowercasing, never a substring. An
+ * operator who asks for "Health" and silently receives "Health & Medical" has
+ * no way to notice they got a broader set than they requested — and the
+ * asymmetry matters, because an export is usually the last step before the
+ * rows are handed to somebody else.
+ */
+export function matchesCategory(
+  business: { l1?: string; l2?: string; l3?: string },
+  category: string,
+): boolean {
+  const needle = category.trim().toLowerCase();
+  if (needle === "") return false;
+  return [business.l1, business.l2, business.l3].some(
+    (level) => level?.trim().toLowerCase() === needle,
+  );
+}

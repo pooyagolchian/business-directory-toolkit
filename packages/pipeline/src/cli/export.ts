@@ -5,6 +5,7 @@
  *   pnpm export --format json
  *   pnpm export --format ndjson
  *   pnpm export --format csv --category Pharmacies --area deira
+ *   pnpm export --format csv --category "Health & Medical"   # l1 works too
  *
  * WHY THIS IS ALLOWED, when ADR 0002 forbids redistributing the dataset.
  *
@@ -22,6 +23,7 @@ import { createWriteStream, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import {
   dropSuppressed,
+  matchesCategory,
   parseSuppressionList,
   type Business,
 } from "@directory/core";
@@ -96,10 +98,18 @@ const withheld = dropSuppressed(businesses, suppressed);
 businesses = withheld.kept;
 
 if (category) {
-  const needle = category.toLowerCase();
-  businesses = businesses.filter(
-    (b) => b.l2?.toLowerCase() === needle || b.l3?.toLowerCase() === needle,
-  );
+  // Matches l1 as well as l2 and l3. It used to compare only the lower two,
+  // so `--category "Health & Medical"` reported "Exported 0 businesses"
+  // against 2,068 of them — see matchesCategory in packages/core.
+  businesses = businesses.filter((b) => matchesCategory(b, category));
+  if (businesses.length === 0) {
+    console.error(
+      `\nNo business matches --category ${JSON.stringify(category)}.\n` +
+        `Categories are matched exactly at any of the three taxonomy levels.\n` +
+        `Run \`pnpm export --format json\` and inspect l1/l2/l3 to see what exists.\n`,
+    );
+    process.exit(1);
+  }
 }
 if (area) {
   const needle = area.toLowerCase();

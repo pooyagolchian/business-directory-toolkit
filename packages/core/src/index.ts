@@ -127,7 +127,7 @@ export type { Identifiable, SuppressionResult } from "./suppression";
 export { dedupeByPlaceId } from "./dedupe";
 export type { DedupeResult } from "./dedupe";
 
-export { applyTaxonomy, distinctCategories } from "./taxonomy";
+export { applyTaxonomy, distinctCategories, matchesCategory } from "./taxonomy";
 
 export {
   detectSignals,

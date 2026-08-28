@@ -201,6 +201,7 @@ function parseRange(value: string): { opens: string; closes: string } | null {
   // no renderer drops the second — so a bare tail means a 24-hour clock, and it
   // has to prove that on its own or the day is skipped. Inheriting backwards
   // would read "9 AM–5" as five in the morning.
+  //
   // Inheritance is suppressed when the start has already proved itself a
   // 24-hour reading. "09:00" cannot mean nine in the evening, so borrowing the
   // far end's PM turned "09:00-5 PM" into 21:00-17:00: a twenty-hour span

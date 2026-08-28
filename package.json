@@ -45,7 +45,7 @@
     "sst": "4.17.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.1",
+    "typescript-eslint": "^8.68.0",
     "vite": "^7.3.6",
     "vitest": "^4.1.11"
   }

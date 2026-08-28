@@ -88,7 +88,7 @@ jobs:
       #   2. Create a role whose trust policy allows only this repository, and
       #      ideally only this ref:
       #        "token.actions.githubusercontent.com:sub":
-      #          "repo:pooyagolchian/directory-from-scratch:ref:refs/heads/main"
+      #          "repo:pooyagolchian/business-directory-toolkit:ref:refs/heads/main"
       #   3. Put the role ARN in the repository variable AWS_DEPLOY_ROLE_ARN
       #
       # Scoping `sub` to the repo matters: without it, any repository on GitHub

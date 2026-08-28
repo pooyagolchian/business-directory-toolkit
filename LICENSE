@@ -19,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE ON SCOPE: This MIT license covers the SOURCE CODE in this repository.
-It does NOT cover business listing data retrieved through the SearchApi
-Google Maps engine. That data is subject to Google's and SearchApi's terms.
-This repository does not redistribute the crawled dataset. See TAKEDOWN.md
-and docs/adr/0002-do-not-redistribute-the-dataset.md.

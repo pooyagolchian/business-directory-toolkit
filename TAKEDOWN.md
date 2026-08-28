@@ -40,6 +40,6 @@ underlying Google listing, use
 ## Reporting inaccurate data
 
 Wrong phone number, wrong category, closed business? Open a
-[GitHub issue](https://github.com/pooyagolchian/directory-from-scratch/issues)
+[GitHub issue](https://github.com/pooyagolchian/business-directory-toolkit/issues)
 or email the address above. Category mistakes can also be fixed directly by
 pull request against `data/taxonomy-map.json`.

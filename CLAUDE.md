@@ -1,4 +1,4 @@
-# Directory from Scratch — agent instructions
+# Business Directory Toolkit — agent instructions
 
 An MIT-licensed **open-source toolkit for building a local business directory
 for any city**, built on SearchApi's Google Maps engine and developed in public

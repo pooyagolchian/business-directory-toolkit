@@ -57,7 +57,7 @@ export function Header() {
             Areas
           </Link>
           <a
-            href="https://github.com/pooyagolchian/directory-from-scratch"
+            href="https://github.com/pooyagolchian/business-directory-toolkit"
             className="hover:text-[var(--fg)]"
           >
             Source
@@ -74,7 +74,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-6 py-8 text-sm text-[var(--muted)]">
         <span>Business listings only. Takedown requests honoured.</span>
         <a
-          href="https://github.com/pooyagolchian/directory-from-scratch/blob/main/TAKEDOWN.md"
+          href="https://github.com/pooyagolchian/business-directory-toolkit/blob/main/TAKEDOWN.md"
           className="underline underline-offset-4 hover:text-[var(--fg)]"
         >
           Request removal

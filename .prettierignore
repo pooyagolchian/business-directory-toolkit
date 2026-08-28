@@ -26,3 +26,8 @@ packages/web/CLAUDE.md
 # the subagent-driven-development workflow. Format-gating machine-generated
 # scratch makes `format:check` fail for reasons no commit can fix.
 .superpowers
+
+# GitHub matches LICENSE against canonical SPDX text by hash. Prettier re-wrapped
+# it once already, which made the repo report NOASSERTION and dropped it out of
+# every `license:mit` search. Never reformat it.
+LICENSE

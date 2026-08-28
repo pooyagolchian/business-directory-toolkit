@@ -150,7 +150,7 @@ describe("createOsmClient", () => {
       headers = new Headers(init?.headers);
     });
     await client.resolvePlace("Lisbon");
-    expect(headers?.get("user-agent")).toMatch(/directory-from-scratch/);
+    expect(headers?.get("user-agent")).toMatch(/business-directory-toolkit/);
   });
 
   test("simplifies the boundary it asks for", async () => {

@@ -35,7 +35,7 @@ const NOMINATIM_MIN_INTERVAL_MS = 1_100;
 const OVERPASS_MIN_INTERVAL_MS = 2_000;
 
 const USER_AGENT =
-  "directory-from-scratch/0.1.0 (https://github.com/pooyagolchian/directory-from-scratch)";
+  "business-directory-toolkit/0.1.0 (https://github.com/pooyagolchian/business-directory-toolkit)";
 
 /** Matches `POLYGON_SIMPLIFY_DEG` in packages/core/src/osm.ts. */
 const POLYGON_THRESHOLD = 0.002;

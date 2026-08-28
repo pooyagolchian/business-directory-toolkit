@@ -5,7 +5,7 @@
 Please **do not** open a public issue for security vulnerabilities.
 
 Report privately via
-[GitHub Security Advisories](https://github.com/pooyagolchian/directory-from-scratch/security/advisories/new),
+[GitHub Security Advisories](https://github.com/pooyagolchian/business-directory-toolkit/security/advisories/new),
 or email **hello@pooyagolchian.com** with the subject `SECURITY`.
 
 You can expect an acknowledgement within 3 business days and an assessment

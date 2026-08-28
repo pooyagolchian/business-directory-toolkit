@@ -31,3 +31,9 @@ packages/web/CLAUDE.md
 # it once already, which made the repo report NOASSERTION and dropped it out of
 # every `license:mit` search. Never reformat it.
 LICENSE
+
+# Measurement output written by `pnpm visibility` with JSON.stringify(…, 2).
+# Prettier and the generator disagree on it, so letting both own the file means
+# every regeneration dirties the tree and breaks format:check in CI — the same
+# reason packages/web/tsconfig.json is listed above.
+data/visibility.json

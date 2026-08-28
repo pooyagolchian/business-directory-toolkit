@@ -6,7 +6,15 @@ import {
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
-import { SITE_URL } from "@/lib/site";
+import { publisherJsonLd, serializeJsonLd } from "@directory/core";
+import { cityName, stats } from "@/lib/data";
+import {
+  AUTHOR_NAME,
+  AUTHOR_URL,
+  REPO_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 // Self-hosted via next/font: no external request, no layout shift, and the
 // Arabic face is a real choice rather than a system fallback — Dubai listing
@@ -95,6 +103,27 @@ export const metadata: Metadata = {
     // unfurler falls back to the URL it actually fetched, which is right.
   },
   twitter: { card: "summary_large_image" },
+
+  /*
+   * Let Google quote as much of a page as it wants.
+   *
+   * The default snippet length is short, and every listing page's value is a
+   * handful of specific facts — a phone number, a count, an opening time. A
+   * truncated snippet is the one that omits the fact somebody searched for.
+   *
+   * `max-image-preview` is included for completeness and does nothing today:
+   * the pages carry zero <img> tags by design (ADR 0004). It costs nothing and
+   * becomes correct the day that changes.
+   *
+   * Route metadata REPLACES this object rather than merging, which is the right
+   * behaviour here — /search and the sub-threshold facet pages set their own
+   * `robots` with index:false, and a noindex page has no snippet to size.
+   */
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { "max-snippet": -1, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({
@@ -102,12 +131,46 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  /*
+    Publisher identity, on every page.
+
+    The site emitted zero Organization and zero WebSite markup, so nothing
+    machine-readable connected the domain to its author or its source. For a
+    directory whose entire credibility argument is provenance — "here is where
+    this data came from, here is when, here is the code that fetched it" — that
+    argument was invisible to exactly the answer engines it was meant to
+    persuade.
+
+    It lives in the layout rather than in a route because it is true of the
+    whole site, and in the body rather than in the metadata object because
+    Next's Metadata API has no slot for arbitrary JSON-LD.
+
+    Deliberately no SearchAction: Google retired the sitelinks searchbox in late
+    2024, and /search is Disallow-ed in robots.ts, so it would point crawlers at
+    the one route we ask them not to crawl.
+  */
+  const s = stats();
+  const publisher = publisherJsonLd({
+    siteUrl: SITE_URL,
+    siteName: SITE_NAME,
+    description: `An open-source directory of ${s.businesses.toLocaleString()} businesses in ${cityName()}, built from Google Maps data via SearchApi.`,
+    repoUrl: REPO_URL,
+    authorName: AUTHOR_NAME,
+    authorUrl: AUTHOR_URL,
+  });
+
   return (
     <html
       lang="en"
       className={`${display.variable} ${sans.variable} ${mono.variable} ${arabic.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(publisher) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

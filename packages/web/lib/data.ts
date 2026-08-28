@@ -208,6 +208,23 @@ export function byAreaCategory(area: string, l2Slug: string): Business[] {
 
 // ---------------------------------------------------------------- facets
 
+/**
+ * Below this many listings, a facet page has nothing to say and stays out of the
+ * index — reachable, crawlable, but not submitted and not indexable.
+ *
+ * One definition, because it was three: area/[area]/[l2] enforced it, sitemap.ts
+ * declared its own copy and applied it to ONE of its three facet loops, and the
+ * /category and /area hubs enforced it nowhere — so nine categories and four
+ * neighbourhoods with one or two listings were indexable at priority 0.7,
+ * carrying descriptions like "1 catering in Dubai, by neighbourhood."
+ *
+ * Thirteen URLs of ~15,900 is not a thin-content emergency. It is fixed here so
+ * the rule the code already states in a comment — "thousands of one-result pages
+ * drag down a whole domain, not just themselves" — is actually the rule the code
+ * applies, on every tier, from one constant.
+ */
+export const MIN_FOR_INDEX = 3;
+
 export interface Facet {
   slug: string;
   label: string;

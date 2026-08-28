@@ -54,6 +54,21 @@ export { serializeJsonLd } from "./jsonld";
 export { breadcrumbJsonLd } from "./breadcrumbs";
 export type { BreadcrumbList, Crumb } from "./breadcrumbs";
 
+export { openingHoursSpecification } from "./hours";
+export type { Day, OpeningHoursSpecification } from "./hours";
+
+export { itemListJsonLd } from "./itemlist";
+export type { ItemList, ItemListOptions, ListEntry } from "./itemlist";
+
+export { publisherJsonLd } from "./organization";
+export type {
+  OrganizationNode,
+  PersonNode,
+  PublisherGraph,
+  PublisherInput,
+  WebSiteNode,
+} from "./organization";
+
 export { DESCRIPTION_MAX, businessDescription } from "./meta";
 export type { BusinessDescriptionInput } from "./meta";
 

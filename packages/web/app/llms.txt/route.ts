@@ -1,11 +1,11 @@
 import {
-  areaLabel,
   areas,
   byAreaCategory,
   categories,
   categoriesInArea,
   cityName,
   crawledAt,
+  MIN_FOR_INDEX,
   formatCrawlDate,
   stats,
 } from "@/lib/data";
@@ -32,9 +32,6 @@ import { SITE_URL } from "@/lib/site";
  * Everything below is derived from the deployment's own data, so a fork serving
  * another city gets that city's file rather than inheriting Dubai's (ADR 0005).
  */
-
-/** Matches the index guard on the area x category pages and in the sitemap. */
-const MIN_FOR_INDEX = 3;
 
 /** Enough to show the shape of the corpus without turning the file into the corpus. */
 const FACET_LIMIT = 40;

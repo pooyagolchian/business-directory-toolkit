@@ -23,3 +23,26 @@ export const SITE_URL = (
  * the OG card's footer, and the AI-visibility probe's "is this us?" check.
  */
 export const SITE_HOST = new URL(SITE_URL).host;
+
+/**
+ * The rest of the deployment's identity, for the Organization/WebSite graph.
+ *
+ * Environment-driven for the same reason SITE_URL is. A fork's directory is
+ * published by whoever forked it, and shipping this deployment's name, repo and
+ * author inside their structured data would attribute their site to someone
+ * else — a worse failure than having no publisher markup at all, which is what
+ * the site had before. Defaults keep the reference deployment working with no
+ * configuration (ADR 0005).
+ */
+export const SITE_NAME =
+  process.env.DIRECTORY_SITE_NAME ?? "Directory from Scratch";
+
+export const REPO_URL =
+  process.env.DIRECTORY_REPO_URL ??
+  "https://github.com/pooyagolchian/business-directory-toolkit";
+
+export const AUTHOR_NAME =
+  process.env.DIRECTORY_AUTHOR_NAME ?? "Pooya Golchian";
+
+export const AUTHOR_URL =
+  process.env.DIRECTORY_AUTHOR_URL ?? "https://pooyagolchian.com";

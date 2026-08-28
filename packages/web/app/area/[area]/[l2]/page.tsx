@@ -5,21 +5,17 @@ import { FilterableBusinessList } from "@/components/filterable";
 import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import { Faq } from "@/components/faq";
-import { buildFaq } from "@directory/core";
+import { buildFaq, itemListJsonLd, serializeJsonLd } from "@directory/core";
+import { SITE_URL } from "@/lib/site";
 import {
   areaLabel,
   areas,
   byAreaCategory,
   categories,
   categoriesInArea,
+  MIN_FOR_INDEX,
 } from "@/lib/data";
 import { demandedPages, popularQueries } from "@/lib/demand";
-
-/**
- * Below this, a page has nothing to say and should not be in the index.
- * Thousands of one-result pages drag down a whole domain, not just themselves.
- */
-const MIN_FOR_INDEX = 3;
 
 /**
  * These are the money pages — "Italian restaurants in Marina" is the query
@@ -123,8 +119,27 @@ export default async function AreaCategoryPage({
     .filter((c) => c.slug !== l2)
     .slice(0, 8);
 
+  // The rows the visitor actually sees, resolved ONCE and handed to both the
+  // list and its markup. On this route there is no slice, so the ItemList is
+  // every matching business — but it is still built from `rows` rather than
+  // from `businesses.length`, because the two agreeing here is a property of
+  // this page and not a rule the next one will keep.
+  const rows = byRank(businesses).map(toRow);
+  const itemList = itemListJsonLd(
+    rows.map((r) => ({ name: r.title, url: r.href })),
+    SITE_URL,
+    { name: `${facet.label} in ${areaLabel(area)}` },
+  );
+
   return (
     <Page>
+      {itemList && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(itemList) }}
+        />
+      )}
+
       <Breadcrumbs
         trail={[
           { href: "/", label: "Home" },
@@ -158,7 +173,7 @@ export default async function AreaCategoryPage({
 
       <div className="mt-8">
         <FilterableBusinessList
-          rows={byRank(businesses).map(toRow)}
+          rows={rows}
           noun="shown"
           placeholder={`Filter ${facet.label.toLowerCase()} in ${areaLabel(area)}`}
           searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}

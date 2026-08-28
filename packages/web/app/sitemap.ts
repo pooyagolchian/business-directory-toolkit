@@ -6,10 +6,8 @@ import {
   byAreaCategory,
   categories,
   categoriesInArea,
+  MIN_FOR_INDEX,
 } from "@/lib/data";
-
-/** Matches the index guard on the area x category pages. */
-const MIN_FOR_INDEX = 3;
 
 /**
  * Only submit what we are willing to have indexed.
@@ -30,19 +28,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/areas`, lastModified: now, priority: 0.8 },
   ];
 
-  const categoryPages: MetadataRoute.Sitemap = categories().map((c) => ({
-    url: `${BASE}/category/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
+  // Filtered on the same threshold as the money pages below. Submitting a URL
+  // whose own metadata says noindex teaches Google the sitemap is unreliable,
+  // which costs more than the thin page itself ever would.
+  const categoryPages: MetadataRoute.Sitemap = categories()
+    .filter((c) => c.count >= MIN_FOR_INDEX)
+    .map((c) => ({
+      url: `${BASE}/category/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
 
-  const areaPages: MetadataRoute.Sitemap = areas().map((a) => ({
-    url: `${BASE}/area/${a.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
+  const areaPages: MetadataRoute.Sitemap = areas()
+    .filter((a) => a.count >= MIN_FOR_INDEX)
+    .map((a) => ({
+      url: `${BASE}/area/${a.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
 
   const moneyPages: MetadataRoute.Sitemap = [];
   for (const area of areas()) {

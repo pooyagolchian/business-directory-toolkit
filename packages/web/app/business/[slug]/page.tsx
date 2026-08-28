@@ -5,6 +5,7 @@ import {
   ACCESSIBILITY_LABELS,
   businessDescription,
   canonicalAmenity,
+  openingHoursSpecification,
   serializeJsonLd,
 } from "@directory/core";
 import { BusinessList } from "@/components/business-card";
@@ -129,6 +130,8 @@ export default async function BusinessPage({
    * "Which pharmacies have a wheelchair-accessible entrance" is the question
    * faq.ts calls the directory's edge, and this is where it gets answered.
    */
+  const hours = openingHoursSpecification(business.openHours);
+
   const accessibility = [
     ...new Set((business.accessibility ?? []).map(canonicalAmenity)),
   ].map((slug) => ACCESSIBILITY_LABELS[slug] ?? deslugify(slug));
@@ -174,6 +177,11 @@ export default async function BusinessPage({
         value: true,
       })),
     }),
+    // Same rule, same guard as the visible table below: 89.6% of records carry
+    // hours and none of them reached the markup. The parser SKIPS any day it
+    // cannot resolve rather than guessing, because a wrong opening time sends
+    // somebody to a closed shop — a worse outcome than saying nothing.
+    ...(hours.length > 0 && { openingHoursSpecification: hours }),
   };
 
   return (

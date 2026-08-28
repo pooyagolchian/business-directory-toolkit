@@ -4,8 +4,15 @@ import { FilterableBusinessList } from "@/components/filterable";
 import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
 import { Faq } from "@/components/faq";
-import { buildFaq } from "@directory/core";
-import { areasInCategory, byCategory, categories } from "@/lib/data";
+import { buildFaq, itemListJsonLd, serializeJsonLd } from "@directory/core";
+import { SITE_URL } from "@/lib/site";
+import {
+  areasInCategory,
+  byCategory,
+  categories,
+  cityName,
+  MIN_FOR_INDEX,
+} from "@/lib/data";
 
 export async function generateStaticParams() {
   return categories().map((c) => ({ l2: c.slug }));
@@ -23,6 +30,11 @@ const PAGE_SIZE = 120;
 export const dynamicParams = true;
 export const revalidate = 86_400;
 
+/** "Restaurants" -> "Restaurant". Only ever used for the n=1 sentence. */
+function singular(label: string): string {
+  return label.replace(/ies$/, "y").replace(/s$/, "");
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -33,8 +45,17 @@ export async function generateMetadata({
   if (!facet) return { title: "Not found" };
   return {
     title: `${facet.label} in Dubai`,
-    description: `${facet.count} ${facet.label.toLowerCase()} in Dubai, by neighbourhood.`,
+    // Pluralised and formatted, because at n=1 this read "1 catering in Dubai".
+    description:
+      facet.count === 1
+        ? `The one ${singular(facet.label).toLowerCase()} listed in ${cityName()}.`
+        : `${facet.count.toLocaleString()} ${facet.label.toLowerCase()} in ${cityName()}, by neighbourhood.`,
     alternates: { canonical: `/category/${l2}` },
+    // Same guard the money pages have carried all along. Nine categories have
+    // fewer than three listings; they stay reachable and out of the index.
+    ...(facet.count < MIN_FOR_INDEX && {
+      robots: { index: false, follow: true },
+    }),
   };
 }
 
@@ -51,8 +72,27 @@ export default async function CategoryPage({
   const areaFacets = areasInCategory(l2);
   const faq = buildFaq({ category: facet.label, businesses });
 
+  // AFTER the slice, deliberately. This page knows two numbers about itself —
+  // facet.count, which can be 1,164, and PAGE_SIZE, which is 120 — and only the
+  // second is true of the document a crawler fetches. Marking up the larger one
+  // would be the same class of false claim as publishing Google's ratings as
+  // first-party review data, which this codebase already refuses to do.
+  const rows = byRank(businesses).slice(0, PAGE_SIZE).map(toRow);
+  const itemList = itemListJsonLd(
+    rows.map((r) => ({ name: r.title, url: r.href })),
+    SITE_URL,
+    { name: `${facet.label} in ${cityName()}` },
+  );
+
   return (
     <Page>
+      {itemList && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(itemList) }}
+        />
+      )}
+
       <Breadcrumbs
         trail={[
           { href: "/", label: "Home" },
@@ -92,7 +132,7 @@ export default async function CategoryPage({
           filter this list.
         </p>
         <FilterableBusinessList
-          rows={byRank(businesses).slice(0, PAGE_SIZE).map(toRow)}
+          rows={rows}
           noun="shown"
           placeholder={`Filter ${facet.label.toLowerCase()} by name, area, or phone`}
           searchAllHref={`/search?q=${encodeURIComponent(facet.label)}`}

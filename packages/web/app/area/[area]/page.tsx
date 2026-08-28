@@ -3,11 +3,23 @@ import { notFound } from "next/navigation";
 import { FilterableBusinessList } from "@/components/filterable";
 import { byRank, toRow } from "@/lib/rows";
 import { Breadcrumbs, FacetGrid, Page } from "@/components/chrome";
-import { areaLabel, areas, byArea, categoriesInArea } from "@/lib/data";
+import { itemListJsonLd, serializeJsonLd } from "@directory/core";
+import {
+  areaLabel,
+  areas,
+  byArea,
+  categoriesInArea,
+  cityName,
+  MIN_FOR_INDEX,
+} from "@/lib/data";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
   return areas().map((a) => ({ area: a.slug }));
 }
+
+/** How many rows this hub renders — and therefore how many the ItemList claims. */
+const ROWS_SHOWN = 120;
 
 export const dynamicParams = true;
 export const revalidate = 86_400;
@@ -22,8 +34,14 @@ export async function generateMetadata({
   if (!facet) return { title: "Not found" };
   return {
     title: `Businesses in ${facet.label}, Dubai`,
-    description: `${facet.count} businesses in ${facet.label}, Dubai, by category.`,
+    description:
+      facet.count === 1
+        ? `The one business listed in ${facet.label}, ${cityName()}.`
+        : `${facet.count.toLocaleString()} businesses in ${facet.label}, ${cityName()}, by category.`,
     alternates: { canonical: `/area/${area}` },
+    ...(facet.count < MIN_FOR_INDEX && {
+      robots: { index: false, follow: true },
+    }),
   };
 }
 
@@ -39,8 +57,24 @@ export default async function AreaPage({
   const categoryFacets = categoriesInArea(area);
   const businesses = byArea(area);
 
+  // After the slice — see the note on the category route. This hub renders 120
+  // of a possibly much larger set.
+  const rows = byRank(businesses).slice(0, ROWS_SHOWN).map(toRow);
+  const itemList = itemListJsonLd(
+    rows.map((r) => ({ name: r.title, url: r.href })),
+    SITE_URL,
+    { name: `Businesses in ${areaLabel(area)}` },
+  );
+
   return (
     <Page>
+      {itemList && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(itemList) }}
+        />
+      )}
+
       <Breadcrumbs
         trail={[
           { href: "/", label: "Home" },
@@ -73,11 +107,11 @@ export default async function AreaPage({
           Most reviewed
         </h2>
         <p className="mt-2 mb-5 text-sm text-[var(--muted)]">
-          Showing the {Math.min(businesses.length, 120)} most reviewed of{" "}
+          Showing the {Math.min(businesses.length, ROWS_SHOWN)} most reviewed of{" "}
           {facet.count.toLocaleString()}.
         </p>
         <FilterableBusinessList
-          rows={byRank(businesses).slice(0, 120).map(toRow)}
+          rows={rows}
           noun="shown"
           placeholder={`Filter businesses in ${areaLabel(area)}`}
           searchAllHref={`/search?q=${encodeURIComponent(areaLabel(area))}`}

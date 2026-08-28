@@ -1,0 +1,970 @@
+{
+  "measuredAt": "2026-08-28T20:14:23.259Z",
+  "site": "directory.pooyagolchian.com",
+  "engines": [
+    "chatgpt",
+    "perplexity",
+    "google_ai_mode"
+  ],
+  "probes": [
+    {
+      "query": "clinics in dubai healthcare city",
+      "category": "Clinics",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dhcc.ae"
+      ]
+    },
+    {
+      "query": "clinics in dubai healthcare city",
+      "category": "Clinics",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "2gis.ae",
+        "doctorsclinicdubai.ae",
+        "emirateshospitals.ae",
+        "practo.com",
+        "dubaihealth.ae",
+        "dhcc.ae",
+        "healthhubalfuttaim.com",
+        "zavis.ai",
+        "hmcmedicalcenter.com",
+        "gmcclinics.com"
+      ]
+    },
+    {
+      "query": "clinics in dubai healthcare city",
+      "category": "Clinics",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dhcc.ae",
+        "google.com"
+      ]
+    },
+    {
+      "query": "gyms in dubai marina",
+      "category": "Gyms",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "gymzone.ae",
+        "getfitdxb.com",
+        "cntravellerme.com"
+      ]
+    },
+    {
+      "query": "gyms in dubai marina",
+      "category": "Gyms",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "whatson.ae",
+        "wellfit.me",
+        "privilee.ae",
+        "timeoutdubai.com",
+        "marinadubai.ae",
+        "drivenproperties.com",
+        "excelproperties.ae",
+        "getfitdxb.com",
+        "reddit.com",
+        "propertyfinder.ae"
+      ]
+    },
+    {
+      "query": "gyms in dubai marina",
+      "category": "Gyms",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "barrys.com",
+        "wellfit.me",
+        "themarinagym.com",
+        "uae.fitnessfirstme.com",
+        "christiesrealestatedubai.com",
+        "google.com"
+      ]
+    },
+    {
+      "query": "nurseries in dubai south",
+      "category": "Nurseries",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "tappytoesnursery.com",
+        "cherrynurseries.com"
+      ]
+    },
+    {
+      "query": "nurseries in dubai south",
+      "category": "Nurseries",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "web.khda.gov.ae",
+        "cherrynurseries.com",
+        "tappytoesnursery.com",
+        "edcare.ae",
+        "edu.dibber.com",
+        "britishorchardnursery.com",
+        "maps.yango.com",
+        "2gis.ae",
+        "dewdropsnursery.com",
+        "homegrownnursery.ae"
+      ]
+    },
+    {
+      "query": "nurseries in dubai south",
+      "category": "Nurseries",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "facebook.com",
+        "britishorchardnursery.com",
+        "happyfeetdubai.com",
+        "google.com"
+      ]
+    },
+    {
+      "query": "driving schools in dubai silicon oasis",
+      "category": "Driving Schools",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "binyaber.com",
+        "excellencedriving.com",
+        "reddit.com"
+      ]
+    },
+    {
+      "query": "driving schools in dubai silicon oasis",
+      "category": "Driving Schools",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": []
+    },
+    {
+      "query": "driving schools in dubai silicon oasis",
+      "category": "Driving Schools",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "binyaber.com",
+        "drivedubai.ae",
+        "google.com",
+        "facebook.com",
+        "excellencedriving.com",
+        "instagram.com"
+      ]
+    },
+    {
+      "query": "laundry in dubai south",
+      "category": "Laundry",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "washmen.com",
+        "radiantlaundry.ae",
+        "thediamlaundry.com",
+        "5asec.ae",
+        "washon.ae",
+        "waze.com"
+      ]
+    },
+    {
+      "query": "laundry in dubai south",
+      "category": "Laundry",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "washon.ae",
+        "divalaundry.com",
+        "thediamlaundry.com",
+        "5asec.ae",
+        "washmen.com",
+        "erlaundry.ae",
+        "thelaundrypress.com",
+        "laundryheap.com",
+        "laundrybox.com"
+      ]
+    },
+    {
+      "query": "laundry in dubai south",
+      "category": "Laundry",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "washon.ae",
+        "laundrybox.com",
+        "facebook.com",
+        "laundrykhalas.com",
+        "google.com",
+        "washmen.com"
+      ]
+    },
+    {
+      "query": "supermarkets in dubai south",
+      "category": "Supermarkets",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "bayut.com",
+        "providentestate.com"
+      ]
+    },
+    {
+      "query": "supermarkets in dubai south",
+      "category": "Supermarkets",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "thedubaimall.com",
+        "emaratfinder.com",
+        "bayut.com",
+        "2gis.ae",
+        "strictlydowntowndubai.com",
+        "geantuae.com"
+      ]
+    },
+    {
+      "query": "supermarkets in dubai south",
+      "category": "Supermarkets",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "instagram.com",
+        "facebook.com",
+        "emaarmalls.ae",
+        "google.com",
+        "2gis.ae"
+      ]
+    },
+    {
+      "query": "bars in dubai marina",
+      "category": "Bars",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "tripadvisor.com",
+        "whatshotinuae.com",
+        "bayut.com",
+        "dubaipartyguide.com"
+      ]
+    },
+    {
+      "query": "bars in dubai marina",
+      "category": "Bars",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "whatson.ae",
+        "thrillophilia.com",
+        "evendo.com",
+        "2gis.ae",
+        "vigortravels.com",
+        "dubaitravelplanner.com",
+        "dubailoveyou.com",
+        "mydubaibest.com",
+        "dizzer.ae",
+        "theguestbooks.com"
+      ]
+    },
+    {
+      "query": "bars in dubai marina",
+      "category": "Bars",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "theguestbooks.com",
+        "sunspiretourism.com",
+        "youtube.com",
+        "moqa.ae",
+        "google.com"
+      ]
+    },
+    {
+      "query": "hospitals in dubai healthcare city",
+      "category": "Hospitals",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dhcc.ae"
+      ]
+    },
+    {
+      "query": "hospitals in dubai healthcare city",
+      "category": "Hospitals",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dhcc.ae",
+        "en.wikipedia.org",
+        "practo.com",
+        "mediclinic.ae",
+        "gov.uk",
+        "dubaihealth.ae",
+        "emirateshospitals.ae",
+        "doctify.com"
+      ]
+    },
+    {
+      "query": "hospitals in dubai healthcare city",
+      "category": "Hospitals",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dhcc.ae",
+        "google.com"
+      ]
+    },
+    {
+      "query": "schools in dubai south",
+      "category": "Schools",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaischoolguide.com",
+        "propertyfinder.ae",
+        "joinoliva.com",
+        "fidudubai.com"
+      ]
+    },
+    {
+      "query": "schools in dubai south",
+      "category": "Schools",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaiheightsacademy.com",
+        "propertyfinder.ae",
+        "southviewschool.com",
+        "gemsfoundersschool-dubaisouth.com",
+        "invest-gulf.com",
+        "web.khda.gov.ae",
+        "propsearch.ae",
+        "citysearch.ae",
+        "schools-dubai.com"
+      ]
+    },
+    {
+      "query": "schools in dubai south",
+      "category": "Schools",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "gemsfoundersschool-dubaisouth.com",
+        "propertyfinder.ae",
+        "propsearch.ae",
+        "mixtacademy.com",
+        "southviewschool.com",
+        "gemseducation.com",
+        "facebook.com"
+      ]
+    },
+    {
+      "query": "spa in dubai marina",
+      "category": "Spas",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "yalah.ae",
+        "fresha.com",
+        "tripadvisor.com"
+      ]
+    },
+    {
+      "query": "spa in dubai marina",
+      "category": "Spas",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "ritzcarlton.com",
+        "marina-spa.online",
+        "marinaspadubai.com",
+        "stellaspa-ae.com",
+        "tripadvisor.com",
+        "europeanspa.ae",
+        "tropicanaspa.ae",
+        "stella-spa.com",
+        "tripadvisor.com.pe",
+        "dreamworks.ae"
+      ]
+    },
+    {
+      "query": "spa in dubai marina",
+      "category": "Spas",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "stella-spa.ae",
+        "hautegrandeur.com",
+        "google.com",
+        "bw.mywaj.ai"
+      ]
+    },
+    {
+      "query": "car wash in dubai silicon oasis",
+      "category": "Car Wash",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "yellowpages-uae.com",
+        "iwashexpress.ae",
+        "scrubup.ae",
+        "washbox.ae",
+        "mysyara.com"
+      ]
+    },
+    {
+      "query": "car wash in dubai silicon oasis",
+      "category": "Car Wash",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "washbox.ae",
+        "carcaredubai.com",
+        "urbancarwashing.com",
+        "crystalclean.ae",
+        "qaro.ae",
+        "reddit.com",
+        "justclean.com",
+        "2gis.ae",
+        "scrubup.ae",
+        "teluscare.com"
+      ]
+    },
+    {
+      "query": "car wash in dubai silicon oasis",
+      "category": "Car Wash",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "reddit.com",
+        "onmyway.ai",
+        "google.com",
+        "facebook.com"
+      ]
+    },
+    {
+      "query": "libraries in dubai marina",
+      "category": "Libraries",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "bayut.com"
+      ]
+    },
+    {
+      "query": "libraries in dubai marina",
+      "category": "Libraries",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubailocal.ae",
+        "visitdubai.com",
+        "dubaiculture.gov.ae",
+        "timeoutdubai.com",
+        "bayut.com",
+        "expatwoman.com",
+        "damacproperties.com",
+        "propertyfinder.ae",
+        "library.dctabudhabi.ae",
+        "bnw.ae"
+      ]
+    },
+    {
+      "query": "libraries in dubai marina",
+      "category": "Libraries",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "reddit.com",
+        "koottar.com",
+        "google.com"
+      ]
+    },
+    {
+      "query": "nail salons in dubai marina",
+      "category": "Nail Salons",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "fresha.com"
+      ]
+    },
+    {
+      "query": "nail salons in dubai marina",
+      "category": "Nail Salons",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "fresha.com",
+        "wenails.ae",
+        "nstyleintl.com",
+        "citysearch.ae"
+      ]
+    },
+    {
+      "query": "nail salons in dubai marina",
+      "category": "Nail Salons",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "fresha.com",
+        "google.com",
+        "app.alteg.io"
+      ]
+    },
+    {
+      "query": "pharmacy in dubai south",
+      "category": "Pharmacies",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "waze.com",
+        "docibgroup.com"
+      ]
+    },
+    {
+      "query": "pharmacy in dubai south",
+      "category": "Pharmacies",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "lifepharmacy.com",
+        "2gis.ae",
+        "chinamartdubai.com",
+        "bayut.com",
+        "aesinternational.com",
+        "pharmacydirectory.ae",
+        "docibgroup.com"
+      ]
+    },
+    {
+      "query": "pharmacy in dubai south",
+      "category": "Pharmacies",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "docibgroup.com",
+        "waze.com",
+        "emaarmalls.ae",
+        "lifepharmacy.com",
+        "asterpharmacy.ae",
+        "google.com"
+      ]
+    },
+    {
+      "query": "restaurants in dubai festival city",
+      "category": "Restaurants",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com"
+      ]
+    },
+    {
+      "query": "restaurants in dubai festival city",
+      "category": "Restaurants",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "opentable.ae",
+        "dubaifestivalcity.com",
+        "tripadvisor.com",
+        "bayut.com",
+        "dubaifestivalcitymall.com",
+        "2gis.ae",
+        "propertyfinder.ae",
+        "tripadvisor.ru"
+      ]
+    },
+    {
+      "query": "restaurants in dubai festival city",
+      "category": "Restaurants",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com",
+        "google.com"
+      ]
+    },
+    {
+      "query": "salons in dubai festival city mall",
+      "category": "Salons",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "fresha.com",
+        "flairsalonbeauty.com",
+        "dubaifestivalcitymall.com"
+      ]
+    },
+    {
+      "query": "salons in dubai festival city mall",
+      "category": "Salons",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "salonsindubai.ae",
+        "nbar.com",
+        "dubaifestivalcitymall.com",
+        "diamondsalon.ae",
+        "2gis.ae",
+        "fresha.com"
+      ]
+    },
+    {
+      "query": "salons in dubai festival city mall",
+      "category": "Salons",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com",
+        "nbar.com",
+        "google.com",
+        "fresha.com"
+      ]
+    },
+    {
+      "query": "barbers in dubai marina",
+      "category": "Barbers",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "fresha.com"
+      ]
+    },
+    {
+      "query": "barbers in dubai marina",
+      "category": "Barbers",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "chapsandco.com",
+        "fresha.com",
+        "bekkybarber.com",
+        "urbanmalelounge.com",
+        "cutthroat.ae",
+        "moesbarbershop.com"
+      ]
+    },
+    {
+      "query": "barbers in dubai marina",
+      "category": "Barbers",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "moesbarbershop.com",
+        "fresha.com",
+        "google.com",
+        "salonsindubai.ae"
+      ]
+    },
+    {
+      "query": "physiotherapy in dubai healthcare city",
+      "category": "Physiotherapy",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "westminsterclinic.ae",
+        "americanwellnesscenter.ae",
+        "medifinder.ae"
+      ]
+    },
+    {
+      "query": "physiotherapy in dubai healthcare city",
+      "category": "Physiotherapy",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": []
+    },
+    {
+      "query": "physiotherapy in dubai healthcare city",
+      "category": "Physiotherapy",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "practo.com",
+        "physiocare.ae",
+        "google.com",
+        "dubai.disc-me.com"
+      ]
+    },
+    {
+      "query": "sports shops in dubai festival city",
+      "category": "Sports Shops",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com",
+        "nike.com"
+      ]
+    },
+    {
+      "query": "sports shops in dubai festival city",
+      "category": "Sports Shops",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com",
+        "localemirates.com",
+        "2gis.ae",
+        "thedubaimall.com",
+        "bayut.com",
+        "grabonuae.ae",
+        "dubaisbest.com",
+        "dohafestivalcity.com"
+      ]
+    },
+    {
+      "query": "sports shops in dubai festival city",
+      "category": "Sports Shops",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "dubaifestivalcitymall.com",
+        "propertyfinder.ae",
+        "nike.com",
+        "wowdeals.me",
+        "magicpin.com",
+        "grabonuae.ae",
+        "yandex.com",
+        "google.com",
+        "agoda.com",
+        "tourscanner.com"
+      ]
+    },
+    {
+      "query": "tailors in dubai marina",
+      "category": "Tailors",
+      "engine": "chatgpt",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "mytailor.ae",
+        "santobatailors.ae",
+        "royalascot.ae",
+        "emaarmalls.ae",
+        "kachinscouture.com"
+      ]
+    },
+    {
+      "query": "tailors in dubai marina",
+      "category": "Tailors",
+      "engine": "perplexity",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "santobatailors.ae",
+        "citysearch.ae",
+        "dubaisbest.com",
+        "thebespoketailor.co.uk",
+        "timeoutdubai.com",
+        "tailorshopnearme.ae",
+        "mytailor.ae",
+        "tailorme.ae",
+        "lovelytailors.com",
+        "parmartailors.com"
+      ]
+    },
+    {
+      "query": "tailors in dubai marina",
+      "category": "Tailors",
+      "engine": "google_ai_mode",
+      "cited": false,
+      "position": null,
+      "citations": [
+        "reddit.com",
+        "royalascot.ae",
+        "ascotsandchapels.com",
+        "citysearch.ae",
+        "uaethrive.com",
+        "regalfabricgallery.com",
+        "harpersbazaararabia.com",
+        "google.com"
+      ]
+    }
+  ],
+  "summary": {
+    "probes": 60,
+    "cited": 0,
+    "citationRate": 0,
+    "probesWithNoCitations": 2,
+    "byEngine": {
+      "chatgpt": {
+        "probes": 20,
+        "cited": 0
+      },
+      "perplexity": {
+        "probes": 20,
+        "cited": 0
+      },
+      "google_ai_mode": {
+        "probes": 20,
+        "cited": 0
+      }
+    },
+    "topDomains": [
+      {
+        "domain": "google.com",
+        "citations": 19,
+        "share": 0.06354515050167224
+      },
+      {
+        "domain": "2gis.ae",
+        "citations": 10,
+        "share": 0.033444816053511704
+      },
+      {
+        "domain": "fresha.com",
+        "citations": 10,
+        "share": 0.033444816053511704
+      },
+      {
+        "domain": "dubaifestivalcitymall.com",
+        "citations": 9,
+        "share": 0.030100334448160536
+      },
+      {
+        "domain": "bayut.com",
+        "citations": 8,
+        "share": 0.026755852842809364
+      },
+      {
+        "domain": "propertyfinder.ae",
+        "citations": 7,
+        "share": 0.023411371237458192
+      },
+      {
+        "domain": "dhcc.ae",
+        "citations": 6,
+        "share": 0.020066889632107024
+      },
+      {
+        "domain": "facebook.com",
+        "citations": 6,
+        "share": 0.020066889632107024
+      },
+      {
+        "domain": "reddit.com",
+        "citations": 6,
+        "share": 0.020066889632107024
+      },
+      {
+        "domain": "citysearch.ae",
+        "citations": 4,
+        "share": 0.013377926421404682
+      },
+      {
+        "domain": "tripadvisor.com",
+        "citations": 4,
+        "share": 0.013377926421404682
+      },
+      {
+        "domain": "docibgroup.com",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "emaarmalls.ae",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "practo.com",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "timeoutdubai.com",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "washmen.com",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "washon.ae",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "waze.com",
+        "citations": 3,
+        "share": 0.010033444816053512
+      },
+      {
+        "domain": "5asec.ae",
+        "citations": 2,
+        "share": 0.006688963210702341
+      },
+      {
+        "domain": "binyaber.com",
+        "citations": 2,
+        "share": 0.006688963210702341
+      }
+    ]
+  }
+}

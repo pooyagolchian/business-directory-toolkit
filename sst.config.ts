@@ -1,7 +1,7 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
 /**
- * Infrastructure for Directory from Scratch.
+ * Infrastructure for Business Directory Toolkit.
  *
  * Region is us-east-1 — see docs/adr/0003-deploy-region.md. Serving Dubai from
  * Virginia is ~250ms, so CloudFront doing the caching is load-bearing here, not

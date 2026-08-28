@@ -1,14 +1,14 @@
 {
-  "name": "directory-from-scratch",
+  "name": "business-directory-toolkit",
   "version": "0.1.0",
   "private": true,
-  "description": "An open-source Dubai business search engine, built in public on SearchApi's Google Maps engine.",
+  "description": "Open-source TypeScript toolkit for building a local business directory for any city, on SearchApi's Google Maps engine. A city is a JSON file, not a code change.",
   "license": "MIT",
   "author": "Pooya Golchian <hello@pooyagolchian.com> (https://pooyagolchian.com)",
   "homepage": "https://directory.pooyagolchian.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pooyagolchian/directory-from-scratch.git"
+    "url": "https://github.com/pooyagolchian/business-directory-toolkit.git"
   },
   "packageManager": "pnpm@10.30.3",
   "engines": {

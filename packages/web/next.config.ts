@@ -1,14 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Google listing thumbnails.
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "lh3.googleusercontent.com" },
-      { protocol: "https", hostname: "lh5.googleusercontent.com" },
-      { protocol: "https", hostname: "streetviewpixels-pa.googleapis.com" },
-    ],
-  },
+  /*
+   * There is deliberately no `images.remotePatterns` block here any more.
+   *
+   * It allow-listed lh3/lh5.googleusercontent.com for Google listing thumbnails
+   * — and nothing in the app has ever used it: zero `next/image` imports and
+   * zero `<img>` tags across app/, components/ and lib/. Dead config on its own
+   * is only clutter, but this particular dead config reads as a standing
+   * permission to hotlink Google-hosted imagery, which is adjacent to ADR 0002
+   * and would need a licensing decision rather than a config line. The stored
+   * thumbnails are also 80x106 px (the `=w80-h106-k-no` suffix is a Google
+   * resize directive), far below the ~1200px any social or rich-result surface
+   * wants, so the block could not have been used as-is regardless.
+   *
+   * docs/adr/0004-design-system.md gives the design-side reason the pages carry
+   * no photography at all. If images are ever wanted, settle the licensing
+   * position and cache to S3 first — do not re-add this and hotlink.
+   */
   // The origin is us-east-1 and the audience is in Dubai, ~250ms away. Anything
   // that forces an origin hit on a normal pageview is a bug, not a nit.
   // See docs/adr/0003-deploy-region.md.
@@ -58,6 +67,20 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/opengraph-image",
+        headers: [
+          {
+            key: "cache-control",
+            value: "public, max-age=3600, s-maxage=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Same defect, same fix. /icon.svg was measured serving
+        // `max-age=0, must-revalidate` and `x-cache: Miss from cloudfront` on
+        // every request, against `Hit` for the pages beside it — so the one
+        // asset on every page in the site was the one thing always waking the
+        // origin. Next content-hashes this URL too, so `immutable` is safe.
+        source: "/icon.svg",
         headers: [
           {
             key: "cache-control",

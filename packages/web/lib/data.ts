@@ -107,6 +107,64 @@ export function cityName(): string {
   return cityNameCache;
 }
 
+/**
+ * The date this deployment's corpus was crawled, from the city config's own
+ * verification block — "2026-08-20" — or null if this city has never been
+ * crawled.
+ *
+ * Local business data decays monthly, and answer engines discount undated local
+ * content. The site had no freshness signal anywhere: no dateModified, no
+ * visible "last updated", no <time> element on any route. This is the honest
+ * one to publish, because it is the date the data was actually retrieved rather
+ * than the date the page was rendered — a render timestamp would refresh itself
+ * every deploy while the underlying listings sat still, which is the dishonest
+ * version of this signal.
+ */
+export function crawledAt(): string | null {
+  if (crawledAtCache !== undefined) return crawledAtCache;
+  try {
+    const parsed = JSON.parse(readFileSync(dataFile("city.json"), "utf8")) as {
+      verification?: { crawledAt?: string };
+    };
+    crawledAtCache = parsed.verification?.crawledAt ?? null;
+  } catch {
+    crawledAtCache = null;
+  }
+  return crawledAtCache;
+}
+
+let crawledAtCache: string | null | undefined;
+
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/**
+ * "2026-08-20" -> "20 August 2026".
+ *
+ * Formatted from the string's own parts rather than through Date. Parsing a
+ * bare ISO date yields UTC midnight, and any locale-aware formatter then
+ * renders it a day early in every timezone behind UTC — which, for a site whose
+ * whole audience sits at UTC+4, would be wrong in the one place it is read.
+ */
+export function formatCrawlDate(iso: string): string {
+  const [year, month, day] = iso.split("-");
+  const name = MONTHS[Number(month) - 1];
+  if (!year || !name || !day) return iso;
+  return `${Number(day)} ${name} ${year}`;
+}
+
 function titleCase(slug: string): string {
   return slug
     .split("-")

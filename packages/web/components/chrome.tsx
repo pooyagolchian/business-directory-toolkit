@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { breadcrumbJsonLd, serializeJsonLd } from "@directory/core";
 
+import { crawledAt, formatCrawlDate } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
 import { SearchApiWordmark } from "./search-api-logo";
 
@@ -69,10 +70,29 @@ export function Header() {
 }
 
 export function Footer() {
+  /*
+    The site's only freshness signal, and it goes here because it is true of
+    every page: the whole dataset is bundled into the Lambda (ADR 0009), so it
+    changes at deploy and at no other time.
+
+    It is a <time> element rather than plain text so the date is machine-readable
+    without a second copy in JSON-LD that could drift from what the reader sees.
+    Answer engines discount undated local-business content, and local data decays
+    monthly — saying nothing was the worse option, and saying "updated today" on
+    every render would have been the dishonest one.
+  */
+  const crawled = crawledAt();
+
   return (
     <footer className="mt-24 border-t border-[var(--rule)]">
       <div className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-6 py-8 text-sm text-[var(--muted)]">
         <span>Business listings only. Takedown requests honoured.</span>
+        {crawled && (
+          <span>
+            Data retrieved from Google Maps on{" "}
+            <time dateTime={crawled}>{formatCrawlDate(crawled)}</time>.
+          </span>
+        )}
         <a
           href="https://github.com/pooyagolchian/business-directory-toolkit/blob/main/TAKEDOWN.md"
           className="underline underline-offset-4 hover:text-[var(--fg)]"

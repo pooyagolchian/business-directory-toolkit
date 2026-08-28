@@ -31,7 +31,9 @@ was asked.
 3. **Never spend API credits in tests or CI.** Tests read recorded fixtures from
    `fixtures/`. A test that makes a network call is a broken test.
 4. **Never widen a crawl without saying what it costs.** Any change to
-   `data/cities/<id>.json` must state the new request count.
+   `data/cities/<id>.json` must state the new request count. The same applies to
+   any command that calls SearchApi — `pnpm crawl`, `pnpm demand`,
+   `pnpm visibility` — each gates on `--dry-run` first and `--yes` to spend.
 5. **Business listings only.** No residential numbers, no personal data. Decline
    changes that would collect either.
 6. **TDD is mandatory** for `packages/core`. Write the test, watch it fail, then
@@ -138,6 +140,8 @@ pnpm plan --city dubai       # build crawl plan, no API calls
 pnpm crawl --city dubai --dry-run   # request count + credit cost BEFORE spending
 pnpm crawl --city dubai --yes       # spends credits (--yes is required)
 pnpm leads --list-signals    # prospect signals, no API calls
+pnpm visibility --dry-run    # AI-citation probe: request count + credit cost
+pnpm visibility --yes        # spends credits (60 by default) -> data/visibility.json
 npx sst deploy --stage dev
 ```
 

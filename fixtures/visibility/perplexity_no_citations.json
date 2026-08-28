@@ -1,0 +1,5 @@
+{
+  "search_metadata": { "id": "search_fixture_perplexity_empty", "status": "Success" },
+  "search_parameters": { "engine": "perplexity", "q": "tattoo studios in dubai" },
+  "markdown": "I could not find reliable sources for that query."
+}

@@ -1,0 +1,13 @@
+{
+  "search_metadata": { "id": "search_fixture_perplexity_1", "status": "Success" },
+  "search_parameters": { "engine": "perplexity", "q": "restaurants in dubai marina" },
+  "markdown": "Dubai Marina has a dense concentration of waterfront restaurants...",
+  "text_blocks": [
+    { "type": "paragraph", "text": "Dubai Marina has a dense concentration of waterfront restaurants." }
+  ],
+  "reference_links": [
+    { "title": "The 15 Best Restaurants in Dubai Marina", "link": "https://www.tripadvisor.com/Restaurants-g295424-Dubai_Marina.html" },
+    { "title": "Dubai Marina restaurants", "link": "https://www.timeoutdubai.com/restaurants/dubai-marina" },
+    { "title": "Where to eat in Dubai Marina", "link": "https://www.zomato.com/dubai/dubai-marina-restaurants" }
+  ]
+}

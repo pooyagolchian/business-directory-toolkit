@@ -1,0 +1,18 @@
+{
+  "search_metadata": { "id": "search_fixture_ai_mode_1", "status": "Success" },
+  "search_parameters": { "engine": "google_ai_mode", "q": "hotels in palm jumeirah" },
+  "text_blocks": [
+    {
+      "type": "paragraph",
+      "snippet": "Palm Jumeirah is home to several resort hotels.",
+      "references": [{ "index": 0 }, { "index": 1 }]
+    }
+  ],
+  "references": [
+    { "title": "Atlantis The Palm", "link": "https://www.atlantis.com/dubai" },
+    { "title": "Palm Jumeirah hotels", "link": "https://www.booking.com/region/ae/palm-jumeirah.html" }
+  ],
+  "local_results": [
+    { "title": "Atlantis - The Palm", "rating": 4.6 }
+  ]
+}

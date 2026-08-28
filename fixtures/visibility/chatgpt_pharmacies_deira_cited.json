@@ -1,0 +1,12 @@
+{
+  "search_metadata": { "id": "search_fixture_chatgpt_1", "status": "Success" },
+  "search_parameters": { "engine": "chatgpt", "q": "pharmacies in deira" },
+  "text_blocks": [
+    { "type": "paragraph", "text": "Deira has a large number of pharmacies, many open 24 hours." }
+  ],
+  "reference_links": [
+    { "title": "Pharmacies in Deira", "link": "https://www.timeoutdubai.com/health/pharmacies-deira" },
+    { "title": "Pharmacies in Deira, Dubai — Directory from Scratch", "link": "https://directory.pooyagolchian.com/area/deira/pharmacies" },
+    { "title": "Deira pharmacy list", "link": "https://www.zomato.com/dubai/deira" }
+  ]
+}

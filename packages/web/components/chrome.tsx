@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { breadcrumbJsonLd, serializeJsonLd } from "@directory/core";
 
+import { SITE_URL } from "@/lib/site";
 import { SearchApiWordmark } from "./search-api-logo";
 
 export function Header() {
@@ -110,13 +112,34 @@ export function Page({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * The visible trail AND its BreadcrumbList markup, from one array.
+ *
+ * They are emitted together deliberately. Marking up a hierarchy the visitor
+ * cannot see is a structured-data violation, and two separate call sites would
+ * drift — the same reasoning that keeps components/faq.tsx's FAQPage script
+ * inside the block it describes.
+ *
+ * The tier this actually buys something on is /business/<slug>. Those 14,981
+ * URLs are flat and state no hierarchy in the path, so the markup is the only
+ * place the site says Atlantis is a Hotel in Palm Jumeirah. On the facet tiers
+ * Google already reads a trail out of /area/al-barsha/restaurants.
+ */
 export function Breadcrumbs({
   trail,
 }: {
   trail: Array<{ href?: string; label: string }>;
 }) {
+  const jsonLd = breadcrumbJsonLd(trail, SITE_URL);
+
   return (
     <nav aria-label="Breadcrumb" className="label mb-8 text-[var(--muted)]">
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
+      )}
       {trail.map((crumb, i) => (
         <span key={`${crumb.label}-${i}`}>
           {i > 0 && <span className="mx-2">/</span>}

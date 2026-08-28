@@ -51,6 +51,28 @@ export type { CategoryMap } from "./categories";
 
 export { serializeJsonLd } from "./jsonld";
 
+export { breadcrumbJsonLd } from "./breadcrumbs";
+export type { BreadcrumbList, Crumb } from "./breadcrumbs";
+
+export { DESCRIPTION_MAX, businessDescription } from "./meta";
+export type { BusinessDescriptionInput } from "./meta";
+
+export {
+  citationsFrom,
+  domainOf,
+  isOurDomain,
+  scoreProbe,
+  selectProbes,
+  summarise,
+} from "./visibility";
+export type {
+  DemandInput,
+  Probe,
+  ProbeResult,
+  VisibilityEngine,
+  VisibilitySummary,
+} from "./visibility";
+
 export { corpusPrior, rankScore } from "./rank";
 
 export {

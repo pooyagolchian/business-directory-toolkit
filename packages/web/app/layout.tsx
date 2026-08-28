@@ -6,6 +6,7 @@ import {
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 // Self-hosted via next/font: no external request, no layout shift, and the
 // Arabic face is a real choice rather than a system fallback — Dubai listing
@@ -51,13 +52,49 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://directory.pooyagolchian.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Directory from Scratch — Dubai business search",
     template: "%s · Directory from Scratch",
   },
   description:
     "An open-source Dubai business search engine, built in public on SearchApi's Google Maps engine.",
+
+  /*
+   * NOTE WHAT IS ABSENT: openGraph.title and openGraph.description.
+   *
+   * Leaving them unset is what makes this block work for all ~15,900 URLs
+   * instead of one. Next copies each route's already-resolved title and
+   * description into openGraph only when an openGraph object exists but those
+   * keys do not, and the twitter auto-fill hangs off the same condition — so
+   * declaring the object here, and nothing more, hands every route its own
+   * og:title for free.
+   *
+   * Setting them would be actively worse than the current absence: the
+   * `title.template` above does NOT apply to og:title (Next reads the OG
+   * template from openGraph.title.template instead), so a literal here would
+   * freeze one og:title across every business, area and category page on the
+   * site.
+   *
+   * Route-level metadata REPLACES rather than merges, so `images` deliberately
+   * does not live here either — seven of the eight route files export their own
+   * metadata and would each drop it. The image comes from the
+   * app/opengraph-image.tsx file convention, which outranks this object and
+   * resolves from the nearest ancestor, i.e. everywhere.
+   */
+  openGraph: {
+    type: "website",
+    siteName: "Directory from Scratch",
+    locale: "en_AE",
+    // `url` is deliberately absent too, and for a different reason than the
+    // title. Because route metadata REPLACES this object rather than merging
+    // into it, a per-route og:url would mean re-declaring type/siteName/locale
+    // in all seven route files. Setting it once here is worse still: it is not
+    // a template, so every one of ~15,900 pages would claim the homepage as its
+    // canonical URL and every share would be attributed to `/`. Omitted, an
+    // unfurler falls back to the URL it actually fetched, which is right.
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

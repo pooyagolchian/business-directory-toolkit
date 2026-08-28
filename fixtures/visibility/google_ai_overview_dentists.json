@@ -1,0 +1,14 @@
+{
+  "search_metadata": { "id": "search_fixture_ai_overview_1", "status": "Success" },
+  "search_parameters": { "engine": "google_ai_overview" },
+  "ai_overview": {
+    "text_blocks": [
+      { "type": "paragraph", "snippet": "Dubai has many dental clinics across the city." }
+    ],
+    "markdown": "Dubai has many dental clinics across the city.",
+    "references": [
+      { "title": "Best dentists in Dubai", "link": "https://www.doctoruna.com/en/dentists-dubai", "source": "doctoruna.com" },
+      { "title": "Dental clinics", "link": "HTTPS://WWW.Directory.PooyaGolchian.com/category/dentists/", "source": "directory.pooyagolchian.com" }
+    ]
+  }
+}

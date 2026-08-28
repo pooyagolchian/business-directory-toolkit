@@ -84,6 +84,29 @@ export function areaLabel(area: string): string {
   return areaNames().get(area) ?? titleCase(area);
 }
 
+let cityNameCache: string | null = null;
+
+/**
+ * The city this deployment serves, by name.
+ *
+ * Read from the committed city config rather than written into copy, because
+ * ADR 0005 says a city is data: the homepage description, the OG card and the
+ * JSON-LD all need this string, and a fork must not inherit "Dubai" from any of
+ * them. Falls back to the id so an unconfigured deployment still renders.
+ */
+export function cityName(): string {
+  if (cityNameCache) return cityNameCache;
+  try {
+    const parsed = JSON.parse(readFileSync(dataFile("city.json"), "utf8")) as {
+      name?: string;
+    };
+    cityNameCache = parsed.name ?? titleCase(CITY_ID);
+  } catch {
+    cityNameCache = titleCase(CITY_ID);
+  }
+  return cityNameCache;
+}
+
 function titleCase(slug: string): string {
   return slug
     .split("-")

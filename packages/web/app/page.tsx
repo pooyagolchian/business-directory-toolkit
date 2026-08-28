@@ -1,10 +1,41 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { buildChartDataset } from "@directory/core";
 import { SearchBox } from "@/components/search-box";
 import { FacetGrid, Footer, Header } from "@/components/chrome";
 import { BusinessList } from "@/components/business-card";
 import { RatingExplorer } from "@/components/rating-explorer";
-import { allBusinesses, areaLabel, areas, categories, stats } from "@/lib/data";
+import {
+  allBusinesses,
+  areaLabel,
+  areas,
+  categories,
+  cityName,
+  stats,
+} from "@/lib/data";
+
+/**
+ * The one route that had no metadata export at all, and so no canonical — the
+ * highest-authority URL on the domain was the only one not self-canonicalising.
+ * The description is written for the homepage rather than inherited from the
+ * layout, because the layout's copy describes the project and this page
+ * describes the corpus.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const s = stats();
+  const city = cityName();
+  return {
+    // Derived, not written down. A fork crawling Lisbon must not ship a
+    // description advertising Dubai, and the count has to move with the corpus
+    // or it becomes a claim the page cannot support (ADR 0005).
+    description:
+      `Search ${s.businesses.toLocaleString()} ${city} businesses across ` +
+      `${s.categories} categories and ${s.areas} neighbourhoods — by name, ` +
+      `category, neighbourhood, or phone number. Open source, built in public ` +
+      `on SearchApi's Google Maps engine.`,
+    alternates: { canonical: "/" },
+  };
+}
 
 export default function Home() {
   const s = stats();

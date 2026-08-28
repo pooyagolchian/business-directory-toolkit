@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL as BASE } from "@/lib/site";
 import {
   allBusinesses,
   areas,
@@ -6,8 +7,6 @@ import {
   categories,
   categoriesInArea,
 } from "@/lib/data";
-
-const BASE = "https://directory.pooyagolchian.com";
 
 /** Matches the index guard on the area x category pages. */
 const MIN_FOR_INDEX = 3;

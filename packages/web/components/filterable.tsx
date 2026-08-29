@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
+import { Bilingual } from "./bilingual";
 
 /**
  * Display-ready row.
@@ -261,7 +262,7 @@ export function FilterableBusinessList({
                   {/* Sans 600, matching BusinessCard — see the note there on
                       why the display serif does not set scanned rows. */}
                   <h3 dir="auto" className="text-lg font-semibold">
-                    {row.title}
+                    <Bilingual text={row.title} />
                   </h3>
                   <p className="label mt-1.5 text-[var(--muted)]">{row.meta}</p>
                   {row.detail && (
@@ -269,7 +270,7 @@ export function FilterableBusinessList({
                       dir="auto"
                       className="mt-2 line-clamp-1 text-sm text-[var(--muted)]"
                     >
-                      {row.detail}
+                      <Bilingual text={row.detail} />
                     </p>
                   )}
                 </div>

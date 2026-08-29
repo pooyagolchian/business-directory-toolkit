@@ -237,8 +237,9 @@ function parseRange(value: string): { opens: string; closes: string } | null {
   // a mistake — so it is the definition of a day we cannot resolve.
   if (opens === closes) return null;
 
-  // `closes` earlier than `opens` is left exactly as it is. 837 businesses show
-  // "8 AM–2 AM", and schema.org reads a closing time before the opening time as
+  // `closes` earlier than `opens` is left exactly as it is. 837 day-entries in
+  // the corpus read "8 AM–2 AM" (across 130 businesses), and schema.org reads a
+  // closing time before the opening time as
   // the following day. Sorting the pair or clamping it would turn a real
   // eighteen-hour day into a two-hour one.
   return { opens: format(opens), closes: format(closes) };

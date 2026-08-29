@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import { FilterableFacetGrid } from "@/components/filterable";
-import { categories } from "@/lib/data";
+import { categories, cityName } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "All categories",
-  description: "Browse Dubai businesses by category.",
-  alternates: { canonical: "/categories" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "All categories",
+    description: `Browse ${cityName()} businesses by category.`,
+    alternates: { canonical: "/categories" },
+  };
+}
 
 export default function CategoriesPage() {
   const all = categories();

@@ -7,8 +7,14 @@
  *     `${title} is a ${what.toLowerCase()} in ${where}, Dubai.`
  *
  * Taxonomy labels are plural ("Hotels", "Restaurants", "Opticians"), so the
- * indefinite article never agreed: 9,102 pages shipped "Atlantis - The Palm is
- * a hotels in Palm Jumeirah", and another 1,688 wanted "an" rather than "a".
+ * indefinite article never agreed: 9,175 pages shipped "Atlantis - The Palm is
+ * a hotels in Palm Jumeirah", and another 1,687 wanted "an" rather than "a".
+ *
+ * Those counts move when the taxonomy is re-classified — they were 9,102 and
+ * 1,688 against an earlier classification of the same 14,981 records. They are
+ * quoted to show the SCALE of the agreement problem, which is a property of
+ * pluralised category labels rather than of any particular crawl, so re-derive
+ * rather than trust them if you need an exact figure.
  *
  * The fix is not to special-case plurals and vowels. It is to drop the article
  * entirely — an appositive needs none, so both bugs stop existing rather than
@@ -35,7 +41,7 @@ export interface BusinessDescriptionInput {
  * Google truncates displayed descriptions somewhere around 155–160 characters
  * on desktop, and the exact point moves with pixel width rather than character
  * count. 155 is the conventional safe budget; 31% of the old descriptions blew
- * past 160 and one reached 343.
+ * past 160 and the longest reached 378.
  */
 export const DESCRIPTION_MAX = 155;
 

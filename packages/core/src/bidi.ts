@@ -37,8 +37,16 @@ export interface ScriptRun {
  * names containing Presentation Forms (U+FB50–U+FDFF, U+FE70–U+FEFF), which are
  * the shaped glyph variants, and a range check stopping at U+06FF would classify
  * those as Latin and announce them in the wrong voice.
+ *
+ * Written as escapes, not literal characters. Two reasons, and the second is a
+ * real bug the literal form hid: a range of unreadable Arabic glyphs tells a
+ * reader nothing about which codepoints it covers, and Presentation Forms-B
+ * ends at U+FEFF — which is the BYTE ORDER MARK, not an Arabic letter. Spelling
+ * the bound U+FEFC keeps a stray BOM from being classified as Arabic and
+ * announced as a word.
  */
-const ARABIC = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/;
+const ARABIC =
+  /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFC]/;
 
 export function hasArabic(text: string): boolean {
   return ARABIC.test(text);

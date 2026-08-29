@@ -12,7 +12,7 @@ const base = {
  * The meta description for the largest page tier on the site — 14,981 URLs.
  *
  * The frame it replaces was `${title} is a ${what.toLowerCase()} in ${where}`,
- * which produced "Atlantis - The Palm is a hotels in Palm Jumeirah" on 9,102
+ * which produced "Atlantis - The Palm is a hotels in Palm Jumeirah" on 9,175
  * pages: taxonomy labels are plural, so the article never agreed. An appositive
  * takes no article at all, which is why the whole class of agreement bugs —
  * plural nouns and vowel-initial nouns alike — disappears rather than being
@@ -62,7 +62,7 @@ describe("businessDescription", () => {
 
   // ------------------------------------------------------------ the length cap
 
-  test("stays inside the cap on a record that used to run to 343 characters", () => {
+  test("stays inside the cap on a record that used to run to 378 characters", () => {
     const out = businessDescription({
       title: "Al Maktoum International Airport Passenger Terminal Building",
       what: "Airports",

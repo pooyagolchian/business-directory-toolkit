@@ -13,6 +13,7 @@ import {
   byAreaCategory,
   categories,
   categoriesInArea,
+  cityName,
   MIN_FOR_INDEX,
 } from "@/lib/data";
 import { demandedPages, popularQueries } from "@/lib/demand";
@@ -68,8 +69,12 @@ export async function generateMetadata({
   const where = areaLabel(area);
 
   return {
-    title: `${facet.label} in ${where}, Dubai`,
-    description: `${count} ${facet.label.toLowerCase()} in ${where}, Dubai, with phone numbers and opening hours.`,
+    title: `${facet.label} in ${where}, ${cityName()}`,
+    // "with phone numbers and ratings", not "and opening hours". A list row
+    // renders title, category, area, phone, rating and review count — hours
+    // exist only on the individual listing page, so the old copy promised a
+    // column that has never been there.
+    description: `${count} ${facet.label.toLowerCase()} in ${where}, ${cityName()}, with phone numbers and ratings.`,
     alternates: { canonical: `/area/${area}/${l2}` },
     // A page with almost nothing on it stays reachable but out of the index.
     // This is the single most important guard on a programmatic site.
@@ -110,6 +115,7 @@ export default async function AreaCategoryPage({
 
   const queries = popularQueries(facet.label, 8);
   const faq = buildFaq({
+    city: cityName(),
     category: facet.label,
     area: areaLabel(area),
     businesses,
@@ -159,7 +165,7 @@ export default async function AreaCategoryPage({
       */}
       <p className="mt-4 max-w-2xl text-[var(--muted)]">
         <span className="tabular">{businesses.length}</span>{" "}
-        {facet.label.toLowerCase()} in {areaLabel(area)}, Dubai.{" "}
+        {facet.label.toLowerCase()} in {areaLabel(area)}, {cityName()}.{" "}
         <span className="tabular">{withPhone}</span> list a phone number
         {avgRating !== null && (
           <>
@@ -204,7 +210,7 @@ export default async function AreaCategoryPage({
       {alsoIn.length > 0 && (
         <section className="mt-16">
           <h2 className="label text-[var(--muted)]">
-            {facet.label} elsewhere in Dubai
+            {facet.label} elsewhere in {cityName()}
           </h2>
           <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2.5">
             {alsoIn.map((a) => (

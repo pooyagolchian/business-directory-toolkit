@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import { FilterableFacetGrid } from "@/components/filterable";
-import { areas } from "@/lib/data";
+import { areas, cityName } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "All neighbourhoods",
-  description: "Browse Dubai businesses by neighbourhood.",
-  alternates: { canonical: "/areas" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "All neighbourhoods",
+    description: `Browse ${cityName()} businesses by neighbourhood.`,
+    alternates: { canonical: "/areas" },
+  };
+}
 
 export default function AreasPage() {
   const all = areas();

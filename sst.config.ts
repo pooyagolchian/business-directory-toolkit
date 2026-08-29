@@ -125,6 +125,40 @@ export default $config({
         dns: sst.aws.dns(),
       },
       link: [table],
+      /**
+       * Deployment identity, forwarded so the Lambda agrees with the build.
+       *
+       * packages/web/lib/site.ts reads these at module scope. During `next
+       * build` that resolves from the shell, so prerendered pages bake in the
+       * right values — but an ISR revalidation runs in the Lambda, which had no
+       * copy of them and silently fell back to the reference deployment's
+       * identity. A fork would have seen its own name on a freshly built page
+       * and this one's after the first revalidation, which is worse than an
+       * extension point that plainly does not work.
+       *
+       * Spread conditionally: SST wants strings, and an explicit `undefined`
+       * would be forwarded as the literal "undefined" rather than left unset.
+       */
+      environment: {
+        ...(process.env.DIRECTORY_CITY && {
+          DIRECTORY_CITY: process.env.DIRECTORY_CITY,
+        }),
+        ...(process.env.DIRECTORY_SITE_URL && {
+          DIRECTORY_SITE_URL: process.env.DIRECTORY_SITE_URL,
+        }),
+        ...(process.env.DIRECTORY_SITE_NAME && {
+          DIRECTORY_SITE_NAME: process.env.DIRECTORY_SITE_NAME,
+        }),
+        ...(process.env.DIRECTORY_REPO_URL && {
+          DIRECTORY_REPO_URL: process.env.DIRECTORY_REPO_URL,
+        }),
+        ...(process.env.DIRECTORY_AUTHOR_NAME && {
+          DIRECTORY_AUTHOR_NAME: process.env.DIRECTORY_AUTHOR_NAME,
+        }),
+        ...(process.env.DIRECTORY_AUTHOR_URL && {
+          DIRECTORY_AUTHOR_URL: process.env.DIRECTORY_AUTHOR_URL,
+        }),
+      },
     });
 
     return {

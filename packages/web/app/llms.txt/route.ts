@@ -9,7 +9,7 @@ import {
   formatCrawlDate,
   stats,
 } from "@/lib/data";
-import { SITE_URL } from "@/lib/site";
+import { REPO_URL, SITE_URL } from "@/lib/site";
 
 /**
  * /llms.txt — a map of this site for language models and agents.
@@ -54,8 +54,14 @@ export function GET() {
   const city = cityName();
   const crawled = crawledAt();
 
-  const topCategories = categories().slice(0, FACET_LIMIT);
-  const topAreas = areas().slice(0, FACET_LIMIT);
+  // Kept whole so the sections can say how much they are showing. A model
+  // reading "81 categories" in the summary and then a list of 40 has no way to
+  // know the list is a subset — which is the same silent-truncation problem the
+  // neighbourhood x category section already avoids by naming its remainder.
+  const allCategories = categories();
+  const allAreas = areas();
+  const topCategories = allCategories.slice(0, FACET_LIMIT);
+  const topAreas = allAreas.slice(0, FACET_LIMIT);
 
   // Only combinations we are willing to have indexed, mirroring sitemap.ts.
   // Pointing a model at a page we tell Google to skip would be incoherent.
@@ -95,8 +101,7 @@ cannot stand behind.
 - Ratings and review counts are **Google's**, restated with attribution. They are
   not first-party reviews collected by this site, and must not be presented as
   such. The listing pages carry no aggregateRating markup for the same reason.
-- Opening hours and phone numbers come from the business's own Google listing and
-  are as accurate as that listing was on the retrieval date above.
+- Opening hours and phone numbers come from the business's own Google listing${crawled ? ` and\n  are as accurate as that listing was on ${formatCrawlDate(crawled)}` : ""}.
 - Categories are derived from Google's unranked \`types[]\` strings, not chosen by
   the business.
 
@@ -111,10 +116,12 @@ cannot stand behind.
 
 ## Categories
 
+${allCategories.length > topCategories.length ? `The ${topCategories.length} largest of ${allCategories.length}; the rest are at ${SITE_URL}/categories.\n` : ""}
 ${topCategories.map((c) => `- [${c.label}](${SITE_URL}/category/${c.slug}) — ${c.count.toLocaleString()} listings`).join("\n")}
 
 ## Neighbourhoods
 
+${allAreas.length > topAreas.length ? `The ${topAreas.length} largest of ${allAreas.length}; the rest are at ${SITE_URL}/areas.\n` : ""}
 ${topAreas.map((a) => `- [${a.label}](${SITE_URL}/area/${a.slug}) — ${a.count.toLocaleString()} listings`).join("\n")}
 
 ## Neighbourhood × category pages
@@ -127,7 +134,7 @@ ${omitted > 0 ? `\n${omitted.toLocaleString()} further combinations are listed i
 
 ## Source
 
-Open source, MIT licensed: https://github.com/pooyagolchian/business-directory-toolkit
+Open source, MIT licensed: ${REPO_URL}
 Removal requests are honoured — see the takedown policy in that repository.
 `;
 

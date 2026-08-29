@@ -80,6 +80,19 @@ const nextConfig: NextConfig = {
         // every request, against `Hit` for the pages beside it — so the one
         // asset on every page in the site was the one thing always waking the
         // origin. Next content-hashes this URL too, so `immutable` is safe.
+        // /apple-icon was measured serving `no-cache, no-store` — worse than the
+        // default the other two had, and the same class of defect. It is
+        // content-hashed too (`/apple-icon?de8eab51da91dc1e`), so it caches on
+        // the same terms.
+        source: "/apple-icon",
+        headers: [
+          {
+            key: "cache-control",
+            value: "public, max-age=3600, s-maxage=31536000, immutable",
+          },
+        ],
+      },
+      {
         source: "/icon.svg",
         headers: [
           {

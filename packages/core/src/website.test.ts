@@ -146,15 +146,57 @@ describe("canonicalWebsite", () => {
      * Measured: rebuilding the query through URLSearchParams mutates 147 of the
      * corpus's queries — `%20` becomes `+`, `,` becomes `%2C`. Equivalent to
      * most servers, but not all, and this value is rendered as a link a human
-     * may read. Kept parameters are therefore spliced out of the ORIGINAL query
-     * text, never re-serialised.
+     * may read. Kept parameters are therefore spliced out of `URL.search` and
+     * never handed to a second serialiser. What that does and does not promise
+     * is pinned by the test below.
      */
-    test("does not re-encode the parameters it keeps", () => {
+    test("does not re-normalise the parameters it keeps", () => {
       expect(
         canonicalWebsite(
           "https://example.com/x?utm_source=g&note=seo%20maps&list=a,b",
         ),
       ).toBe("https://example.com/x?note=seo%20maps&list=a,b");
+    });
+
+    /**
+     * The limit of the promise above, and the reason it is worded as "does not
+     * re-NORMALISE" rather than "does not re-encode".
+     *
+     * The query is spliced out of `URL.search`, not out of the caller's string,
+     * so anything the WHATWG parser must percent-encode on the way in is
+     * already encoded by the time the splice sees it — space, `"`, `<`, `>`.
+     * That is a smaller set than URLSearchParams touches, which is the whole
+     * point of not using URLSearchParams, but it is not nothing.
+     *
+     * Pinned because the alternative reading — that kept parameters survive as
+     * literal input bytes — is what a reader would otherwise assume, and acting
+     * on it means reaching for a raw-text splice that reintroduces every
+     * malformed-URL crash the parser currently absorbs.
+     */
+    test("percent-encodes what the URL parser must, even in a kept parameter", () => {
+      expect(
+        canonicalWebsite("https://example.com/x?note=seo maps&utm_source=g"),
+      ).toBe("https://example.com/x?note=seo%20maps");
+      expect(
+        canonicalWebsite('https://example.com/x?q=<a href="b">&gclid=1'),
+      ).toBe("https://example.com/x?q=%3Ca%20href=%22b%22%3E");
+    });
+
+    /**
+     * Tracking inside the FRAGMENT is left alone, and this is a decision rather
+     * than an oversight — which is why it is pinned, because it looks exactly
+     * like a gap somebody should close.
+     *
+     * A `#` query belongs to a hash router, not to a server: `#/home?tab=2` is
+     * how a single-page app addresses its own views, and the fragment is never
+     * sent upstream, so there is no analytics attribution to remove. Editing it
+     * would be rewriting the site's internal routing to fix a leak that does
+     * not exist. (Measured: 0 corpus URLs carry tracking in the fragment.)
+     */
+    test("leaves the fragment alone, tracking-shaped or not", () => {
+      expect(
+        canonicalWebsite("https://example.com/app/#/home?utm_source=g"),
+      ).toBe("https://example.com/app/#/home?utm_source=g");
     });
 
     test("keeps a parameter whose name merely starts with a stripped one", () => {
@@ -201,6 +243,43 @@ describe("canonicalWebsite", () => {
       );
     });
 
+    /**
+     * A toolkit claim, not a Dubai one: the next city to be crawled may well be
+     * one whose businesses use a non-ASCII domain. Both halves are normalised
+     * rather than rejected — the host to punycode, which is what DNS resolves
+     * anyway, and the path to percent-encoded UTF-8, which is what a browser
+     * puts on the wire. So the output is the same address, spelled the way a
+     * server will receive it, and the case argument made about `pathname`
+     * elsewhere is about CASE only — this is the counter-example to reading it
+     * as "the path is passed through untouched".
+     */
+    test("normalises an internationalised host and a non-ASCII path", () => {
+      expect(canonicalWebsite("https://münchen.de/straße?utm_source=g")).toBe(
+        "https://xn--mnchen-3ya.de/stra%C3%9Fe",
+      );
+    });
+
+    test("drops a bare ? that carries no query at all", () => {
+      expect(canonicalWebsite("https://example.com/menu?")).toBe(
+        "https://example.com/menu",
+      );
+    });
+
+    /**
+     * `?a=&&b=1` and a trailing `&` are listing typos that cost nothing to
+     * absorb — but the filter that absorbs them is load bearing for a second
+     * reason. Without it, stripping the tracking out of `?utm_source=g&id=4`
+     * would leave the empty neighbour behind as `?&id=4`.
+     */
+    test("collapses the empty segments a stray & leaves behind", () => {
+      expect(canonicalWebsite("https://example.com/x?&&")).toBe(
+        "https://example.com/x",
+      );
+      expect(
+        canonicalWebsite("https://example.com/x?&utm_source=g&id=4&"),
+      ).toBe("https://example.com/x?id=4");
+    });
+
     test("keeps http as well as https", () => {
       expect(canonicalWebsite("http://www.kanzjewels.com/")).toBe(
         "http://www.kanzjewels.com/",
@@ -240,6 +319,38 @@ describe("canonicalWebsite", () => {
       expect(canonicalWebsite("ftp://example.com/x")).toBeUndefined();
       expect(canonicalWebsite("mailto:hello@example.com")).toBeUndefined();
     });
+
+    /**
+     * The implementation gets this from `URL.origin`, which happens to exclude
+     * userinfo — so it is a property of the expression used, not of anything
+     * stated in the code, and a refactor to `${protocol}//${host}` or to a
+     * splice of the original text would reinstate the credentials with nothing
+     * going red. Pinned here because publishing someone's password into a
+     * public href is not a defect worth discovering from a bug report.
+     */
+    test("drops userinfo credentials rather than publishing them", () => {
+      expect(
+        canonicalWebsite(
+          "https://admin:s3cret@example.com/portal?utm_source=g",
+        ),
+      ).toBe("https://example.com/portal");
+      expect(canonicalWebsite("https://admin@example.com/portal")).toBe(
+        "https://example.com/portal",
+      );
+    });
+
+    /**
+     * The same removal defuses a second attack, which is worth stating because
+     * it is the one a visitor cannot defend against. `https://<trusted>@evil/`
+     * reads as the trusted host to a human skimming a link, and resolves to
+     * `evil`. Dropping userinfo makes the rendered link say where it actually
+     * goes — and makes it agree with the JSON-LD `url` beside it.
+     */
+    test("defuses the userinfo host-spoof shape", () => {
+      expect(
+        canonicalWebsite("https://www.emirates.com@evil.example/offers"),
+      ).toBe("https://evil.example/offers");
+    });
   });
 
   describe("never throws", () => {
@@ -254,6 +365,18 @@ describe("canonicalWebsite", () => {
       expect(canonicalWebsite("www.example.com")).toBeUndefined();
       expect(canonicalWebsite("//example.com/x")).toBeUndefined();
       expect(canonicalWebsite("https://")).toBeUndefined();
+    });
+
+    /**
+     * The cases above all look wrong to a human. This one does not: it is a
+     * well-formed https URL with a plausible host, and it still has no address,
+     * because `xn--a` is not decodable punycode and IDNA rejects it. It is the
+     * reason the guard is a try/catch around the parser rather than a regex on
+     * the scheme — a scheme test would wave this through and hand an
+     * unresolvable host to the renderer.
+     */
+    test("returns undefined for a well-formed URL whose host fails IDNA", () => {
+      expect(canonicalWebsite("https://xn--a.com/x")).toBeUndefined();
     });
 
     /**
@@ -280,7 +403,8 @@ describe("canonicalWebsite", () => {
 
   /**
    * The URL that motivated the module, in the shape the crawler stores it.
-   * 847 of the corpus's 10,348 websites carry this pattern.
+   * 841 of the corpus's 10,348 websites carry a `utm_*`; 909 carry at least one
+   * parameter this function removes.
    */
   test("cleans a real corpus-shaped listing URL", () => {
     expect(

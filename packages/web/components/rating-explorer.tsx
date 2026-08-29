@@ -3,8 +3,16 @@
 import { useMemo, useState } from "react";
 import { scaleQuantile } from "d3-scale";
 import { X } from "lucide-react";
-import type { ChartDataset, ChartFilter, ChartSlice } from "@directory/core";
-import { REVIEW_BUCKETS, sliceDataset } from "@directory/core";
+// Deep imports, not the barrel. This is a client component, so the barrel's
+// whole surface is reachable from the browser bundle — measured: the schema.org
+// type map ("MedicalClinic", "DryCleaningOrLaundry") shipped to the client
+// through this import even though nothing here uses it.
+import type {
+  ChartDataset,
+  ChartFilter,
+  ChartSlice,
+} from "@directory/core/pivot";
+import { REVIEW_BUCKETS, sliceDataset } from "@directory/core/pivot";
 import { ChartFrame, Histogram, MedianReviews } from "./rating-distribution";
 import {
   Combobox,

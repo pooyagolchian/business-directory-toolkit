@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { areas, categories, cityName, stats } from "@/lib/data";
-import { SITE_HOST } from "@/lib/site";
+import { SITE_HOST, SITE_NAME } from "@/lib/site";
 
 /**
  * The site's Open Graph card.
@@ -30,7 +30,18 @@ import { SITE_HOST } from "@/lib/site";
  *    so Tailwind classes would silently do nothing here.
  */
 
-export const alt = "Directory from Scratch — open-source local business search";
+/*
+ * Split the site name for the masthead: the first word set large in the display
+ * serif, the remainder as the rule-separated small-caps label beside it — the
+ * treatment the site header already uses. Deriving it means a fork's card
+ * carries the fork's name instead of this deployment's.
+ *
+ * A single-word name renders without the second half.
+ */
+const [wordmark, ...rest] = SITE_NAME.split(" ");
+const tagline = rest.join(" ");
+
+export const alt = `${SITE_NAME} — open-source local business search`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -78,22 +89,24 @@ export default async function Image() {
             letterSpacing: "-0.022em",
           }}
         >
-          Directory
+          {wordmark}
         </div>
-        <div
-          style={{
-            fontFamily: "IBM Plex Sans",
-            fontSize: 17,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: MUTED,
-            marginLeft: 22,
-            paddingLeft: 22,
-            borderLeft: `1px solid ${RULE}`,
-          }}
-        >
-          from scratch
-        </div>
+        {tagline && (
+          <div
+            style={{
+              fontFamily: "IBM Plex Sans",
+              fontSize: 17,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: MUTED,
+              marginLeft: 22,
+              paddingLeft: 22,
+              borderLeft: `1px solid ${RULE}`,
+            }}
+          >
+            {tagline}
+          </div>
+        )}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column" }}>

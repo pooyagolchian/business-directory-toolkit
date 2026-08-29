@@ -7,7 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { publisherJsonLd, serializeJsonLd } from "@directory/core";
-import { cityName, stats } from "@/lib/data";
+import { cityName, countryCode, stats } from "@/lib/data";
 import {
   AUTHOR_NAME,
   AUTHOR_URL,
@@ -59,72 +59,87 @@ const arabic = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Directory from Scratch — Dubai business search",
-    template: "%s · Directory from Scratch",
-  },
-  description:
-    "An open-source Dubai business search engine, built in public on SearchApi's Google Maps engine.",
+export async function generateMetadata(): Promise<Metadata> {
+  const city = cityName();
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: `${SITE_NAME} — ${city} business search`,
+      template: `%s · ${SITE_NAME}`,
+    },
+    description: `An open-source ${city} business search engine, built in public on SearchApi's Google Maps engine.`,
 
-  /*
-   * NOTE WHAT IS ABSENT: openGraph.title and openGraph.description.
-   *
-   * Leaving them unset is what makes this block work for all ~15,900 URLs
-   * instead of one. Next copies each route's already-resolved title and
-   * description into openGraph only when an openGraph object exists but those
-   * keys do not, and the twitter auto-fill hangs off the same condition — so
-   * declaring the object here, and nothing more, hands every route its own
-   * og:title for free.
-   *
-   * Setting them would be actively worse than the current absence: the
-   * `title.template` above does NOT apply to og:title (Next reads the OG
-   * template from openGraph.title.template instead), so a literal here would
-   * freeze one og:title across every business, area and category page on the
-   * site.
-   *
-   * Route-level metadata REPLACES rather than merges, so `images` deliberately
-   * does not live here either — seven of the eight route files export their own
-   * metadata and would each drop it. The image comes from the
-   * app/opengraph-image.tsx file convention, which outranks this object and
-   * resolves from the nearest ancestor, i.e. everywhere.
-   */
-  openGraph: {
-    type: "website",
-    siteName: "Directory from Scratch",
-    locale: "en_AE",
-    // `url` is deliberately absent too, and for a different reason than the
-    // title. Because route metadata REPLACES this object rather than merging
-    // into it, a per-route og:url would mean re-declaring type/siteName/locale
-    // in all seven route files. Setting it once here is worse still: it is not
-    // a template, so every one of ~15,900 pages would claim the homepage as its
-    // canonical URL and every share would be attributed to `/`. Omitted, an
-    // unfurler falls back to the URL it actually fetched, which is right.
-  },
-  twitter: { card: "summary_large_image" },
+    /*
+     * NOTE WHAT IS ABSENT: openGraph.title and openGraph.description.
+     *
+     * Leaving them unset is what makes this block work for all ~15,900 URLs
+     * instead of one. Next copies each route's already-resolved title and
+     * description into openGraph only when an openGraph object exists but those
+     * keys do not, and the twitter auto-fill hangs off the same condition — so
+     * declaring the object here, and nothing more, hands every route its own
+     * og:title for free.
+     *
+     * Setting them would be actively worse than the current absence: the
+     * `title.template` above does NOT apply to og:title (Next reads the OG
+     * template from openGraph.title.template instead), so a literal here would
+     * freeze one og:title across every business, area and category page on the
+     * site.
+     *
+     * `images` is not here either, but NOT because route metadata would drop it.
+     * An earlier version of this comment claimed that, and it was wrong —
+     * measured on the running app, /category/restaurants exports its own
+     * generateMetadata and still receives og:site_name, og:locale and og:type
+     * from this object. Replacement happens per KEY: a route only overrides
+     * `openGraph` if it declares `openGraph` itself, and none of them do.
+     *
+     * The real reason is the file convention. app/opengraph-image.tsx emits
+     * og:image together with its type, width and height — values that would
+     * otherwise have to be written out and kept in step with the card by hand —
+     * outranks this object, and resolves from the nearest ancestor. It also
+     * makes a per-route card a file drop rather than an edit here.
+     */
+    openGraph: {
+      type: "website",
+      // SITE_NAME, not a literal. This file already used the constant twenty lines
+      // below for the Organization node, so a fork was getting its own name in the
+      // JSON-LD and this deployment's in the og:site_name of the same page.
+      siteName: SITE_NAME,
+      // Language plus the city's own country, so a Lisbon fork emits en_PT rather
+      // than announcing itself as Emirati. Falls back to bare "en" when the city
+      // config carries no country code, which is a valid OG locale on its own.
+      locale: countryCode() ? `en_${countryCode()}` : "en",
+      // `url` is deliberately absent too, and for a different reason than the
+      // title. Because route metadata REPLACES this object rather than merging
+      // into it, a per-route og:url would mean re-declaring type/siteName/locale
+      // in all seven route files. Setting it once here is worse still: it is not
+      // a template, so every one of ~15,900 pages would claim the homepage as its
+      // canonical URL and every share would be attributed to `/`. Omitted, an
+      // unfurler falls back to the URL it actually fetched, which is right.
+    },
+    twitter: { card: "summary_large_image" },
 
-  /*
-   * Let Google quote as much of a page as it wants.
-   *
-   * The default snippet length is short, and every listing page's value is a
-   * handful of specific facts — a phone number, a count, an opening time. A
-   * truncated snippet is the one that omits the fact somebody searched for.
-   *
-   * `max-image-preview` is included for completeness and does nothing today:
-   * the pages carry zero <img> tags by design (ADR 0004). It costs nothing and
-   * becomes correct the day that changes.
-   *
-   * Route metadata REPLACES this object rather than merging, which is the right
-   * behaviour here — /search and the sub-threshold facet pages set their own
-   * `robots` with index:false, and a noindex page has no snippet to size.
-   */
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { "max-snippet": -1, "max-image-preview": "large" },
-  },
-};
+    /*
+     * Let Google quote as much of a page as it wants.
+     *
+     * The default snippet length is short, and every listing page's value is a
+     * handful of specific facts — a phone number, a count, an opening time. A
+     * truncated snippet is the one that omits the fact somebody searched for.
+     *
+     * `max-image-preview` is included for completeness and does nothing today:
+     * the pages carry zero <img> tags by design (ADR 0004). It costs nothing and
+     * becomes correct the day that changes.
+     *
+     * Route metadata REPLACES this object rather than merging, which is the right
+     * behaviour here — /search and the sub-threshold facet pages set their own
+     * `robots` with index:false, and a noindex page has no snippet to size.
+     */
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { "max-snippet": -1, "max-image-preview": "large" },
+    },
+  };
+}
 
 export default function RootLayout({
   children,
@@ -153,7 +168,12 @@ export default function RootLayout({
   const publisher = publisherJsonLd({
     siteUrl: SITE_URL,
     siteName: SITE_NAME,
-    description: `An open-source directory of ${s.businesses.toLocaleString()} businesses in ${cityName()}, built from Google Maps data via SearchApi.`,
+    // Same reasoning as the homepage description: an un-crawled deployment is a
+    // supported state, and a WebSite node claiming "0 businesses" is a worse
+    // statement about the site than saying nothing about its size.
+    description: s.businesses
+      ? `An open-source directory of ${s.businesses.toLocaleString()} businesses in ${cityName()}, built from Google Maps data via SearchApi.`
+      : `An open-source ${cityName()} business directory, built from Google Maps data via SearchApi.`,
     repoUrl: REPO_URL,
     authorName: AUTHOR_NAME,
     authorUrl: AUTHOR_URL,

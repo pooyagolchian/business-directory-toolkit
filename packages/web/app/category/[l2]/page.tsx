@@ -30,11 +30,6 @@ const PAGE_SIZE = 120;
 export const dynamicParams = true;
 export const revalidate = 86_400;
 
-/** "Restaurants" -> "Restaurant". Only ever used for the n=1 sentence. */
-function singular(label: string): string {
-  return label.replace(/ies$/, "y").replace(/s$/, "");
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -44,11 +39,19 @@ export async function generateMetadata({
   const facet = categories().find((c) => c.slug === l2);
   if (!facet) return { title: "Not found" };
   return {
-    title: `${facet.label} in Dubai`,
-    // Pluralised and formatted, because at n=1 this read "1 catering in Dubai".
+    title: `${facet.label} in ${cityName()}`,
+    // Formatted, and phrased so n=1 does not need a singular. This read
+    // "1 catering in Dubai" before.
+    //
+    // "One <label> listing" rather than "the one <singular label>", because
+    // deriving a singular from a taxonomy label means guessing at English
+    // morphology with a regex: `.replace(/s$/, "")` turns "Buses" into "Buse"
+    // and leaves mass nouns like "Catering" untouched only by luck. The label
+    // is used attributively instead, so the count noun carries the number and
+    // the label is never inflected at all.
     description:
       facet.count === 1
-        ? `The one ${singular(facet.label).toLowerCase()} listed in ${cityName()}.`
+        ? `One ${facet.label.toLowerCase()} listing in ${cityName()}.`
         : `${facet.count.toLocaleString()} ${facet.label.toLowerCase()} in ${cityName()}, by neighbourhood.`,
     alternates: { canonical: `/category/${l2}` },
     // Same guard the money pages have carried all along. Nine categories have
@@ -70,7 +73,7 @@ export default async function CategoryPage({
 
   const businesses = byCategory(l2);
   const areaFacets = areasInCategory(l2);
-  const faq = buildFaq({ category: facet.label, businesses });
+  const faq = buildFaq({ city: cityName(), category: facet.label, businesses });
 
   // AFTER the slice, deliberately. This page knows two numbers about itself —
   // facet.count, which can be 1,164, and PAGE_SIZE, which is 120 — and only the
@@ -102,7 +105,7 @@ export default async function CategoryPage({
       />
 
       <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl">
-        {facet.label} in Dubai
+        {facet.label} in {cityName()}
       </h1>
       <p className="mt-3 text-[var(--muted)]">
         <span className="tabular">{facet.count.toLocaleString()}</span> listings
@@ -124,12 +127,21 @@ export default async function CategoryPage({
 
       <section className="mt-12">
         <h2 className="font-[family-name:var(--font-display)] text-2xl">
-          Most reviewed
+          Top rated
         </h2>
         <p className="mt-2 mb-5 text-sm text-[var(--muted)]">
-          Showing the {Math.min(businesses.length, PAGE_SIZE)} most reviewed of{" "}
-          {facet.count.toLocaleString()}. Narrow by neighbourhood above, or
-          filter this list.
+          {/*
+            This said "Most reviewed", and it was false. The rows come from
+            byRank(), which orders by a credibility-weighted rating (ADR 0010),
+            not by review count. Measured on /category/restaurants: 73 of the 120
+            rows shown are NOT among the 120 most reviewed, and the top row has
+            3,895 reviews against 32,881 for the actual leader — so the heading
+            described an ordering the page has never used.
+          */}
+          Showing {Math.min(businesses.length, PAGE_SIZE)} of{" "}
+          {facet.count.toLocaleString()}, ranked by rating and weighted for
+          review volume — so a 4.9 from 400 reviews outranks a 4.9 from four.
+          Narrow by neighbourhood above, or filter this list.
         </p>
         <FilterableBusinessList
           rows={rows}

@@ -161,8 +161,38 @@ const MONTHS = [
 export function formatCrawlDate(iso: string): string {
   const [year, month, day] = iso.split("-");
   const name = MONTHS[Number(month) - 1];
-  if (!year || !name || !day) return iso;
-  return `${Number(day)} ${name} ${year}`;
+  // `day` must be validated, not merely present. A full timestamp splits to
+  // "20T10:00:00Z", and Number() of that is NaN — which rendered as
+  // "NaN August 2026" in the footer of every page. The city config carries a
+  // bare date today, but `pnpm cities generate` writes ISO timestamps, so the
+  // shape this receives is one config change away from being wrong.
+  const dayNumber = Number(day);
+  if (!year || !name || !Number.isInteger(dayNumber) || dayNumber < 1) {
+    return iso;
+  }
+  return `${dayNumber} ${name} ${year}`;
+}
+
+let countryCodeCache: string | null | undefined;
+
+/**
+ * ISO 3166-1 alpha-2 for the city this deployment serves, from its own config.
+ *
+ * "AE" was a literal in the LocalBusiness markup. On a toolkit whose central
+ * claim is that a city is data (ADR 0005), a hard-coded country code means a
+ * fork crawling Lisbon publishes every Portuguese address as Emirati.
+ */
+export function countryCode(): string | null {
+  if (countryCodeCache !== undefined) return countryCodeCache;
+  try {
+    const parsed = JSON.parse(readFileSync(dataFile("city.json"), "utf8")) as {
+      countryCode?: string;
+    };
+    countryCodeCache = parsed.countryCode ?? null;
+  } catch {
+    countryCodeCache = null;
+  }
+  return countryCodeCache;
 }
 
 function titleCase(slug: string): string {
@@ -231,7 +261,25 @@ export interface Facet {
   count: number;
 }
 
+let categoryCache: Facet[] | null = null;
+let areaCache: Facet[] | null = null;
+
+/**
+ * Both facet lists are memoised, and the reason is the root layout.
+ *
+ * It emits the Organization/WebSite graph on EVERY page, and that calls
+ * stats(), which calls categories() and areas() — each a full linear scan of
+ * the 14,981-record corpus. Measured: stats() is ~7ms, so the 1,413 pages
+ * prerendered at build spent ~10s doing nothing but rescanning, and every
+ * on-demand render and ISR revalidation pays it again.
+ *
+ * A copy is returned rather than the cached array itself. The scan is the
+ * expensive part; copying 81 entries is not, and handing out the cache would
+ * let one caller's in-place `.sort()` silently reorder every other caller's
+ * facets.
+ */
 export function categories(): Facet[] {
+  if (categoryCache) return [...categoryCache];
   const counts = new Map<string, { label: string; count: number }>();
   for (const b of allBusinesses()) {
     if (!b.l2) continue;
@@ -240,19 +288,22 @@ export function categories(): Facet[] {
     entry.count++;
     counts.set(slug, entry);
   }
-  return [...counts.entries()]
+  categoryCache = [...counts.entries()]
     .map(([slug, v]) => ({ slug, label: v.label, count: v.count }))
     .sort((a, b) => b.count - a.count);
+  return [...categoryCache];
 }
 
 export function areas(): Facet[] {
+  if (areaCache) return [...areaCache];
   const counts = new Map<string, number>();
   for (const b of allBusinesses()) {
     counts.set(b.area, (counts.get(b.area) ?? 0) + 1);
   }
-  return [...counts.entries()]
+  areaCache = [...counts.entries()]
     .map(([slug, count]) => ({ slug, label: areaLabel(slug), count }))
     .sort((a, b) => b.count - a.count);
+  return [...areaCache];
 }
 
 export function categoriesInArea(area: string): Facet[] {

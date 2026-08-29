@@ -84,7 +84,8 @@ describe("the twelve-hour clock, where the off-by-twelve bugs live", () => {
   });
 
   test("a range that runs past midnight is a crossing span, not a reversed one", () => {
-    // 837 businesses show "8 AM–2 AM". Sorting the pair, or clamping closes up
+    // 837 day-entries read "8 AM–2 AM", across 130 businesses. Sorting the pair,
+    // or clamping closes up
     // to opens, would claim a shop shuts eighteen hours before it does.
     // schema.org reads closes < opens as "the next day", which is the truth.
     expect(monday("8 AM–3 AM")[0]).toMatchObject({

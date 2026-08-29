@@ -51,6 +51,20 @@ export type { CategoryMap } from "./categories";
 
 export { serializeJsonLd } from "./jsonld";
 
+export { hasArabic, splitScriptRuns } from "./bidi";
+export type { ScriptRun } from "./bidi";
+
+export {
+  PAYMENT_LABELS,
+  SERVICE_LABELS,
+  paymentLabels,
+  serviceLabels,
+} from "./amenity-display";
+
+export { SCHEMA_TYPE_BY_LABEL, schemaTypeFor } from "./schema-type";
+
+export { canonicalWebsite } from "./website";
+
 export { breadcrumbJsonLd } from "./breadcrumbs";
 export type { BreadcrumbList, Crumb } from "./breadcrumbs";
 

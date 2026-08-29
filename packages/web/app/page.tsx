@@ -11,6 +11,8 @@ import {
   areas,
   categories,
   cityName,
+  crawledAt,
+  formatCrawlDate,
   stats,
 } from "@/lib/data";
 
@@ -28,11 +30,18 @@ export async function generateMetadata(): Promise<Metadata> {
     // Derived, not written down. A fork crawling Lisbon must not ship a
     // description advertising Dubai, and the count has to move with the corpus
     // or it becomes a claim the page cannot support (ADR 0005).
-    description:
-      `Search ${s.businesses.toLocaleString()} ${city} businesses across ` +
-      `${s.categories} categories and ${s.areas} neighbourhoods — by name, ` +
-      `category, neighbourhood, or phone number. Open source, built in public ` +
-      `on SearchApi's Google Maps engine.`,
+    //
+    // An un-crawled deployment is a SUPPORTED state — the page below renders an
+    // honest "No data yet" for it — so the description must not advertise
+    // "0 businesses" while the page says the crawl has not run. This is the
+    // og:description on every share of a fresh fork.
+    description: s.businesses
+      ? `Search ${s.businesses.toLocaleString()} ${city} businesses across ` +
+        `${s.categories} categories and ${s.areas} neighbourhoods — by name, ` +
+        `category, neighbourhood, or phone number. Open source, built in public ` +
+        `on SearchApi's Google Maps engine.`
+      : `An open-source ${city} business directory, built in public on ` +
+        `SearchApi's Google Maps engine. No crawl has run for this deployment yet.`,
     alternates: { canonical: "/" },
   };
 }
@@ -53,6 +62,7 @@ export default function Home() {
   const areaLabels = dataset.areas.map(areaLabel);
 
   const empty = s.businesses === 0;
+  const crawled = crawledAt();
 
   return (
     <>
@@ -62,8 +72,34 @@ export default function Home() {
         <h1 className="font-[family-name:var(--font-display)] text-4xl leading-[1.05] tracking-tight sm:text-6xl">
           Find a business
           <br />
-          in Dubai
+          in {cityName()}
         </h1>
+
+        {/*
+          A lede that states the corpus in one extractable sentence.
+
+          The <h1> above asserts nothing — "Find a business in Dubai" is an
+          instruction — and the figures under it live in a <dl> grid, which is
+          the right markup for labelled pairs but is not a sentence anything can
+          quote. An answer engine lifting from this page had nothing to lift.
+
+          The money-page template already proves the pattern: "109 restaurants
+          in Al Barsha, Dubai. 104 list a phone number, and the average Google
+          rating across 107 rated listings is 4.4" extracts cleanly on its own.
+          This is the same move for the homepage, and the grid stays exactly as
+          it was — this adds a sentence, it does not replace the numbers.
+        */}
+        {!empty && (
+          <p className="mt-6 max-w-2xl text-lg text-[var(--muted)]">
+            This directory lists{" "}
+            <span className="tabular">{s.businesses.toLocaleString()}</span>{" "}
+            businesses in {cityName()}, across{" "}
+            <span className="tabular">{s.categories}</span> categories and{" "}
+            <span className="tabular">{s.areas}</span> neighbourhoods, compiled
+            from Google Maps data
+            {crawled && <> and last retrieved on {formatCrawlDate(crawled)}</>}.
+          </p>
+        )}
 
         <div className="mt-10 max-w-2xl">
           <SearchBox />

@@ -3,7 +3,8 @@
  *
  * Businesses paste a tagged link into their Google listing so they can tell
  * Maps traffic apart in their analytics. Measured in the reference corpus:
- * 847 of 10,348 websites arrive carrying tracking, e.g.
+ * 909 of 10,348 websites carry at least one parameter this function removes —
+ * 841 of them a `utm_*` — e.g.
  *
  *     https://www.atlantis.com/dubai?utm_source=googleplaces&utm_medium=location
  *
@@ -72,9 +73,10 @@ const TRACKING_PARAMS: ReadonlySet<string> = new Set([
  *     of one cleaned URL stands every site that genuinely routes on `ref` —
  *     referral codes, affiliate landings, in-app deep links. The measurement
  *     argues for leaving it, so it stays.
- *   - `y_source` (204), `src` (12), `cid` (10), `sourceid`, `merchantid`,
- *     `scid`. Unambiguously tracking in the instances sampled — `y_source` is
- *     Yext's location-website tag, `cid=gplaces-copthorne-hotel-dubai` speaks
+ *   - `y_source` (204), `scid` (38), `sourceid` (33), `merchantid` (32),
+ *     `cid` (20), `src` (12). Unambiguously tracking in the instances sampled —
+ *     `y_source` is Yext's location-website tag, and
+ *     `cid=gplaces-copthorne-hotel-dubai` speaks
  *     for itself. But `src`, `cid` and `id` are also the three commonest names
  *     for a parameter a CMS routes on (`?cid=1250` selects a page), and this
  *     function cannot tell the two apart from the name alone. Widening here
@@ -146,13 +148,24 @@ export function canonicalWebsite(url: string | undefined): string | undefined {
     return undefined;
   }
 
-  // The query is spliced textually rather than rebuilt through URLSearchParams,
-  // which looks like the obvious tool and is the wrong one. Measured: a
-  // searchParams round-trip rewrites 147 of the corpus's queries — `%20` to
-  // `+`, `,` to `%2C`. Equivalent to most servers, not to all, and this string
-  // is also shown to a human as a link. Keeping the original bytes for every
-  // parameter we are not removing means the only difference between input and
-  // output is the removal itself.
+  // The query is spliced out of `parsed.search` rather than rebuilt through
+  // URLSearchParams, which looks like the obvious tool and is the wrong one.
+  // Measured: a searchParams round-trip rewrites 147 of the corpus's queries —
+  // `%20` to `+`, `,` to `%2C`. Equivalent to most servers, not to all, and
+  // this string is also shown to a human as a link.
+  //
+  // Splicing avoids that second encoding pass. It does NOT make the output a
+  // byte-for-byte copy of the caller's query, and it is worth being exact about
+  // which of the two this is: `parsed.search` has already been through the
+  // WHATWG parser, which percent-encodes space, `"`, `<` and `>` on the way in.
+  // So `?q=a b` arrives here as `?q=a%20b` and leaves that way. The guarantee
+  // is that nothing is re-encoded a SECOND time — not that kept parameters are
+  // untouched. (Across the corpus the two happen to coincide: every stored URL
+  // is already parser-normalised, so all 10,348 round-trip byte-identically.)
+  //
+  // Reading it as the stronger promise is what leads to a raw-text splice over
+  // the caller's string, which gives that byte-for-byte property and gives up
+  // every malformed-input crash the parser currently absorbs.
   const kept = parsed.search
     .slice(1)
     .split("&")
@@ -166,11 +179,26 @@ export function canonicalWebsite(url: string | undefined): string | undefined {
   // for no gain.
   const query = kept.length > 0 ? `?${kept.join("&")}` : "";
 
-  // `origin` lowercases the host — safe, because DNS is case-insensitive, and
-  // useful, because it makes equal URLs compare equal. `pathname` is left
-  // exactly as given: path case is significant on any case-sensitive
-  // filesystem, so folding it would 404 the link. `origin` also drops any
-  // `user:pass@`, which is the right loss — credentials must not be rendered
-  // into a public href. (Measured: none in the corpus.)
+  // `origin` lowercases the host and punycodes an internationalised one — both
+  // safe, because that is what DNS resolves either way, and useful, because it
+  // makes equal URLs compare equal.
+  //
+  // `pathname` keeps its CASE, which is the part that matters: path case is
+  // significant on any case-sensitive filesystem, so folding it would 404 the
+  // link. It is not otherwise untouched — the parser percent-encodes non-ASCII
+  // and the reserved ASCII set, so `/straße` reaches here as `/stra%C3%9Fe`.
+  //
+  // `origin` also drops any `user:pass@`. That is deliberate and load bearing
+  // twice over: credentials must never be rendered into a public href, and
+  // `https://<trusted>@evil/` is a spoof that reads as the trusted host to a
+  // human skimming the link. Dropping userinfo makes the visible link and the
+  // JSON-LD `url` both say where the click actually goes. (Measured: no corpus
+  // URL carries credentials — this is a guard for other cities' crawls.)
+  //
+  // The fragment is passed through even when it looks like tracking. A `#`
+  // query is a hash router's own business — `#/home?tab=2` addresses a view
+  // inside a single-page app — and it is never sent to the server, so there is
+  // no attribution in it to strip. (Measured: 0 corpus URLs carry tracking
+  // there.)
   return `${parsed.origin}${parsed.pathname}${query}${parsed.hash}`;
 }

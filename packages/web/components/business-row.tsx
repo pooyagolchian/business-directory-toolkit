@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Bilingual } from "./bilingual";
 
 /**
  * A listing row, already resolved for display.
@@ -55,7 +56,7 @@ export function BusinessRow({ row }: { row: CardRow }) {
       >
         <div className="min-w-0 flex-1">
           <h3 dir="auto" className="text-lg font-semibold">
-            {row.title}
+            <Bilingual text={row.title} />
           </h3>
 
           <p className="label mt-1.5 text-[var(--muted)]">{row.meta}</p>
@@ -65,7 +66,7 @@ export function BusinessRow({ row }: { row: CardRow }) {
               dir="auto"
               className="mt-2 line-clamp-1 text-sm text-[var(--muted)]"
             >
-              {row.address}
+              <Bilingual text={row.address} />
             </p>
           )}
         </div>

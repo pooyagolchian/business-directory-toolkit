@@ -25,6 +25,14 @@
  */
 
 /**
+ * ICU's UTS-46 ToUnicode. It is the only thing available here that can tell a
+ * punycode label which decodes from one that merely looks like it should — see
+ * the long note on `hasUndecodableAceLabel`, where the alternatives are
+ * measured and rejected.
+ */
+import { domainToUnicode } from "node:url";
+
+/**
  * Names that identify a click or a campaign and never a resource.
  *
  * Grouped by the system that emits them, because that is the unit in which they
@@ -115,6 +123,110 @@ function isTrackingParam(rawName: string): boolean {
 }
 
 /**
+ * The prefix that marks a label as punycode — "ACE", ASCII Compatible Encoding.
+ * Lowercase, because every label is lowercased before it is tested.
+ */
+const ACE_PREFIX = "xn--";
+
+/**
+ * True when any label of the host claims to be punycode and does not decode.
+ *
+ * WHY THIS EXISTS — THE PARSER USED TO DO IT
+ *
+ * Until Node 24.20.0 this function had no reason to exist. `new URL()` rejected
+ * a host whose punycode fails IDNA, so `https://xn--a.com/x` threw and the
+ * catch below returned undefined for free. Node 24.20.0 stopped validating
+ * those labels. Measured on both runtimes: `new URL("https://xn--a.com/x")`
+ * throws ERR_INVALID_URL on 24.13.0 and parses to hostname "xn--a.com" on
+ * 24.20.0, and the same split shows on `xn--.com`, `xn--a-ecp.ru` and
+ * `xn--.-9na.com`.
+ *
+ * The difference is not cosmetic. `xn--a` has no address and never will — no
+ * resolver answers for it — and this string is written into an href and into a
+ * LocalBusiness `url`. Publishing an unresolvable host as a business's
+ * canonical address is one of the two failures this module exists to prevent,
+ * and the parser quietly stopped preventing it under us. So the check moves
+ * into code, where a test pins it rather than a Node release.
+ *
+ * WHY PER LABEL AND NOT PER HOST
+ *
+ * The obvious shape of this check is `domainToUnicode(hostname) === hostname`,
+ * and it fails on the host shape that matters most. `xn--bcher-kva.xn--a.com`
+ * mixes one VALID punycode label with one dead one; measured on 24.20.0,
+ * domainToUnicode returns "bücher.xn--a.com". The valid label decoded, the
+ * string changed, and a whole-host comparison reads that as success while the
+ * dead label sails into the href. Asking each label separately is what closes
+ * it, and it is the case the tests spell out.
+ *
+ * HOW A FAILED DECODE ANNOUNCES ITSELF
+ *
+ * Two different ways, which is why both are matched. On 24.13.0 ICU signals
+ * failure with the empty string — domainToUnicode("xn--a") === "". On 24.20.0
+ * it hands the label back untouched — domainToUnicode("xn--a") === "xn--a". A
+ * real internationalised label does neither on either runtime: "xn--bcher-kva"
+ * decodes to "bücher" and "xn--zckzah" to "テスト". So "empty, or still an ACE
+ * label" is the signal.
+ *
+ * WHAT THIS DOES NOT CATCH, MEASURED
+ *
+ * The signal is the two ways ICU refuses to MAP a label. It is not the whole of
+ * UTS-46, because 24.20.0 applies the mapping table without the validity
+ * criteria on top. Swept exhaustively over every `xn--` payload of length 1-3
+ * plus 150k random ones, 374 of 202,059 labels are rejected by 24.13.0's parser
+ * and still published here on 24.20.0. 345 of them decode to letters assigned
+ * in a Unicode later than 24.13.0's ICU knew, where the newer runtime is
+ * arguably right. The remaining 29 are not defensible: 27 decode to a leading
+ * combining mark and 2 to a symbol, both of which UTS-46 validity forbids.
+ *
+ * They are left alone deliberately. Closing them means this module growing its
+ * own opinion about which codepoints may start a label, and the obvious spelling
+ * of that opinion is wrong: a blanket "reject a decoded symbol" also rejects
+ * xn--ls8h, xn--i-7iq and xn--qei — 💩.la, i❤.ws and ❤.ws, which are registered
+ * and resolve. Over-rejecting deletes a real business's website from its
+ * listing, which this file's opening note calls the worse of the two errors, so
+ * the judgement stays with ICU and the residue stays documented.
+ *
+ * REJECTED: `node:punycode`, AND A USERLAND PUNYCODE PACKAGE
+ *
+ * Both are worse, and not because of the DEP0040 deprecation warning that
+ * `node:punycode` prints. They implement RFC 3492 — the encoding — and nothing
+ * above it. Measured, identically on 24.13.0 and 24.20.0:
+ * `punycode.toUnicode("xn--a-ecp")` returns "a⒈". The decode SUCCEEDS, because
+ * U+2488 DIGIT ONE FULL STOP is a perfectly encodable codepoint. IDNA is what
+ * forbids it, and for a good reason: "a⒈" renders as "a1." and is a
+ * ready-made host spoof. A hand-rolled decoder, or the npm package, would wave
+ * `xn--a-ecp.ru` straight through into a rendered link. Only the ICU path
+ * applies the UTS-46 validity rules on top of the decode, so `node:url` here is
+ * not a convenience, it is the requirement.
+ *
+ * REJECTED: `domainToASCII(hostname) === ""` as the signal. It is the same
+ * measurement in mirror image and it died the same death — on 24.20.0
+ * domainToASCII("xn--a.com") returns "xn--a.com" rather than "", so it carries
+ * no signal at all on the runtime that needs one.
+ *
+ * The cost, named rather than buried: this is the first `node:` import in
+ * @directory/core's shipped source, so a client component importing the package
+ * barrel would now pull a Node built-in into a browser bundle. Nothing does
+ * today — canonicalWebsite has a single caller, a server component — and the
+ * day something tries, it is a build error and not a silent one.
+ */
+function hasUndecodableAceLabel(hostname: string): boolean {
+  for (const rawLabel of hostname.split(".")) {
+    // `new URL` already lowercases the host of an http(s) URL, so the fold
+    // below only matters to a direct caller. It costs nothing, and `XN--A` is
+    // precisely the spelling someone reaches for when a check looks case-bound.
+    const label = rawLabel.toLowerCase();
+    // A non-ACE label is ordinary ASCII DNS and none of this function's
+    // business. That also covers the empty label a trailing dot leaves behind,
+    // and an IPv4 or bracketed IPv6 literal, none of which carry punycode.
+    if (!label.startsWith(ACE_PREFIX)) continue;
+    const decoded = domainToUnicode(label);
+    if (decoded === "" || decoded.startsWith(ACE_PREFIX)) return true;
+  }
+  return false;
+}
+
+/**
  * Returns a cleaned URL, or undefined when the input cannot safely be one.
  *
  * Total by construction: this runs over every website in the corpus, all of it
@@ -147,6 +259,11 @@ export function canonicalWebsite(url: string | undefined): string | undefined {
   if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
     return undefined;
   }
+
+  // A host that claims punycode and does not decode resolves nowhere, and as of
+  // Node 24.20.0 the parser above no longer rejects it. See the note on
+  // hasUndecodableAceLabel for why this is now our job and why it is per label.
+  if (hasUndecodableAceLabel(parsed.hostname)) return undefined;
 
   // The query is spliced out of `parsed.search` rather than rebuilt through
   // URLSearchParams, which looks like the obvious tool and is the wrong one.

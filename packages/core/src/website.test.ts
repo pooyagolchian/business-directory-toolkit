@@ -370,10 +370,17 @@ describe("canonicalWebsite", () => {
     /**
      * The cases above all look wrong to a human. This one does not: it is a
      * well-formed https URL with a plausible host, and it still has no address,
-     * because `xn--a` is not decodable punycode and IDNA rejects it. It is the
-     * reason the guard is a try/catch around the parser rather than a regex on
-     * the scheme — a scheme test would wave this through and hand an
-     * unresolvable host to the renderer.
+     * because `xn--a` is not decodable punycode and IDNA rejects it.
+     *
+     * It used to be the parser that said so. Node 24.20.0 stopped validating
+     * punycode labels, so from that release the try/catch around `new URL()`
+     * lets this through and an explicit per-label check is what rejects it. The
+     * assertion is unchanged across the two runtimes, which is the point of
+     * moving it here: this case no longer depends on which Node built the site.
+     * That is a claim about the cases pinned below, not about every possible
+     * host — the guard delegates to ICU, whose tables move between releases.
+     * The residue is measured in the note on `hasUndecodableAceLabel`. The
+     * matrix behind it is in "rejects a host whose punycode does not decode".
      */
     test("returns undefined for a well-formed URL whose host fails IDNA", () => {
       expect(canonicalWebsite("https://xn--a.com/x")).toBeUndefined();
@@ -396,6 +403,166 @@ describe("canonicalWebsite", () => {
     test("survives a percent-encoded spelling of a tracking name", () => {
       // `%75` is `u`. Decoding the name before matching closes the gap.
       expect(canonicalWebsite("https://example.com/x?%75tm_source=g")).toBe(
+        "https://example.com/x",
+      );
+    });
+  });
+
+  /**
+   * An undecodable `xn--` host must never reach an href or a JSON-LD `url`.
+   *
+   * These ran green for free until Node 24.20.0, which stopped validating
+   * punycode labels in the URL parser: `new URL("https://xn--a.com/x")` throws
+   * ERR_INVALID_URL on 24.13.0 and parses to hostname "xn--a.com" on 24.20.0.
+   * Every case below was measured on both runtimes and returns the same thing
+   * on each. That is the property worth pinning — a listing must not publish a
+   * different address depending on which Node the build ran on.
+   */
+  describe("rejects a host whose punycode does not decode", () => {
+    test("a label that is not decodable punycode", () => {
+      expect(canonicalWebsite("https://xn--a.com/x")).toBeUndefined();
+    });
+
+    test("an ACE prefix with nothing after it", () => {
+      expect(canonicalWebsite("https://xn--.com/x")).toBeUndefined();
+    });
+
+    /**
+     * The interesting one. RFC 3492 decodes `xn--a-ecp` happily, to "a⒈" —
+     * measured, `punycode.toUnicode("xn--a-ecp") === "a⒈"` on both runtimes.
+     * It is IDNA that refuses it, because U+2488 DIGIT ONE FULL STOP renders as
+     * "a1." and is a host spoof waiting for a reader. This test is what a
+     * hand-rolled punycode decoder would fail.
+     */
+    test("a label that decodes but fails IDNA validity", () => {
+      expect(canonicalWebsite("https://xn--a-ecp.ru/x")).toBeUndefined();
+    });
+
+    test("an ACE label whose payload starts with a separator", () => {
+      expect(canonicalWebsite("https://xn--.-9na.com/x")).toBeUndefined();
+    });
+
+    /**
+     * The case a whole-host check gets wrong, and the reason the guard works
+     * label by label. One valid punycode label and one dead one: measured on
+     * 24.20.0, `domainToUnicode("xn--bcher-kva.xn--a.com")` returns
+     * "bücher.xn--a.com". The string changed, so a
+     * `domainToUnicode(host) === host` comparison reads that as a successful
+     * decode and publishes a host that resolves nowhere. Both orderings are
+     * pinned, because a check that only looks at the first label passes one of
+     * them.
+     */
+    test("a host mixing one valid punycode label with one invalid", () => {
+      expect(
+        canonicalWebsite("https://xn--bcher-kva.xn--a.com/x"),
+      ).toBeUndefined();
+      expect(
+        canonicalWebsite("https://xn--a.xn--bcher-kva.com/x"),
+      ).toBeUndefined();
+    });
+
+    test("a dead label buried in the middle of the host", () => {
+      expect(
+        canonicalWebsite("https://sub.xn--a.example.com/x"),
+      ).toBeUndefined();
+    });
+
+    /**
+     * `new URL` lowercases the host of an http(s) URL, so this arrives at the
+     * check already folded. It is pinned anyway: uppercase is the first thing
+     * tried against a check that looks case-bound, and the fold is cheap enough
+     * that nobody should ever be tempted to remove it.
+     */
+    test("an uppercase spelling of the same dead label", () => {
+      expect(canonicalWebsite("https://XN--A.COM/x")).toBeUndefined();
+    });
+
+    test("the bare ACE prefix as the whole host", () => {
+      expect(canonicalWebsite("https://xn--/x")).toBeUndefined();
+    });
+
+    test("a dead label with no TLD after it", () => {
+      expect(canonicalWebsite("https://xn--a/x")).toBeUndefined();
+    });
+
+    /**
+     * A trailing dot is a legal fully-qualified host and splits into an empty
+     * final label. The empty label must not be mistaken for a broken one, and
+     * the dead label before it must still be caught.
+     */
+    test("a dead label in a fully-qualified host", () => {
+      expect(canonicalWebsite("https://xn--a.com./x")).toBeUndefined();
+    });
+  });
+
+  /**
+   * The other half of the same guard, and the half that costs money if it goes
+   * wrong. Over-rejecting here deletes a real business's website from its
+   * listing, which is exactly the "broken link beats dirty link" failure this
+   * module is built to avoid. Every host below is a legitimate address.
+   */
+  describe("keeps internationalised hosts that do decode", () => {
+    test("decodable punycode in the second level", () => {
+      // bücher.de
+      expect(canonicalWebsite("https://xn--bcher-kva.de/x")).toBe(
+        "https://xn--bcher-kva.de/x",
+      );
+      // テスト.jp
+      expect(canonicalWebsite("https://xn--zckzah.jp/x")).toBe(
+        "https://xn--zckzah.jp/x",
+      );
+    });
+
+    test("decodable punycode in every label, including the TLD", () => {
+      // bücher.テスト.com and рф.рф
+      expect(canonicalWebsite("https://xn--bcher-kva.xn--zckzah.com/x")).toBe(
+        "https://xn--bcher-kva.xn--zckzah.com/x",
+      );
+      expect(canonicalWebsite("https://xn--p1ai.xn--p1ai/x")).toBe(
+        "https://xn--p1ai.xn--p1ai/x",
+      );
+    });
+
+    /**
+     * A host typed in Unicode rather than punycode. The parser encodes it on
+     * the way in, so by the time the guard sees it it is an ACE label like any
+     * other — and it had better decode back.
+     */
+    test("a host written in Unicode", () => {
+      expect(canonicalWebsite("https://exämple.com/x")).toBe(
+        "https://xn--exmple-cua.com/x",
+      );
+    });
+
+    test("an uppercase spelling of a valid punycode host", () => {
+      expect(canonicalWebsite("https://XN--BCHER-KVA.DE/x")).toBe(
+        "https://xn--bcher-kva.de/x",
+      );
+    });
+
+    test("a fully-qualified host keeps its trailing dot", () => {
+      expect(canonicalWebsite("https://example.com./x")).toBe(
+        "https://example.com./x",
+      );
+      expect(canonicalWebsite("https://xn--bcher-kva.de./x?utm_source=g")).toBe(
+        "https://xn--bcher-kva.de./x",
+      );
+    });
+
+    /**
+     * Literal addresses carry no punycode at all, and the bracketed IPv6 form
+     * is the one that would break a naive label split — it has no dots to split
+     * on and its brackets must survive into the href.
+     */
+    test("IPv4 and IPv6 literal hosts", () => {
+      expect(canonicalWebsite("https://127.0.0.1/x")).toBe(
+        "https://127.0.0.1/x",
+      );
+      expect(canonicalWebsite("https://[::1]/x")).toBe("https://[::1]/x");
+    });
+
+    test("a plain ASCII host is untouched", () => {
+      expect(canonicalWebsite("https://example.com/x")).toBe(
         "https://example.com/x",
       );
     });

@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 # No AWS and no SearchApi credentials are exposed to this workflow.
 # The test suite runs entirely against recorded fixtures, so CI never

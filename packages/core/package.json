@@ -15,6 +15,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "libphonenumber-js": "^1.13.11"
+    "libphonenumber-js": "^1.13.12"
   }
 }

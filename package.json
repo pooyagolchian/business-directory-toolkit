@@ -38,7 +38,7 @@
     "visibility": "tsx packages/pipeline/src/cli/visibility.ts"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.5",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.0.0",
     "eslint": "^10.9.1",
     "prettier": "^3.4.2",

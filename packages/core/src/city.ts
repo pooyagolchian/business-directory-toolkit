@@ -240,6 +240,7 @@ export function parseCityConfig(json: string, source?: string): CityConfig {
       `${label(source)}: is not valid JSON - ${
         error instanceof Error ? error.message : String(error)
       }`,
+      { cause: error },
     );
   }
 

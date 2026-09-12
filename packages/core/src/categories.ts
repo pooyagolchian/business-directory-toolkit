@@ -90,6 +90,7 @@ export function parseCategoryMap(json: string, source?: string): CategoryMap {
       `${label}: is not valid JSON - ${
         error instanceof Error ? error.message : String(error)
       }`,
+      { cause: error },
     );
   }
 

@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadAndReplaceTheLiveDataset",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:AbortMultipartUpload"],
+      "Resource": "arn:aws:s3:::directory-from-scratch-dataset-837737011076/dubai/*"
+    },
+    {
+      "Sid": "ListOnlyTheDubaiPrefix",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::directory-from-scratch-dataset-837737011076",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": ["dubai/*"]
+        }
+      }
+    },
+    {
+      "Sid": "ArchiveRawResponsesWriteOnly",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:AbortMultipartUpload"],
+      "Resource": "arn:aws:s3:::directory-from-scratch-production-rawarchivebucket-remsarbx/raw/*"
+    }
+  ]
+}

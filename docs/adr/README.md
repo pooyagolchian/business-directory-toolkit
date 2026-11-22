@@ -36,6 +36,7 @@ that only contains decisions that worked is a marketing page.
 | [0014](./0014-generate-the-city-registry.md)                | Generate the city registry from OpenStreetMap, and mark every unverified config as unverified | Accepted · validated 2026-08-22      | 2026-08-22 | Coverage is a generator, not a directory listing. A config is not the dataset, so it costs no credits; `verification` carries evidence, and its absence means unverified.                   |
 | [0015](./0015-ship-the-dataset-to-ci-through-private-s3.md) | Ship the dataset to CI through a private S3 bucket, never through git                         | Accepted                             | 2026-08-23 | ADR 0002 forbids committing the crawl output and ADR 0009 needs it at build time, so CI could never deploy. It travels through a private, versioned bucket and is verified before use.      |
 | [0016](./0016-carry-over-businesses-between-crawls.md)      | Carry businesses over between crawls, and refuse to publish a shrunken directory              | Accepted                             | 2026-11-23 | A load keeps a business the crawl missed for 56 days after it was last seen, re-applying suppression; `dataset:push` refuses a set below 95% of the published one without `--allow-shrink`. |
+| [0017](./0017-scheduled-weekly-crawl.md)                    | Refresh the dataset with a scheduled weekly crawl, and keep the deploy human                  | Accepted                             | 2026-11-23 | A Sunday crawl capped at 1,500 credits (~73k a year) publishes the dataset through an OIDC role that can only touch two S3 prefixes, then requests a deploy that waits for a human.         |
 
 ### Notes on the numbering
 
@@ -146,7 +147,7 @@ decision would be unenforceable or unmeasurable on its own:
 
 ## How to add one
 
-The next free number is **0017**, and nothing has a standing claim on anything. ADR 0008's reservation on 0012 was discharged on
+The next free number is **0018**, and nothing has a standing claim on anything. ADR 0008's reservation on 0012 was discharged on
 2026-08-22; see the note above for how twice the number was nearly reassigned
 before that happened.
 

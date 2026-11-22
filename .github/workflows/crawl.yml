@@ -1,0 +1,401 @@
+name: Crawl
+
+# Weekly refresh of the reference deployment's dataset. See
+# docs/adr/0017-scheduled-weekly-crawl.md.
+#
+# THIS WORKFLOW SPENDS SEARCHAPI CREDITS, and it does so without anyone typing
+# `--yes`. The schedule and the budget cap below are the consent, so the cost
+# is stated here where anyone editing either will see it:
+#
+#   ~1,400 credits per run   v0.1 crawl actuals (CLAUDE.md, measured facts)
+#   hard cap 1,500 per run   --budget, enforced inside runCrawl()
+#   1,400 x 52  = ~73k a year
+#   73k / 12    = ~6k a month
+#
+# against a 100k total credit budget — ~73% of it in one year of weekly runs,
+# before any other spend. Changing the cron or BUDGET changes that arithmetic;
+# restate it in the ADR when you do.
+#
+# This is an operations job, not CI. ci.yml still never sees a credential and
+# never spends a credit (CLAUDE.md hard rule 3). The keys live only in the
+# `crawl` GitHub Environment, whose branch policy admits `main` alone, and the
+# repository guard on the job means a fork that copies this file runs nothing.
+#
+# The crawl never deploys. It publishes the dataset and REQUESTS a production
+# deploy, which then waits on the `production` environment's required
+# reviewer. That human approval is the one gate this automation does not
+# replace.
+on:
+  schedule:
+    # Sunday 02:00 UTC — 06:00 in Dubai, the quietest hour for the site.
+    # Scheduled runs always use the default branch's copy of this file.
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Report the request count and credit cost only; spend nothing"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  # Two crawls at once would spend twice and race each other's dataset push.
+  # Never cancel: a cancelled crawl has already spent its credits.
+  group: crawl-dubai
+  cancel-in-progress: false
+
+# Nothing by default. Each job asks for exactly what it uses, so the token that
+# can push a branch or dispatch a deploy never shares a job with the API keys
+# or with `pnpm install` running third-party code.
+permissions: {}
+
+defaults:
+  run:
+    # Explicit `shell: bash` is what turns on `-o pipefail`. Without it,
+    # `pnpm crawl ... | tee crawl.log` would exit 0 when the crawl failed,
+    # because the exit status would be tee's.
+    shell: bash
+
+env:
+  CITY: dubai
+  # Requests, which is credits. The dry-run's worst case is 3,170 and v0.1
+  # spent 1,400, so this cap leaves ~100 of headroom. See the ADR's Bad list
+  # for what a run that hits it leaves uncovered.
+  BUDGET: "1500"
+
+jobs:
+  crawl:
+    # Forks inherit this file and could inherit a schedule. They never
+    # inherit the keys, but the job should not even start there.
+    if: github.repository == 'pooyagolchian/business-directory-toolkit'
+    runs-on: ubuntu-latest
+    environment: crawl
+    # GitHub-hosted runners stop at 360. The crawl's wall-clock time has never
+    # been measured in CI — requests are sequential, each with a 30s timeout
+    # and up to 3 retries — so this is a ceiling, not an estimate.
+    timeout-minutes: 300
+    permissions:
+      # OIDC, as in deploy.yml: a GitHub-signed token is exchanged for
+      # credentials that expire in an hour. No AWS key exists to leak.
+      id-token: write
+      contents: read
+    env:
+      # A scheduled run has no inputs, so `inputs.dry_run` is empty there and
+      # must not be read by truthiness alone.
+      SPEND: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+    outputs:
+      taxonomy_changed: ${{ steps.classify.outputs.changed }}
+      pushed: ${{ steps.push.outcome == 'success' }}
+    steps:
+      # Fail before anything billable happens, and name what is missing — the
+      # same reasoning as deploy.yml's configuration check. Secrets are tested
+      # for presence only; the comparison yields true/false, never the value.
+      - name: Check crawl configuration
+        if: env.SPEND == 'true'
+        env:
+          ROLE: ${{ vars.AWS_CRAWL_ROLE_ARN }}
+          DATASET: ${{ vars.DATASET_S3_URI }}
+          RAW_ARCHIVE: ${{ vars.RAW_ARCHIVE_S3_URI }}
+          HAS_SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY != '' }}
+          HAS_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        run: |
+          missing=0
+          if [ -z "$ROLE" ]; then
+            echo "::error::Repository variable AWS_CRAWL_ROLE_ARN is not set."
+            echo "  This is NOT the deploy role. It may only read and replace the"
+            echo "  dataset and write raw responses: infra/iam/crawl-role-*.json"
+            missing=1
+          fi
+          if [ -z "$DATASET" ]; then
+            echo "::error::Repository variable DATASET_S3_URI is not set (ADR 0015)."
+            missing=1
+          fi
+          case "$RAW_ARCHIVE" in
+            s3://*) ;;
+            *)
+              echo "::error::Repository variable RAW_ARCHIVE_S3_URI must be an s3:// prefix."
+              echo "  The RawArchive bucket name carries an SST-generated suffix,"
+              echo "  so it cannot be derived here. Use the production stack's"
+              echo "  rawArchive output, with the raw/ prefix the Lambda fetcher uses."
+              missing=1
+              ;;
+          esac
+          if [ "$HAS_SEARCH_API_KEY" != "true" ]; then
+            echo "::error::SEARCH_API_KEY is not set in the 'crawl' environment."
+            missing=1
+          fi
+          # Checked now rather than at classify time: discovering a missing key
+          # after the crawl would mean 1,400 credits spent on a run that cannot
+          # finish.
+          if [ "$HAS_ANTHROPIC_API_KEY" != "true" ]; then
+            echo "::error::ANTHROPIC_API_KEY is not set in the 'crawl' environment."
+            missing=1
+          fi
+          exit $missing
+
+      # Pinned to commit SHAs, same as ci.yml and deploy.yml, and for the
+      # deploy.yml reason: this job holds an AWS session and two API keys.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Nothing in this job pushes. Leaving the token in .git/config would
+          # hand it to every later step for no use.
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # CLAUDE.md: always run --dry-run and report the number before a real
+      # crawl. In automation "report" means the job summary, so the cost is on
+      # the run page before — and whether or not — anything is spent.
+      - name: Crawl plan (dry run, spends nothing)
+        run: |
+          pnpm crawl --city "$CITY" --dry-run --budget "$BUDGET" | tee "$RUNNER_TEMP/crawl-dry-run.log"
+          {
+            echo "## Crawl plan — dry run"
+            echo '```'
+            sed -n '/^Crawl/,/^Estimated yield/p' "$RUNNER_TEMP/crawl-dry-run.log"
+            echo '```'
+            if [ "$SPEND" != "true" ]; then
+              echo "**dry_run: nothing was requested and nothing was spent.**"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # First session: only to pull the live dataset. Doing this BEFORE the
+      # crawl means a broken role or bucket fails the run for free.
+      - name: Assume crawl role via OIDC
+        if: env.SPEND == 'true'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_CRAWL_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: crawl-pull-${{ github.run_id }}
+
+      - name: Fetch the live dataset
+        if: env.SPEND == 'true'
+        env:
+          DATASET_S3_URI: ${{ vars.DATASET_S3_URI }}
+        run: pnpm dataset:pull
+
+      # `pnpm load` overwrites data/out/businesses.json, so last week's copy is
+      # moved out of its way first. It is what lets a business the crawl did
+      # not return this week stay listed instead of vanishing.
+      - name: Keep the live dataset as carry-over
+        if: env.SPEND == 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/carry-over"
+          cp data/out/businesses.json "$RUNNER_TEMP/carry-over/businesses.json"
+
+      # The spend. SEARCH_API_KEY is in this step's env and no other's.
+      - name: Crawl (SPENDS UP TO ${{ env.BUDGET }} CREDITS)
+        id: crawl
+        if: env.SPEND == 'true'
+        timeout-minutes: 240
+        env:
+          SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY }}
+        run: pnpm crawl --city "$CITY" --yes --budget "$BUDGET" | tee "$RUNNER_TEMP/crawl.log"
+
+      # Second session. The first was minted before a crawl of unmeasured
+      # length and expires after an hour; the OIDC request token lasts the
+      # whole job, so re-assuming is cheaper than raising MaxSessionDuration.
+      # `always()` from here to the archive step: once credits are spent, the
+      # responses are archived even if the crawl itself exited non-zero.
+      - name: Re-assume crawl role via OIDC
+        if: always() && env.SPEND == 'true' && steps.crawl.outcome != 'skipped'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_CRAWL_ROLE_ARN }}
+          aws-region: us-east-1
+          role-session-name: crawl-publish-${{ github.run_id }}
+
+      # ADR 0015 rejected rebuilding in CI because "both RawArchive buckets
+      # contain 0 objects". From the first scheduled run they do not, and
+      # `pnpm load --from-archive` becomes possible. Same raw/{runId}/{tile}/
+      # layout the Lambda fetcher writes. `cp --recursive`, not `sync`: the run
+      # directory is new, and sync would need ListBucket on the archive.
+      - name: Archive raw responses
+        if: always() && env.SPEND == 'true' && steps.crawl.outcome != 'skipped'
+        env:
+          RAW_ARCHIVE_S3_URI: ${{ vars.RAW_ARCHIVE_S3_URI }}
+        run: |
+          run_id=$(sed -nE 's/^Run ([^ ]+) starting.*/\1/p' "$RUNNER_TEMP/crawl.log" 2>/dev/null | head -n1 || true)
+          if [ -z "$run_id" ] || [ ! -d "data/raw/$run_id" ]; then
+            echo "::warning::No raw responses to archive — the crawl did not start a run."
+            exit 0
+          fi
+          aws s3 cp --recursive --only-show-errors \
+            "data/raw/$run_id" "${RAW_ARCHIVE_S3_URI%/}/$run_id/"
+          files=$(find "data/raw/$run_id" -type f | wc -l | tr -d ' ')
+          echo "Archived $files responses to ${RAW_ARCHIVE_S3_URI%/}/$run_id/" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # The crawl exits 0 even when every request fails — runCrawl records and
+      # skips errors so one bad tile cannot cost the rest of the run. With
+      # carry-over, a run where the key was revoked would then republish last
+      # week's data, pass the shrink guard, and request a deploy, all green.
+      # This is the check that stops it.
+      - name: Check crawl result
+        if: env.SPEND == 'true'
+        run: |
+          log="$RUNNER_TEMP/crawl.log"
+          # Tolerant on purpose: a missing line reads as empty, and empty
+          # unique-businesses fails the gate below with a message instead of
+          # dying inside a command substitution under `bash -e`.
+          field() { grep -E "^$1" "$log" | head -n1 | awk -v n="$2" '{print $n}' | tr -d , || true; }
+          requests=$(field 'Requests issued' 3)
+          unique=$(field 'Unique businesses' 3)
+          errors=$(field 'Errors ' 2)
+          {
+            echo "## Crawl — spent"
+            echo '```'
+            sed -n '/^Done$/,/^Stopped on budget/p' "$log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${errors:-0}" != "0" ]; then
+            echo "::warning::$errors of ${requests:-?} requests failed. Their pagination was abandoned; see the crawl log."
+          fi
+          if grep -qE '^Stopped on budget +YES' "$log"; then
+            echo "::warning::Stopped on the $BUDGET-request cap. Jobs run in a fixed order, so the LAST tiles in data/cities/$CITY.json went uncrawled this week."
+          fi
+          if [ "${unique:-0}" = "0" ]; then
+            echo "::error::The crawl returned 0 unique businesses from ${requests:-0} requests. Refusing to publish."
+            exit 1
+          fi
+
+      # Classify only what the committed map does not already cover. The dry
+      # run needs no key; the real run gets ANTHROPIC_API_KEY and only when
+      # there is something to send. With nothing new the CLI exits 0 and
+      # reports a marginal cost of $0, which is the expected weekly case.
+      - name: Classify plan (dry run, spends nothing)
+        id: classify-plan
+        if: env.SPEND == 'true'
+        run: |
+          pnpm classify --dry-run | tee "$RUNNER_TEMP/classify-dry-run.log"
+          # No `|| true`: if the CLI stops printing this line, fail rather than
+          # silently treat it as zero and skip classification.
+          todo=$(grep -E '^Need classification' "$RUNNER_TEMP/classify-dry-run.log" | awk '{print $3}' | tr -d ,)
+          echo "todo=$todo" >> "$GITHUB_OUTPUT"
+          if [ "$todo" = "0" ]; then
+            echo "## Classify — nothing new, \$0" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Classify new categories (spends Anthropic tokens)
+        id: classify
+        if: env.SPEND == 'true' && steps.classify-plan.outputs.todo != '0'
+        env:
+          TODO: ${{ steps.classify-plan.outputs.todo }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          pnpm classify --yes | tee "$RUNNER_TEMP/classify.log"
+          {
+            echo "## Classify — $TODO new categories"
+            echo '```'
+            grep -E '^(Newly mapped|Map total|Still unmapped|Cost|Per 1,000)' "$RUNNER_TEMP/classify.log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if git diff --quiet -- data/taxonomy-map.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The map is committed data (ADR 0002 lists it), so handing it to the
+      # next job is fine. Nothing under data/out/ or data/raw/ ever becomes an
+      # artifact: on a public repository an artifact is a download link, and
+      # ADR 0015 already rejected artifacts as a way to move the dataset.
+      - name: Hand the updated taxonomy map to review
+        if: steps.classify.outputs.changed == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: taxonomy-map
+          path: data/taxonomy-map.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Load with carry-over
+        if: env.SPEND == 'true'
+        run: |
+          pnpm load --city "$CITY" --files-only --carry-over "$RUNNER_TEMP/carry-over/businesses.json" --max-unseen-days 56 | tee "$RUNNER_TEMP/load.log"
+          {
+            echo "## Load"
+            echo '```'
+            grep -iE '^[[:space:]]*(businesses|fresh|carried|retired|suppressed)' "$RUNNER_TEMP/load.log" || echo "(no fresh/carried/retired/suppressed lines found in load output)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # dataset:push refuses a shrink of more than 5%. That refusal is meant to
+      # fail this job loudly, and a human decides what happened. Never add
+      # --allow-shrink here: automation that overrides its own safety check
+      # has no safety check.
+      - name: Publish the dataset
+        id: push
+        if: env.SPEND == 'true'
+        env:
+          DATASET_S3_URI: ${{ vars.DATASET_S3_URI }}
+        run: |
+          pnpm dataset:push
+
+  # A separate job so that `contents: write` never coexists with the API keys
+  # or with `pnpm install`. It pushes a branch; it does not open the pull
+  # request. The repository keeps "Allow GitHub Actions to create and approve
+  # pull requests" off (see the note in ci.yml), and a human opening the PR
+  # from the link also gets ordinary CI runs rather than approval-gated ones.
+  #
+  # `!cancelled()` rather than the default success(): the crawl job can fail
+  # AFTER classify, most likely on the shrink guard, and the categories were
+  # paid for either way. Losing them would mean paying again next week.
+  taxonomy-pr:
+    needs: crawl
+    if: ${{ !cancelled() && needs.crawl.outputs.taxonomy_changed == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: taxonomy-map
+          path: data
+
+      - name: Push a branch for taxonomy review
+        run: |
+          # The map is model output. Refuse to commit anything that is not JSON.
+          jq empty data/taxonomy-map.json
+          if git diff --quiet -- data/taxonomy-map.json; then
+            echo "Map unchanged against ${GITHUB_SHA::7}; nothing to review."
+            exit 0
+          fi
+          branch="crawl/taxonomy-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/taxonomy-map.json
+          git commit -m "chore(taxonomy): classify categories new in crawl run ${GITHUB_RUN_ID}"
+          git push origin "$branch"
+          url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/main...${branch}?expand=1"
+          echo "::notice::Taxonomy changes need review. Open the PR: $url"
+          echo "## Taxonomy review — open the PR: $url" >> "$GITHUB_STEP_SUMMARY"
+
+  # Requests the deploy; does not perform it. workflow_dispatch is one of the
+  # two events GITHUB_TOKEN is allowed to trigger, and deploy.yml then stops
+  # at the `production` environment's required reviewer.
+  trigger-deploy:
+    needs: crawl
+    if: needs.crawl.outputs.pushed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Request a production deploy (waits for approval)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref main -f stage=production
+          echo "## Deploy requested — approve it on the Deploy workflow's run page" >> "$GITHUB_STEP_SUMMARY"

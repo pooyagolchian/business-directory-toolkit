@@ -2,19 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  ACCESSIBILITY_LABELS,
   businessDescription,
-  canonicalAmenity,
-  canonicalWebsite,
-  openingHoursSpecification,
-  paymentLabels,
-  schemaTypeFor,
+  isolateArabicRuns,
   serializeJsonLd,
-  serviceLabels,
 } from "@directory/core";
 import { Bilingual } from "@/components/bilingual";
 import { SITE_URL } from "@/lib/site";
+import { businessFacts, businessJsonLd } from "@/lib/business-jsonld";
 import { BusinessList } from "@/components/business-card";
+import { TagList } from "@/components/tag-list";
 import { byRank } from "@/lib/rows";
 import { Breadcrumbs, Page } from "@/components/chrome";
 import {
@@ -38,17 +34,59 @@ const DAYS = [
 ] as const;
 
 /**
- * Fallback label for an accessibility value core has no copy for.
+ * One cell of the contact card. Renders "Not listed" when it has nothing to say.
  *
- * ACCESSIBILITY_LABELS covers the seven values measured in the Dubai corpus.
- * Google invents new ones, and a different city will surface values this repo
- * has never seen — so an unknown slug is shown de-slugified rather than
- * dropped. Hiding a reported accessibility feature because we lack a label for
- * it is the wrong failure for this particular field.
+ * All four cells always render. A listing with no phone or website used to
+ * collapse to two cells, which read as a broken layout rather than as missing
+ * data — and said nothing about whether the page or the listing was at fault.
+ * "Not listed" states the fact: Google's record for this business has no value.
  */
-function deslugify(slug: string): string {
-  const words = slug.replace(/-/g, " ");
-  return words.charAt(0).toUpperCase() + words.slice(1);
+function Fact({
+  label,
+  children,
+}: {
+  label: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="bg-[var(--bg)] p-6">
+      <dt className="label text-[var(--muted)]">{label}</dt>
+      {children ?? <dd className="mt-2 text-[var(--muted)]">Not listed</dd>}
+    </div>
+  );
+}
+
+/**
+ * An address, laid out left-to-right with each Arabic run isolated.
+ *
+ * NOT `dir="auto"`, which is right for titles and wrong here. 79 addresses in
+ * the Dubai corpus open with an Arabic word — Aster Hospital's is
+ * "الرفاعة Kuwait Street ,Al Raffa - … - Mankhool - Dubai" — so auto resolved
+ * the whole line right-to-left: it right-aligned, and the Latin segments that
+ * make up most of it came out in reverse order. An address on an English page
+ * is read in the page's direction; the Arabic part is a phrase inside it.
+ *
+ * Each Arabic run goes in a `<bdi>`, which keeps its letters in their own order
+ * and places it as one unit, and carries `lang="ar"` for the same screen-reader
+ * reason Bilingual exists. isolateArabicRuns keeps the separators at a run's
+ * edges outside the isolate — inside it, "الكرامة - " would draw its dash on
+ * the wrong side.
+ */
+function Address({ text }: { text: string }) {
+  return (
+    <dd dir="ltr" className="mt-2">
+      {isolateArabicRuns(text).map((run, i) =>
+        run.lang ? (
+          // Derived from one string and never reordered, as in Bilingual.
+          <bdi key={i} lang={run.lang}>
+            {run.text}
+          </bdi>
+        ) : (
+          run.text
+        ),
+      )}
+    </dd>
+  );
 }
 
 /**
@@ -123,164 +161,22 @@ export default async function BusinessPage({
       ).slice(0, 6)
     : [];
 
-  const hours = openingHoursSpecification(business.openHours);
+  // Derived once, rendered below AND marked up — see BusinessFacts.
+  const facts = businessFacts(business);
+  const { website, accessibility, payments, services } = facts;
+  const jsonLd = businessJsonLd(business, facts, {
+    siteUrl: SITE_URL,
+    city: cityName(),
+    countryCode: countryCode(),
+    areaName: areaLabel(business.area),
+  });
 
-  /**
-   * l3 first, then l2 — NOT `l3 ?? l2`.
-   *
-   * The obvious spelling loses subtypes. l3 is the narrower label ("Seafood")
-   * and is usually absent from schema.org's vocabulary, while l2 ("Restaurants")
-   * maps cleanly — so `l3 ?? l2` hands schemaTypeFor a word it cannot place and
-   * takes the generic fallback, never consulting the label that would have
-   * worked. Measured over the corpus: that spelling loses a valid subtype on
-   * 1,443 of 14,981 records and gains a better one on zero.
-   *
-   * The sentinel comes from schemaTypeFor(undefined) rather than from a
-   * duplicated "LocalBusiness" literal, so core stays the single owner of what
-   * "no type we can stand behind" means.
-   */
-  const generic = schemaTypeFor(undefined);
-  const fromL3 = schemaTypeFor(business.l3);
-  const schemaType = fromL3 === generic ? schemaTypeFor(business.l2) : fromL3;
-
-  /**
-   * The business's own site, with tracking parameters stripped.
-   *
-   * 911 of the 10,348 websites in the corpus change when cleaned. 847 of those
-   * carry a utm_*, gclid or fbclid — not ours, but whoever set the Google
-   * listing up. Publishing them verbatim put someone else's campaign
-   * attribution into our structured data and into every outbound click.
-   *
-   * The two numbers differ because canonicalWebsite strips more than those
-   * three parameters; quoting 847 as "the URLs this fixes" would understate it.
-   * Both were re-measured against the corpus rather than carried over from the
-   * note that first raised this.
-   */
-  const website = canonicalWebsite(business.website);
-
-  /**
-   * Payments and service options, the other two attribute groups the crawl
-   * already paid for and the site rendered nowhere. Coverage: 9,740 records
-   * carry payments and 8,787 carry services, and until now the only consumer
-   * was the /search facet panel — a route that is noindex and robots-Disallowed,
-   * so nothing indexable ever showed them. faq.ts calls this data the
-   * directory's edge over Google, "buried several taps into a listing page";
-   * that claim only became true when these rendered.
-   */
-  const payments = paymentLabels(business.payments);
-  const services = serviceLabels(business.services);
-
-  /**
-   * Accessibility features this listing reports on Google.
-   *
-   * This section exists because packages/core/src/faq.ts already tells every
-   * visitor "Each listing page shows which features it reports" — inside
-   * FAQPage structured data, on ~800 URLs. Until this rendered, that was a
-   * first-party machine-readable claim pointing at a page that did not show it.
-   *
-   * The data was never the problem: 10,472 of 14,981 records carry at least one
-   * accessibility value, and the only consumer was the /search facet panel —
-   * a route that is noindex and Disallowed, so nothing indexable ever saw it.
-   * "Which pharmacies have a wheelchair-accessible entrance" is the question
-   * faq.ts calls the directory's edge, and this is where it gets answered.
-   */
-  const accessibility = [
-    ...new Set((business.accessibility ?? []).map(canonicalAmenity)),
-  ].map((slug) => ACCESSIBILITY_LABELS[slug] ?? deslugify(slug));
-
-  const canonical = `${SITE_URL}/business/${business.slug}`;
-
-  /**
-   * LocalBusiness JSON-LD, built only from fields we actually hold.
-   *
-   * aggregateRating is deliberately absent. The rating is Google's, not
-   * first-party review data, and marking it up as our own is a structured-data
-   * violation that risks a manual action.
-   */
-  const jsonLd = {
-    "@context": "https://schema.org",
-    // Subtyped from the taxonomy that already drives the visible subtitle two
-    // elements down, so the markup says what the page says. Anything with no
-    // exact schema.org term stays generic — valid, forfeits no eligibility —
-    // because an invented type is a false claim about what a business IS.
-    "@type": schemaType,
-    // A stable identifier for this business, and a statement of which page
-    // describes it. Without them nothing else — the BreadcrumbList above, an
-    // ItemList on a listing page — can reference this node, so every mention
-    // across the site reads as a different, unrelated business.
-    "@id": `${canonical}#business`,
-    mainEntityOfPage: canonical,
-    name: business.title,
-    ...(business.address && {
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: business.address,
-        // schema.org defines addressLocality as the CITY. It was the
-        // neighbourhood ("Palm Jumeirah"), with the city smuggled into
-        // addressRegion as a literal. The neighbourhood is a real fact and
-        // keeps its own field below, where it is not claiming to be a city.
-        addressLocality: cityName(),
-        // addressRegion is deliberately absent rather than guessed. For Dubai
-        // the emirate and the city share a name, so the old literal happened to
-        // be true here and would be false almost anywhere else — and nothing in
-        // the city config records a region, so there is no honest value to put.
-        ...(countryCode() && { addressCountry: countryCode() }),
-      },
-    }),
-    // The neighbourhood, stated as what it is: a place this business sits
-    // inside. Assigned from coordinates rather than from the query that found
-    // it — 52% of provenance assignments were measured wrong (ADR 0011).
-    containedInPlace: {
-      "@type": "Place",
-      name: areaLabel(business.area),
-    },
-    // Google's own record of this business. placeId is required on every
-    // record, so this is the one external identifier that always resolves, and
-    // it is what lets an entity resolver join our node to theirs instead of
-    // treating them as two businesses that happen to share a name.
-    sameAs: [
-      `https://www.google.com/maps/place/?q=place_id:${business.placeId}`,
-    ],
-    ...(business.phoneE164 && { telephone: business.phoneE164 }),
-    ...(website && { url: website }),
-    ...(business.lat !== undefined &&
-      business.lng !== undefined && {
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: business.lat,
-          longitude: business.lng,
-        },
-      }),
-    // Spread from the SAME array the visible section renders. Marking up a
-    // feature a visitor cannot see is the structured-data violation this file
-    // otherwise avoids by leaving aggregateRating out — so the two ship
-    // together or neither does.
-    ...(accessibility.length > 0 && {
-      amenityFeature: accessibility.map((name) => ({
-        "@type": "LocationFeatureSpecification",
-        name,
-        value: true,
-      })),
-    }),
-    // Same rule, same guard as the visible table below: 89.6% of records carry
-    // hours and none of them reached the markup. The parser SKIPS any day it
-    // cannot resolve rather than guessing, because a wrong opening time sends
-    // somebody to a closed shop — a worse outcome than saying nothing.
-    ...(hours.length > 0 && { openingHoursSpecification: hours }),
-    // paymentAccepted is a plain schema.org string field, so the labels go in
-    // comma-separated. Emitted only alongside the visible chips above, like
-    // every other claim on this node.
-    ...(payments.length > 0 && { paymentAccepted: payments.join(", ") }),
-    ...(services.length > 0 && {
-      // Services are not payment methods, so they reuse the same
-      // LocationFeatureSpecification shape accessibility uses rather than being
-      // forced into a field that means something else.
-      makesOffer: services.map((name) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name },
-      })),
-    }),
-  };
+  const hasHours = DAYS.some((d) => business.openHours?.[d]);
+  const hasFacts =
+    accessibility.length > 0 ||
+    payments.length > 0 ||
+    services.length > 0 ||
+    business.types.length > 0;
 
   return (
     <Page>
@@ -319,69 +215,83 @@ export default async function BusinessPage({
             .join(" · ")}
         </p>
 
-        <dl className="mt-10 grid gap-px bg-[var(--rule)] sm:grid-cols-2">
-          {business.phoneRaw && (
-            <div className="bg-[var(--bg)] p-6">
-              <dt className="label text-[var(--muted)]">Phone</dt>
-              <dd className="tabular mt-2 text-xl">
-                <a
-                  href={`tel:${business.phoneE164}`}
-                  className="underline underline-offset-4"
-                >
-                  {business.phoneRaw}
-                </a>
-              </dd>
-              {business.phoneE164 && (
-                <dd className="tabular mt-2 text-sm text-[var(--muted)]">
-                  {business.phoneE164}
-                  {business.phoneType && ` · ${business.phoneType}`}
+        {/*
+          -mx-6 cancels the cells' p-6, so a cell's text starts on the same
+          edge as the h1 above and the h2s below while the hairline rules run
+          past it to the gutter. With the padding left in place, every fact sat
+          24px inside the column — a second left edge for no reason, in a
+          design where alignment is most of the hierarchy. At 320px the gutter
+          is exactly 24px, so the rules reach the viewport edge and no further.
+        */}
+        <dl className="-mx-6 mt-10 grid gap-px bg-[var(--rule)] sm:grid-cols-2">
+          <Fact label="Phone">
+            {business.phoneRaw ? (
+              <>
+                <dd className="tabular mt-2 text-xl">
+                  {/* No E.164 means libphonenumber could not place the number,
+                      and `tel:undefined` dials nothing. Show it unlinked. */}
+                  {business.phoneE164 ? (
+                    <a
+                      href={`tel:${business.phoneE164}`}
+                      className="underline underline-offset-4"
+                    >
+                      {business.phoneRaw}
+                    </a>
+                  ) : (
+                    business.phoneRaw
+                  )}
                 </dd>
-              )}
-            </div>
-          )}
-
-          {business.rating !== undefined && (
-            <div className="bg-[var(--bg)] p-6">
-              <dt className="label text-[var(--muted)]">Rating</dt>
-              <dd className="tabular mt-2 text-xl">
-                {business.rating.toFixed(1)}
-                {business.reviews !== undefined && (
-                  <span className="text-base text-[var(--muted)]">
-                    {" "}
-                    from {business.reviews.toLocaleString()} reviews
-                  </span>
+                {business.phoneE164 && (
+                  <dd className="tabular mt-2 text-sm text-[var(--muted)]">
+                    {business.phoneE164}
+                    {business.phoneType && ` · ${business.phoneType}`}
+                  </dd>
                 )}
-              </dd>
-              <dd className="mt-2 text-sm text-[var(--muted)]">
-                Rating from Google, not collected here.
-              </dd>
-            </div>
-          )}
+              </>
+            ) : undefined}
+          </Fact>
 
-          {business.address && (
-            <div className="bg-[var(--bg)] p-6">
-              <dt className="label text-[var(--muted)]">Address</dt>
-              <dd dir="auto" className="mt-2">
-                <Bilingual text={business.address} />
-              </dd>
-              {business.lat !== undefined && business.lng !== undefined && (
-                <dd className="mt-2">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${business.lat},${business.lng}`}
-                    className="text-sm underline underline-offset-4"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Open in Maps
-                  </a>
+          <Fact label="Rating">
+            {business.rating !== undefined ? (
+              <>
+                <dd className="tabular mt-2 text-xl">
+                  {business.rating.toFixed(1)}
+                  {business.reviews !== undefined && (
+                    <span className="text-base text-[var(--muted)]">
+                      {" "}
+                      from {business.reviews.toLocaleString()} reviews
+                    </span>
+                  )}
                 </dd>
-              )}
-            </div>
-          )}
+                <dd className="mt-2 text-sm text-[var(--muted)]">
+                  Rating from Google, not collected here.
+                </dd>
+              </>
+            ) : undefined}
+          </Fact>
 
-          {website && (
-            <div className="bg-[var(--bg)] p-6">
-              <dt className="label text-[var(--muted)]">Website</dt>
+          <Fact label="Address">
+            {business.address ? (
+              <>
+                <Address text={business.address} />
+                {business.lat !== undefined && business.lng !== undefined && (
+                  <dd className="mt-2">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${business.lat},${business.lng}`}
+                      className="text-sm underline underline-offset-4"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Open in Maps
+                    </a>
+                  </dd>
+                )}
+              </>
+            ) : undefined}
+          </Fact>
+
+          <Fact label="Website">
+            {website ? (
               <dd className="mt-2 truncate">
                 <a
                   href={website}
@@ -392,104 +302,115 @@ export default async function BusinessPage({
                   {business.domain ?? business.website}
                 </a>
               </dd>
-            </div>
-          )}
+            ) : undefined}
+          </Fact>
         </dl>
 
-        {business.openHours && (
-          <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl">
-              Opening hours
-            </h2>
-            <table className="mt-5 w-full max-w-md">
-              <tbody>
-                {DAYS.filter((d) => business.openHours?.[d]).map((day) => (
-                  <tr key={day} className="border-t border-[var(--rule)]">
-                    <th
-                      scope="row"
-                      className="py-2.5 text-left font-normal capitalize text-[var(--muted)]"
-                    >
-                      {day}
-                    </th>
-                    <td className="tabular py-2.5 text-right">
-                      {business.openHours?.[day]}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        )}
+        {/*
+          One rhythm for every section: 48px above a section, 16px from its
+          heading to what it heads, 12px between a section's caveat and its
+          list. More space above a heading than below is what binds the heading
+          to its own content rather than to the section before it.
 
-        {accessibility.length > 0 && (
-          <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl">
-              Accessibility
-            </h2>
-            <p className="mt-3 max-w-xl text-[var(--muted)]">
-              Reported on Google by this business. Absence of a feature here
-              means it was not reported, not that it is missing — confirm before
-              travelling.
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {accessibility.map((label) => (
-                <li
-                  key={label}
-                  className="border border-[var(--rule)] px-3 py-1.5 label text-[var(--muted)]"
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+          From lg the hours sit beside the other facts instead of above them.
+          Stacked, a seven-row table of short times left the right half of a
+          976px column empty and pushed everything else a screen further down.
 
-        {(payments.length > 0 || services.length > 0) && (
-          <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl">
-              Payments and services
-            </h2>
-            <p className="mt-3 max-w-xl text-[var(--muted)]">
-              Reported on Google by this business. As with accessibility, an
-              absent option was not reported rather than refused.
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {[...payments, ...services].map((label) => (
-                <li
-                  key={label}
-                  className="border border-[var(--rule)] px-3 py-1.5 label text-[var(--muted)]"
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+          Equal columns, not a narrower hours column, because of the card
+          above: its right-hand cells start at the column's midpoint, and with
+          gap-12 the second column here starts there too (to within half a
+          pixel). A 28rem hours column put the facts 17px left of the RATING
+          and WEBSITE labels — two edges a few hundred pixels apart, which in
+          this design reads as a mistake. The table keeps its max-w-md, so the
+          times stay close to their days.
 
-        {business.types.length > 0 && (
-          <section className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl">
-              Categories on Google
-            </h2>
-            <p className="mt-3 max-w-xl text-[var(--muted)]">
-              Google returns these unranked and alphabetised. The taxonomy above
-              is derived from them.
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {business.types.map((type) => (
-                <li
-                  key={type}
-                  className="border border-[var(--rule)] px-3 py-1.5 label text-[var(--muted)]"
-                >
-                  {type}
-                </li>
-              ))}
-            </ul>
-          </section>
+          The two-column template applies only when both sides have something
+          in them, so a listing with no hours does not leave an empty column.
+        */}
+        {(hasHours || hasFacts) && (
+          <div
+            className={`mt-12 grid gap-12 ${hasHours && hasFacts ? "lg:grid-cols-2" : ""}`}
+          >
+            {hasHours && (
+              <section>
+                <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                  Opening hours
+                </h2>
+                <table className="mt-4 w-full max-w-md">
+                  <tbody>
+                    {DAYS.filter((d) => business.openHours?.[d]).map((day) => (
+                      <tr key={day} className="border-t border-[var(--rule)]">
+                        <th
+                          scope="row"
+                          className="py-2.5 text-start font-normal capitalize text-[var(--muted)]"
+                        >
+                          {day}
+                        </th>
+                        <td className="tabular py-2.5 text-end">
+                          {business.openHours?.[day]}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            )}
+
+            {hasFacts && (
+              <div className="grid content-start gap-12">
+                {accessibility.length > 0 && (
+                  <section>
+                    <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                      Accessibility
+                    </h2>
+                    <p className="mt-4 max-w-xl text-[var(--muted)]">
+                      Reported on Google by this business. Absence of a feature
+                      here means it was not reported, not that it is missing —
+                      confirm before travelling.
+                    </p>
+                    <TagList items={accessibility} className="mt-3" />
+                  </section>
+                )}
+
+                {(payments.length > 0 || services.length > 0) && (
+                  <section>
+                    <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                      Payments and services
+                    </h2>
+                    {/* Self-contained on purpose: this used to open "As with
+                        accessibility", on pages that have no accessibility
+                        section for it to refer to. */}
+                    <p className="mt-4 max-w-xl text-[var(--muted)]">
+                      Reported on Google by this business. An option missing
+                      from this list was not reported, which is not the same as
+                      refused.
+                    </p>
+                    <TagList
+                      items={[...payments, ...services]}
+                      className="mt-3"
+                    />
+                  </section>
+                )}
+
+                {business.types.length > 0 && (
+                  <section>
+                    <h2 className="font-[family-name:var(--font-display)] text-2xl">
+                      Categories on Google
+                    </h2>
+                    <p className="mt-4 max-w-xl text-[var(--muted)]">
+                      Google returns these unranked and alphabetised. The
+                      taxonomy above is derived from them.
+                    </p>
+                    <TagList items={business.types} className="mt-3" />
+                  </section>
+                )}
+              </div>
+            )}
+          </div>
         )}
 
         {nearby.length > 0 && business.l2 && (
-          <section className="mt-16">
+          <section className="mt-12">
             <h2 className="font-[family-name:var(--font-display)] text-2xl">
               Other {business.l2.toLowerCase()} in {areaLabel(business.area)}
             </h2>

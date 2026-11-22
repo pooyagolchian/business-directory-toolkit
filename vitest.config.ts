@@ -8,7 +8,15 @@ export default defineConfig({
     // the package, where only the first matches. Without the first, a filtered
     // run finds zero test files and exits 1 — the package scripts look broken
     // to anyone who runs one.
-    include: ["src/**/*.test.ts", "packages/*/src/**/*.test.ts"],
+    //
+    // The third is the web package, which has no src/ — its pure helpers live
+    // in lib/. They must import nothing that reads disk or relies on the `@/`
+    // alias, which this config does not define.
+    include: [
+      "src/**/*.test.ts",
+      "packages/*/src/**/*.test.ts",
+      "packages/web/lib/**/*.test.ts",
+    ],
     environment: "node",
     // Tests must never reach the network. A test that needs an API response
     // uses a recorded fixture from fixtures/ instead — CI never spends credits.

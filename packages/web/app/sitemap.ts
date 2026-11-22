@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: BASE, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/categories`, lastModified: now, priority: 0.8 },
     { url: `${BASE}/areas`, lastModified: now, priority: 0.8 },
+    { url: `${BASE}/about`, lastModified: now, priority: 0.3 },
   ];
 
   // Filtered on the same threshold as the money pages below. Submitting a URL

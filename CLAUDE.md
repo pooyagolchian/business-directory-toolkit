@@ -29,10 +29,8 @@ was asked.
    takedown promise in `TAKEDOWN.md` is unenforceable once records are in public
    git history. See `docs/adr/0002-do-not-redistribute-the-dataset.md`.
 3. **Never spend API credits in tests or CI.** Tests read recorded fixtures from
-   `fixtures/`. A test that makes a network call is a broken test. The one
-   exception is the scheduled operations job `crawl.yml` — not `ci.yml` — whose
-   `--budget` cap and weekly schedule are the standing consent to spend
-   (ADR 0017). Raising its cap is a rule-4 change and must state the new cost.
+   `fixtures/`. A test that makes a network call is a broken test. No workflow
+   crawls on a schedule: every spend is a human running `--dry-run`, then `--yes`.
 4. **Never widen a crawl without saying what it costs.** Any change to
    `data/cities/<id>.json` must state the new request count. The same applies to
    any command that calls SearchApi — `pnpm crawl`, `pnpm demand`,

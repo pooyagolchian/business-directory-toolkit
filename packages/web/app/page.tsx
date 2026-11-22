@@ -206,10 +206,9 @@ export default function Home() {
           </h2>
           <p className="mt-4 text-[var(--muted)]">
             This is an open-source project built with the Business Directory
-            Toolkit, from Google Maps listings retrieved through SearchApi and
-            refreshed every week. It is not affiliated with Google or with the
-            businesses listed, and details can change between crawls, so confirm
-            before you travel.
+            Toolkit, from Google Maps listings retrieved through SearchApi. It
+            is not affiliated with Google or with the businesses listed, and
+            details can change between crawls, so confirm before you travel.
           </p>
           <p className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
             <Link

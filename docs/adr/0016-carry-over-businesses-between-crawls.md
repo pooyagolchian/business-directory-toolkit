@@ -3,6 +3,13 @@
 - **Status:** Accepted
 - **Date:** 2026-11-23
 
+> **Update, 2026-11-23.** The weekly scheduled crawl this ADR anticipates was
+> proposed (PR #44) and not adopted; crawls are run by hand. Everything below
+> still holds for a hand-run crawl, and the "wall time, not crawl count" item
+> under Bad matters more: a re-crawl more than 56 days after the last one
+> retires every business it misses at once. Widen the window with
+> `--max-unseen-days` when re-crawling after a long gap.
+
 ## Context
 
 `pnpm load` rebuilt `data/out/businesses.json` from the newest crawl and nothing

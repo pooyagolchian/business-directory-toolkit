@@ -20,9 +20,11 @@ import { dropSuppressed } from "./suppression";
 import type { Business } from "./types";
 
 /**
- * Eight weekly crawls. A business has to be missed by every run for two
- * months before it is retired — a closed business lingers that long, which
- * is the price of not 404ing a live one over one bad sample.
+ * Eight weeks of wall-clock time. A business has to go unseen by every crawl
+ * for two months before it is retired — a closed business lingers that long,
+ * which is the price of not 404ing a live one over one bad sample. Crawls are
+ * run by hand, so a re-crawl more than 56 days after the last one retires
+ * everything it misses at once; pass --max-unseen-days to widen the window.
  */
 export const DEFAULT_MAX_UNSEEN_DAYS = 56;
 

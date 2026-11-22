@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import {
   businessDescription,
   isolateArabicRuns,
@@ -19,7 +19,7 @@ import {
   byAreaCategory,
   cityName,
   countryCode,
-  getBySlug,
+  resolveBusinessSlug,
   slugify,
 } from "@/lib/data";
 
@@ -90,6 +90,23 @@ function Address({ text }: { text: string }) {
 }
 
 /**
+ * The business for a slug, or a permanent redirect if Google renamed it.
+ *
+ * Called from BOTH generateMetadata and the page. Metadata can resolve before
+ * the body streams, and a redirect thrown once streaming has started degrades
+ * to a client-side meta refresh — which search engines do not treat as a 308.
+ * Redirecting from the first of the two to run keeps it a real HTTP redirect.
+ */
+function businessOrRedirect(slug: string) {
+  const resolved = resolveBusinessSlug(slug);
+  if (!resolved) return undefined;
+  if (!resolved.canonical) {
+    permanentRedirect(`/business/${resolved.business.slug}`);
+  }
+  return resolved.business;
+}
+
+/**
  * Prerender only the most-reviewed listings at build time.
  *
  * Building all ~10,000 pages would make deploys unmanageable. The long tail
@@ -111,7 +128,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const business = getBySlug(slug);
+  const business = businessOrRedirect(slug);
   if (!business) return { title: "Not found" };
 
   const where = areaLabel(business.area);
@@ -139,7 +156,7 @@ export default async function BusinessPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const business = getBySlug(slug);
+  const business = businessOrRedirect(slug);
   if (!business) notFound();
 
   const categorySlug = business.l2 ? slugify(business.l2) : null;

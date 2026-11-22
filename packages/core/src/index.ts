@@ -1,7 +1,8 @@
 export { normalizePhone } from "./phone";
 export type { NormalizedPhone, PhoneType } from "./phone";
 
-export { toSlug } from "./slug";
+export { buildSlugIndex, resolveSlug, toSlug } from "./slug";
+export type { ResolvedSlug, SlugIndex } from "./slug";
 
 export { isInCity, parseCityConfig, verificationState } from "./city";
 

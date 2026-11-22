@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { Business } from "@directory/core";
-import { toCategorySlug } from "@directory/core";
+import type { Business, ResolvedSlug, SlugIndex } from "@directory/core";
+import { buildSlugIndex, resolveSlug, toCategorySlug } from "@directory/core";
 
 /**
  * Data access for the site.
@@ -213,8 +213,26 @@ export const slugify = toCategorySlug;
 
 // ---------------------------------------------------------------- lookups
 
+let slugIndex: SlugIndex<Business> | undefined;
+
+/** Exact slug match only. Pages that may receive a renamed slug use resolveBusinessSlug. */
 export function getBySlug(slug: string): Business | undefined {
-  return allBusinesses().find((b) => b.slug === slug);
+  const resolved = resolveBusinessSlug(slug);
+  return resolved?.canonical ? resolved.business : undefined;
+}
+
+/**
+ * Exact slug, or a business Google renamed since the URL was published.
+ *
+ * `canonical: false` means the slug's readable half is stale and the caller
+ * should permanently redirect to `business.slug`. The index is built once per
+ * server instance, like the dataset cache it reads from.
+ */
+export function resolveBusinessSlug(
+  slug: string,
+): ResolvedSlug<Business> | undefined {
+  slugIndex ??= buildSlugIndex(allBusinesses());
+  return resolveSlug(slug, slugIndex);
 }
 
 export function byPhone(e164: string): Business[] {

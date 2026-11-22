@@ -22,9 +22,9 @@ export function Disclaimer({ className }: { className?: string }) {
         open-source
       </a>{" "}
       project (MIT), built with the Business Directory Toolkit. Listings come
-      from Google Maps via SearchApi and are refreshed by an automated weekly
-      crawl, so details can be out of date. Not affiliated with Google or with
-      the businesses listed.{" "}
+      from Google Maps via SearchApi, as of the retrieval date below, so details
+      can be out of date. Not affiliated with Google or with the businesses
+      listed.{" "}
       <Link href="/about" className={link}>
         About this directory
       </Link>

@@ -15,7 +15,7 @@ import { REPO_URL, TAKEDOWN_URL } from "@/lib/site";
 export function generateMetadata(): Metadata {
   return {
     title: "About this directory",
-    description: `How this ${cityName()} business directory is built: an open-source toolkit, Google Maps data via SearchApi, a weekly refresh, and a takedown policy for business owners.`,
+    description: `How this ${cityName()} business directory is built: an open-source toolkit, Google Maps data via SearchApi, how the data is refreshed, and a takedown policy for business owners.`,
     alternates: { canonical: "/about" },
   };
 }
@@ -69,11 +69,12 @@ export default function AboutPage() {
           numbers or personal data.
         </p>
         <p className="mt-3">
-          An automated crawl refreshes the listings every week. A business the
-          crawl has not seen for 8 weeks drops out of the directory, so places
-          that close do disappear, but not straight away. Hours, phone numbers
-          and even whether a place is still open can change between crawls, so
-          confirm before you travel.
+          The listings are refreshed by re-running the crawl by hand, not on a
+          schedule. A business that later crawls stop finding stays listed for 8
+          weeks after it was last seen, then drops out of the directory, so
+          places that close do disappear, but not straight away. Hours, phone
+          numbers and even whether a place is still open can change between
+          crawls, so confirm before you travel.
           {crawled && (
             <>
               {" "}

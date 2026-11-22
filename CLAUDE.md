@@ -29,7 +29,10 @@ was asked.
    takedown promise in `TAKEDOWN.md` is unenforceable once records are in public
    git history. See `docs/adr/0002-do-not-redistribute-the-dataset.md`.
 3. **Never spend API credits in tests or CI.** Tests read recorded fixtures from
-   `fixtures/`. A test that makes a network call is a broken test.
+   `fixtures/`. A test that makes a network call is a broken test. The one
+   exception is the scheduled operations job `crawl.yml` — not `ci.yml` — whose
+   `--budget` cap and weekly schedule are the standing consent to spend
+   (ADR 0017). Raising its cap is a rule-4 change and must state the new cost.
 4. **Never widen a crawl without saying what it costs.** Any change to
    `data/cities/<id>.json` must state the new request count. The same applies to
    any command that calls SearchApi — `pnpm crawl`, `pnpm demand`,
@@ -142,8 +145,15 @@ pnpm crawl --city dubai --yes       # spends credits (--yes is required)
 pnpm leads --list-signals    # prospect signals, no API calls
 pnpm visibility --dry-run    # AI-citation probe: request count + credit cost
 pnpm visibility --yes        # spends credits (60 by default) -> data/visibility.json
+pnpm load --dry-run --carry-over <prev businesses.json>   # gates + fresh/carried/retired counts, no DynamoDB
+pnpm load --files-only --carry-over <prev businesses.json> # write data/out/ only, never DynamoDB (CI)
+pnpm dataset:push            # refuses a set < 95% of the published one; --allow-shrink to override
 npx sst deploy --stage dev
 ```
+
+Always pass `--carry-over` when a dataset is already published, or every
+business this crawl missed loses its page. See
+`docs/adr/0016-carry-over-businesses-between-crawls.md`.
 
 Always run `--dry-run` and report the number before a real crawl.
 

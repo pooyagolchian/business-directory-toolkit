@@ -175,6 +175,17 @@ export type { AnonymousReview, ReviewSignals } from "./reviews";
 export { dropSuppressed, parseSuppressionList } from "./suppression";
 export type { Identifiable, SuppressionResult } from "./suppression";
 
+export {
+  DEFAULT_MAX_UNSEEN_DAYS,
+  mergeCarryOver,
+  parseCarryOver,
+} from "./carry-over";
+export type {
+  CarryOverCounts,
+  CarryOverOptions,
+  CarryOverResult,
+} from "./carry-over";
+
 export { dedupeByPlaceId } from "./dedupe";
 export type { DedupeResult } from "./dedupe";
 

@@ -82,6 +82,14 @@ export interface Business {
   accessibility?: string[];
   payments?: string[];
   services?: string[];
+  /**
+   * ISO 8601 instant of the last load whose crawl returned this business.
+   *
+   * Optional because every record built before carry-over existed lacks it, and
+   * a fork's hand-built dataset may too. `mergeCarryOver` reads it to decide how
+   * long a business the crawl stopped returning stays published — ADR 0016.
+   */
+  lastSeenAt?: string;
 }
 
 /** `data/taxonomy-map.json`: one Google category string → one taxonomy node. */

@@ -108,9 +108,17 @@ export function cityName(): string {
 }
 
 /**
- * The date this deployment's corpus was crawled, from the city config's own
- * verification block — "2026-08-20" — or null if this city has never been
- * crawled.
+ * The date this deployment's corpus was last crawled: the newest `lastSeenAt`
+ * in the dataset, falling back to the city config's verification block
+ * ("2026-08-20") for a dataset loaded before carry-over existed, or null if
+ * this city has never been crawled.
+ *
+ * Why the data and not the config: the config date is set by hand, and after
+ * the 2026-11-22 re-crawl it went on claiming "20 August 2026" for a set where
+ * 20,586 of 23,898 listings were retrieved that day. `lastSeenAt` is stamped by
+ * load only when a crawl actually returned the business (ADR 0016), so the
+ * newest one is the last real retrieval — and it cannot be refreshed by a
+ * deploy, only by a crawl.
  *
  * Local business data decays monthly, and answer engines discount undated local
  * content. The site had no freshness signal anywhere: no dateModified, no
@@ -122,6 +130,17 @@ export function cityName(): string {
  */
 export function crawledAt(): string | null {
   if (crawledAtCache !== undefined) return crawledAtCache;
+  let newest: string | undefined;
+  for (const business of allBusinesses()) {
+    // ISO 8601 UTC strings order correctly as plain strings.
+    if (business.lastSeenAt && (!newest || business.lastSeenAt > newest)) {
+      newest = business.lastSeenAt;
+    }
+  }
+  if (newest) {
+    crawledAtCache = newest.slice(0, 10);
+    return crawledAtCache;
+  }
   try {
     const parsed = JSON.parse(readFileSync(dataFile("city.json"), "utf8")) as {
       verification?: { crawledAt?: string };

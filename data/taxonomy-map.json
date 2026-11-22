@@ -7,6 +7,11 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Açaí shop": {
+    "l1": "Food & Drink",
+    "l2": "Cafes",
+    "l3": "Açaí"
+  },
   "Accountant": {
     "l1": "Professional",
     "l2": "Accounting"
@@ -58,6 +63,21 @@
     "l1": "Professional",
     "l2": "Marketing & Tech"
   },
+  "Aerial photographer": {
+    "l1": "Services",
+    "l2": "Photography",
+    "l3": "Aerial"
+  },
+  "Aerial sports center": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Aerial Sports"
+  },
+  "Aero dance class": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Aero Dance"
+  },
   "Aerobics instructor": {
     "l1": "Sports & Fitness",
     "l2": "Gyms"
@@ -84,6 +104,16 @@
   "Aggregate supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Agricultural product wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Agricultural Products"
+  },
+  "Agricultural production": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Agricultural Production"
   },
   "Air compressor supplier": {
     "l1": "Trade & Industry",
@@ -113,6 +143,11 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Air taxi": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters",
+    "l3": "Air Taxi"
+  },
   "Airline": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
@@ -121,9 +156,18 @@
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
   },
+  "Airport": {
+    "l1": "Community",
+    "l2": "Government"
+  },
   "Airport shuttle service": {
     "l1": "Travel & Hospitality",
     "l2": "Tours & Charters"
+  },
+  "Algerian Restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Algerian"
   },
   "Allergist": {
     "l1": "Health & Medical",
@@ -146,6 +190,10 @@
     "l1": "Home & Construction",
     "l2": "Trades"
   },
+  "Ambulance service": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
   "American grocery store": {
     "l1": "Shopping",
     "l2": "Grocery Stores"
@@ -155,6 +203,14 @@
     "l2": "Restaurants",
     "l3": "American"
   },
+  "Amphitheater": {
+    "l1": "Nightlife & Entertainment",
+    "l2": "Outdoor Venues"
+  },
+  "Amusement center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
   "Amusement park": {
     "l1": "Community",
     "l2": "Parks & Beaches"
@@ -163,10 +219,19 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Anesthesiologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
   "Angler fish restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Seafood"
+  },
+  "Animal cafe": {
+    "l1": "Food & Drink",
+    "l2": "Cafes",
+    "l3": "Animal Cafe"
   },
   "Animal feed store": {
     "l1": "Pets",
@@ -175,6 +240,15 @@
   "Animal hospital": {
     "l1": "Health & Medical",
     "l2": "Hospitals"
+  },
+  "Animal rescue service": {
+    "l1": "Pets",
+    "l2": "Veterinary"
+  },
+  "Antenna service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Antenna"
   },
   "Antique furniture restoration service": {
     "l1": "Shopping",
@@ -187,6 +261,14 @@
   "Antique store": {
     "l1": "Shopping",
     "l2": "Gifts"
+  },
+  "Apartment building": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Apartment complex": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Apartment rental agency": {
     "l1": "Professional",
@@ -212,6 +294,10 @@
     "l1": "Shopping",
     "l2": "Electronics"
   },
+  "Applied behavior analysis therapist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Aquarium": {
     "l1": "Pets",
     "l2": "Pet Shops"
@@ -220,12 +306,30 @@
     "l1": "Pets",
     "l2": "Pet Shops"
   },
+  "Aquatic center": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Aquatic"
+  },
   "Arab restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Arabic"
   },
+  "Archery store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops",
+    "l3": "Archery"
+  },
   "Architect": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
+  "Architectural designer": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
+  "Architecture firm": {
     "l1": "Home & Construction",
     "l2": "Architecture & Engineering"
   },
@@ -237,17 +341,55 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Aromatherapy service": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas",
+    "l3": "Aromatherapy"
+  },
   "Art cafe": {
     "l1": "Food & Drink",
     "l2": "Cafes"
+  },
+  "Art center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions",
+    "l3": "Art"
+  },
+  "Art gallery": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions",
+    "l3": "Art"
+  },
+  "Art restoration service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Art Restoration"
   },
   "Art school": {
     "l1": "Education",
     "l2": "Schools"
   },
+  "Art studio": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Art"
+  },
+  "Art supply store": {
+    "l1": "Shopping",
+    "l2": "Books & Stationery",
+    "l3": "Art Supplies"
+  },
   "Artificial plant supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Artist": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Arts organization": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
   },
   "Asian fusion restaurant": {
     "l1": "Food & Drink",
@@ -259,6 +401,11 @@
     "l2": "Restaurants",
     "l3": "Asian"
   },
+  "Asian household goods store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Asian Goods"
+  },
   "Asian restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
@@ -267,6 +414,10 @@
   "Association / Organization": {
     "l1": "Community",
     "l2": "Charities"
+  },
+  "Athletic club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
   },
   "ATM": {
     "l1": "Professional",
@@ -284,13 +435,37 @@
     "l1": "Travel & Hospitality",
     "l2": "Tours & Charters"
   },
+  "ATV repair shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "ATV"
+  },
+  "Audi dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers",
+    "l3": "Audi"
+  },
   "Audio visual consultant": {
     "l1": "Professional",
     "l2": "Consulting"
   },
+  "Audio visual equipment repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Audio Visual"
+  },
   "Audio visual equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Audiologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Audiovisual equipment rental service": {
+    "l1": "Services",
+    "l2": "Events",
+    "l3": "Audio Visual"
   },
   "Auditor": {
     "l1": "Professional",
@@ -317,6 +492,11 @@
     "l1": "Home & Construction",
     "l2": "Maintenance"
   },
+  "Auto auction": {
+    "l1": "Automotive",
+    "l2": "Car Dealers",
+    "l3": "Auction"
+  },
   "Auto body parts supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -332,6 +512,10 @@
   "Auto broker": {
     "l1": "Automotive",
     "l2": "Car Dealers"
+  },
+  "Auto care products store": {
+    "l1": "Automotive",
+    "l2": "Auto Parts"
   },
   "Auto dent removal service": {
     "l1": "Services",
@@ -356,6 +540,10 @@
   "Auto machine shop": {
     "l1": "Automotive",
     "l2": "Auto Repair"
+  },
+  "Auto market": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
   },
   "Auto painting": {
     "l1": "Shopping",
@@ -385,6 +573,16 @@
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Auto spring shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "Springs"
+  },
+  "Auto sunroof shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "Sunroofs"
+  },
   "Auto tag agency": {
     "l1": "Automotive",
     "l2": "Auto Repair"
@@ -393,9 +591,24 @@
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Auto upholsterer": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "Upholstery"
+  },
   "Auto window tinting service": {
     "l1": "Automotive",
     "l2": "Auto Repair"
+  },
+  "Auto wrecker": {
+    "l1": "Automotive",
+    "l2": "Auto Parts",
+    "l3": "Wrecking"
+  },
+  "Automation company": {
+    "l1": "Professional",
+    "l2": "Consulting",
+    "l3": "Automation"
   },
   "Automobile storage facility": {
     "l1": "Automotive",
@@ -404,6 +617,16 @@
   "Aviation consultant": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Aviation training institute": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Aviation"
+  },
+  "Awadhi restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Awadhi"
   },
   "Ayurvedic clinic": {
     "l1": "Health & Medical",
@@ -418,13 +641,31 @@
     "l1": "Shopping",
     "l2": "Clothing"
   },
+  "Baby store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Baby Products"
+  },
   "Baby swimming school": {
     "l1": "Education",
     "l2": "Schools"
   },
+  "Babysitter": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "Badminton court": {
     "l1": "Community",
     "l2": "Government"
+  },
+  "Bag shop": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Bags"
+  },
+  "Bagel shop": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries"
   },
   "Bakery": {
     "l1": "Food & Drink",
@@ -434,17 +675,43 @@
     "l1": "Food & Drink",
     "l2": "Bakeries"
   },
+  "Baking supply store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Baking Supplies"
+  },
   "Ballet school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Balloon artist": {
+    "l1": "Services",
+    "l2": "Events"
   },
   "Balloon ride tour agency": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
   },
+  "Balloon store": {
+    "l1": "Shopping",
+    "l2": "Toys & Games"
+  },
+  "Ballroom dance instructor": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Dance"
+  },
+  "Band": {
+    "l1": "Nightlife",
+    "l2": "Live Music"
+  },
   "Bangladeshi restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Bangle Shop": {
+    "l1": "Shopping",
+    "l2": "Jewellery"
   },
   "Bank": {
     "l1": "Professional",
@@ -461,6 +728,10 @@
   "Banner store": {
     "l1": "Services",
     "l2": "Printing"
+  },
+  "Banquet hall": {
+    "l1": "Nightlife & Entertainment",
+    "l2": "Outdoor Venues"
   },
   "Bar": {
     "l1": "Food & Drink",
@@ -479,6 +750,10 @@
     "l1": "Food & Drink",
     "l2": "Bars"
   },
+  "Bar stool supplier": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Bar tabac": {
     "l1": "Food & Drink",
     "l2": "Bars"
@@ -492,6 +767,11 @@
     "l2": "Restaurants",
     "l3": "Grill"
   },
+  "Barber school": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Barbering"
+  },
   "Barber shop": {
     "l1": "Beauty & Wellness",
     "l2": "Barbers"
@@ -499,6 +779,18 @@
   "Barber supply store": {
     "l1": "Beauty & Wellness",
     "l2": "Barbers"
+  },
+  "Bariatric surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Barrister": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Bartending service": {
+    "l1": "Services",
+    "l2": "Catering"
   },
   "Basketball club": {
     "l1": "Sports & Fitness",
@@ -515,6 +807,10 @@
   "Bathroom supply store": {
     "l1": "Shopping",
     "l2": "Hardware"
+  },
+  "Batik clothing store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
   },
   "Battery manufacturer": {
     "l1": "Automotive",
@@ -544,6 +840,11 @@
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Bead store": {
+    "l1": "Shopping",
+    "l2": "Gifts",
+    "l3": "Crafts"
+  },
   "Beautician": {
     "l1": "Beauty & Wellness",
     "l2": "Salons"
@@ -560,6 +861,10 @@
     "l1": "Beauty & Wellness",
     "l2": "Salons"
   },
+  "Beauty Salon": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
+  },
   "Beauty school": {
     "l1": "Education",
     "l2": "Schools"
@@ -573,6 +878,16 @@
     "l2": "Restaurants",
     "l3": "Breakfast"
   },
+  "Bed shop": {
+    "l1": "Shopping",
+    "l2": "Furniture",
+    "l3": "Beds"
+  },
+  "Bedding store": {
+    "l1": "Shopping",
+    "l2": "Furniture",
+    "l3": "Bedding"
+  },
   "Bedroom furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
@@ -581,6 +896,11 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Belt shop": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Accessories"
+  },
   "Bengali restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -588,6 +908,16 @@
   "Beverage distributor": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Bicycle repair shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "Bicycles"
+  },
+  "Bicycle store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops",
+    "l3": "Bicycles"
   },
   "Bilingual preschool": {
     "l1": "Education",
@@ -615,7 +945,44 @@
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Blood testing service": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
+  },
+  "Blueprint service": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "BMW dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers",
+    "l3": "BMW"
+  },
+  "Board game club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
+  "Board of education": {
+    "l1": "Community",
+    "l2": "Government"
+  },
+  "Boarding school": {
+    "l1": "Education",
+    "l2": "Schools"
+  },
   "Boat accessories supplier": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
+  "Boat cleaning service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Boat detailing service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Boat rental service": {
     "l1": "Travel & Hospitality",
     "l2": "Tours & Charters"
   },
@@ -655,13 +1022,30 @@
     "l1": "Shopping",
     "l2": "Books & Stationery"
   },
+  "Boot camp": {
+    "l1": "Sports & Fitness",
+    "l2": "Gyms"
+  },
+  "Boot repair shop": {
+    "l1": "Shopping",
+    "l2": "Shoes",
+    "l3": "Repair"
+  },
   "Botanical garden": {
     "l1": "Home & Construction",
     "l2": "Landscaping"
   },
+  "Bouncy castle hire": {
+    "l1": "Services",
+    "l2": "Events"
+  },
   "Boutique": {
     "l1": "Shopping",
     "l2": "Clothing"
+  },
+  "Box lunch supplier": {
+    "l1": "Services",
+    "l2": "Catering"
   },
   "Boxing club": {
     "l1": "Sports & Fitness",
@@ -679,10 +1063,23 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Brake shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Branding agency": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
   "Brasserie": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "French"
+  },
+  "Brazilian pastelaria": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Brazilian"
   },
   "Brazilian restaurant": {
     "l1": "Food & Drink",
@@ -716,9 +1113,17 @@
     "l2": "Restaurants",
     "l3": "Buffet"
   },
+  "Building": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
   "Building consultant": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Building equipment hire service": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
   },
   "Building materials market": {
     "l1": "Shopping",
@@ -736,13 +1141,29 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Bus charter": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
   "Bus company": {
     "l1": "Services",
     "l2": "Delivery & Logistics"
   },
+  "Bus stop": {
+    "l1": "Community",
+    "l2": "Government"
+  },
+  "Bus ticket agency": {
+    "l1": "Travel & Hospitality",
+    "l2": "Travel Agencies"
+  },
   "Bus tour agency": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
+  },
+  "Business administration service": {
+    "l1": "Professional",
+    "l2": "Consulting"
   },
   "Business attorney": {
     "l1": "Professional",
@@ -756,7 +1177,15 @@
     "l1": "Professional",
     "l2": "Consulting"
   },
+  "Business development service": {
+    "l1": "Professional",
+    "l2": "Consulting"
+  },
   "Business management consultant": {
+    "l1": "Professional",
+    "l2": "Consulting"
+  },
+  "Business networking company": {
     "l1": "Professional",
     "l2": "Consulting"
   },
@@ -775,6 +1204,19 @@
   "Butcher shop deli": {
     "l1": "Shopping",
     "l2": "Butchers & Fishmongers"
+  },
+  "Cabinet maker": {
+    "l1": "Home & Construction",
+    "l2": "Trades",
+    "l3": "Carpentry"
+  },
+  "Cabinet store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Cable company": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Cafe": {
     "l1": "Food & Drink",
@@ -799,6 +1241,20 @@
     "l2": "Bakeries",
     "l3": "Desserts"
   },
+  "Call center": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Calligraphy lesson": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Arts"
+  },
+  "Camera repair shop": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Electronics"
+  },
   "Camera store": {
     "l1": "Shopping",
     "l2": "Electronics"
@@ -807,9 +1263,23 @@
     "l1": "Travel & Hospitality",
     "l2": "Attractions"
   },
+  "Camping cabin": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Camping"
+  },
   "Canadian restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Cancer treatment center": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals",
+    "l3": "Oncology"
+  },
+  "Candle store": {
+    "l1": "Shopping",
+    "l2": "Gifts"
   },
   "Candy store": {
     "l1": "Food & Drink",
@@ -820,9 +1290,24 @@
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Canoe & kayak store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops",
+    "l3": "Water Sports"
+  },
   "Canoe & kayak tour agency": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
+  },
+  "Cantonese restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Cantonese"
+  },
+  "Capsule hotel": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Capsule"
   },
   "Car accessories store": {
     "l1": "Automotive",
@@ -839,6 +1324,11 @@
   "Car detailing service": {
     "l1": "Automotive",
     "l2": "Car Wash"
+  },
+  "Car finance and loan company": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange",
+    "l3": "Car Finance"
   },
   "Car inspection station": {
     "l1": "Automotive",
@@ -860,6 +1350,16 @@
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Car security system installer": {
+    "l1": "Automotive",
+    "l2": "Auto Repair",
+    "l3": "Security Systems"
+  },
+  "Car sharing location": {
+    "l1": "Automotive",
+    "l2": "Car Rental",
+    "l3": "Car Sharing"
+  },
   "Car stereo store": {
     "l1": "Automotive",
     "l2": "Auto Parts"
@@ -867,6 +1367,16 @@
   "Car wash": {
     "l1": "Automotive",
     "l2": "Car Wash"
+  },
+  "Cardiologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "Cardiology"
+  },
+  "Cardiovascular and thoracic surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals",
+    "l3": "Cardiothoracic Surgery"
   },
   "Carpenter": {
     "l1": "Home & Construction",
@@ -876,6 +1386,16 @@
     "l1": "Services",
     "l2": "Cleaning"
   },
+  "Carpet installer": {
+    "l1": "Home & Construction",
+    "l2": "Contractors",
+    "l3": "Flooring"
+  },
+  "Carpet manufacturer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Carpets"
+  },
   "Carpet store": {
     "l1": "Shopping",
     "l2": "Furniture"
@@ -883,6 +1403,21 @@
   "Carpet wholesaler": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Carvery": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Carvery"
+  },
+  "Cat boarding service": {
+    "l1": "Pets",
+    "l2": "Pet Shops",
+    "l3": "Boarding"
+  },
+  "Cat breeder": {
+    "l1": "Pets",
+    "l2": "Pet Shops",
+    "l3": "Breeders"
   },
   "Cat cafe": {
     "l1": "Food & Drink",
@@ -900,9 +1435,19 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Cattery": {
+    "l1": "Pets",
+    "l2": "Pet Shops",
+    "l3": "Boarding"
+  },
   "CBSE school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Ceiling supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware",
+    "l3": "Building Materials"
   },
   "Cell phone accessory store": {
     "l1": "Shopping",
@@ -919,6 +1464,16 @@
   "Cement supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Ceramics wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Ceramics"
+  },
+  "Certification agency": {
+    "l1": "Professional",
+    "l2": "Consulting",
+    "l3": "Certification"
   },
   "Certified public accountant": {
     "l1": "Food & Drink",
@@ -941,6 +1496,16 @@
     "l2": "Car Rental",
     "l3": "With Driver"
   },
+  "Check cashing service": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange",
+    "l3": "Check Cashing"
+  },
+  "Cheese shop": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores",
+    "l3": "Specialty Foods"
+  },
   "Cheesesteak restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -948,6 +1513,11 @@
   "Chemical manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Chemical wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Chemicals"
   },
   "Chess club": {
     "l1": "Sports & Fitness",
@@ -976,10 +1546,25 @@
     "l1": "Education",
     "l2": "Nurseries"
   },
+  "Child health care center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "Pediatrics"
+  },
   "Child psychologist": {
     "l1": "Health & Medical",
     "l2": "Clinics",
     "l3": "Mental Health"
+  },
+  "Children Policlinic": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "Pediatrics"
+  },
+  "Children's amusement center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions",
+    "l3": "Children"
   },
   "Children's cafe": {
     "l1": "Food & Drink",
@@ -993,9 +1578,18 @@
     "l1": "Shopping",
     "l2": "Clothing"
   },
+  "Children's club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges",
+    "l3": "Children"
+  },
   "Children's furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Children's home": {
+    "l1": "Community",
+    "l2": "Charities"
   },
   "Children's hospital": {
     "l1": "Health & Medical",
@@ -1009,6 +1603,21 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Buffet"
+  },
+  "Children's party service": {
+    "l1": "Services",
+    "l2": "Events",
+    "l3": "Children"
+  },
+  "Children's store": {
+    "l1": "Shopping",
+    "l2": "Toys & Games",
+    "l3": "Clothing"
+  },
+  "Chinese bakery": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries",
+    "l3": "Chinese"
   },
   "Chinese language school": {
     "l1": "Food & Drink",
@@ -1068,6 +1677,31 @@
     "l2": "Bakeries",
     "l3": "Desserts"
   },
+  "Christmas market": {
+    "l1": "Shopping",
+    "l2": "Malls",
+    "l3": "Seasonal"
+  },
+  "Christmas store": {
+    "l1": "Shopping",
+    "l2": "Gifts",
+    "l3": "Seasonal"
+  },
+  "Cigar shop": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Tobacco"
+  },
+  "Circus": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions",
+    "l3": "Live Events"
+  },
+  "City department of transportation": {
+    "l1": "Community",
+    "l2": "Government",
+    "l3": "Transportation"
+  },
   "Civil law attorney": {
     "l1": "Professional",
     "l2": "Legal"
@@ -1075,6 +1709,10 @@
   "Civil police": {
     "l1": "Community",
     "l2": "Government"
+  },
+  "Cleaners": {
+    "l1": "Services",
+    "l2": "Cleaning"
   },
   "Cleaning products supplier": {
     "l1": "Trade & Industry",
@@ -1084,6 +1722,16 @@
     "l1": "Services",
     "l2": "Cleaning"
   },
+  "Clock repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Watches & Clocks"
+  },
+  "Closed circuit television": {
+    "l1": "Services",
+    "l2": "Security",
+    "l3": "CCTV"
+  },
   "Clothes and fabric manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -1091,6 +1739,11 @@
   "Clothes and fabric wholesaler": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Clothes market": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Market"
   },
   "Clothing alteration service": {
     "l1": "Shopping",
@@ -1111,6 +1764,10 @@
   "Clothing wholesaler": {
     "l1": "Shopping",
     "l2": "Clothing"
+  },
+  "Club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
   },
   "Co-ed school": {
     "l1": "Education",
@@ -1163,6 +1820,11 @@
     "l1": "Services",
     "l2": "Movers & Storage"
   },
+  "Collectibles store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Collectibles"
+  },
   "College": {
     "l1": "Education",
     "l2": "Universities"
@@ -1170,6 +1832,11 @@
   "Combined primary and secondary school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Commercial agent": {
+    "l1": "Professional",
+    "l2": "Real Estate",
+    "l3": "Commercial"
   },
   "Commercial photographer": {
     "l1": "Services",
@@ -1191,6 +1858,11 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Community center": {
+    "l1": "Community",
+    "l2": "Government",
+    "l3": "Community Services"
+  },
   "Community health center": {
     "l1": "Health & Medical",
     "l2": "Clinics"
@@ -1198,6 +1870,11 @@
   "Company": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Company registry": {
+    "l1": "Community",
+    "l2": "Government",
+    "l3": "Business Registration"
   },
   "Computer accessories store": {
     "l1": "Shopping",
@@ -1259,10 +1936,29 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Condominium complex": {
+    "l1": "Professional",
+    "l2": "Real Estate",
+    "l3": "Residential"
+  },
+  "Condominium rental agency": {
+    "l1": "Professional",
+    "l2": "Real Estate",
+    "l3": "Residential Rental"
+  },
   "Confectionery store": {
     "l1": "Food & Drink",
     "l2": "Bakeries",
     "l3": "Desserts"
+  },
+  "Conference center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels",
+    "l3": "Conference"
+  },
+  "Consignment shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Construction company": {
     "l1": "Home & Construction",
@@ -1301,9 +1997,30 @@
     "l1": "Shopping",
     "l2": "Grocery Stores"
   },
+  "Convention center": {
+    "l1": "Nightlife",
+    "l2": "Cinemas & Venues"
+  },
+  "Conveyancer": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Cookie shop": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries",
+    "l3": "Cookies"
+  },
+  "Cooking class": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "Cooking school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Copier repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Copper supplier": {
     "l1": "Trade & Industry",
@@ -1312,6 +2029,14 @@
   "Copy shop": {
     "l1": "Services",
     "l2": "Printing"
+  },
+  "Copying supply store": {
+    "l1": "Shopping",
+    "l2": "Books & Stationery"
+  },
+  "Copywriting service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Corporate gift supplier": {
     "l1": "Shopping",
@@ -1353,6 +2078,14 @@
     "l1": "Shopping",
     "l2": "Jewellery"
   },
+  "Costume rental service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Costume store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
   "Counselor": {
     "l1": "Health & Medical",
     "l2": "Clinics",
@@ -1370,12 +2103,29 @@
     "l1": "Beauty & Wellness",
     "l2": "Spas"
   },
+  "Crab house": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Seafood"
+  },
+  "Craft store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Credit counseling service": {
     "l1": "Health & Medical",
     "l2": "Clinics",
     "l3": "Mental Health"
   },
+  "Creperie": {
+    "l1": "Food & Drink",
+    "l2": "Cafes"
+  },
   "Cricket club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Cricket ground": {
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
   },
@@ -1395,17 +2145,58 @@
     "l1": "Travel & Hospitality",
     "l2": "Tours & Charters"
   },
+  "Cue sports school": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Culinary school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Cultural center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Cultural landmark": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Cupcake shop": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries",
+    "l3": "Cupcakes"
   },
   "Currency exchange service": {
     "l1": "Professional",
     "l2": "Banking & Exchange"
   },
+  "Curtain Maker and Retailer": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Curtain Shop": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Curtain store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Curtain supplier and maker": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Custom label printer": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Custom T-shirt Shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "Custom t-shirt store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
   },
   "Custom tailor": {
     "l1": "Services",
@@ -1415,9 +2206,45 @@
     "l1": "Professional",
     "l2": "Consulting"
   },
+  "Cutlery store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
+  "Dairy": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
+  "Dairy store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
+  "Dance club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
+  "Dance company": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Dance hall": {
+    "l1": "Nightlife",
+    "l2": "Cinemas & Venues"
+  },
   "Dance school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Dart bar": {
+    "l1": "Food & Drink",
+    "l2": "Bars"
+  },
+  "Data recovery service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Database management company": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Day care center": {
     "l1": "Education",
@@ -1427,9 +2254,21 @@
     "l1": "Beauty & Wellness",
     "l2": "Spas"
   },
+  "Debt collecting": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
   "Debt collection agency": {
     "l1": "Professional",
     "l2": "Accounting"
+  },
+  "Decal supplier": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Deli": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
   },
   "Delivery Chinese restaurant": {
     "l1": "Food & Drink",
@@ -1472,9 +2311,21 @@
     "l1": "Health & Medical",
     "l2": "Dentists"
   },
+  "Dental supply store": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
+  },
   "Dentist": {
     "l1": "Health & Medical",
     "l2": "Dentists"
+  },
+  "Denture care center": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
+  },
+  "Department of Transportation": {
+    "l1": "Community",
+    "l2": "Government"
   },
   "Department store": {
     "l1": "Shopping",
@@ -1489,6 +2340,14 @@
     "l1": "Professional",
     "l2": "Marketing & Tech"
   },
+  "Design institute": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "Desktop publishing service": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
   "Dessert restaurant": {
     "l1": "Food & Drink",
     "l2": "Bakeries",
@@ -1498,6 +2357,14 @@
     "l1": "Food & Drink",
     "l2": "Bakeries",
     "l3": "Desserts"
+  },
+  "Diabetes center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Diabetologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Diagnostic center": {
     "l1": "Health & Medical",
@@ -1515,6 +2382,14 @@
     "l1": "Shopping",
     "l2": "Jewellery"
   },
+  "Diesel engine repair service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Dietitian": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Digital printer": {
     "l1": "Services",
     "l2": "Printing"
@@ -1523,9 +2398,21 @@
     "l1": "Services",
     "l2": "Printing"
   },
+  "Diner": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
   "Dinner theater": {
     "l1": "Nightlife",
     "l2": "Cinemas & Venues"
+  },
+  "Direct mail advertising": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Disability services and support organization": {
+    "l1": "Community",
+    "l2": "Charities"
   },
   "Disco club": {
     "l1": "Nightlife",
@@ -1543,9 +2430,17 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Disposable tableware supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Distance learning center": {
     "l1": "Education",
     "l2": "Training"
+  },
+  "Distribution service": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
   },
   "District attorney": {
     "l1": "Professional",
@@ -1555,9 +2450,29 @@
     "l1": "Community",
     "l2": "Government"
   },
+  "Divorce lawyer": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Divorce service": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "DJ service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Do-it-yourself shop": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
   "Doctor": {
     "l1": "Health & Medical",
     "l2": "Clinics"
+  },
+  "Dog breeder": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
   },
   "Dog cafe": {
     "l1": "Food & Drink",
@@ -1571,17 +2486,50 @@
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Dog trainer": {
+    "l1": "Pets",
+    "l2": "Veterinary"
+  },
+  "Dog walker": {
+    "l1": "Pets",
+    "l2": "Veterinary"
+  },
+  "Doner kebab restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Kebab"
+  },
+  "Donut shop": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries"
+  },
   "Door manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Door shop": {
+    "l1": "Shopping",
+    "l2": "Hardware"
   },
   "Door supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Drafting service": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
   "Drama school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Drawing lessons": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "Dress and tuxedo rental service": {
+    "l1": "Shopping",
+    "l2": "Clothing"
   },
   "Dress store": {
     "l1": "Shopping",
@@ -1615,6 +2563,14 @@
     "l1": "Education",
     "l2": "Driving Schools"
   },
+  "Driving test center": {
+    "l1": "Education",
+    "l2": "Driving Schools"
+  },
+  "Drone service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
   "Drone shop": {
     "l1": "Shopping",
     "l2": "Electronics"
@@ -1622,6 +2578,10 @@
   "Drug store": {
     "l1": "Health & Medical",
     "l2": "Pharmacies"
+  },
+  "Drug testing service": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
   },
   "Drum school": {
     "l1": "Education",
@@ -1639,13 +2599,34 @@
     "l1": "Shopping",
     "l2": "Grocery Stores"
   },
+  "Dryer vent cleaning service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
   "DS Automobiles dealer": {
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Dumpling restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Asian"
+  },
   "Dutch restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Dye store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Dyeworks": {
+    "l1": "Services",
+    "l2": "Laundry"
+  },
+  "E commerce agency": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "E-commerce service": {
     "l1": "Professional",
@@ -1655,9 +2636,31 @@
     "l1": "Beauty & Wellness",
     "l2": "Tattoo & Piercing"
   },
+  "Eastern European grocery store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores",
+    "l3": "Eastern European"
+  },
+  "Eastern European restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Eastern European"
+  },
+  "Eating disorder treatment center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Eclectic restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
   "Economic consultant": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Education": {
+    "l1": "Education",
+    "l2": "Schools"
   },
   "Education center": {
     "l1": "Education",
@@ -1671,6 +2674,14 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Educational supply store": {
+    "l1": "Shopping",
+    "l2": "Books & Stationery"
+  },
+  "Educational testing service": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "Egyptian restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -1679,17 +2690,45 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Electric generator shop": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
   "Electric motor scooter dealer": {
     "l1": "Automotive",
     "l2": "Auto Repair"
+  },
+  "Electric motor store": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
+  "Electric motorcycle dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Electrical appliance wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Electrical equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Electrical installation service": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
   "Electrical products wholesaler": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Electrical repair shop": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Electrical supply store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
   },
   "Electrician": {
     "l1": "Home & Construction",
@@ -1755,6 +2794,10 @@
     "l1": "Services",
     "l2": "Tailors"
   },
+  "EMDR psychotherapist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Emergency care physician": {
     "l1": "Health & Medical",
     "l2": "Clinics"
@@ -1787,29 +2830,62 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Employment center": {
+    "l1": "Professional",
+    "l2": "Recruitment"
+  },
   "Employment consultant": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Endocrinologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Endodontist": {
     "l1": "Health & Medical",
     "l2": "Dentists"
   },
+  "Endoscopist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Energy equipment and solutions": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Energy supplier": {
+    "l1": "Community",
+    "l2": "Government"
   },
   "Engine rebuilding service": {
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Engineering consultant": {
+    "l1": "Professional",
+    "l2": "Consulting"
+  },
   "Engineering school": {
     "l1": "Education",
     "l2": "Schools"
   },
+  "English language camp": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "English language school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "English restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "British"
+  },
+  "Engraver": {
+    "l1": "Shopping",
+    "l2": "Gifts"
   },
   "Envelope supplier": {
     "l1": "Trade & Industry",
@@ -1827,10 +2903,22 @@
     "l1": "Beauty & Wellness",
     "l2": "Spas"
   },
+  "Escrow service": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
   "Espresso bar": {
     "l1": "Food & Drink",
     "l2": "Cafes",
     "l3": "Coffee"
+  },
+  "Estate appraiser": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Estate liquidator": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Estate litigation attorney": {
     "l1": "Professional",
@@ -1879,6 +2967,22 @@
     "l1": "Services",
     "l2": "Events"
   },
+  "Executive search firm": {
+    "l1": "Professional",
+    "l2": "Recruitment"
+  },
+  "Exercise equipment store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
+  },
+  "Exhibition planner": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Exporter": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Extended stay hotel": {
     "l1": "Travel & Hospitality",
     "l2": "Hotels"
@@ -1912,6 +3016,10 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Fabrication engineer": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
   "Facial spa": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
@@ -1937,6 +3045,10 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Family planning center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Family practice physician": {
     "l1": "Health & Medical",
     "l2": "Clinics"
@@ -1944,6 +3056,10 @@
   "Family restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Family service center": {
+    "l1": "Community",
+    "l2": "Government"
   },
   "Fashion accessories store": {
     "l1": "Shopping",
@@ -1969,6 +3085,10 @@
   "Federal government office": {
     "l1": "Community",
     "l2": "Government"
+  },
+  "Fence contractor": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
   },
   "Fencing salon": {
     "l1": "Beauty & Wellness",
@@ -2039,14 +3159,52 @@
     "l2": "Restaurants",
     "l3": "Fine Dining"
   },
+  "Finishing materials supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
+  "Fire alarm supplier": {
+    "l1": "Services",
+    "l2": "Security"
+  },
+  "Fire protection system supplier": {
+    "l1": "Services",
+    "l2": "Security"
+  },
+  "Fireplace store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Fish & chips restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Fish & Chips"
+  },
+  "Fish and chips takeaway": {
+    "l1": "Services",
+    "l2": "Delivery",
+    "l3": "Fish & Chips"
+  },
+  "Fish processing": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Fish restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Seafood"
   },
+  "Fish spa": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas"
+  },
   "Fish store": {
     "l1": "Pets",
     "l2": "Pet Shops"
+  },
+  "Fishing charter": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
   },
   "Fitness center": {
     "l1": "Sports & Fitness",
@@ -2059,6 +3217,10 @@
   "Fitted furniture supplier": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Flag store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Flavours fragrances and aroma supplier": {
     "l1": "Shopping",
@@ -2092,9 +3254,17 @@
     "l1": "Shopping",
     "l2": "Florists"
   },
+  "FMCG goods wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Food and beverage consultant": {
     "l1": "Professional",
     "l2": "Consulting"
+  },
+  "Food and beverage exporter": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Food and drink": {
     "l1": "Food & Drink",
@@ -2108,6 +3278,10 @@
     "l1": "Community",
     "l2": "Government"
   },
+  "Food machinery supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Food manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -2116,9 +3290,25 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Food processing equipment": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Food producer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Food products supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Foot bath": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas"
+  },
+  "Foot care": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
   },
   "Foot massage parlor": {
     "l1": "Beauty & Wellness",
@@ -2140,9 +3330,22 @@
     "l1": "Professional",
     "l2": "Consulting"
   },
+  "Formal wear store": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Formal Wear"
+  },
   "Foundation": {
     "l1": "Community",
     "l2": "Charities"
+  },
+  "Free clinic": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Free parking lot": {
+    "l1": "Automotive",
+    "l2": "Petrol Stations"
   },
   "French language school": {
     "l1": "Food & Drink",
@@ -2159,14 +3362,60 @@
     "l2": "Restaurants",
     "l3": "French"
   },
+  "Fresh food market": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
   "Fried chicken takeaway": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Chicken"
   },
+  "Frozen food manufacturer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Frozen food store": {
+    "l1": "Shopping",
+    "l2": "Supermarkets"
+  },
+  "Fruit and vegetable processing": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Fruit and vegetable store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
   "Fruit and vegetable wholesaler": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Fruits wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Full dress rental service": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Rental"
+  },
+  "Fur coat shop": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Fur"
+  },
+  "Fur service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Furnace store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Furnished apartment building": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Furniture accessories": {
     "l1": "Shopping",
@@ -2217,6 +3466,18 @@
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Garbage collection service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Garden": {
+    "l1": "Community",
+    "l2": "Parks & Beaches"
+  },
+  "Garden building supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
   "Garden center": {
     "l1": "Home & Construction",
     "l2": "Landscaping"
@@ -2224,6 +3485,10 @@
   "Garden furniture shop": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Garden machinery supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware"
   },
   "Gardener": {
     "l1": "Home & Construction",
@@ -2237,9 +3502,29 @@
     "l1": "Automotive",
     "l2": "Petrol Stations"
   },
+  "Gasfitter": {
+    "l1": "Home & Construction",
+    "l2": "Trades"
+  },
   "Gasket manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Gastroenterologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Gastropub": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
+  "Gated community": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Gazebo builder": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
   },
   "General contractor": {
     "l1": "Home & Construction",
@@ -2257,6 +3542,10 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "General practitioner": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "General store": {
     "l1": "Shopping",
     "l2": "General Retail"
@@ -2265,6 +3554,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Eastern European"
+  },
+  "Geriatrician": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
   },
   "German language school": {
     "l1": "Education",
@@ -2318,6 +3611,10 @@
     "l1": "Home & Construction",
     "l2": "Trades"
   },
+  "Glasses repair service": {
+    "l1": "Health & Medical",
+    "l2": "Opticians"
+  },
   "Glassware store": {
     "l1": "Home & Construction",
     "l2": "Trades"
@@ -2329,6 +3626,11 @@
   "Gluten-free restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Goan restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Goan"
   },
   "Gold dealer": {
     "l1": "Shopping",
@@ -2342,6 +3644,10 @@
     "l1": "Shopping",
     "l2": "Jewellery"
   },
+  "Golf cart dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
   "Gourmet grocery store": {
     "l1": "Shopping",
     "l2": "Grocery Stores"
@@ -2354,14 +3660,34 @@
     "l1": "Community",
     "l2": "Government"
   },
+  "Government school": {
+    "l1": "Education",
+    "l2": "Schools"
+  },
   "Graduate school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Grammar school": {
+    "l1": "Education",
+    "l2": "Schools"
+  },
+  "Graphic designer": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Greek restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Mediterranean"
+  },
+  "Greengrocer": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
+  "Greenhouse": {
+    "l1": "Education",
+    "l2": "Nurseries"
   },
   "Grill": {
     "l1": "Food & Drink",
@@ -2381,9 +3707,22 @@
     "l1": "Shopping",
     "l2": "Grocery Stores"
   },
+  "Group accommodation": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
+  "Group home": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Guest house": {
     "l1": "Travel & Hospitality",
     "l2": "Hotels"
+  },
+  "Guitar instructor": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Musical Instruments"
   },
   "Gym": {
     "l1": "Sports & Fitness",
@@ -2410,6 +3749,10 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Hair extension technician": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
+  },
   "Hair extensions supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -2417,6 +3760,10 @@
   "Hair removal service": {
     "l1": "Services",
     "l2": "Movers & Storage"
+  },
+  "Hair replacement service": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
   },
   "Hair salon": {
     "l1": "Beauty & Wellness",
@@ -2434,6 +3781,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Ham shop": {
+    "l1": "Shopping",
+    "l2": "Butchers & Fishmongers"
+  },
   "Hamburger restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
@@ -2443,6 +3794,18 @@
     "l1": "Beauty & Wellness",
     "l2": "Spas"
   },
+  "Hand surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Handbags shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "Handicraft": {
+    "l1": "Shopping",
+    "l2": "Gifts"
+  },
   "Handyman/Handywoman/Handyperson": {
     "l1": "Home & Construction",
     "l2": "Maintenance"
@@ -2450,6 +3813,10 @@
   "Hardware store": {
     "l1": "Shopping",
     "l2": "Hardware"
+  },
+  "Hat shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
   },
   "Haute couture fashion house": {
     "l1": "Shopping",
@@ -2481,6 +3848,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Health food store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
   "Health insurance agency": {
     "l1": "Professional",
     "l2": "Insurance"
@@ -2492,6 +3863,10 @@
   "Health spa": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
+  },
+  "Hearing aid store": {
+    "l1": "Health & Medical",
+    "l2": "Opticians"
   },
   "Heart hospital": {
     "l1": "Health & Medical",
@@ -2505,9 +3880,25 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Helicopter charter": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
   "Helicopter tour agency": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
+  },
+  "Herb shop": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
+  "Herbal medicine store": {
+    "l1": "Health & Medical",
+    "l2": "Pharmacies"
+  },
+  "Herbalist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "High school": {
     "l1": "Education",
@@ -2517,9 +3908,21 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Hip hop dance class": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "HIV testing center": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
+  },
   "Hobby store": {
     "l1": "Shopping",
     "l2": "Toys & Games"
+  },
+  "Holding company": {
+    "l1": "Professional",
+    "l2": "Consulting"
   },
   "Holiday apartment": {
     "l1": "Travel & Hospitality",
@@ -2533,21 +3936,53 @@
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
   },
+  "Holistic medicine practitioner": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Home audio store": {
     "l1": "Shopping",
     "l2": "Electronics"
+  },
+  "Home automation company": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
+  "Home care service": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Home cinema installation": {
     "l1": "Nightlife",
     "l2": "Cinemas & Venues"
   },
+  "Home Furniture Shop": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Home goods store": {
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Home health care service": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Home help": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Home help service agency": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
   "Home improvement store": {
     "l1": "Shopping",
     "l2": "Hardware"
+  },
+  "Home inspector": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Home insurance agency": {
     "l1": "Professional",
@@ -2565,6 +4000,14 @@
   "Homeopathic pharmacy": {
     "l1": "Health & Medical",
     "l2": "Pharmacies"
+  },
+  "Homestay": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
+  "Homewares Shop": {
+    "l1": "Shopping",
+    "l2": "Furniture"
   },
   "Hookah bar": {
     "l1": "Food & Drink",
@@ -2616,6 +4059,22 @@
     "l1": "Services",
     "l2": "Cleaning"
   },
+  "House clearance service": {
+    "l1": "Services",
+    "l2": "Movers & Storage"
+  },
+  "Household chemicals supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
+  "Housing development": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Housing society": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
   "Human resource consulting": {
     "l1": "Professional",
     "l2": "Consulting"
@@ -2628,9 +4087,17 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Hydraulic engineer": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
   "Hydraulic equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Hydraulic repair service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
   },
   "Hydroponics equipment supplier": {
     "l1": "Trade & Industry",
@@ -2649,6 +4116,10 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Image consultant": {
+    "l1": "Professional",
+    "l2": "Consulting"
+  },
   "Immigration & naturalization service": {
     "l1": "Professional",
     "l2": "Documents & Visas"
@@ -2656,6 +4127,18 @@
   "Immigration attorney": {
     "l1": "Professional",
     "l2": "Legal"
+  },
+  "Immunologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Import export company": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
+  },
+  "Importer": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
   },
   "Incense supplier": {
     "l1": "Trade & Industry",
@@ -2698,6 +4181,14 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Indoor cycling": {
+    "l1": "Sports & Fitness",
+    "l2": "Gyms"
+  },
+  "Indoor lodging": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
   "Indoor playground": {
     "l1": "Community",
     "l2": "Parks & Beaches"
@@ -2705,6 +4196,10 @@
   "Indoor swimming pool": {
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
+  },
+  "Industrial consultant": {
+    "l1": "Professional",
+    "l2": "Consulting"
   },
   "Industrial design company": {
     "l1": "Trade & Industry",
@@ -2726,9 +4221,21 @@
     "l1": "Shopping",
     "l2": "Supermarkets"
   },
+  "Information services": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Inn": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
   "Institute of technology": {
     "l1": "Education",
     "l2": "Universities"
+  },
+  "Instrumentation engineer": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
   },
   "Insurance agency": {
     "l1": "Professional",
@@ -2746,9 +4253,22 @@
     "l1": "Professional",
     "l2": "Insurance"
   },
+  "Intellectual property registry": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
   "Interior architect office": {
     "l1": "Home & Construction",
     "l2": "Architecture & Engineering"
+  },
+  "Interior construction contractor": {
+    "l1": "Home & Construction",
+    "l2": "Contractors",
+    "l3": "Interior"
+  },
+  "Interior decoration": {
+    "l1": "Home & Construction",
+    "l2": "Interior Design"
   },
   "Interior Decorator": {
     "l1": "Home & Construction",
@@ -2762,6 +4282,18 @@
     "l1": "Home & Construction",
     "l2": "Contractors"
   },
+  "Interior plant service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Internal medicine ward": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "International airport": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
   "International school": {
     "l1": "Education",
     "l2": "Schools"
@@ -2774,13 +4306,42 @@
     "l1": "Professional",
     "l2": "Marketing & Tech"
   },
+  "Internet service provider": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Internet shop": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
+  "Internist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Investment bank": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Investment company": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Investment service": {
     "l1": "Professional",
     "l2": "Banking & Exchange"
   },
   "Invitation printing service": {
     "l1": "Services",
     "l2": "Printing"
+  },
+  "Irish pub": {
+    "l1": "Food & Drink",
+    "l2": "Bars"
+  },
+  "Iron works": {
+    "l1": "Home & Construction",
+    "l2": "Trades",
+    "l3": "Metalwork"
   },
   "Irrigation equipment supplier": {
     "l1": "Trade & Industry",
@@ -2795,6 +4356,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Italian"
+  },
+  "IV therapy service": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Izakaya restaurant": {
     "l1": "Food & Drink",
@@ -2825,6 +4390,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Japanese"
+  },
+  "Jeans shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
   },
   "Jeweler": {
     "l1": "Shopping",
@@ -2862,6 +4431,11 @@
     "l1": "Shopping",
     "l2": "Jewellery"
   },
+  "Joiner": {
+    "l1": "Home & Construction",
+    "l2": "Trades",
+    "l3": "Carpentry"
+  },
   "Judo school": {
     "l1": "Education",
     "l2": "Schools"
@@ -2875,6 +4449,10 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Junk dealer": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Junk removal service": {
     "l1": "Services",
     "l2": "Movers & Storage"
@@ -2883,18 +4461,56 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Kalle pache restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Iranian"
+  },
+  "Karaoke bar": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges",
+    "l3": "Karaoke"
+  },
+  "Karate club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Martial Arts"
+  },
   "Karate school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Karnataka restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian"
+  },
+  "Kashmiri restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian"
   },
   "Kazakhstani restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Kebab shop": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Kebab"
+  },
+  "Kennel": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
+  },
   "Kerala restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Indian"
+  },
+  "Key duplication service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Kickboxing school": {
     "l1": "Education",
@@ -2904,9 +4520,18 @@
     "l1": "Education",
     "l2": "Nurseries"
   },
+  "Kiosk": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Kitchen furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Kitchen remodeler": {
+    "l1": "Home & Construction",
+    "l2": "Contractors",
+    "l3": "Kitchen"
   },
   "Kitchen supply store": {
     "l1": "Shopping",
@@ -2915,6 +4540,11 @@
   "Knitwear manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Kofta restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Middle Eastern"
   },
   "Korean barbecue restaurant": {
     "l1": "Food & Drink",
@@ -2931,9 +4561,19 @@
     "l2": "Restaurants",
     "l3": "Korean"
   },
+  "Koshari restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Egyptian"
+  },
   "Kosher grocery store": {
     "l1": "Shopping",
     "l2": "Grocery Stores"
+  },
+  "Kung fu school": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Martial Arts"
   },
   "Labor relations attorney": {
     "l1": "Professional",
@@ -2943,6 +4583,10 @@
     "l1": "Health & Medical",
     "l2": "Labs & Diagnostics"
   },
+  "Lactation service": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Ladder supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -2950,6 +4594,10 @@
   "Laminating equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Lamination service": {
+    "l1": "Services",
+    "l2": "Printing"
   },
   "Landscape designer": {
     "l1": "Home & Construction",
@@ -2971,6 +4619,10 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Laser cutting service": {
+    "l1": "Home & Construction",
+    "l2": "Trades"
+  },
   "Laser equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -2978,6 +4630,14 @@
   "Laser hair removal service": {
     "l1": "Services",
     "l2": "Movers & Storage"
+  },
+  "Laser tag center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Lasik surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Opticians"
   },
   "Latin American restaurant": {
     "l1": "Food & Drink",
@@ -3008,9 +4668,17 @@
     "l1": "Community",
     "l2": "Charities"
   },
+  "Learner driver training area": {
+    "l1": "Education",
+    "l2": "Driving Schools"
+  },
   "Learning center": {
     "l1": "Education",
     "l2": "Training"
+  },
+  "Leasing service": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
   },
   "Leather cleaning service": {
     "l1": "Services",
@@ -3019,6 +4687,21 @@
   "Leather goods manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Leather goods store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Leather"
+  },
+  "Leather repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Leather"
+  },
+  "Leather wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing",
+    "l3": "Leather"
   },
   "Lebanese restaurant": {
     "l1": "Food & Drink",
@@ -3033,9 +4716,21 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Leisure center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Library": {
+    "l1": "Education",
+    "l2": "Libraries"
+  },
   "License plate frames supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Life coach": {
+    "l1": "Professional",
+    "l2": "Consulting"
   },
   "Life insurance agency": {
     "l1": "Professional",
@@ -3065,9 +4760,21 @@
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Limousine service": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
+  "Linens store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Lingerie store": {
     "l1": "Shopping",
     "l2": "Clothing"
+  },
+  "Liquidator": {
+    "l1": "Professional",
+    "l2": "Consulting"
   },
   "Live music bar": {
     "l1": "Food & Drink",
@@ -3078,34 +4785,92 @@
     "l1": "Nightlife & Entertainment",
     "l2": "Live Music Venues"
   },
+  "Loan agency": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Local government office": {
+    "l1": "Community",
+    "l2": "Government"
+  },
   "Local history museum": {
     "l1": "Travel & Hospitality",
     "l2": "Attractions"
+  },
+  "Local medical services": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Lock Store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
   },
   "Locks supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Lodge": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
   "Lodging": {
     "l1": "Travel & Hospitality",
     "l2": "Hotels"
+  },
+  "Logistics service": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
   },
   "Lounge bar": {
     "l1": "Food & Drink",
     "l2": "Bars",
     "l3": "Lounge"
   },
+  "Luggage store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Luggage"
+  },
+  "Lumber store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
   "Lunch restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Lymph drainage therapist": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
   },
   "Machine maintenance service": {
     "l1": "Home & Construction",
     "l2": "Maintenance"
   },
+  "Machine repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Machine shop": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Machine workshop": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Make-up artist": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons",
+    "l3": "Make-up"
+  },
   "Malaysian restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Mammography service": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
   },
   "Management school": {
     "l1": "Education",
@@ -3118,6 +4883,32 @@
   "Marathi restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Marble supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware",
+    "l3": "Stone"
+  },
+  "Marina": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Marine supply store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Marine"
+  },
+  "Marine surveyor": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
+  "Market": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Market researcher": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Marketing agency": {
     "l1": "Professional",
@@ -3144,6 +4935,14 @@
     "l1": "Sports & Fitness",
     "l2": "Gyms"
   },
+  "Masonry contractor": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
+  "Masonry supply store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
   "Massage school": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
@@ -3155,6 +4954,10 @@
   "Massage therapist": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
+  },
+  "Material handling equipment supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Maternity hospital": {
     "l1": "Health & Medical",
@@ -3177,6 +4980,10 @@
     "l1": "Services",
     "l2": "Delivery & Logistics"
   },
+  "Measuring instruments supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Meat dish restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -3193,7 +5000,35 @@
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Mechanical contractor": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
+  "Mechanical engineer": {
+    "l1": "Home & Construction",
+    "l2": "Architecture & Engineering"
+  },
+  "Mechanical plant": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Media company": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Media consultant": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Mediation service": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
   "Medical Center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Medical certificate service": {
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
@@ -3205,9 +5040,21 @@
     "l1": "Health & Medical",
     "l2": "Labs & Diagnostics"
   },
+  "Medical equipment manufacturer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Medical equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Medical examiner": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Medical geneticist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Medical group": {
     "l1": "Health & Medical",
@@ -3217,7 +5064,28 @@
     "l1": "Health & Medical",
     "l2": "Labs & Diagnostics"
   },
+  "Medical lawyer": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Medical office": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Medical spa": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas"
+  },
+  "Medical supply store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Medical"
+  },
+  "Medicine exporter": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Meditation instructor": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
   },
@@ -3225,6 +5093,15 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Mediterranean"
+  },
+  "Meeting planning service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Mehndi designer": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons",
+    "l3": "Mehndi"
   },
   "Men's clothing store": {
     "l1": "Shopping",
@@ -3252,9 +5129,17 @@
     "l1": "Home & Construction",
     "l2": "Trades"
   },
+  "Metal industry suppliers": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Metal stamping service": {
     "l1": "Home & Construction",
     "l2": "Trades"
+  },
+  "Metal supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Metal workshop": {
     "l1": "Home & Construction",
@@ -3265,6 +5150,10 @@
     "l2": "Restaurants",
     "l3": "Mexican"
   },
+  "Microwave oven repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
   "Middle Eastern restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -3273,6 +5162,38 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Midwife": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Minibus taxi service": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
+  "Mirror shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Mobile disco service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Mobile home rental agency": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
+  "Mobile home supply store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Mobile money agent": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Mobile network operator": {
+    "l1": "Shopping",
+    "l2": "Mobile Phone Shops"
+  },
   "Mobile phone repair shop": {
     "l1": "Shopping",
     "l2": "Mobile Phone Shops"
@@ -3280,6 +5201,10 @@
   "Mobility equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Model design company": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Modeling school": {
     "l1": "Education",
@@ -3304,9 +5229,17 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Money order service": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
   "Money transfer service": {
     "l1": "Professional",
     "l2": "Banking & Exchange"
+  },
+  "Monogramming service": {
+    "l1": "Services",
+    "l2": "Tailors"
   },
   "Montessori preschool": {
     "l1": "Education",
@@ -3324,6 +5257,14 @@
     "l1": "Professional",
     "l2": "Banking & Exchange"
   },
+  "Mortgage lender": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Mosque": {
+    "l1": "Community",
+    "l2": "Government"
+  },
   "Motel": {
     "l1": "Travel & Hospitality",
     "l2": "Hotels"
@@ -3332,6 +5273,11 @@
     "l1": "Automotive",
     "l2": "Car Dealers"
   },
+  "Motorcycle dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers",
+    "l3": "Motorcycles"
+  },
   "Motorcycle driving school": {
     "l1": "Automotive",
     "l2": "Auto Repair"
@@ -3339,6 +5285,11 @@
   "Motorcycle insurance agency": {
     "l1": "Automotive",
     "l2": "Auto Repair"
+  },
+  "Motorcycle parts store": {
+    "l1": "Automotive",
+    "l2": "Auto Parts",
+    "l3": "Motorcycles"
   },
   "Motorcycle rental agency": {
     "l1": "Automotive",
@@ -3364,10 +5315,22 @@
     "l1": "Nightlife",
     "l2": "Cinemas & Venues"
   },
+  "Moving service": {
+    "l1": "Services",
+    "l2": "Movers & Storage"
+  },
+  "MRI center": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
+  },
   "Muay Thai boxing gym": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Thai"
+  },
+  "Muffler shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
   },
   "Mughlai restaurant": {
     "l1": "Food & Drink",
@@ -3380,6 +5343,15 @@
   "Music college": {
     "l1": "Education",
     "l2": "Universities"
+  },
+  "Music instructor": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Music"
+  },
+  "Music management and promotion": {
+    "l1": "Services",
+    "l2": "Events"
   },
   "Music school": {
     "l1": "Education",
@@ -3405,13 +5377,64 @@
     "l1": "Beauty & Wellness",
     "l2": "Nail Salons"
   },
+  "Nasi goreng restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indonesian"
+  },
+  "Natural goods store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Naturopathic practitioner": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Neapolitan restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Neon sign shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Nepalese restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Nephrologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Neurologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Neurophysiologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Neuropsychologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Neurosurgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "New American restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "American"
+  },
+  "New England restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "American"
+  },
+  "Newspaper distribution service": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
   },
   "Night club": {
     "l1": "Nightlife",
@@ -3425,6 +5448,16 @@
   "Non-profit organization": {
     "l1": "Community",
     "l2": "Charities"
+  },
+  "Noodle shop": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Noodles"
+  },
+  "North African restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "North African"
   },
   "North Eastern Indian restaurant": {
     "l1": "Food & Drink",
@@ -3440,30 +5473,87 @@
     "l1": "Food & Drink",
     "l2": "Bars"
   },
+  "Novelties wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Novelty store": {
+    "l1": "Shopping",
+    "l2": "Gifts"
+  },
   "Nursery school": {
     "l1": "Education",
     "l2": "Nurseries"
   },
+  "Nursing agency": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Nursing school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Nut store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores"
+  },
+  "Nutritionist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Obstetrician-gynecologist": {
     "l1": "Health & Medical",
     "l2": "Clinics",
     "l3": "Women's Health"
   },
+  "Occupational health service": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Occupational medical physician": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Occupational therapist": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
+  },
+  "Off roading area": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Off-road racing venue": {
+    "l1": "Nightlife & Entertainment",
+    "l2": "Outdoor Venues"
+  },
   "Office accessories wholesaler": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Office equipment rental service": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
+  "Office equipment repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Office equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Office Furniture Shop": {
+    "l1": "Shopping",
+    "l2": "Furniture",
+    "l3": "Office"
+  },
   "Office furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Office refurbishment service": {
+    "l1": "Home & Construction",
+    "l2": "Interior Design"
   },
   "Office space rental agency": {
     "l1": "Beauty & Wellness",
@@ -3484,6 +5574,22 @@
   "Oil field equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Oilfield": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Oldsmobile dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Oncologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Ophthalmologist": {
+    "l1": "Health & Medical",
+    "l2": "Opticians"
   },
   "Ophthalmology clinic": {
     "l1": "Health & Medical",
@@ -3509,9 +5615,31 @@
     "l1": "Health & Medical",
     "l2": "Opticians"
   },
+  "Oral and maxillofacial surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
+  },
+  "Oral surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
+  },
+  "Organic drug store": {
+    "l1": "Health & Medical",
+    "l2": "Pharmacies"
+  },
+  "Organic food store": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores",
+    "l3": "Organic"
+  },
   "Organic restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Organic shop": {
+    "l1": "Shopping",
+    "l2": "Grocery Stores",
+    "l3": "Organic"
   },
   "Oriental medicine store": {
     "l1": "Food & Drink",
@@ -3526,22 +5654,77 @@
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
+  "Orthopedic surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Orthoptist": {
+    "l1": "Health & Medical",
+    "l2": "Opticians"
+  },
+  "Orthotics & prosthetics service": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
+  },
+  "Osteopath": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
+  },
+  "Otolaryngologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "ENT"
+  },
   "Otolaryngology clinic": {
     "l1": "Health & Medical",
     "l2": "Clinics"
+  },
+  "Outdoor activity organiser": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
+  "Outdoor clothing and equipment shop": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
   },
   "Outdoor furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Outdoor sports store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
+  },
   "Outdoor swimming pool": {
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
+  },
+  "Outerwear store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "Outlet mall": {
+    "l1": "Shopping",
+    "l2": "Malls",
+    "l3": "Outlet"
+  },
+  "Outlet store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Outlet"
   },
   "Oyster bar restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Seafood"
+  },
+  "Packaging company": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Packaging supply store": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Padel club": {
     "l1": "Sports & Fitness",
@@ -3567,6 +5750,10 @@
     "l1": "Shopping",
     "l2": "Hardware"
   },
+  "Paint stripping service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
   "Painter": {
     "l1": "Shopping",
     "l2": "Hardware"
@@ -3574,6 +5761,10 @@
   "Painting": {
     "l1": "Shopping",
     "l2": "Hardware"
+  },
+  "Painting lessons": {
+    "l1": "Education",
+    "l2": "Training"
   },
   "Painting studio": {
     "l1": "Shopping",
@@ -3605,21 +5796,63 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Panipuri shop": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Indian Street Food"
+  },
   "Paper bag supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Paper shredding machine supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Paralegal services provider": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Parapharmacy": {
+    "l1": "Health & Medical",
+    "l2": "Pharmacies"
+  },
+  "Parasailing ride operator": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions",
+    "l3": "Water Sports"
   },
   "Parking lot": {
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Parking lot for motorcycles": {
+    "l1": "Automotive",
+    "l2": "Petrol Stations"
+  },
   "Parkour spot": {
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Party equipment rental service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
   "Party planner": {
     "l1": "Services",
     "l2": "Events"
+  },
+  "Party store": {
+    "l1": "Shopping",
+    "l2": "Gifts"
+  },
+  "Passport agent": {
+    "l1": "Professional",
+    "l2": "Documents & Visas"
+  },
+  "Passport photo processor": {
+    "l1": "Services",
+    "l2": "Photography"
   },
   "Pasta shop": {
     "l1": "Food & Drink",
@@ -3641,6 +5874,18 @@
   "Paving materials supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Pawn shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Payment terminal": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
+  },
+  "Payroll service": {
+    "l1": "Professional",
+    "l2": "Accounting"
   },
   "Pediatric cardiologist": {
     "l1": "Health & Medical",
@@ -3671,10 +5916,20 @@
     "l2": "Clinics",
     "l3": "Paediatrics"
   },
+  "Pediatric ophthalmologist": {
+    "l1": "Health & Medical",
+    "l2": "Opticians",
+    "l3": "Paediatric"
+  },
   "Pediatric orthopedic surgeon": {
     "l1": "Health & Medical",
     "l2": "Clinics",
     "l3": "Paediatrics"
+  },
+  "Pediatric pulmonologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics",
+    "l3": "Paediatric"
   },
   "Pediatric surgeon": {
     "l1": "Health & Medical",
@@ -3686,6 +5941,14 @@
     "l2": "Clinics",
     "l3": "Paediatrics"
   },
+  "Pen store": {
+    "l1": "Shopping",
+    "l2": "Books & Stationery"
+  },
+  "Pension office": {
+    "l1": "Community",
+    "l2": "Government"
+  },
   "Performing arts theater": {
     "l1": "Nightlife",
     "l2": "Cinemas & Venues"
@@ -3693,6 +5956,10 @@
   "Perfume store": {
     "l1": "Shopping",
     "l2": "Perfume & Cosmetics"
+  },
+  "Periodontist": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
   },
   "Permanent make-up clinic": {
     "l1": "Health & Medical",
@@ -3702,6 +5969,10 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Persian"
+  },
+  "Personal concierge service": {
+    "l1": "Services",
+    "l2": "Delivery"
   },
   "Personal injury attorney": {
     "l1": "Professional",
@@ -3719,10 +5990,18 @@
     "l1": "Services",
     "l2": "Cleaning"
   },
+  "Pet adoption service": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
+  },
   "Pet boarding service": {
     "l1": "Pets",
     "l2": "Pet Shops",
     "l3": "Boarding"
+  },
+  "Pet funeral service": {
+    "l1": "Pets",
+    "l2": "Veterinary"
   },
   "Pet groomer": {
     "l1": "Pets",
@@ -3733,6 +6012,10 @@
     "l1": "Services",
     "l2": "Movers & Storage"
   },
+  "Pet sitter": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
+  },
   "Pet store": {
     "l1": "Pets",
     "l2": "Pet Shops"
@@ -3740,6 +6023,18 @@
   "Pet supply store": {
     "l1": "Pets",
     "l2": "Pet Shops"
+  },
+  "Pet trainer": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
+  },
+  "Pharmaceutical company": {
+    "l1": "Health & Medical",
+    "l2": "Pharmacies"
+  },
+  "Pharmaceutical lab": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
   },
   "Pharmaceutical products wholesaler": {
     "l1": "Trade & Industry",
@@ -3752,6 +6047,30 @@
   "Pho restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Phone repair service": {
+    "l1": "Shopping",
+    "l2": "Mobile Phone Shops"
+  },
+  "Photo agency": {
+    "l1": "Services",
+    "l2": "Photography"
+  },
+  "Photo booth": {
+    "l1": "Services",
+    "l2": "Photography"
+  },
+  "Photo lab": {
+    "l1": "Services",
+    "l2": "Photography"
+  },
+  "Photo restoration service": {
+    "l1": "Services",
+    "l2": "Photography"
+  },
+  "Photo shop": {
+    "l1": "Services",
+    "l2": "Photography"
   },
   "Photographer": {
     "l1": "Services",
@@ -3781,6 +6100,10 @@
     "l1": "Health & Medical",
     "l2": "Physiotherapy"
   },
+  "Physical therapist": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
+  },
   "Physical therapy clinic": {
     "l1": "Health & Medical",
     "l2": "Clinics"
@@ -3793,6 +6116,32 @@
     "l1": "Health & Medical",
     "l2": "Physiotherapy"
   },
+  "Piadina restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Italian"
+  },
+  "Piano instructor": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Music"
+  },
+  "Piano repair service": {
+    "l1": "Shopping",
+    "l2": "Musical Instruments"
+  },
+  "Pickleball court": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Picture frame shop": {
+    "l1": "Shopping",
+    "l2": "Gifts"
+  },
+  "Pie shop": {
+    "l1": "Food & Drink",
+    "l2": "Bakeries"
+  },
   "Pilates studio": {
     "l1": "Sports & Fitness",
     "l2": "Gyms"
@@ -3804,6 +6153,11 @@
   "Pipe supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Pizza": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Pizza"
   },
   "Pizza delivery": {
     "l1": "Food & Drink",
@@ -3825,13 +6179,33 @@
     "l2": "Restaurants",
     "l3": "Italian"
   },
+  "Plant and machinery hire": {
+    "l1": "Services",
+    "l2": "Delivery & Logistics"
+  },
   "Plant nursery": {
     "l1": "Education",
     "l2": "Nurseries"
   },
+  "Plastic bag supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Plastic injection molding service": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Plastic products supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Plastic resin manufacturer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Plastic surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Plastic surgery clinic": {
     "l1": "Health & Medical",
@@ -3840,6 +6214,14 @@
   "Playground": {
     "l1": "Community",
     "l2": "Parks & Beaches"
+  },
+  "Playground equipment supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Playgroup": {
+    "l1": "Education",
+    "l2": "Nurseries"
   },
   "Plumber": {
     "l1": "Home & Construction",
@@ -3861,6 +6243,14 @@
     "l1": "Shopping",
     "l2": "Hardware"
   },
+  "Podiatrist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Polythene and plastic sheeting supplier": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Pond contractor": {
     "l1": "Home & Construction",
     "l2": "Contractors"
@@ -3868,6 +6258,22 @@
   "Pond fish supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Pond supply store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Pool billard club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
+  "Pool hall": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
+  "Portrait studio": {
+    "l1": "Services",
+    "l2": "Photography"
   },
   "Portuguese restaurant": {
     "l1": "Food & Drink",
@@ -3881,9 +6287,25 @@
     "l1": "Community",
     "l2": "Government"
   },
+  "Poster store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Pottery manufacturer": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Pottery store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Poultry store": {
     "l1": "Shopping",
     "l2": "Butchers & Fishmongers"
+  },
+  "Powder coating service": {
+    "l1": "Home & Construction",
+    "l2": "Trades"
   },
   "Power plant equipment supplier": {
     "l1": "Trade & Industry",
@@ -3897,6 +6319,10 @@
     "l1": "Education",
     "l2": "Nurseries"
   },
+  "Pressure washing service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
   "Primary school": {
     "l1": "Education",
     "l2": "Schools"
@@ -3905,7 +6331,15 @@
     "l1": "Services",
     "l2": "Printing"
   },
+  "Printer repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
   "Printing equipment supplier": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Printing shop": {
     "l1": "Services",
     "l2": "Printing"
   },
@@ -3916,6 +6350,10 @@
   "Private hospital": {
     "l1": "Health & Medical",
     "l2": "Hospitals"
+  },
+  "Private investigator": {
+    "l1": "Services",
+    "l2": "Security"
   },
   "Private sector bank": {
     "l1": "Professional",
@@ -3929,9 +6367,25 @@
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Proctologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Produce market": {
+    "l1": "Shopping",
+    "l2": "Butchers & Fishmongers"
+  },
+  "Professional and hobby associations": {
+    "l1": "Community",
+    "l2": "Charities"
+  },
   "Promotional products supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Property administration service": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Property investment company": {
     "l1": "Professional",
@@ -3944,6 +6398,10 @@
   "Property management company": {
     "l1": "Professional",
     "l2": "Real Estate"
+  },
+  "Prosthodontist": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
   },
   "Psychiatric hospital": {
     "l1": "Health & Medical",
@@ -3959,6 +6417,18 @@
     "l2": "Clinics",
     "l3": "Mental Health"
   },
+  "Psychomotor therapist": {
+    "l1": "Health & Medical",
+    "l2": "Physiotherapy"
+  },
+  "Psychosocial therapist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Psychotherapist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Pub": {
     "l1": "Food & Drink",
     "l2": "Bars"
@@ -3971,9 +6441,17 @@
     "l1": "Food & Drink",
     "l2": "Bars"
   },
+  "Public educational institution": {
+    "l1": "Education",
+    "l2": "Schools"
+  },
   "Public health department": {
     "l1": "Food & Drink",
     "l2": "Bars"
+  },
+  "Public male bathroom": {
+    "l1": "Community",
+    "l2": "Government"
   },
   "Public medical center": {
     "l1": "Food & Drink",
@@ -3995,6 +6473,10 @@
     "l1": "Food & Drink",
     "l2": "Bars"
   },
+  "Pulmonologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Pump supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -4003,6 +6485,26 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Indian"
+  },
+  "Race car dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Racing car parts store": {
+    "l1": "Automotive",
+    "l2": "Auto Parts"
+  },
+  "Radiator repair service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Radiator shop": {
+    "l1": "Automotive",
+    "l2": "Auto Parts"
+  },
+  "Radio broadcaster": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Radiologist": {
     "l1": "Health & Medical",
@@ -4017,6 +6519,10 @@
     "l2": "Restaurants",
     "l3": "Japanese"
   },
+  "Real estate": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
   "Real estate agency": {
     "l1": "Professional",
     "l2": "Real Estate"
@@ -4030,6 +6536,10 @@
     "l2": "Real Estate"
   },
   "Real estate attorney": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Real estate auctioneer": {
     "l1": "Professional",
     "l2": "Real Estate"
   },
@@ -4053,9 +6563,41 @@
     "l1": "Professional",
     "l2": "Real Estate"
   },
+  "Recording studio": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Recreation center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Recreational vehicle rental agency": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
   "Recruiter": {
     "l1": "Professional",
     "l2": "Recruitment"
+  },
+  "Rectory": {
+    "l1": "Community",
+    "l2": "Government"
+  },
+  "Reflexologist": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas"
+  },
+  "Refrigerator repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Refrigerator store": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
+  "Registered general nurse": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
   },
   "Rehabilitation center": {
     "l1": "Health & Medical",
@@ -4069,6 +6611,14 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Renault dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Rental car return location": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
   "Renter's insurance agency": {
     "l1": "Professional",
     "l2": "Insurance"
@@ -4077,9 +6627,17 @@
     "l1": "Services",
     "l2": "Maintenance"
   },
+  "Repairs": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
   "Reptile store": {
     "l1": "Pets",
     "l2": "Pet Shops"
+  },
+  "Research institute": {
+    "l1": "Education",
+    "l2": "Training"
   },
   "Resort hotel": {
     "l1": "Travel & Hospitality",
@@ -4093,9 +6651,17 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Resume service": {
+    "l1": "Professional",
+    "l2": "Recruitment"
+  },
   "Retail space rental agency": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
+  },
+  "Rheumatologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
   },
   "Rice cake shop": {
     "l1": "Food & Drink",
@@ -4106,9 +6672,29 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Rock climbing": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Rock climbing gym": {
     "l1": "Sports & Fitness",
     "l2": "Gyms"
+  },
+  "Roofing supply store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
+  "Rubber Stamp Shop": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Rubber stamp store": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Rug store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
   },
   "Russian grocery store": {
     "l1": "Food & Drink",
@@ -4124,13 +6710,64 @@
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "RV detailing service": {
+    "l1": "Automotive",
+    "l2": "Car Wash"
+  },
+  "RV repair shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Safe & vault shop": {
+    "l1": "Services",
+    "l2": "Security"
+  },
   "Safety equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Sake brewery": {
+    "l1": "Services",
+    "l2": "Delivery"
+  },
+  "Salad shop": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Salad"
+  },
+  "Salsa classes": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Sand & gravel supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Sand plant": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Sandwich shop": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Sandwiches"
+  },
+  "Sanitary inspection": {
+    "l1": "Community",
+    "l2": "Government"
+  },
+  "Sardinian restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Italian"
+  },
+  "Saree Shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "Satellite communication service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Sauna": {
     "l1": "Beauty & Wellness",
@@ -4176,6 +6813,10 @@
     "l1": "Home & Construction",
     "l2": "Trades"
   },
+  "Screen printer": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
   "Screen printing shop": {
     "l1": "Services",
     "l2": "Printing"
@@ -4184,9 +6825,25 @@
     "l1": "Services",
     "l2": "Printing"
   },
+  "Screen repair service": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
+  "Screen store": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
   "Screw supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "SCUBA tour agency": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
+  "Seafood farm": {
+    "l1": "Shopping",
+    "l2": "Butchers & Fishmongers"
   },
   "Seafood market": {
     "l1": "Shopping",
@@ -4201,15 +6858,35 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Seal shop": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
+  "Second hand store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Second-hand furniture shop": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Secondary school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Secondhand Shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Security guard service": {
     "l1": "Services",
     "l2": "Security"
   },
   "Security service": {
+    "l1": "Services",
+    "l2": "Security"
+  },
+  "Security system installation service": {
     "l1": "Services",
     "l2": "Security"
   },
@@ -4224,6 +6901,10 @@
   "Self defense school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Self-storage facility": {
+    "l1": "Services",
+    "l2": "Movers & Storage"
   },
   "Senior high school": {
     "l1": "Education",
@@ -4254,14 +6935,26 @@
     "l1": "Services",
     "l2": "Tailors"
   },
+  "Sexologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Shabu-shabu restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Shared-use commercial kitchen": {
+    "l1": "Services",
+    "l2": "Catering"
   },
   "Shawarma restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Shawarma"
+  },
+  "Shelving store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
   },
   "Shipping service": {
     "l1": "Services",
@@ -4283,6 +6976,10 @@
     "l1": "Shopping",
     "l2": "Shoes"
   },
+  "Shooting event area": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Shop supermarket furniture store": {
     "l1": "Shopping",
     "l2": "Supermarkets"
@@ -4291,6 +6988,23 @@
     "l1": "Shopping",
     "l2": "Malls"
   },
+  "Short term apartment rental agency": {
+    "l1": "Professional",
+    "l2": "Real Estate"
+  },
+  "Showroom": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Shredding service": {
+    "l1": "Services",
+    "l2": "Cleaning"
+  },
+  "Sichuan restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Chinese"
+  },
   "Sightseeing tour agency": {
     "l1": "Travel & Hospitality",
     "l2": "Travel Agencies"
@@ -4298,6 +7012,10 @@
   "Sign shop": {
     "l1": "Services",
     "l2": "Printing"
+  },
+  "Silversmith": {
+    "l1": "Shopping",
+    "l2": "Jewellery"
   },
   "Singaporean restaurant": {
     "l1": "Food & Drink",
@@ -4312,9 +7030,41 @@
     "l2": "Clinics",
     "l3": "Dermatology"
   },
+  "Skin care products vending machine": {
+    "l1": "Shopping",
+    "l2": "Perfume & Cosmetics"
+  },
   "Sleep clinic": {
     "l1": "Health & Medical",
     "l2": "Clinics"
+  },
+  "Small appliance repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Small claims assistance service": {
+    "l1": "Professional",
+    "l2": "Legal"
+  },
+  "Small engine repair service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Small plates restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
+  "Smart dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Smart shop": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
+  "Smoke shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Smoothie shop": {
     "l1": "Food & Drink",
@@ -4325,9 +7075,41 @@
     "l1": "Food & Drink",
     "l2": "Bars"
   },
+  "Soccer club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Football"
+  },
+  "Soccer field": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Football"
+  },
+  "Soccer practice": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs",
+    "l3": "Football"
+  },
+  "Social club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
   "Social security attorney": {
     "l1": "Professional",
     "l2": "Legal"
+  },
+  "Social services organization": {
+    "l1": "Community",
+    "l2": "Charities"
+  },
+  "Sofa store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Soft drinks shop": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Beverages"
   },
   "Software company": {
     "l1": "Professional",
@@ -4337,15 +7119,31 @@
     "l1": "Professional",
     "l2": "Marketing & Tech"
   },
+  "Solar energy company": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
   "Solar energy equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Solar energy system service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Solar hot water system supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
   "Soul food restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
+  "Soup kitchen": {
+    "l1": "Services",
+    "l2": "Catering"
+  },
+  "Soup shop": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
@@ -4404,7 +7202,19 @@
     "l1": "Education",
     "l2": "Schools"
   },
+  "Special educator": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "Specialized clinic": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Specialized hospital": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Speech pathologist": {
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
@@ -4428,6 +7238,14 @@
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
   },
+  "Sports complex": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Sports equipment rental service": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
+  },
   "Sports massage therapist": {
     "l1": "Beauty & Wellness",
     "l2": "Spas"
@@ -4439,6 +7257,10 @@
   "Sports medicine physician": {
     "l1": "Health & Medical",
     "l2": "Clinics"
+  },
+  "Sports nutrition store": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
   },
   "Sports school": {
     "l1": "Education",
@@ -4460,6 +7282,14 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Stage lighting equipment supplier": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Stamp shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "State police": {
     "l1": "Community",
     "l2": "Government"
@@ -4476,6 +7306,10 @@
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
+  "STD testing service": {
+    "l1": "Health & Medical",
+    "l2": "Labs & Diagnostics"
+  },
   "Steak house": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
@@ -4489,9 +7323,21 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Steel fabricator": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Sticker manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Stitching class": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "Stock broker": {
+    "l1": "Professional",
+    "l2": "Banking & Exchange"
   },
   "Storage facility": {
     "l1": "Services",
@@ -4514,13 +7360,37 @@
     "l2": "Clinics",
     "l3": "Mental Health"
   },
+  "Student dormitory": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
+  "Student housing center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
   "Study at home school": {
     "l1": "Education",
     "l2": "Schools"
   },
+  "Studying center": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "Stylist": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
+  },
   "Sukiyaki restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Summer camp organizer": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Sundae restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Cafes"
   },
   "Sunglasses store": {
     "l1": "Health & Medical",
@@ -4530,9 +7400,33 @@
     "l1": "Shopping",
     "l2": "Supermarkets"
   },
+  "Surf school": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Surf shop": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
+  },
+  "Surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Surgical center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Surgical oncologist": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
   "Surinamese restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Surplus store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Surveyor": {
     "l1": "Home & Construction",
@@ -4552,6 +7446,22 @@
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Buffet"
+  },
+  "Swim club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Swimming competition": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Swimming facility": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Swimming instructor": {
+    "l1": "Education",
+    "l2": "Training"
   },
   "Swimming pool": {
     "l1": "Sports & Fitness",
@@ -4578,6 +7488,18 @@
     "l2": "Restaurants",
     "l3": "Syrian"
   },
+  "T-shirt Shop": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "T-shirt store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
+  "Table tennis facility": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Taco restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
@@ -4585,6 +7507,10 @@
   "Taekwondo school": {
     "l1": "Education",
     "l2": "Schools"
+  },
+  "Tai chi school": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
   },
   "Tailor": {
     "l1": "Services",
@@ -4628,13 +7554,37 @@
     "l1": "Beauty & Wellness",
     "l2": "Tattoo & Piercing"
   },
+  "Tax assessor": {
+    "l1": "Professional",
+    "l2": "Accounting"
+  },
   "Tax attorney": {
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Tax collector's office": {
+    "l1": "Community",
+    "l2": "Government"
+  },
   "Tax consultant": {
     "l1": "Professional",
     "l2": "Accounting"
+  },
+  "Tax department": {
+    "l1": "Community",
+    "l2": "Government"
+  },
+  "Tax preparation": {
+    "l1": "Professional",
+    "l2": "Accounting"
+  },
+  "Tax preparation service": {
+    "l1": "Professional",
+    "l2": "Accounting"
+  },
+  "Taxi service": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
   },
   "Tea house": {
     "l1": "Food & Drink",
@@ -4657,13 +7607,42 @@
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Teeth whitening service": {
+    "l1": "Health & Medical",
+    "l2": "Dentists"
+  },
   "Telecommunications equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Telecommunications service provider": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Telephone answering service": {
+    "l1": "Professional",
+    "l2": "Consulting"
+  },
+  "Telephone company": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
   "Telephone exchange": {
     "l1": "Professional",
     "l2": "Banking & Exchange"
+  },
+  "Television repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Electronics"
+  },
+  "Television studio": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Temp agency": {
+    "l1": "Professional",
+    "l2": "Recruitment"
   },
   "Tennis club": {
     "l1": "Sports & Fitness",
@@ -4673,9 +7652,30 @@
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
   },
+  "Tent rental service": {
+    "l1": "Services",
+    "l2": "Events"
+  },
   "Teppanyaki restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Test preparation center": {
+    "l1": "Education",
+    "l2": "Training"
+  },
+  "Tex-Mex restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Mexican"
+  },
+  "Textile exporter": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Textile mill": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Thai massage therapist": {
     "l1": "Food & Drink",
@@ -4687,13 +7687,37 @@
     "l2": "Restaurants",
     "l3": "Thai"
   },
+  "Theater company": {
+    "l1": "Nightlife",
+    "l2": "Cinemas & Venues"
+  },
   "Theme park": {
     "l1": "Travel & Hospitality",
     "l2": "Attractions"
   },
+  "Thermal baths": {
+    "l1": "Beauty & Wellness",
+    "l2": "Spas"
+  },
+  "Thrift store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Tibetan restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Ticket office": {
+    "l1": "Services",
+    "l2": "Events"
+  },
+  "Tile store": {
+    "l1": "Shopping",
+    "l2": "Hardware"
+  },
+  "Timeshare agency": {
+    "l1": "Professional",
+    "l2": "Real Estate"
   },
   "Tire repair shop": {
     "l1": "Automotive",
@@ -4707,13 +7731,37 @@
     "l1": "Automotive",
     "l2": "Auto Parts"
   },
+  "Toast restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants"
+  },
+  "Tobacco shop": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Tobacco supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Toiletries store": {
+    "l1": "Shopping",
+    "l2": "Perfume & Cosmetics"
+  },
   "Toner cartridge supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Tool & die shop": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
+  "Tool rental service": {
+    "l1": "Services",
+    "l2": "Movers & Storage"
+  },
+  "Tool repair shop": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Tool store": {
     "l1": "Shopping",
@@ -4739,6 +7787,10 @@
     "l1": "Travel & Hospitality",
     "l2": "Attractions"
   },
+  "Tourist information center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Tours & Charters"
+  },
   "Towing equipment provider": {
     "l1": "Automotive",
     "l2": "Auto Parts"
@@ -4752,6 +7804,24 @@
     "l1": "Shopping",
     "l2": "Toys & Games"
   },
+  "Traditional costume club": {
+    "l1": "Nightlife",
+    "l2": "Clubs & Lounges"
+  },
+  "Traditional Kostume store": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Traditional"
+  },
+  "Traditional teahouse": {
+    "l1": "Food & Drink",
+    "l2": "Cafes",
+    "l3": "Traditional"
+  },
+  "Trailer repair shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
   "Training center": {
     "l1": "Education",
     "l2": "Training"
@@ -4760,9 +7830,25 @@
     "l1": "Professional",
     "l2": "Documents & Visas"
   },
+  "Transmission shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Transplant surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "Transportation escort service": {
+    "l1": "Services",
+    "l2": "Security"
+  },
   "Transportation service": {
     "l1": "Services",
     "l2": "Delivery & Logistics"
+  },
+  "Travel": {
+    "l1": "Travel & Hospitality",
+    "l2": "Travel Agencies"
   },
   "Travel agency": {
     "l1": "Travel & Hospitality",
@@ -4776,13 +7862,41 @@
     "l1": "Nightlife",
     "l2": "Clubs & Lounges"
   },
+  "Travel services": {
+    "l1": "Travel & Hospitality",
+    "l2": "Travel Agencies"
+  },
+  "Tree service": {
+    "l1": "Home & Construction",
+    "l2": "Landscaping"
+  },
   "Trial attorney": {
     "l1": "Professional",
     "l2": "Legal"
   },
+  "Trophy shop": {
+    "l1": "Shopping",
+    "l2": "Gifts"
+  },
+  "Tropical fish store": {
+    "l1": "Pets",
+    "l2": "Pet Shops"
+  },
   "Truck driving school": {
     "l1": "Education",
     "l2": "Driving Schools"
+  },
+  "Truck parts supplier": {
+    "l1": "Automotive",
+    "l2": "Auto Parts"
+  },
+  "Truck rental agency": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
+  "Truck repair shop": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
   },
   "Tunisian restaurant": {
     "l1": "Food & Drink",
@@ -4805,6 +7919,11 @@
     "l1": "Education",
     "l2": "Training"
   },
+  "Tuxedo shop": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Formal Wear"
+  },
   "Typing service": {
     "l1": "Professional",
     "l2": "Documents & Visas"
@@ -4822,9 +7941,18 @@
     "l2": "Restaurants",
     "l3": "Eastern European"
   },
+  "Underwear store": {
+    "l1": "Shopping",
+    "l2": "Clothing"
+  },
   "Unfinished furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
+  },
+  "Uniform Shop": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Uniforms"
   },
   "Uniform store": {
     "l1": "Shopping",
@@ -4846,9 +7974,22 @@
     "l1": "Home & Construction",
     "l2": "Trades"
   },
+  "Urgent care center": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Urologist": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Urology clinic": {
     "l1": "Health & Medical",
     "l2": "Clinics"
+  },
+  "Used Appliance Shop": {
+    "l1": "Shopping",
+    "l2": "Electronics",
+    "l3": "Used"
   },
   "Used appliance store": {
     "l1": "Shopping",
@@ -4878,6 +8019,20 @@
     "l1": "Shopping",
     "l2": "Furniture"
   },
+  "Used game store": {
+    "l1": "Shopping",
+    "l2": "Toys & Games",
+    "l3": "Used"
+  },
+  "Used motorcycle dealer": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
+  "Used Office Furniture Shop": {
+    "l1": "Shopping",
+    "l2": "Furniture",
+    "l3": "Used"
+  },
   "Used office furniture store": {
     "l1": "Shopping",
     "l2": "Furniture"
@@ -4898,10 +8053,22 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Vacation home rental agency": {
+    "l1": "Travel & Hospitality",
+    "l2": "Hotels"
+  },
   "Vacation rental": {
     "l1": "Travel & Hospitality",
     "l2": "Hotels",
     "l3": "Holiday Rentals"
+  },
+  "Vacuum cleaner repair shop": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Vacuum cleaner store": {
+    "l1": "Shopping",
+    "l2": "Electronics"
   },
   "Vacuum cleaning system supplier": {
     "l1": "Trade & Industry",
@@ -4911,23 +8078,60 @@
     "l1": "Community",
     "l2": "Parks & Beaches"
   },
+  "Van rental agency": {
+    "l1": "Automotive",
+    "l2": "Car Rental"
+  },
+  "Vaporizer store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Variety store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
+  "Vascular surgeon": {
+    "l1": "Health & Medical",
+    "l2": "Hospitals"
+  },
+  "VCR repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance",
+    "l3": "Electronics"
+  },
   "Vegan restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Vegan"
+  },
+  "Vegetable wholesaler": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Vegetarian restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants",
     "l3": "Vegetarian"
   },
+  "Vehicle exporter": {
+    "l1": "Automotive",
+    "l2": "Car Dealers"
+  },
   "Vehicle inspection service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Vehicle wrapping service": {
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
   "Vending machine supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Veterans center": {
+    "l1": "Community",
+    "l2": "Government"
   },
   "Veterans hospital": {
     "l1": "Health & Medical",
@@ -4945,9 +8149,29 @@
     "l1": "Health & Medical",
     "l2": "Pharmacies"
   },
+  "Video arcade": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Video camera repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
   "Video conferencing equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Video conferencing service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Video editing service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Video equipment repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
   },
   "Video game store": {
     "l1": "Shopping",
@@ -4956,6 +8180,14 @@
   "Video karaoke": {
     "l1": "Nightlife",
     "l2": "Live Music"
+  },
+  "Video production service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Video store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
   },
   "Vietnamese restaurant": {
     "l1": "Food & Drink",
@@ -4971,6 +8203,10 @@
     "l1": "Shopping",
     "l2": "Clothing"
   },
+  "Vinyl sign shop": {
+    "l1": "Services",
+    "l2": "Printing"
+  },
   "Visa and passport office": {
     "l1": "Professional",
     "l2": "Documents & Visas"
@@ -4979,11 +8215,27 @@
     "l1": "Professional",
     "l2": "Consulting"
   },
+  "Visitor center": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Vitamin & supplements store": {
+    "l1": "Health & Medical",
+    "l2": "Pharmacies"
+  },
+  "Vocal instructor": {
+    "l1": "Education",
+    "l2": "Training"
+  },
   "Vocational school": {
     "l1": "Education",
     "l2": "Schools"
   },
   "Volleyball club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Volleyball court": {
     "l1": "Sports & Fitness",
     "l2": "Sports Clubs"
   },
@@ -4999,6 +8251,10 @@
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
+  "Wallpaper installer": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
   "Wallpaper store": {
     "l1": "Shopping",
     "l2": "Furniture"
@@ -5011,13 +8267,29 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Washer & dryer repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Washer & dryer store": {
+    "l1": "Shopping",
+    "l2": "Electronics"
+  },
   "Watch manufacturer": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Watch repair service": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
   "Watch store": {
     "l1": "Shopping",
     "l2": "Jewellery"
+  },
+  "Water damage restoration service": {
+    "l1": "Services",
+    "l2": "Cleaning"
   },
   "Water filter supplier": {
     "l1": "Trade & Industry",
@@ -5031,17 +8303,57 @@
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
   },
+  "Water purification company": {
+    "l1": "Home & Construction",
+    "l2": "Maintenance"
+  },
+  "Water ski shop": {
+    "l1": "Shopping",
+    "l2": "Sports Shops"
+  },
+  "Water skiing club": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Water skiing instructor": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
+  "Water skiing service": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
+  },
   "Water softening equipment supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Water sports equipment rental service": {
+    "l1": "Sports & Fitness",
+    "l2": "Sports Clubs"
   },
   "Water tank cleaning service": {
     "l1": "Services",
     "l2": "Cleaning"
   },
+  "Waterbed store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
   "Waxing hair removal service": {
     "l1": "Services",
     "l2": "Movers & Storage"
+  },
+  "Waxing Hair-Removal Service": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
+  },
+  "Web hosting service": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
+  },
+  "Website designer": {
+    "l1": "Professional",
+    "l2": "Marketing & Tech"
   },
   "Wedding bakery": {
     "l1": "Food & Drink",
@@ -5071,6 +8383,14 @@
     "l1": "Services",
     "l2": "Events"
   },
+  "Weight loss service": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
+  "Weightlifting area": {
+    "l1": "Sports & Fitness",
+    "l2": "Gyms"
+  },
   "Welding supply store": {
     "l1": "Home & Construction",
     "l2": "Trades"
@@ -5083,6 +8403,10 @@
     "l1": "Travel & Hospitality",
     "l2": "Hotels"
   },
+  "Wellness program": {
+    "l1": "Health & Medical",
+    "l2": "Clinics"
+  },
   "Western apparel store": {
     "l1": "Shopping",
     "l2": "Clothing"
@@ -5091,13 +8415,33 @@
     "l1": "Food & Drink",
     "l2": "Restaurants"
   },
+  "Wheel alignment service": {
+    "l1": "Automotive",
+    "l2": "Auto Repair"
+  },
+  "Wheel store": {
+    "l1": "Automotive",
+    "l2": "Auto Parts"
+  },
+  "Wheelchair store": {
+    "l1": "Shopping",
+    "l2": "General Retail"
+  },
   "Wholesale bakery": {
     "l1": "Food & Drink",
     "l2": "Bakeries"
   },
+  "Wholesale drugstore": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
+  },
   "Wholesale florist": {
     "l1": "Shopping",
     "l2": "Florists"
+  },
+  "Wholesale food store": {
+    "l1": "Trade & Industry",
+    "l2": "Wholesale & Manufacturing"
   },
   "Wholesale grocer": {
     "l1": "Shopping",
@@ -5123,13 +8467,52 @@
     "l1": "Shopping",
     "l2": "Electronics"
   },
+  "Wi-Fi spot": {
+    "l1": "Food & Drink",
+    "l2": "Cafes"
+  },
+  "Wig shop": {
+    "l1": "Beauty & Wellness",
+    "l2": "Salons"
+  },
+  "Wildlife and safari park": {
+    "l1": "Travel & Hospitality",
+    "l2": "Attractions"
+  },
+  "Window installation service": {
+    "l1": "Home & Construction",
+    "l2": "Contractors"
+  },
   "Window tinting service": {
     "l1": "Automotive",
     "l2": "Auto Repair"
   },
+  "Window treatment store": {
+    "l1": "Shopping",
+    "l2": "Furniture"
+  },
+  "Wine bar": {
+    "l1": "Food & Drink",
+    "l2": "Bars"
+  },
+  "Wine cellar": {
+    "l1": "Food & Drink",
+    "l2": "Bars",
+    "l3": "Wine"
+  },
+  "Wing chun school": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Martial Arts"
+  },
   "Wire and cable supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Wok restaurant": {
+    "l1": "Food & Drink",
+    "l2": "Restaurants",
+    "l3": "Asian"
   },
   "Women's clothing store": {
     "l1": "Shopping",
@@ -5139,6 +8522,21 @@
     "l1": "Health & Medical",
     "l2": "Clinics"
   },
+  "Women's personal trainer": {
+    "l1": "Sports & Fitness",
+    "l2": "Gyms",
+    "l3": "Personal Training"
+  },
+  "Wood and laminate flooring supplier": {
+    "l1": "Shopping",
+    "l2": "Hardware",
+    "l3": "Flooring"
+  },
+  "Wood floor installation service": {
+    "l1": "Home & Construction",
+    "l2": "Contractors",
+    "l3": "Flooring"
+  },
   "Wood frame supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
@@ -5146,6 +8544,21 @@
   "Wood supplier": {
     "l1": "Trade & Industry",
     "l2": "Wholesale & Manufacturing"
+  },
+  "Woodworker": {
+    "l1": "Home & Construction",
+    "l2": "Trades",
+    "l3": "Carpentry"
+  },
+  "Woodworking supply store": {
+    "l1": "Shopping",
+    "l2": "Hardware",
+    "l3": "Woodworking"
+  },
+  "Work clothes store": {
+    "l1": "Shopping",
+    "l2": "Clothing",
+    "l3": "Workwear"
   },
   "Wrestling school": {
     "l1": "Education",
@@ -5155,9 +8568,19 @@
     "l1": "Health & Medical",
     "l2": "Labs & Diagnostics"
   },
+  "Yacht broker": {
+    "l1": "Professional",
+    "l2": "Real Estate",
+    "l3": "Marine"
+  },
   "Yakiniku restaurant": {
     "l1": "Food & Drink",
     "l2": "Restaurants"
+  },
+  "Yarn store": {
+    "l1": "Shopping",
+    "l2": "General Retail",
+    "l3": "Crafts"
   },
   "Yemeni restaurant": {
     "l1": "Food & Drink",
@@ -5174,6 +8597,11 @@
   "Yoga studio": {
     "l1": "Sports & Fitness",
     "l2": "Gyms"
+  },
+  "Youth care service": {
+    "l1": "Education",
+    "l2": "Training",
+    "l3": "Youth Services"
   },
   "Youth clothing store": {
     "l1": "Shopping",

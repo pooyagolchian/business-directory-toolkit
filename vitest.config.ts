@@ -11,11 +11,14 @@ export default defineConfig({
     //
     // The third is the web package, which has no src/ — its pure helpers live
     // in lib/. They must import nothing that reads disk or relies on the `@/`
-    // alias, which this config does not define.
+    // alias, which this config does not define. The fourth covers the
+    // plain-Node scripts at the repo root, which are .mjs rather than
+    // TypeScript so they run with `node` and no build step.
     include: [
       "src/**/*.test.ts",
       "packages/*/src/**/*.test.ts",
       "packages/web/lib/**/*.test.ts",
+      "scripts/**/*.test.mjs",
     ],
     environment: "node",
     // Tests must never reach the network. A test that needs an API response

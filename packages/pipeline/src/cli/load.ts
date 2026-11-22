@@ -1,8 +1,12 @@
 /**
  * Stage 4 — normalise the crawl output and load it into DynamoDB.
  *
- *   pnpm load --dry-run        report the quality gates without writing
+ *   pnpm load --dry-run        report the quality gates; DynamoDB untouched
+ *   pnpm load --files-only     write data/out/ only; DynamoDB untouched (CI)
  *   pnpm load --yes            write to DynamoDB
+ *
+ *   --carry-over <path>        merge the previous businesses.json (ADR 0016)
+ *   --max-unseen-days <n>      grace period for carried records (default 56)
  *
  * The dry run is the v0.1 acceptance check: it prints every gate from the
  * implementation plan, so a bad crawl is caught before it reaches the table.
@@ -42,10 +46,14 @@ import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  DEFAULT_MAX_UNSEEN_DAYS,
   dedupeByPlaceId,
   dropSuppressed,
+  mergeCarryOver,
+  parseCarryOver,
   parseSuppressionList,
   nearestTile,
+  type Business,
   type RawLocalResult,
   type TaxonomyMap,
 } from "@directory/core";
@@ -55,9 +63,72 @@ import { normalizeAll } from "../normalize";
 
 const argv = process.argv.slice(2);
 const dryRun = argv.includes("--dry-run");
+const filesOnly = argv.includes("--files-only");
 const confirmed = argv.includes("--yes");
 const tableName = process.env.DIRECTORY_TABLE;
 const cityFlagIndex = argv.indexOf("--city");
+
+function fail(message: string): never {
+  console.error(`\n${message}\n`);
+  process.exit(1);
+}
+
+/** A flag that takes a value must get one; `--carry-over --yes` is a typo, not a path. */
+function flagValue(flag: string): string | undefined {
+  const index = argv.indexOf(flag);
+  if (index === -1) return undefined;
+  const value = argv[index + 1];
+  if (value === undefined || value.startsWith("--")) {
+    fail(`${flag} needs a value.`);
+  }
+  return value;
+}
+
+/**
+ * --files-only exists so a scheduled job can rebuild data/out/ without
+ * DynamoDB credentials. --dry-run happens to write the same file today, but
+ * that is a side effect of the web app's local-development needs; a job that
+ * relied on it would break silently the day someone made dry runs truly dry,
+ * then push the previous dataset back up as if it were new.
+ */
+if (filesOnly && (confirmed || dryRun)) {
+  fail("--files-only cannot be combined with --yes or --dry-run.");
+}
+
+const carryOverPath = flagValue("--carry-over");
+const maxUnseenFlag = flagValue("--max-unseen-days");
+const maxUnseenDays =
+  maxUnseenFlag === undefined ? DEFAULT_MAX_UNSEEN_DAYS : Number(maxUnseenFlag);
+if (!Number.isInteger(maxUnseenDays) || maxUnseenDays < 0) {
+  fail(
+    `--max-unseen-days must be a whole number of days >= 0; got ${JSON.stringify(maxUnseenFlag)}.`,
+  );
+}
+
+/**
+ * Read the previous dataset now, before anything else is read or written.
+ *
+ * Two reasons. A bad path should fail in the first second, not after the
+ * archive walk. And the natural CI invocation points --carry-over at a file
+ * that this run is about to overwrite (data/out/businesses.json after
+ * `pnpm dataset:pull`), so it has to be in memory first.
+ *
+ * Missing or malformed is fatal, never "carry nothing": that would quietly
+ * turn off the protection on the run that needed it.
+ */
+let previous: Business[] = [];
+if (carryOverPath !== undefined) {
+  try {
+    previous = parseCarryOver(readFileSync(carryOverPath, "utf8"));
+  } catch (error) {
+    fail(
+      `Could not use --carry-over ${carryOverPath}:\n  ${error instanceof Error ? error.message : String(error)}\n\n` +
+        "  The load stopped rather than treat it as an empty previous dataset.",
+    );
+  }
+}
+// One instant for the whole run, so every fresh record carries the same stamp.
+const now = new Date();
 /**
  * Adding a city is the toolkit's main extension point, so a wrong id must
  * teach rather than dump a stack trace.
@@ -188,23 +259,51 @@ for (const record of surviving.kept) {
   byArea.set(area, bucket);
 }
 
-const businesses = [];
+const fresh: Business[] = [];
 let rejectedNotDubai = 0;
 let rejectedNoPlaceId = 0;
-let unmappedTaxonomy = 0;
 
 for (const [area, group] of byArea) {
   const report = normalizeAll(group, map, area, city);
-  businesses.push(...report.businesses);
+  fresh.push(...report.businesses);
   rejectedNotDubai += report.rejectedNotDubai;
   rejectedNoPlaceId += report.rejectedNoPlaceId;
-  unmappedTaxonomy += report.unmappedTaxonomy;
 }
+
+/**
+ * Merge with the previous dataset, AFTER normalisation and BEFORE anything is
+ * written, so businesses.json, the DynamoDB items and the typeahead prefixes
+ * all derive from the same merged set (ADR 0016).
+ *
+ * A carried record's area is re-derived from its coordinates against today's
+ * tiles, the same rule fresh records follow above (ADR 0011). Its stored area
+ * came from whatever tiles the city had when it was last crawled; without
+ * this, editing the tile set would leave carried businesses on pages that no
+ * longer exist.
+ *
+ * Suppression is applied again inside the merge. The previous dataset was
+ * built before today's takedowns, so it is a second way back in (ADR 0007).
+ */
+const previousInTodaysAreas = previous.map((b) => {
+  const geographic =
+    b.lat !== undefined && b.lng !== undefined
+      ? nearestTile(b.lat, b.lng, city.tiles)
+      : null;
+  return geographic && geographic !== b.area ? { ...b, area: geographic } : b;
+});
+const merged = mergeCarryOver(previousInTodaysAreas, fresh, {
+  now,
+  maxUnseenDays,
+  suppressed,
+});
+const businesses = merged.businesses;
+// Counted on the merged set: the taxonomy gate's denominator is what gets
+// published, so its numerator must be too, carried records included.
+const unmappedPublished = businesses.filter((b) => !b.l2).length;
 
 // Always write the normalised set, including on a dry run: this is what the
 // web app reads in local development, standing in for DynamoDB. It lands in
 // data/out/, which is git-ignored — the dataset is never committed (ADR 0002).
-businesses.sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0));
 mkdirSync(fileURLToPath(new URL("data/out/", root)), { recursive: true });
 writeFileSync(
   fileURLToPath(new URL("data/out/businesses.json", root)),
@@ -224,7 +323,12 @@ Load — ${city.name}
 Raw records         ${records.length.toLocaleString()}
 After dedupe        ${deduped.unique.length.toLocaleString()}  (-${deduped.duplicatesRemoved} duplicates, -${deduped.skippedNoPlaceId} without place_id)
 Suppressed          ${surviving.removed.toLocaleString()}  (takedown requests honoured, from data/suppression-list.json)
-Businesses          ${businesses.length.toLocaleString()}
+Carry-over from     ${carryOverPath ?? "NONE  (--carry-over not given: the previous dataset was not consulted, so anything this crawl missed is gone)"}
+Fresh               ${merged.counts.fresh.toLocaleString()}  (returned by this crawl, stamped lastSeenAt ${now.toISOString()})
+Carried             ${merged.counts.carried.toLocaleString()}  (not returned this time, seen within ${maxUnseenDays} days — kept)
+Retired             ${merged.counts.retired.toLocaleString()}  (not returned for more than ${maxUnseenDays} days — dropped)
+Suppressed on merge ${merged.counts.suppressed.toLocaleString()}  (takedowns re-applied to the merged set; non-zero means the previous dataset still held one)
+Businesses          ${businesses.length.toLocaleString()}  (fresh + carried)
 Rejected non-Dubai  ${rejectedNotDubai.toLocaleString()}
 Rejected no place_id ${rejectedNoPlaceId.toLocaleString()}
 Area reassigned     ${reassigned.toLocaleString()}  (found by one tile's query, actually located in another)
@@ -233,19 +337,28 @@ DynamoDB items      ${items.length.toLocaleString()}  (${businesses.length} busi
 v0.1 QUALITY GATES
   unique place_ids >= 10,000   ${businesses.length.toLocaleString().padEnd(8)} ${gate(businesses.length >= 10_000)}
   E.164 phone coverage >= 90%  ${(pct(withPhone) + "%").padEnd(8)} ${gate(withPhone / Math.max(businesses.length, 1) >= 0.9)}
-  taxonomy coverage >= 99%     ${(pct(businesses.length - unmappedTaxonomy) + "%").padEnd(8)} ${gate((businesses.length - unmappedTaxonomy) / Math.max(businesses.length, 1) >= 0.99)}
+  taxonomy coverage >= 99%     ${(pct(businesses.length - unmappedPublished) + "%").padEnd(8)} ${gate((businesses.length - unmappedPublished) / Math.max(businesses.length, 1) >= 0.99)}
   slugs unique                 ${String(slugs.size).padEnd(8)} ${gate(slugs.size === businesses.length)}
   zero non-AE rows loaded      ${"0".padEnd(8)} PASS (filtered at normalise)
 `);
 
-if (unmappedTaxonomy > 0) {
+if (unmappedPublished > 0) {
   console.log(
-    `${unmappedTaxonomy} businesses have no taxonomy — mostly non-business categories left unmapped on purpose.\n`,
+    `${unmappedPublished} businesses have no taxonomy — mostly non-business categories left unmapped on purpose.\n`,
   );
 }
 
 if (dryRun) {
-  console.log("--dry-run: nothing was written.\n");
+  console.log(
+    "--dry-run: DynamoDB untouched. data/out/businesses.json was still written (the web app's local stand-in).\n",
+  );
+  process.exit(0);
+}
+
+if (filesOnly) {
+  console.log(
+    "--files-only: wrote data/out/businesses.json. DynamoDB untouched.\n",
+  );
   process.exit(0);
 }
 

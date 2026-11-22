@@ -17,12 +17,22 @@
  * See docs/adr/0015-ship-the-dataset-to-ci-through-private-s3.md.
  *
  *   pnpm dataset:push    # after pnpm load, from a machine that has the data
+ *   pnpm dataset:push --allow-shrink   # publish a set >5% smaller, on purpose
  *   pnpm dataset:pull    # in CI, before the build
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { shrinkVerdict } from "./shrink-guard.mjs";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -53,6 +63,7 @@ const FILES = [
 ];
 
 const command = process.argv[2];
+const allowShrink = process.argv.slice(3).includes("--allow-shrink");
 const uri = process.env.DATASET_S3_URI?.replace(/\/+$/, "");
 
 function die(message) {
@@ -134,6 +145,69 @@ function s3(args) {
   }
 }
 
+/**
+ * Record count of the published businesses.json, or null if none exists yet.
+ *
+ * Only a 404 means "first push". S3 answers 403 rather than 404 for a missing
+ * key when the caller lacks ListBucket, and an expired session or a network
+ * failure is an error too — reading any of those as "nothing published" would
+ * switch the shrink guard off precisely when the operator's setup is broken.
+ *
+ * Downloaded to a temporary file rather than read from stdout: the file is
+ * ~16 MB and execFileSync buffers 1 MB by default. The copy is deleted before
+ * any outcome is acted on — `die` calls process.exit, which skips `finally`,
+ * so dying inside the try would leave a copy of the dataset in the system temp
+ * directory, outside the git-ignored data/out/ that ADR 0002 relies on.
+ */
+function readPublished(name, local) {
+  try {
+    execFileSync("aws", ["s3", "cp", `${uri}/${name}`, local], {
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch (error) {
+    const stderr = error.stderr?.toString().trim() || error.message;
+    if (/\(404\)|NoSuchKey|Not Found/i.test(stderr)) return { missing: true };
+    return {
+      fatal:
+        `Could not read the published ${name} to check for shrinkage:\n  ${stderr}\n\n` +
+        `  Nothing was uploaded. Fix access to ${uri} and push again.`,
+    };
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(readFileSync(local, "utf8"));
+  } catch (error) {
+    return { unreadable: `is not valid JSON (${error.message})` };
+  }
+  if (!Array.isArray(parsed)) return { unreadable: "is not a JSON array" };
+  return { count: parsed.length };
+}
+
+function publishedCount(name) {
+  const dir = mkdtempSync(join(tmpdir(), "dataset-guard-"));
+  let result;
+  try {
+    result = readPublished(name, join(dir, name));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+  if (result.fatal) die(result.fatal);
+  if (result.missing) return null;
+  if (result.unreadable) {
+    // A corrupt remote cannot be compared against, and the push is usually the
+    // fix for it — but that is the operator's call, not the script's.
+    if (!allowShrink) {
+      die(
+        `The published ${name} ${result.unreadable}, so its size cannot be ` +
+          `compared.\n\n  Nothing was uploaded. To replace it anyway, push ` +
+          `again with --allow-shrink.`,
+      );
+    }
+    return "unreadable";
+  }
+  return result.count;
+}
+
 if (command === "push") {
   // Everything is verified BEFORE anything is uploaded. Uploading as it went
   // meant a rejected second file left S3 holding a fresh businesses.json
@@ -153,6 +227,31 @@ if (command === "push") {
       continue;
     }
     ready.push({ file, absolute, ...verify(absolute, file) });
+  }
+
+  // The shrink guard is part of verification, so it also runs before the
+  // first upload: a refused push must leave the bucket exactly as it was.
+  const businesses = ready.find(
+    ({ file }) => file.path === "data/out/businesses.json",
+  );
+  const remote = publishedCount("businesses.json");
+  if (remote === "unreadable") {
+    console.log(
+      `  replacing an unreadable published businesses.json (--allow-shrink)`,
+    );
+  } else {
+    let verdict;
+    try {
+      verdict = shrinkVerdict({
+        remote,
+        next: businesses.records,
+        allowShrink,
+      });
+    } catch (error) {
+      die(`Shrink guard could not run: ${error.message}`);
+    }
+    if (!verdict.allowed) die(verdict.message);
+    console.log(`  checked  ${verdict.message}`);
   }
 
   for (const { file, absolute, bytes, records } of ready) {
@@ -196,5 +295,5 @@ if (command === "pull") {
 }
 
 die(
-  `Usage: node scripts/dataset.mjs push|pull   (got ${JSON.stringify(command ?? "")})`,
+  `Usage: node scripts/dataset.mjs push [--allow-shrink] | pull   (got ${JSON.stringify(command ?? "")})`,
 );

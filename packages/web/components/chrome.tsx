@@ -3,12 +3,19 @@ import { breadcrumbJsonLd, serializeJsonLd } from "@directory/core";
 
 import { crawledAt, formatCrawlDate } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
+import { Disclaimer, MakerCredit } from "./about";
 import { SearchApiWordmark } from "./search-api-logo";
 
 export function Header() {
   return (
     <header className="border-b border-[var(--rule)]">
-      <div className="mx-auto flex max-w-5xl items-baseline gap-8 px-6 py-5">
+      {/*
+        flex-wrap so the nav drops under the masthead rather than off the edge.
+        Measured at 320px before this: the row ran to x=345, so "Source" sat
+        behind a horizontal scrollbar — a WCAG 1.4.10 (reflow) failure on every
+        page of the site.
+      */}
+      <div className="mx-auto flex max-w-5xl flex-wrap items-baseline gap-x-8 gap-y-3 px-6 py-5">
         <div className="flex items-baseline gap-3">
           {/*
             A masthead, not a nav item.
@@ -50,12 +57,15 @@ export function Header() {
             <span className="sr-only">SearchApi</span>
           </a>
         </div>
-        <nav className="label flex gap-5 text-[var(--muted)]">
+        <nav className="label flex flex-wrap gap-x-4 gap-y-1 text-[var(--muted)]">
           <Link href="/categories" className="hover:text-[var(--fg)]">
             Categories
           </Link>
           <Link href="/areas" className="hover:text-[var(--fg)]">
             Areas
+          </Link>
+          <Link href="/about" className="hover:text-[var(--fg)]">
+            About
           </Link>
           <a
             href="https://github.com/pooyagolchian/business-directory-toolkit"
@@ -85,37 +95,49 @@ export function Footer() {
 
   return (
     <footer className="mt-24 border-t border-[var(--rule)]">
-      <div className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-6 py-8 text-sm text-[var(--muted)]">
-        <span>Business listings only. Takedown requests honoured.</span>
-        {crawled && (
-          <span>
-            Data retrieved from Google Maps on{" "}
-            <time dateTime={crawled}>{formatCrawlDate(crawled)}</time>.
-          </span>
-        )}
-        <a
-          href="https://github.com/pooyagolchian/business-directory-toolkit/blob/main/TAKEDOWN.md"
-          className="underline underline-offset-4 hover:text-[var(--fg)]"
-        >
-          Request removal
-        </a>
+      <div className="mx-auto max-w-5xl px-6 py-8 text-sm text-[var(--muted)]">
         {/*
-          The logo replaces the word here rather than joining it. An underline
-          under a wordmark reads as a mistake, so this link drops the footer's
-          underline convention and takes the opacity hover the header credit
-          uses. `currentColor` means it inherits the muted ink of the footer
-          row without a second asset.
+          What this site is, on every page, because most visitors arrive on a
+          listing from search and never see the home page. No heading: in a
+          footer of 14px muted text a label above it would only be a kicker,
+          and the first words already say what the block is.
         */}
-        <span className="ml-auto flex items-center gap-2">
-          Data via
+        <div className="max-w-2xl">
+          <Disclaimer />
+          <MakerCredit className="mt-3" />
+        </div>
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+          <span>Business listings only. Takedown requests honoured.</span>
+          {crawled && (
+            <span>
+              Data retrieved from Google Maps on{" "}
+              <time dateTime={crawled}>{formatCrawlDate(crawled)}</time>.
+            </span>
+          )}
           <a
-            href="https://www.searchapi.io/"
-            className="flex items-center transition-opacity hover:opacity-60"
+            href="https://github.com/pooyagolchian/business-directory-toolkit/blob/main/TAKEDOWN.md"
+            className="underline underline-offset-4 hover:text-[var(--fg)]"
           >
-            <SearchApiWordmark className="h-[18px] w-auto" />
-            <span className="sr-only">SearchApi</span>
+            Request removal
           </a>
-        </span>
+          {/*
+            The logo replaces the word here rather than joining it. An underline
+            under a wordmark reads as a mistake, so this link drops the footer's
+            underline convention and takes the opacity hover the header credit
+            uses. `currentColor` means it inherits the muted ink of the footer
+            row without a second asset.
+          */}
+          <span className="ml-auto flex items-center gap-2">
+            Data via
+            <a
+              href="https://www.searchapi.io/"
+              className="flex items-center transition-opacity hover:opacity-60"
+            >
+              <SearchApiWordmark className="h-[18px] w-auto" />
+              <span className="sr-only">SearchApi</span>
+            </a>
+          </span>
+        </div>
       </div>
     </footer>
   );

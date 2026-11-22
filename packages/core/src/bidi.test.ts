@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { hasArabic, splitScriptRuns } from "./bidi";
+import { hasArabic, isolateArabicRuns, splitScriptRuns } from "./bidi";
 
 /**
  * Splitting a bilingual title into script runs, so the Arabic half can be
@@ -96,6 +96,97 @@ describe("splitScriptRuns", () => {
     // listing names, and a range check that stops at U+06FF would miss them.
     const runs = splitScriptRuns("Shop ﻳ");
     expect(runs[1]?.lang).toBe("ar");
+  });
+});
+
+/**
+ * Runs shaped for a bidi ISOLATE (`<bdi>`), not just for a lang attribute.
+ *
+ * splitScriptRuns hands trailing spaces and punctuation to the Arabic run they
+ * follow. That is harmless on a `lang` span, but inside an RTL isolate a
+ * trailing " - " resolves right-to-left and is drawn on the isolate's visual
+ * LEFT — so "الكرامة - Sheikh Rashid Rd" would render as "- الكرامةSheikh",
+ * the dash leading the line and the Arabic jammed against the Latin. An
+ * isolated run has to start and end on an Arabic letter.
+ */
+describe("isolateArabicRuns", () => {
+  test("ends the isolate at the last Arabic letter, leaving the space outside", () => {
+    // The Aster Mankhool address, verbatim from the crawl.
+    expect(
+      isolateArabicRuns("الرفاعة Kuwait Street ,Al Raffa - Mankhool - Dubai"),
+    ).toEqual([
+      { text: "الرفاعة", lang: "ar" },
+      { text: " Kuwait Street ,Al Raffa - Mankhool - Dubai" },
+    ]);
+  });
+
+  test("keeps a separator dash in the Latin flow", () => {
+    expect(isolateArabicRuns("الكرامة - Sheikh Rashid Rd - Dubai")).toEqual([
+      { text: "الكرامة", lang: "ar" },
+      { text: " - Sheikh Rashid Rd - Dubai" },
+    ]);
+  });
+
+  test("leaves leading digits outside and internal neutrals inside", () => {
+    // Arabic-Indic digits and the hyphens between Arabic letters belong to the
+    // Arabic phrase, so they stay inside the isolate; the leading "31 " does not.
+    expect(isolateArabicRuns("31 شارع -١٠-ب - Mankhool - Dubai")).toEqual([
+      { text: "31 " },
+      { text: "شارع -١٠-ب", lang: "ar" },
+      { text: " - Mankhool - Dubai" },
+    ]);
+  });
+
+  test("moves trailing punctuation and digits out of the isolate", () => {
+    expect(isolateArabicRuns("برج سما, 14 - Sheikh Zayed Rd")).toEqual([
+      { text: "برج سما", lang: "ar" },
+      { text: ", 14 - Sheikh Zayed Rd" },
+    ]);
+  });
+
+  test("isolates an Arabic run in the middle of Latin text", () => {
+    expect(isolateArabicRuns("Shop 4 - مركز ايه جي, Deira")).toEqual([
+      { text: "Shop 4 - " },
+      { text: "مركز ايه جي", lang: "ar" },
+      { text: ", Deira" },
+    ]);
+  });
+
+  test("returns one untagged run when there is no Arabic", () => {
+    expect(isolateArabicRuns("Al Qouz Third - Al Quoz - Dubai")).toEqual([
+      { text: "Al Qouz Third - Al Quoz - Dubai" },
+    ]);
+  });
+
+  test("returns one tagged run for Arabic-only text", () => {
+    expect(isolateArabicRuns("مطعم شاميات")).toEqual([
+      { text: "مطعم شاميات", lang: "ar" },
+    ]);
+  });
+
+  test("returns an empty array for an empty string", () => {
+    expect(isolateArabicRuns("")).toEqual([]);
+  });
+
+  test("always reassembles to exactly the input, with no empty runs", () => {
+    for (const address of [
+      "الرفاعة Kuwait Street ,Al Raffa - Kuwait St - near Sharaf DG - Mankhool - Dubai",
+      "السطوة - بالقرب من مركز المعلومات الإسلامي - Al Bada' - Dubai",
+      "31 شارع -١٠-ب - Mankhool - Dubai",
+      ", مطعم ,",
+      "  مطعم  ",
+      "A مطعم B مقهى C",
+      "Yoko Sizzlers",
+    ]) {
+      const runs = isolateArabicRuns(address);
+      expect(runs.map((r) => r.text).join("")).toBe(address);
+      expect(runs.every((r) => r.text.length > 0)).toBe(true);
+      // Adjacent untagged runs would be two text nodes where one will do.
+      runs.forEach((r, i) => {
+        if (i > 0)
+          expect(Boolean(r.lang) || Boolean(runs[i - 1]?.lang)).toBe(true);
+      });
+    }
   });
 });
 

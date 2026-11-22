@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildChartDataset } from "@directory/core";
 import { SearchBox } from "@/components/search-box";
+import { MAKER_URL } from "@/components/about";
 import { FacetGrid, Footer, Header } from "@/components/chrome";
 import { BusinessList } from "@/components/business-card";
 import { RatingExplorer } from "@/components/rating-explorer";
@@ -195,6 +196,36 @@ export default function Home() {
             <RatingExplorer dataset={dataset} areaLabels={areaLabels} />
           </>
         )}
+
+        {/* Outside the empty/non-empty branch: what the site is matters just
+            as much on a deployment with no data yet. Two sentences and two
+            links, not a card. The full version is /about. */}
+        <section className="mt-20 max-w-2xl">
+          <h2 className="font-[family-name:var(--font-display)] text-2xl">
+            About this directory
+          </h2>
+          <p className="mt-4 text-[var(--muted)]">
+            This is an open-source project built with the Business Directory
+            Toolkit, from Google Maps listings retrieved through SearchApi and
+            refreshed every week. It is not affiliated with Google or with the
+            businesses listed, and details can change between crawls, so confirm
+            before you travel.
+          </p>
+          <p className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            <Link
+              href="/about"
+              className="underline underline-offset-4 hover:text-[var(--muted)]"
+            >
+              How this directory works
+            </Link>
+            <a
+              href={MAKER_URL}
+              className="underline underline-offset-4 hover:text-[var(--muted)]"
+            >
+              Built by Pooya Golchian
+            </a>
+          </p>
+        </section>
       </main>
 
       <Footer />

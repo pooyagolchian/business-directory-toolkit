@@ -106,3 +106,56 @@ export function splitScriptRuns(text: string): ScriptRun[] {
 
   return runs;
 }
+
+/**
+ * Script runs shaped for a bidi isolate (`<bdi lang="ar">`), for text whose
+ * DIRECTION the page has to state rather than infer — addresses.
+ *
+ * WHY ADDRESSES NEED MORE THAN `dir="auto"`. `dir="auto"` takes its direction
+ * from the first strong character. That is right for a title, which is a name
+ * and may well be Arabic-first. It is wrong for an address like
+ * "الرفاعة Kuwait Street ,Al Raffa - Mankhool - Dubai": 79 of the 14,980
+ * addresses in the Dubai corpus open with one Arabic word, the whole line then
+ * resolves right-to-left, right-aligns, and the Latin segments that follow are
+ * laid out in reverse. The fix is an LTR container with each Arabic run
+ * isolated, so it is ordered internally and placed as one unit.
+ *
+ * WHY THIS IS NOT splitScriptRuns. That function hands trailing spaces and
+ * punctuation to the run they follow, which is harmless on a `lang` span. In an
+ * isolate those neutrals take the Arabic run's direction and are drawn on its
+ * visual LEFT: "الكرامة - Sheikh Rashid Rd" would render with the dash leading
+ * the line and the Arabic jammed against "Sheikh". So every tagged run here
+ * starts and ends on an Arabic letter, and any neutral characters at its edges
+ * are returned to the surrounding Latin flow.
+ */
+export function isolateArabicRuns(text: string): ScriptRun[] {
+  const runs: ScriptRun[] = [];
+
+  // Appending to an untagged run merges with the previous one, so moving a
+  // neutral out of an isolate never leaves two adjacent plain text nodes.
+  const pushPlain = (chunk: string) => {
+    if (chunk === "") return;
+    const last = runs[runs.length - 1];
+    if (last && !last.lang) last.text += chunk;
+    else runs.push({ text: chunk });
+  };
+
+  for (const run of splitScriptRuns(text)) {
+    if (!run.lang) {
+      pushPlain(run.text);
+      continue;
+    }
+    // Spread rather than index, so a surrogate pair is never cut in half.
+    const chars = [...run.text];
+    let start = 0;
+    let end = chars.length;
+    while (start < end && isNeutral(chars[start]!)) start++;
+    while (end > start && isNeutral(chars[end - 1]!)) end--;
+
+    pushPlain(chars.slice(0, start).join(""));
+    runs.push({ text: chars.slice(start, end).join(""), lang: "ar" });
+    pushPlain(chars.slice(end).join(""));
+  }
+
+  return runs;
+}

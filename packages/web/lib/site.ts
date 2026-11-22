@@ -69,3 +69,12 @@ export const AUTHOR_URL = override(
   process.env.DIRECTORY_AUTHOR_URL,
   "https://pooyagolchian.com",
 );
+
+/**
+ * The takedown policy, for the 404 pages that have to point at it.
+ *
+ * Built from REPO_URL rather than copied, so a fork's "how do I get this
+ * removed" link lands on the fork's own policy — the one its operator actually
+ * honours — and not on this repository's.
+ */
+export const TAKEDOWN_URL = `${REPO_URL}/blob/main/TAKEDOWN.md`;

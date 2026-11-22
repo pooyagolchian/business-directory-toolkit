@@ -51,7 +51,7 @@ export type { CategoryMap } from "./categories";
 
 export { serializeJsonLd } from "./jsonld";
 
-export { hasArabic, splitScriptRuns } from "./bidi";
+export { hasArabic, isolateArabicRuns, splitScriptRuns } from "./bidi";
 export type { ScriptRun } from "./bidi";
 
 export {
